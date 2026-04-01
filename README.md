@@ -2,23 +2,23 @@
 
 <div align="center">
 
-![Cortex Agent Banner](cortex-agent/assets/cortex-agent-small.jpeg)
+![Cortex Agent Banner](banner.png)
 
 
 
-[![GitHub Project of the Day](https://img.shields.io/badge/GitHub-Project%20of%20the%20Day-ff6600?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ruvnet/cortex-agent)
+[![GitHub Project of the Day](https://img.shields.io/badge/GitHub-Project%20of%20the%20Day-ff6600?style=for-the-badge&logo=github&logoColor=white)](https://github.com/cortexai2026/cortex)
 
-[![Star on GitHub](https://img.shields.io/github/stars/ruvnet/cortex-agent?style=for-the-badge&logo=github&color=gold)](https://github.com/ruvnet/cortex-agent)
-[![Monthly Downloads](https://img.shields.io/npm/dm/cortex-agent?style=for-the-badge&logo=npm&color=blue&label=Monthly%20Downloads)](https://www.npmjs.com/package/cortex-agent)
-[![Total Downloads](https://img.shields.io/npm/dt/cortex-agent?style=for-the-badge&logo=npm&color=cyan&label=Total%20Downloads)](https://www.npmjs.com/package/cortex-agent)
-[![ruv.io](https://img.shields.io/badge/ruv.io-AI%20Platform-green?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0xMiAyQzYuNDggMiAyIDYuNDggMiAxMnM0LjQ4IDEwIDEwIDEwIDEwLTQuNDggMTAtMTBTMTcuNTIgMiAxMiAyem0wIDE4Yy00LjQyIDAtOC0zLjU4LTgtOHMzLjU4LTggOC04IDggMy41OCA4IDgtMy41OCA4LTggOHoiLz48L3N2Zz4=)](https://ruv.io)
+[![Star on GitHub](https://img.shields.io/github/stars/ruvnet/cortex-agent?style=for-the-badge&logo=github&color=gold)](https://github.com/cortexai2026/cortex)
+[![Monthly Downloads](https://img.shields.io/npm/dm/cortex-agent?style=for-the-badge&logo=npm&color=blue&label=Monthly%20Downloads)](https://github.com/cortexai2026/cortex)
+[![Total Downloads](https://img.shields.io/npm/dt/cortex-agent?style=for-the-badge&logo=npm&color=cyan&label=Total%20Downloads)](https://github.com/cortexai2026/cortex)
+[![cortex.dev](https://img.shields.io/badge/cortex.dev-AI%20Platform-green?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0xMiAyQzYuNDggMiAyIDYuNDggMiAxMnM0LjQ4IDEwIDEwIDEwIDEwLTQuNDggMTAtMTBTMTcuNTIgMiAxMiAyem0wIDE4Yy00LjQyIDAtOC0zLjU4LTgtOHMzLjU4LTggOC04IDggMy41OCA4IDgtMy41OCA4LTggOHoiLz48L3N2Zz4=)](https://cortex.dev)
 [![Agentics Foundation](https://img.shields.io/badge/Agentics-Foundation-crimson?style=for-the-badge&logo=openai)](https://discord.com/invite/dfxmpwkG2D)
-[![Claude Code](https://img.shields.io/badge/Claude%20Code-SDK%20Integrated-green?style=for-the-badge&logo=anthropic)](https://github.com/ruvnet/cortex-agent)
+[![Claude Code](https://img.shields.io/badge/Claude%20Code-SDK%20Integrated-green?style=for-the-badge&logo=anthropic)](https://github.com/cortexai2026/cortex)
 [![MIT License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge&logo=opensourceinitiative)](https://opensource.org/licenses/MIT)
 ---
-[![Follow @ruv](https://img.shields.io/badge/Follow%20%40ruv-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/ruv)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/reuvencohen/)
-[![YouTube](https://img.shields.io/badge/YouTube-Subscribe-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/@ReuvenCohen)
+[![Follow @ruv](https://img.shields.io/badge/Follow%20%40cortexai2026-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/cortexai2026)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin)](https://github.com/cortexai2026)
+[![YouTube](https://img.shields.io/badge/YouTube-Subscribe-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://github.com/cortexai2026)
 
 # **Production-ready multi-agent AI orchestration for Claude Code**
 *Deploy 100+ specialized agents in coordinated swarms with self-learning capabilities, fault-tolerant consensus, and enterprise-grade security.*
@@ -7524,9 +7524,9 @@ cp -r ./data-backup-v2 ./data
 
 | Resource | Link |
 |----------|------|
-| 📚 Documentation | [github.com/ruvnet/cortex-agent](https://github.com/ruvnet/cortex-agent) |
-| 🐛 Issues & Bugs | [github.com/ruvnet/cortex-agent/issues](https://github.com/ruvnet/cortex-agent/issues) |
-| 💼 Professional Implementation | [ruv.io](https://ruv.io) — Enterprise consulting, custom integrations, and production deployment |
+| 📚 Documentation | [github.com/ruvnet/cortex-agent](https://github.com/cortexai2026/cortex) |
+| 🐛 Issues & Bugs | [github.com/ruvnet/cortex-agent/issues](https://github.com/cortexai2026/cortex/issues) |
+| 💼 Professional Implementation | [cortex.dev](https://cortex.dev) — Enterprise consulting, custom integrations, and production deployment |
 | 💬 Discord Community | [Agentics Foundation](https://discord.com/invite/dfxmpwkG2D) |
 
 ## License
