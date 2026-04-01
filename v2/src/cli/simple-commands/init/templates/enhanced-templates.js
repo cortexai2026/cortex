@@ -1,4 +1,4 @@
-// enhanced-templates.js - Generate Claude Flow v2.0.0 enhanced templates
+// enhanced-templates.js - Generate Cortex Agent v2.0.0 enhanced templates
 import { readFileSync } from 'fs';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
@@ -36,14 +36,14 @@ export function createEnhancedSettingsJson() {
 export function createWrapperScript(type = 'unix') {
   // For unix, use the universal wrapper that works in both CommonJS and ES modules
   if (type === 'unix') {
-    const universalTemplate = loadTemplate('claude-flow-universal');
+    const universalTemplate = loadTemplate('cortex-agent-universal');
     if (universalTemplate) {
       return universalTemplate;
     }
   }
 
   const filename =
-    type === 'unix' ? 'claude-flow' : type === 'windows' ? 'claude-flow.bat' : 'claude-flow.ps1';
+    type === 'unix' ? 'cortex-agent' : type === 'windows' ? 'cortex-agent.bat' : 'cortex-agent.ps1';
 
   const template = loadTemplate(filename);
   if (!template) {
@@ -71,7 +71,7 @@ Automatically detect performance bottlenecks in your swarm operations.
 
 ## Usage
 \`\`\`bash
-npx claude-flow analysis bottleneck-detect [options]
+npx cortex-agent analysis bottleneck-detect [options]
 \`\`\`
 
 ## Options
@@ -82,13 +82,13 @@ npx claude-flow analysis bottleneck-detect [options]
 ## Examples
 \`\`\`bash
 # Detect bottlenecks in current swarm
-npx claude-flow analysis bottleneck-detect
+npx cortex-agent analysis bottleneck-detect
 
 # Set custom threshold
-npx claude-flow analysis bottleneck-detect --threshold 500
+npx cortex-agent analysis bottleneck-detect --threshold 500
 
 # Export results
-npx claude-flow analysis bottleneck-detect --export bottlenecks.json
+npx cortex-agent analysis bottleneck-detect --export bottlenecks.json
 \`\`\`
 `,
       'token-usage': `# token-usage
@@ -97,7 +97,7 @@ Analyze token usage patterns and optimize for efficiency.
 
 ## Usage
 \`\`\`bash
-npx claude-flow analysis token-usage [options]
+npx cortex-agent analysis token-usage [options]
 \`\`\`
 
 ## Options
@@ -108,13 +108,13 @@ npx claude-flow analysis token-usage [options]
 ## Examples
 \`\`\`bash
 # Last 24 hours token usage
-npx claude-flow analysis token-usage --period 24h
+npx cortex-agent analysis token-usage --period 24h
 
 # By agent breakdown
-npx claude-flow analysis token-usage --by-agent
+npx cortex-agent analysis token-usage --by-agent
 
 # Export detailed report
-npx claude-flow analysis token-usage --period 7d --export tokens.csv
+npx cortex-agent analysis token-usage --period 7d --export tokens.csv
 \`\`\`
 `,
       'performance-report': `# performance-report
@@ -123,7 +123,7 @@ Generate comprehensive performance reports for swarm operations.
 
 ## Usage
 \`\`\`bash
-npx claude-flow analysis performance-report [options]
+npx cortex-agent analysis performance-report [options]
 \`\`\`
 
 ## Options
@@ -134,13 +134,13 @@ npx claude-flow analysis performance-report [options]
 ## Examples
 \`\`\`bash
 # Generate HTML report
-npx claude-flow analysis performance-report --format html
+npx cortex-agent analysis performance-report --format html
 
 # Compare swarms
-npx claude-flow analysis performance-report --compare swarm-123
+npx cortex-agent analysis performance-report --compare swarm-123
 
 # Full metrics report
-npx claude-flow analysis performance-report --include-metrics --format markdown
+npx cortex-agent analysis performance-report --include-metrics --format markdown
 \`\`\`
 `,
     },
@@ -151,7 +151,7 @@ Automatically assign agents based on task analysis.
 
 ## Usage
 \`\`\`bash
-npx claude-flow automation auto-agent [options]
+npx cortex-agent automation auto-agent [options]
 \`\`\`
 
 ## Options
@@ -162,13 +162,13 @@ npx claude-flow automation auto-agent [options]
 ## Examples
 \`\`\`bash
 # Auto-assign for task
-npx claude-flow automation auto-agent --task "Build REST API"
+npx cortex-agent automation auto-agent --task "Build REST API"
 
 # Limit agents
-npx claude-flow automation auto-agent --task "Fix bugs" --max-agents 3
+npx cortex-agent automation auto-agent --task "Fix bugs" --max-agents 3
 
 # Use specific strategy
-npx claude-flow automation auto-agent --strategy specialized
+npx cortex-agent automation auto-agent --strategy specialized
 \`\`\`
 `,
       'smart-spawn': `# smart-spawn
@@ -177,7 +177,7 @@ Intelligently spawn agents based on workload analysis.
 
 ## Usage
 \`\`\`bash
-npx claude-flow automation smart-spawn [options]
+npx cortex-agent automation smart-spawn [options]
 \`\`\`
 
 ## Options
@@ -188,13 +188,13 @@ npx claude-flow automation smart-spawn [options]
 ## Examples
 \`\`\`bash
 # Smart spawn with analysis
-npx claude-flow automation smart-spawn --analyze
+npx cortex-agent automation smart-spawn --analyze
 
 # Set spawn threshold
-npx claude-flow automation smart-spawn --threshold 5
+npx cortex-agent automation smart-spawn --threshold 5
 
 # Force topology
-npx claude-flow automation smart-spawn --topology hierarchical
+npx cortex-agent automation smart-spawn --topology hierarchical
 \`\`\`
 `,
       'workflow-select': `# workflow-select
@@ -203,7 +203,7 @@ Automatically select optimal workflow based on task type.
 
 ## Usage
 \`\`\`bash
-npx claude-flow automation workflow-select [options]
+npx cortex-agent automation workflow-select [options]
 \`\`\`
 
 ## Options
@@ -214,13 +214,13 @@ npx claude-flow automation workflow-select [options]
 ## Examples
 \`\`\`bash
 # Select workflow for task
-npx claude-flow automation workflow-select --task "Deploy to production"
+npx cortex-agent automation workflow-select --task "Deploy to production"
 
 # With constraints
-npx claude-flow automation workflow-select --constraints "no-downtime,rollback"
+npx cortex-agent automation workflow-select --constraints "no-downtime,rollback"
 
 # Preview mode
-npx claude-flow automation workflow-select --task "Database migration" --preview
+npx cortex-agent automation workflow-select --task "Database migration" --preview
 \`\`\`
 `,
     },
@@ -231,7 +231,7 @@ Initialize a new agent swarm with specified topology.
 
 ## Usage
 \`\`\`bash
-npx claude-flow swarm init [options]
+npx cortex-agent swarm init [options]
 \`\`\`
 
 ## Options
@@ -242,13 +242,13 @@ npx claude-flow swarm init [options]
 ## Examples
 \`\`\`bash
 # Initialize hierarchical swarm
-npx claude-flow swarm init --topology hierarchical
+npx cortex-agent swarm init --topology hierarchical
 
 # With agent limit
-npx claude-flow swarm init --topology mesh --max-agents 8
+npx cortex-agent swarm init --topology mesh --max-agents 8
 
 # Parallel execution
-npx claude-flow swarm init --strategy parallel
+npx cortex-agent swarm init --strategy parallel
 \`\`\`
 `,
       'agent-spawn': `# agent-spawn
@@ -257,7 +257,7 @@ Spawn a new agent in the current swarm.
 
 ## Usage
 \`\`\`bash
-npx claude-flow agent spawn [options]
+npx cortex-agent agent spawn [options]
 \`\`\`
 
 ## Options
@@ -268,13 +268,13 @@ npx claude-flow agent spawn [options]
 ## Examples
 \`\`\`bash
 # Spawn coder agent
-npx claude-flow agent spawn --type coder
+npx cortex-agent agent spawn --type coder
 
 # With custom name
-npx claude-flow agent spawn --type researcher --name "API Expert"
+npx cortex-agent agent spawn --type researcher --name "API Expert"
 
 # With specific skills
-npx claude-flow agent spawn --type coder --skills "python,fastapi,testing"
+npx cortex-agent agent spawn --type coder --skills "python,fastapi,testing"
 \`\`\`
 `,
       'task-orchestrate': `# task-orchestrate
@@ -283,7 +283,7 @@ Orchestrate complex tasks across the swarm.
 
 ## Usage
 \`\`\`bash
-npx claude-flow task orchestrate [options]
+npx cortex-agent task orchestrate [options]
 \`\`\`
 
 ## Options
@@ -294,13 +294,13 @@ npx claude-flow task orchestrate [options]
 ## Examples
 \`\`\`bash
 # Orchestrate development task
-npx claude-flow task orchestrate --task "Implement user authentication"
+npx cortex-agent task orchestrate --task "Implement user authentication"
 
 # High priority task
-npx claude-flow task orchestrate --task "Fix production bug" --priority critical
+npx cortex-agent task orchestrate --task "Fix production bug" --priority critical
 
 # With specific strategy
-npx claude-flow task orchestrate --task "Refactor codebase" --strategy parallel
+npx cortex-agent task orchestrate --task "Refactor codebase" --strategy parallel
 \`\`\`
 `,
     },
@@ -311,7 +311,7 @@ Create a specialized swarm for GitHub repository management.
 
 ## Usage
 \`\`\`bash
-npx claude-flow github swarm [options]
+npx cortex-agent github swarm [options]
 \`\`\`
 
 ## Options
@@ -322,13 +322,13 @@ npx claude-flow github swarm [options]
 ## Examples
 \`\`\`bash
 # Create GitHub swarm
-npx claude-flow github swarm --repository myorg/myrepo
+npx cortex-agent github swarm --repository myorg/myrepo
 
 # With specific focus
-npx claude-flow github swarm --repository myorg/myrepo --focus security
+npx cortex-agent github swarm --repository myorg/myrepo --focus security
 
 # Custom agent count
-npx claude-flow github swarm --repository myorg/myrepo --agents 6
+npx cortex-agent github swarm --repository myorg/myrepo --agents 6
 \`\`\`
 `,
       'repo-analyze': `# repo-analyze
@@ -337,7 +337,7 @@ Deep analysis of GitHub repository with AI insights.
 
 ## Usage
 \`\`\`bash
-npx claude-flow github repo-analyze [options]
+npx cortex-agent github repo-analyze [options]
 \`\`\`
 
 ## Options
@@ -348,13 +348,13 @@ npx claude-flow github repo-analyze [options]
 ## Examples
 \`\`\`bash
 # Basic analysis
-npx claude-flow github repo-analyze --repository myorg/myrepo
+npx cortex-agent github repo-analyze --repository myorg/myrepo
 
 # Deep analysis
-npx claude-flow github repo-analyze --repository myorg/myrepo --deep
+npx cortex-agent github repo-analyze --repository myorg/myrepo --deep
 
 # Specific areas
-npx claude-flow github repo-analyze --repository myorg/myrepo --include issues,prs
+npx cortex-agent github repo-analyze --repository myorg/myrepo --include issues,prs
 \`\`\`
 `,
       'pr-enhance': `# pr-enhance
@@ -363,7 +363,7 @@ AI-powered pull request enhancements.
 
 ## Usage
 \`\`\`bash
-npx claude-flow github pr-enhance [options]
+npx cortex-agent github pr-enhance [options]
 \`\`\`
 
 ## Options
@@ -375,13 +375,13 @@ npx claude-flow github pr-enhance [options]
 ## Examples
 \`\`\`bash
 # Enhance PR
-npx claude-flow github pr-enhance --pr-number 123
+npx cortex-agent github pr-enhance --pr-number 123
 
 # Add tests
-npx claude-flow github pr-enhance --pr-number 123 --add-tests
+npx cortex-agent github pr-enhance --pr-number 123 --add-tests
 
 # Full enhancement
-npx claude-flow github pr-enhance --pr-number 123 --add-tests --improve-docs
+npx cortex-agent github pr-enhance --pr-number 123 --add-tests --improve-docs
 \`\`\`
 `,
       'issue-triage': `# issue-triage
@@ -390,7 +390,7 @@ Intelligent issue classification and triage.
 
 ## Usage
 \`\`\`bash
-npx claude-flow github issue-triage [options]
+npx cortex-agent github issue-triage [options]
 \`\`\`
 
 ## Options
@@ -401,13 +401,13 @@ npx claude-flow github issue-triage [options]
 ## Examples
 \`\`\`bash
 # Triage issues
-npx claude-flow github issue-triage --repository myorg/myrepo
+npx cortex-agent github issue-triage --repository myorg/myrepo
 
 # With auto-labeling
-npx claude-flow github issue-triage --repository myorg/myrepo --auto-label
+npx cortex-agent github issue-triage --repository myorg/myrepo --auto-label
 
 # Full automation
-npx claude-flow github issue-triage --repository myorg/myrepo --auto-label --assign
+npx cortex-agent github issue-triage --repository myorg/myrepo --auto-label --assign
 \`\`\`
 `,
       'code-review': `# code-review
@@ -416,7 +416,7 @@ Automated code review with swarm intelligence.
 
 ## Usage
 \`\`\`bash
-npx claude-flow github code-review [options]
+npx cortex-agent github code-review [options]
 \`\`\`
 
 ## Options
@@ -427,13 +427,13 @@ npx claude-flow github code-review [options]
 ## Examples
 \`\`\`bash
 # Review PR
-npx claude-flow github code-review --pr-number 456
+npx cortex-agent github code-review --pr-number 456
 
 # Security focus
-npx claude-flow github code-review --pr-number 456 --focus security
+npx cortex-agent github code-review --pr-number 456 --focus security
 
 # With fix suggestions
-npx claude-flow github code-review --pr-number 456 --suggest-fixes
+npx cortex-agent github code-review --pr-number 456 --suggest-fixes
 \`\`\`
 `,
     },
@@ -444,7 +444,7 @@ Hook executed before task execution.
 
 ## Usage
 \`\`\`bash
-npx claude-flow hook pre-task [options]
+npx cortex-agent hook pre-task [options]
 \`\`\`
 
 ## Options
@@ -455,13 +455,13 @@ npx claude-flow hook pre-task [options]
 ## Examples
 \`\`\`bash
 # Basic pre-task hook
-npx claude-flow hook pre-task --description "Building API endpoints"
+npx cortex-agent hook pre-task --description "Building API endpoints"
 
 # With auto-spawn
-npx claude-flow hook pre-task --description "Complex refactoring" --auto-spawn-agents
+npx cortex-agent hook pre-task --description "Complex refactoring" --auto-spawn-agents
 
 # Load context
-npx claude-flow hook pre-task --description "Continue feature" --load-context
+npx cortex-agent hook pre-task --description "Continue feature" --load-context
 \`\`\`
 `,
       'post-task': `# post-task
@@ -470,7 +470,7 @@ Hook executed after task completion.
 
 ## Usage
 \`\`\`bash
-npx claude-flow hook post-task [options]
+npx cortex-agent hook post-task [options]
 \`\`\`
 
 ## Options
@@ -481,13 +481,13 @@ npx claude-flow hook post-task [options]
 ## Examples
 \`\`\`bash
 # Basic post-task
-npx claude-flow hook post-task --task-id task-123
+npx cortex-agent hook post-task --task-id task-123
 
 # With performance analysis
-npx claude-flow hook post-task --task-id task-123 --analyze-performance
+npx cortex-agent hook post-task --task-id task-123 --analyze-performance
 
 # Update memory
-npx claude-flow hook post-task --task-id task-123 --update-memory
+npx cortex-agent hook post-task --task-id task-123 --update-memory
 \`\`\`
 `,
       'pre-edit': `# pre-edit
@@ -496,7 +496,7 @@ Hook executed before file edits.
 
 ## Usage
 \`\`\`bash
-npx claude-flow hook pre-edit [options]
+npx cortex-agent hook pre-edit [options]
 \`\`\`
 
 ## Options
@@ -507,13 +507,13 @@ npx claude-flow hook pre-edit [options]
 ## Examples
 \`\`\`bash
 # Pre-edit hook
-npx claude-flow hook pre-edit --file src/api.js
+npx cortex-agent hook pre-edit --file src/api.js
 
 # With validation
-npx claude-flow hook pre-edit --file src/api.js --validate-syntax
+npx cortex-agent hook pre-edit --file src/api.js --validate-syntax
 
 # Create backup
-npx claude-flow hook pre-edit --file src/api.js --backup
+npx cortex-agent hook pre-edit --file src/api.js --backup
 \`\`\`
 `,
       'post-edit': `# post-edit
@@ -522,7 +522,7 @@ Hook executed after file edits.
 
 ## Usage
 \`\`\`bash
-npx claude-flow hook post-edit [options]
+npx cortex-agent hook post-edit [options]
 \`\`\`
 
 ## Options
@@ -533,13 +533,13 @@ npx claude-flow hook post-edit [options]
 ## Examples
 \`\`\`bash
 # Post-edit hook
-npx claude-flow hook post-edit --file src/api.js
+npx cortex-agent hook post-edit --file src/api.js
 
 # Store in memory
-npx claude-flow hook post-edit --file src/api.js --memory-key "api-changes"
+npx cortex-agent hook post-edit --file src/api.js --memory-key "api-changes"
 
 # With formatting
-npx claude-flow hook post-edit --file src/api.js --format
+npx cortex-agent hook post-edit --file src/api.js --format
 \`\`\`
 `,
       'session-end': `# session-end
@@ -548,7 +548,7 @@ Hook executed at session end.
 
 ## Usage
 \`\`\`bash
-npx claude-flow hook session-end [options]
+npx cortex-agent hook session-end [options]
 \`\`\`
 
 ## Options
@@ -559,13 +559,13 @@ npx claude-flow hook session-end [options]
 ## Examples
 \`\`\`bash
 # End session
-npx claude-flow hook session-end
+npx cortex-agent hook session-end
 
 # Export metrics
-npx claude-flow hook session-end --export-metrics
+npx cortex-agent hook session-end --export-metrics
 
 # Full closure
-npx claude-flow hook session-end --export-metrics --generate-summary --persist-state
+npx cortex-agent hook session-end --export-metrics --generate-summary --persist-state
 \`\`\`
 `,
     },
@@ -576,7 +576,7 @@ Manage persistent memory storage.
 
 ## Usage
 \`\`\`bash
-npx claude-flow memory usage [options]
+npx cortex-agent memory usage [options]
 \`\`\`
 
 ## Options
@@ -587,13 +587,13 @@ npx claude-flow memory usage [options]
 ## Examples
 \`\`\`bash
 # Store memory
-npx claude-flow memory usage --action store --key "project-config" --value '{"api": "v2"}'
+npx cortex-agent memory usage --action store --key "project-config" --value '{"api": "v2"}'
 
 # Retrieve memory
-npx claude-flow memory usage --action retrieve --key "project-config"
+npx cortex-agent memory usage --action retrieve --key "project-config"
 
 # List all keys
-npx claude-flow memory usage --action list
+npx cortex-agent memory usage --action list
 \`\`\`
 `,
       'memory-persist': `# memory-persist
@@ -602,7 +602,7 @@ Persist memory across sessions.
 
 ## Usage
 \`\`\`bash
-npx claude-flow memory persist [options]
+npx cortex-agent memory persist [options]
 \`\`\`
 
 ## Options
@@ -613,13 +613,13 @@ npx claude-flow memory persist [options]
 ## Examples
 \`\`\`bash
 # Export memory
-npx claude-flow memory persist --export memory-backup.json
+npx cortex-agent memory persist --export memory-backup.json
 
 # Import memory
-npx claude-flow memory persist --import memory-backup.json
+npx cortex-agent memory persist --import memory-backup.json
 
 # Compressed export
-npx claude-flow memory persist --export memory.gz --compress
+npx cortex-agent memory persist --export memory.gz --compress
 \`\`\`
 `,
       'memory-search': `# memory-search
@@ -628,7 +628,7 @@ Search through stored memory.
 
 ## Usage
 \`\`\`bash
-npx claude-flow memory search [options]
+npx cortex-agent memory search [options]
 \`\`\`
 
 ## Options
@@ -639,13 +639,13 @@ npx claude-flow memory search [options]
 ## Examples
 \`\`\`bash
 # Search memory
-npx claude-flow memory search --query "authentication"
+npx cortex-agent memory search --query "authentication"
 
 # Pattern search
-npx claude-flow memory search --pattern "api-.*"
+npx cortex-agent memory search --pattern "api-.*"
 
 # Limited results
-npx claude-flow memory search --query "config" --limit 10
+npx cortex-agent memory search --query "config" --limit 10
 \`\`\`
 `,
     },
@@ -656,7 +656,7 @@ Real-time swarm monitoring.
 
 ## Usage
 \`\`\`bash
-npx claude-flow swarm monitor [options]
+npx cortex-agent swarm monitor [options]
 \`\`\`
 
 ## Options
@@ -667,13 +667,13 @@ npx claude-flow swarm monitor [options]
 ## Examples
 \`\`\`bash
 # Start monitoring
-npx claude-flow swarm monitor
+npx cortex-agent swarm monitor
 
 # Custom interval
-npx claude-flow swarm monitor --interval 5000
+npx cortex-agent swarm monitor --interval 5000
 
 # With metrics
-npx claude-flow swarm monitor --metrics
+npx cortex-agent swarm monitor --metrics
 \`\`\`
 `,
       'agent-metrics': `# agent-metrics
@@ -682,7 +682,7 @@ View agent performance metrics.
 
 ## Usage
 \`\`\`bash
-npx claude-flow agent metrics [options]
+npx cortex-agent agent metrics [options]
 \`\`\`
 
 ## Options
@@ -693,13 +693,13 @@ npx claude-flow agent metrics [options]
 ## Examples
 \`\`\`bash
 # All agents metrics
-npx claude-flow agent metrics
+npx cortex-agent agent metrics
 
 # Specific agent
-npx claude-flow agent metrics --agent-id agent-001
+npx cortex-agent agent metrics --agent-id agent-001
 
 # Last hour
-npx claude-flow agent metrics --period 1h
+npx cortex-agent agent metrics --period 1h
 \`\`\`
 `,
       'real-time-view': `# real-time-view
@@ -708,7 +708,7 @@ Real-time view of swarm activity.
 
 ## Usage
 \`\`\`bash
-npx claude-flow monitoring real-time-view [options]
+npx cortex-agent monitoring real-time-view [options]
 \`\`\`
 
 ## Options
@@ -719,13 +719,13 @@ npx claude-flow monitoring real-time-view [options]
 ## Examples
 \`\`\`bash
 # Start real-time view
-npx claude-flow monitoring real-time-view
+npx cortex-agent monitoring real-time-view
 
 # Filter errors
-npx claude-flow monitoring real-time-view --filter errors
+npx cortex-agent monitoring real-time-view --filter errors
 
 # Highlight pattern
-npx claude-flow monitoring real-time-view --highlight "API"
+npx cortex-agent monitoring real-time-view --highlight "API"
 \`\`\`
 `,
     },
@@ -736,7 +736,7 @@ Optimize swarm topology for current workload.
 
 ## Usage
 \`\`\`bash
-npx claude-flow optimization topology-optimize [options]
+npx cortex-agent optimization topology-optimize [options]
 \`\`\`
 
 ## Options
@@ -747,13 +747,13 @@ npx claude-flow optimization topology-optimize [options]
 ## Examples
 \`\`\`bash
 # Analyze and suggest
-npx claude-flow optimization topology-optimize --analyze-first
+npx cortex-agent optimization topology-optimize --analyze-first
 
 # Optimize for speed
-npx claude-flow optimization topology-optimize --target speed
+npx cortex-agent optimization topology-optimize --target speed
 
 # Apply changes
-npx claude-flow optimization topology-optimize --target efficiency --apply
+npx cortex-agent optimization topology-optimize --target efficiency --apply
 \`\`\`
 `,
       'parallel-execute': `# parallel-execute
@@ -762,7 +762,7 @@ Execute tasks in parallel for maximum efficiency.
 
 ## Usage
 \`\`\`bash
-npx claude-flow optimization parallel-execute [options]
+npx cortex-agent optimization parallel-execute [options]
 \`\`\`
 
 ## Options
@@ -773,13 +773,13 @@ npx claude-flow optimization parallel-execute [options]
 ## Examples
 \`\`\`bash
 # Execute task list
-npx claude-flow optimization parallel-execute --tasks tasks.json
+npx cortex-agent optimization parallel-execute --tasks tasks.json
 
 # Limit parallelism
-npx claude-flow optimization parallel-execute --tasks tasks.json --max-parallel 5
+npx cortex-agent optimization parallel-execute --tasks tasks.json --max-parallel 5
 
 # Custom strategy
-npx claude-flow optimization parallel-execute --strategy adaptive
+npx cortex-agent optimization parallel-execute --strategy adaptive
 \`\`\`
 `,
       'cache-manage': `# cache-manage
@@ -788,7 +788,7 @@ Manage operation cache for performance.
 
 ## Usage
 \`\`\`bash
-npx claude-flow optimization cache-manage [options]
+npx cortex-agent optimization cache-manage [options]
 \`\`\`
 
 ## Options
@@ -799,13 +799,13 @@ npx claude-flow optimization cache-manage [options]
 ## Examples
 \`\`\`bash
 # View cache stats
-npx claude-flow optimization cache-manage --action view
+npx cortex-agent optimization cache-manage --action view
 
 # Clear cache
-npx claude-flow optimization cache-manage --action clear
+npx cortex-agent optimization cache-manage --action clear
 
 # Set limits
-npx claude-flow optimization cache-manage --max-size 100 --ttl 3600
+npx cortex-agent optimization cache-manage --max-size 100 --ttl 3600
 \`\`\`
 `,
     },
@@ -816,7 +816,7 @@ Train neural patterns from operations.
 
 ## Usage
 \`\`\`bash
-npx claude-flow training neural-train [options]
+npx cortex-agent training neural-train [options]
 \`\`\`
 
 ## Options
@@ -827,13 +827,13 @@ npx claude-flow training neural-train [options]
 ## Examples
 \`\`\`bash
 # Train from recent ops
-npx claude-flow training neural-train --data recent
+npx cortex-agent training neural-train --data recent
 
 # Specific model
-npx claude-flow training neural-train --model task-predictor
+npx cortex-agent training neural-train --model task-predictor
 
 # Custom epochs
-npx claude-flow training neural-train --epochs 100
+npx cortex-agent training neural-train --epochs 100
 \`\`\`
 `,
       'pattern-learn': `# pattern-learn
@@ -842,7 +842,7 @@ Learn patterns from successful operations.
 
 ## Usage
 \`\`\`bash
-npx claude-flow training pattern-learn [options]
+npx cortex-agent training pattern-learn [options]
 \`\`\`
 
 ## Options
@@ -853,13 +853,13 @@ npx claude-flow training pattern-learn [options]
 ## Examples
 \`\`\`bash
 # Learn from all ops
-npx claude-flow training pattern-learn
+npx cortex-agent training pattern-learn
 
 # High success only
-npx claude-flow training pattern-learn --threshold 0.9
+npx cortex-agent training pattern-learn --threshold 0.9
 
 # Save patterns
-npx claude-flow training pattern-learn --save optimal-patterns
+npx cortex-agent training pattern-learn --save optimal-patterns
 \`\`\`
 `,
       'model-update': `# model-update
@@ -868,7 +868,7 @@ Update neural models with new data.
 
 ## Usage
 \`\`\`bash
-npx claude-flow training model-update [options]
+npx cortex-agent training model-update [options]
 \`\`\`
 
 ## Options
@@ -879,13 +879,13 @@ npx claude-flow training model-update [options]
 ## Examples
 \`\`\`bash
 # Update all models
-npx claude-flow training model-update
+npx cortex-agent training model-update
 
 # Specific model
-npx claude-flow training model-update --model agent-selector
+npx cortex-agent training model-update --model agent-selector
 
 # Incremental with validation
-npx claude-flow training model-update --incremental --validate
+npx cortex-agent training model-update --incremental --validate
 \`\`\`
 `,
     },
@@ -896,7 +896,7 @@ Create reusable workflow templates.
 
 ## Usage
 \`\`\`bash
-npx claude-flow workflow create [options]
+npx cortex-agent workflow create [options]
 \`\`\`
 
 ## Options
@@ -907,13 +907,13 @@ npx claude-flow workflow create [options]
 ## Examples
 \`\`\`bash
 # Create workflow
-npx claude-flow workflow create --name "deploy-api"
+npx cortex-agent workflow create --name "deploy-api"
 
 # From history
-npx claude-flow workflow create --name "test-suite" --from-history
+npx cortex-agent workflow create --name "test-suite" --from-history
 
 # Interactive mode
-npx claude-flow workflow create --interactive
+npx cortex-agent workflow create --interactive
 \`\`\`
 `,
       'workflow-execute': `# workflow-execute
@@ -922,7 +922,7 @@ Execute saved workflows.
 
 ## Usage
 \`\`\`bash
-npx claude-flow workflow execute [options]
+npx cortex-agent workflow execute [options]
 \`\`\`
 
 ## Options
@@ -933,13 +933,13 @@ npx claude-flow workflow execute [options]
 ## Examples
 \`\`\`bash
 # Execute workflow
-npx claude-flow workflow execute --name "deploy-api"
+npx cortex-agent workflow execute --name "deploy-api"
 
 # With parameters
-npx claude-flow workflow execute --name "test-suite" --params '{"env": "staging"}'
+npx cortex-agent workflow execute --name "test-suite" --params '{"env": "staging"}'
 
 # Dry run
-npx claude-flow workflow execute --name "deploy-api" --dry-run
+npx cortex-agent workflow execute --name "deploy-api" --dry-run
 \`\`\`
 `,
       'workflow-export': `# workflow-export
@@ -948,7 +948,7 @@ Export workflows for sharing.
 
 ## Usage
 \`\`\`bash
-npx claude-flow workflow export [options]
+npx cortex-agent workflow export [options]
 \`\`\`
 
 ## Options
@@ -959,24 +959,24 @@ npx claude-flow workflow export [options]
 ## Examples
 \`\`\`bash
 # Export workflow
-npx claude-flow workflow export --name "deploy-api"
+npx cortex-agent workflow export --name "deploy-api"
 
 # As YAML
-npx claude-flow workflow export --name "test-suite" --format yaml
+npx cortex-agent workflow export --name "test-suite" --format yaml
 
 # With history
-npx claude-flow workflow export --name "deploy-api" --include-history
+npx cortex-agent workflow export --name "deploy-api" --include-history
 \`\`\`
 `,
     },
     swarm: {
       'swarm': `# swarm
 
-Main swarm orchestration command for Claude Flow.
+Main swarm orchestration command for Cortex Agent.
 
 ## Usage
 \`\`\`bash
-npx claude-flow swarm <objective> [options]
+npx cortex-agent swarm <objective> [options]
 \`\`\`
 
 ## Options
@@ -989,13 +989,13 @@ npx claude-flow swarm <objective> [options]
 ## Examples
 \`\`\`bash
 # Basic swarm
-npx claude-flow swarm "Build REST API"
+npx cortex-agent swarm "Build REST API"
 
 # With strategy
-npx claude-flow swarm "Research AI patterns" --strategy research
+npx cortex-agent swarm "Research AI patterns" --strategy research
 
 # Open in Claude Code
-npx claude-flow swarm "Build API" --claude
+npx cortex-agent swarm "Build API" --claude
 \`\`\`
 `,
       'swarm-init': `# swarm-init
@@ -1004,7 +1004,7 @@ Initialize a new swarm with specified topology.
 
 ## Usage
 \`\`\`bash
-npx claude-flow swarm init [options]
+npx cortex-agent swarm init [options]
 \`\`\`
 
 ## Options
@@ -1014,8 +1014,8 @@ npx claude-flow swarm init [options]
 
 ## Examples
 \`\`\`bash
-npx claude-flow swarm init --topology mesh
-npx claude-flow swarm init --topology hierarchical --max-agents 8
+npx cortex-agent swarm init --topology mesh
+npx cortex-agent swarm init --topology hierarchical --max-agents 8
 \`\`\`
 `,
       'swarm-spawn': `# swarm-spawn
@@ -1024,7 +1024,7 @@ Spawn agents in the swarm.
 
 ## Usage
 \`\`\`bash
-npx claude-flow swarm spawn [options]
+npx cortex-agent swarm spawn [options]
 \`\`\`
 
 ## Options
@@ -1034,8 +1034,8 @@ npx claude-flow swarm spawn [options]
 
 ## Examples
 \`\`\`bash
-npx claude-flow swarm spawn --type coder --count 3
-npx claude-flow swarm spawn --type researcher --capabilities "web-search,analysis"
+npx cortex-agent swarm spawn --type coder --count 3
+npx cortex-agent swarm spawn --type researcher --capabilities "web-search,analysis"
 \`\`\`
 `,
     },
@@ -1046,7 +1046,7 @@ Hive Mind collective intelligence system for advanced swarm coordination.
 
 ## Usage
 \`\`\`bash
-npx claude-flow hive-mind [subcommand] [options]
+npx cortex-agent hive-mind [subcommand] [options]
 \`\`\`
 
 ## Subcommands
@@ -1059,13 +1059,13 @@ npx claude-flow hive-mind [subcommand] [options]
 ## Examples
 \`\`\`bash
 # Initialize hive mind
-npx claude-flow hive-mind init
+npx cortex-agent hive-mind init
 
 # Spawn swarm
-npx claude-flow hive-mind spawn "Build microservices"
+npx cortex-agent hive-mind spawn "Build microservices"
 
 # Check status
-npx claude-flow hive-mind status
+npx cortex-agent hive-mind status
 \`\`\`
 `,
       'hive-mind-init': `# hive-mind-init
@@ -1074,7 +1074,7 @@ Initialize the Hive Mind collective intelligence system.
 
 ## Usage
 \`\`\`bash
-npx claude-flow hive-mind init [options]
+npx cortex-agent hive-mind init [options]
 \`\`\`
 
 ## Options
@@ -1083,8 +1083,8 @@ npx claude-flow hive-mind init [options]
 
 ## Examples
 \`\`\`bash
-npx claude-flow hive-mind init
-npx claude-flow hive-mind init --force
+npx cortex-agent hive-mind init
+npx cortex-agent hive-mind init --force
 \`\`\`
 `,
       'hive-mind-spawn': `# hive-mind-spawn
@@ -1093,7 +1093,7 @@ Spawn a Hive Mind swarm with queen-led coordination.
 
 ## Usage
 \`\`\`bash
-npx claude-flow hive-mind spawn <objective> [options]
+npx cortex-agent hive-mind spawn <objective> [options]
 \`\`\`
 
 ## Options
@@ -1104,16 +1104,16 @@ npx claude-flow hive-mind spawn <objective> [options]
 
 ## Examples
 \`\`\`bash
-npx claude-flow hive-mind spawn "Build API"
-npx claude-flow hive-mind spawn "Research patterns" --queen-type adaptive
-npx claude-flow hive-mind spawn "Build service" --claude
+npx cortex-agent hive-mind spawn "Build API"
+npx cortex-agent hive-mind spawn "Research patterns" --queen-type adaptive
+npx cortex-agent hive-mind spawn "Build service" --claude
 \`\`\`
 `,
     },
     agents: {
       'agent-types': `# agent-types
 
-Complete guide to all 54 available agent types in Claude Flow.
+Complete guide to all 54 available agent types in Cortex Agent.
 
 ## Core Development Agents
 - \`coder\` - Implementation specialist
@@ -1135,7 +1135,7 @@ Complete guide to all 54 available agent types in Claude Flow.
 
 For full list and details:
 \`\`\`bash
-npx claude-flow agents list
+npx cortex-agent agents list
 \`\`\`
 `,
       'agent-capabilities': `# agent-capabilities
@@ -1154,10 +1154,10 @@ Matrix of agent capabilities and their specializations.
 ## Querying Capabilities
 \`\`\`bash
 # List all capabilities
-npx claude-flow agents capabilities
+npx cortex-agent agents capabilities
 
 # For specific agent
-npx claude-flow agents capabilities --type coder
+npx cortex-agent agents capabilities --type coder
 \`\`\`
 `,
       'agent-coordination': `# agent-coordination
@@ -1169,19 +1169,19 @@ Coordination patterns for multi-agent collaboration.
 ### Hierarchical
 Queen-led with worker specialization
 \`\`\`bash
-npx claude-flow swarm init --topology hierarchical
+npx cortex-agent swarm init --topology hierarchical
 \`\`\`
 
 ### Mesh
 Peer-to-peer collaboration
 \`\`\`bash
-npx claude-flow swarm init --topology mesh
+npx cortex-agent swarm init --topology mesh
 \`\`\`
 
 ### Adaptive
 Dynamic topology based on workload
 \`\`\`bash
-npx claude-flow swarm init --topology adaptive
+npx cortex-agent swarm init --topology adaptive
 \`\`\`
 
 ## Best Practices
@@ -1208,8 +1208,8 @@ Task("Tester", "Create tests...", "tester")
 
 MCP tools are ONLY for coordination:
 \`\`\`javascript
-mcp__claude-flow__swarm_init { topology: "mesh" }
-mcp__claude-flow__agent_spawn { type: "researcher" }
+mcp__cortex-agent__swarm_init { topology: "mesh" }
+mcp__cortex-agent__agent_spawn { type: "researcher" }
 \`\`\`
 
 ## Best Practices
@@ -1223,7 +1223,7 @@ mcp__claude-flow__agent_spawn { type: "researcher" }
 
   return (
     docs[category]?.[command] ||
-    `# ${command}\n\nCommand documentation for ${command} in category ${category}.\n\nUsage:\n\`\`\`bash\nnpx claude-flow ${category} ${command} [options]\n\`\`\`\n`
+    `# ${command}\n\nCommand documentation for ${command} in category ${category}.\n\nUsage:\n\`\`\`bash\nnpx cortex-agent ${category} ${command} [options]\n\`\`\`\n`
   );
 }
 
@@ -1248,9 +1248,9 @@ export const COMMAND_STRUCTURE = {
 export function createHelperScript(name) {
   const scripts = {
     'setup-mcp.sh': `#!/bin/bash
-# Setup MCP server for Claude Flow
+# Setup MCP server for Cortex Agent
 
-echo "🚀 Setting up Claude Flow MCP server..."
+echo "🚀 Setting up Cortex Agent MCP server..."
 
 # Check if claude command exists
 if ! command -v claude &> /dev/null; then
@@ -1260,34 +1260,34 @@ if ! command -v claude &> /dev/null; then
 fi
 
 # Add MCP server
-echo "📦 Adding Claude Flow MCP server..."
-claude mcp add claude-flow npx claude-flow mcp start
+echo "📦 Adding Cortex Agent MCP server..."
+claude mcp add cortex-agent npx cortex-agent mcp start
 
 echo "✅ MCP server setup complete!"
-echo "🎯 You can now use mcp__claude-flow__ tools in Claude Code"
+echo "🎯 You can now use mcp__cortex-agent__ tools in Claude Code"
 `,
     'quick-start.sh': `#!/bin/bash
-# Quick start guide for Claude Flow
+# Quick start guide for Cortex Agent
 
-echo "🚀 Claude Flow Quick Start"
+echo "🚀 Cortex Agent Quick Start"
 echo "=========================="
 echo ""
 echo "1. Initialize a swarm:"
-echo "   npx claude-flow swarm init --topology hierarchical"
+echo "   npx cortex-agent swarm init --topology hierarchical"
 echo ""
 echo "2. Spawn agents:"
-echo "   npx claude-flow agent spawn --type coder --name \"API Developer\""
+echo "   npx cortex-agent agent spawn --type coder --name \"API Developer\""
 echo ""
 echo "3. Orchestrate tasks:"
-echo "   npx claude-flow task orchestrate --task \"Build REST API\""
+echo "   npx cortex-agent task orchestrate --task \"Build REST API\""
 echo ""
 echo "4. Monitor progress:"
-echo "   npx claude-flow swarm monitor"
+echo "   npx cortex-agent swarm monitor"
 echo ""
 echo "📚 For more examples, see .claude/commands/"
 `,
     'github-setup.sh': `#!/bin/bash
-# Setup GitHub integration for Claude Flow
+# Setup GitHub integration for Cortex Agent
 
 echo "🔗 Setting up GitHub integration..."
 
@@ -1310,10 +1310,10 @@ fi
 
 echo ""
 echo "📦 GitHub swarm commands available:"
-echo "  - npx claude-flow github swarm"
-echo "  - npx claude-flow repo analyze"
-echo "  - npx claude-flow pr enhance"
-echo "  - npx claude-flow issue triage"
+echo "  - npx cortex-agent github swarm"
+echo "  - npx cortex-agent repo analyze"
+echo "  - npx cortex-agent pr enhance"
+echo "  - npx cortex-agent issue triage"
 `,
     'github-safe.js': `#!/usr/bin/env node
 
@@ -2048,7 +2048,7 @@ function createWrapperScriptFallback(type) {
     return `#!/usr/bin/env node
 
 /**
- * Claude Flow CLI - Universal Wrapper
+ * Cortex Agent CLI - Universal Wrapper
  * Works in both CommonJS and ES Module projects
  */
 
@@ -2066,12 +2066,12 @@ function createWrapperScriptFallback(type) {
     // Fallback for CommonJS
   }
 
-  // Try multiple strategies to find claude-flow
+  // Try multiple strategies to find cortex-agent
   const strategies = [
     // 1. Local node_modules
     async () => {
       try {
-        const localPath = resolve(process.cwd(), 'node_modules/.bin/claude-flow');
+        const localPath = resolve(process.cwd(), 'node_modules/.bin/cortex-agent');
         const { existsSync } = await import('fs');
         if (existsSync(localPath)) {
           return spawn(localPath, process.argv.slice(2), { stdio: 'inherit' });
@@ -2082,7 +2082,7 @@ function createWrapperScriptFallback(type) {
     // 2. Parent node_modules (monorepo)
     async () => {
       try {
-        const parentPath = resolve(process.cwd(), '../node_modules/.bin/claude-flow');
+        const parentPath = resolve(process.cwd(), '../node_modules/.bin/cortex-agent');
         const { existsSync } = await import('fs');
         if (existsSync(parentPath)) {
           return spawn(parentPath, process.argv.slice(2), { stdio: 'inherit' });
@@ -2092,7 +2092,7 @@ function createWrapperScriptFallback(type) {
     
     // 3. NPX with latest alpha version (prioritized over global)
     async () => {
-      return spawn('npx', ['claude-flow@2.0.0-alpha.25', ...process.argv.slice(2)], { stdio: 'inherit' });
+      return spawn('npx', ['cortex-agent@2.0.0-alpha.25', ...process.argv.slice(2)], { stdio: 'inherit' });
     }
   ];
 
@@ -2113,12 +2113,12 @@ function createWrapperScriptFallback(type) {
     } catch {}
   }
   
-  console.error('Could not find claude-flow. Please install it with: npm install claude-flow');
+  console.error('Could not find cortex-agent. Please install it with: npm install cortex-agent');
   process.exit(1);
 })();`;
   } else if (type === 'windows') {
     return `@echo off
-rem Claude Flow wrapper script for Windows
+rem Cortex Agent wrapper script for Windows
 
 rem Check if package.json exists in current directory
 if exist "%~dp0package.json" (
@@ -2128,15 +2128,15 @@ if exist "%~dp0package.json" (
     ) else if exist "%~dp0dist\\cli.js" (
         node "%~dp0dist\\cli.js" %*
     ) else (
-        echo Error: Could not find Claude Flow CLI files
+        echo Error: Could not find Cortex Agent CLI files
         exit /b 1
     )
 ) else (
     rem Production mode - use npx alpha
-    npx claude-flow@alpha %*
+    npx cortex-agent@alpha %*
 )`;
   } else if (type === 'powershell') {
-    return `# Claude Flow wrapper script for PowerShell
+    return `# Cortex Agent wrapper script for PowerShell
 
 $scriptPath = Split-Path -Parent $MyInvocation.MyCommand.Path
 
@@ -2147,12 +2147,12 @@ if (Test-Path "$scriptPath\\package.json") {
     } elseif (Test-Path "$scriptPath\\dist\\cli.js") {
         & node "$scriptPath\\dist\\cli.js" $args
     } else {
-        Write-Error "Could not find Claude Flow CLI files"
+        Write-Error "Could not find Cortex Agent CLI files"
         exit 1
     }
 } else {
     # Production mode - use npx alpha
-    & npx claude-flow@alpha $args
+    & npx cortex-agent@alpha $args
 }`;
   }
   return '';
@@ -2165,9 +2165,9 @@ function createEnhancedClaudeMdFallback() {
     return readFileSync(join(__dirname, 'CLAUDE.md'), 'utf8');
   } catch (error) {
     // If that fails, return a minimal version
-    return `# Claude Code Configuration for Claude Flow
+    return `# Claude Code Configuration for Cortex Agent
 
-## 🚀 IMPORTANT: Claude Flow AI-Driven Development
+## 🚀 IMPORTANT: Cortex Agent AI-Driven Development
 
 ### Claude Code Handles:
 - ✅ **ALL file operations** (Read, Write, Edit, MultiEdit)
@@ -2176,7 +2176,7 @@ function createEnhancedClaudeMdFallback() {
 - ✅ **ALL actual implementation** work
 - ✅ **Project navigation** and code analysis
 
-### Claude Flow MCP Tools Handle:
+### Cortex Agent MCP Tools Handle:
 - 🧠 **Coordination only** - Orchestrating Claude Code's actions
 - 💾 **Memory management** - Persistent state across sessions
 - 🤖 **Neural features** - Cognitive patterns and learning
@@ -2189,10 +2189,10 @@ function createEnhancedClaudeMdFallback() {
 
 ## Quick Start
 
-1. Add MCP server: \`claude mcp add claude-flow npx claude-flow mcp start\`
-2. Initialize swarm: \`mcp__claude-flow__swarm_init { topology: "hierarchical" }\`
-3. Spawn agents: \`mcp__claude-flow__agent_spawn { type: "coder" }\`
-4. Orchestrate: \`mcp__claude-flow__task_orchestrate { task: "Build feature" }\`
+1. Add MCP server: \`claude mcp add cortex-agent npx cortex-agent mcp start\`
+2. Initialize swarm: \`mcp__cortex-agent__swarm_init { topology: "hierarchical" }\`
+3. Spawn agents: \`mcp__cortex-agent__agent_spawn { type: "coder" }\`
+4. Orchestrate: \`mcp__cortex-agent__task_orchestrate { task: "Build feature" }\`
 
 See full documentation in \`.claude/commands/\`
 `;
@@ -2203,16 +2203,16 @@ function createEnhancedSettingsJsonFallback() {
   return JSON.stringify(
     {
       env: {
-        CLAUDE_FLOW_AUTO_COMMIT: 'false',
-        CLAUDE_FLOW_AUTO_PUSH: 'false',
-        CLAUDE_FLOW_HOOKS_ENABLED: 'true',
-        CLAUDE_FLOW_TELEMETRY_ENABLED: 'true',
-        CLAUDE_FLOW_REMOTE_EXECUTION: 'true',
-        CLAUDE_FLOW_CHECKPOINTS_ENABLED: 'true',
+        CORTEX_AGENT_AUTO_COMMIT: 'false',
+        CORTEX_AGENT_AUTO_PUSH: 'false',
+        CORTEX_AGENT_HOOKS_ENABLED: 'true',
+        CORTEX_AGENT_TELEMETRY_ENABLED: 'true',
+        CORTEX_AGENT_REMOTE_EXECUTION: 'true',
+        CORTEX_AGENT_CHECKPOINTS_ENABLED: 'true',
       },
       permissions: {
         allow: [
-          'Bash(npx claude-flow:*)',
+          'Bash(npx cortex-agent:*)',
           'Bash(npm run lint)',
           'Bash(npm run test:*)',
           'Bash(npm test:*)',
@@ -2235,7 +2235,7 @@ function createEnhancedSettingsJsonFallback() {
         ],
         deny: ['Bash(rm -rf /)'],
       },
-      enabledMcpjsonServers: ['claude-flow', 'ruv-swarm'],
+      enabledMcpjsonServers: ['cortex-agent', 'ruv-swarm'],
       hooks: {
         PreToolUse: [
           {
@@ -2244,7 +2244,7 @@ function createEnhancedSettingsJsonFallback() {
               {
                 type: 'command',
                 command:
-                  'cat | jq -r \'.tool_input.command // ""\' | xargs -I {} npx claude-flow@alpha hooks pre-command --command "{}" --validate-safety true --prepare-resources true',
+                  'cat | jq -r \'.tool_input.command // ""\' | xargs -I {} npx cortex-agent@alpha hooks pre-command --command "{}" --validate-safety true --prepare-resources true',
               },
             ],
           },
@@ -2254,7 +2254,7 @@ function createEnhancedSettingsJsonFallback() {
               {
                 type: 'command',
                 command:
-                  'cat | jq -r \'.tool_input.file_path // .tool_input.path // ""\' | xargs -I {} npx claude-flow@alpha hooks pre-edit --file "{}" --auto-assign-agents true --load-context true',
+                  'cat | jq -r \'.tool_input.file_path // .tool_input.path // ""\' | xargs -I {} npx cortex-agent@alpha hooks pre-edit --file "{}" --auto-assign-agents true --load-context true',
               },
               {
                 type: 'command',
@@ -2270,7 +2270,7 @@ function createEnhancedSettingsJsonFallback() {
               {
                 type: 'command',
                 command:
-                  'cat | jq -r \'.tool_input.command // ""\' | xargs -I {} npx claude-flow@alpha hooks post-command --command "{}" --track-metrics true --store-results true',
+                  'cat | jq -r \'.tool_input.command // ""\' | xargs -I {} npx cortex-agent@alpha hooks post-command --command "{}" --track-metrics true --store-results true',
               },
             ],
           },
@@ -2280,7 +2280,7 @@ function createEnhancedSettingsJsonFallback() {
               {
                 type: 'command',
                 command:
-                  'cat | jq -r \'.tool_input.file_path // .tool_input.path // ""\' | xargs -I {} npx claude-flow@alpha hooks post-edit --file "{}" --format true --update-memory true --train-neural true',
+                  'cat | jq -r \'.tool_input.file_path // .tool_input.path // ""\' | xargs -I {} npx cortex-agent@alpha hooks post-edit --file "{}" --format true --update-memory true --train-neural true',
               },
               {
                 type: 'command',
@@ -2305,7 +2305,7 @@ function createEnhancedSettingsJsonFallback() {
               {
                 type: 'command',
                 command:
-                  '/usr/bin/env bash -c \'if command -v npx >/dev/null 2>&1; then npx claude-flow@alpha hooks session-end --generate-summary true --persist-state true --export-metrics true; else echo "⚠️  npx not available, skipping Claude Flow session-end hook"; fi\'',
+                  '/usr/bin/env bash -c \'if command -v npx >/dev/null 2>&1; then npx cortex-agent@alpha hooks session-end --generate-summary true --persist-state true --export-metrics true; else echo "⚠️  npx not available, skipping Cortex Agent session-end hook"; fi\'',
               },
               {
                 type: 'command',

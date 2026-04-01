@@ -1,6 +1,6 @@
 /**
  * Registry API Client
- * Secure integration with Claude Flow Cloud Functions
+ * Secure integration with Cortex Agent Cloud Functions
  *
  * Security:
  * - HTTPS only
@@ -9,7 +9,7 @@
  * - Input validation
  */
 
-const REGISTRY_API_URL = 'https://us-central1-claude-flow.cloudfunctions.net/publish-registry';
+const REGISTRY_API_URL = 'https://us-central1-cortex-agent.cloudfunctions.net/publish-registry';
 
 export interface RatingResponse {
   success: boolean;

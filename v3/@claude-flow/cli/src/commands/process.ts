@@ -65,13 +65,13 @@ const daemonCommand: Command = {
       name: 'pid-file',
       type: 'string',
       description: 'PID file location',
-      default: '.claude-flow/daemon.pid',
+      default: '.cortex-agent/daemon.pid',
     },
     {
       name: 'log-file',
       type: 'string',
       description: 'Log file location',
-      default: '.claude-flow/daemon.log',
+      default: '.cortex-agent/daemon.log',
     },
     {
       name: 'detach',
@@ -81,16 +81,16 @@ const daemonCommand: Command = {
     },
   ],
   examples: [
-    { command: 'claude-flow process daemon --action start', description: 'Start the daemon' },
-    { command: 'claude-flow process daemon --action stop', description: 'Stop the daemon' },
-    { command: 'claude-flow process daemon --action restart --port 3850', description: 'Restart on different port' },
-    { command: 'claude-flow process daemon --action status', description: 'Check daemon status' },
+    { command: 'cortex-agent process daemon --action start', description: 'Start the daemon' },
+    { command: 'cortex-agent process daemon --action stop', description: 'Stop the daemon' },
+    { command: 'cortex-agent process daemon --action restart --port 3850', description: 'Restart on different port' },
+    { command: 'cortex-agent process daemon --action status', description: 'Check daemon status' },
   ],
   action: async (ctx: CommandContext): Promise<CommandResult> => {
     const action = (ctx.flags?.action as string) || 'status';
     const port = (ctx.flags?.port as number) || 3847;
-    const pidFile = (ctx.flags?.['pid-file'] as string) || '.claude-flow/daemon.pid';
-    const logFile = (ctx.flags?.['log-file'] as string) || '.claude-flow/daemon.log';
+    const pidFile = (ctx.flags?.['pid-file'] as string) || '.cortex-agent/daemon.pid';
+    const logFile = (ctx.flags?.['log-file'] as string) || '.cortex-agent/daemon.log';
     const detach = ctx.flags?.detach !== false;
 
     // Check existing daemon state from PID file
@@ -113,7 +113,7 @@ const daemonCommand: Command = {
           break;
         }
 
-        console.log('\n🚀 Starting claude-flow daemon...\n');
+        console.log('\n🚀 Starting cortex-agent daemon...\n');
         const newPid = process.pid; // Use actual process PID
         daemonState.status = 'running';
         daemonState.pid = newPid;
@@ -142,7 +142,7 @@ const daemonCommand: Command = {
           console.log('\n⚠️  No daemon running\n');
           break;
         }
-        console.log('\n🛑 Stopping claude-flow daemon...\n');
+        console.log('\n🛑 Stopping cortex-agent daemon...\n');
         console.log(`  📍 Stopping PID ${existingDaemon.pid}...`);
 
         // Remove PID file
@@ -156,7 +156,7 @@ const daemonCommand: Command = {
         break;
 
       case 'restart':
-        console.log('\n🔄 Restarting claude-flow daemon...\n');
+        console.log('\n🔄 Restarting cortex-agent daemon...\n');
         if (existingDaemon) {
           console.log(`  🛑 Stopping PID ${existingDaemon.pid}...`);
           removePidFile(pidFile);
@@ -175,7 +175,7 @@ const daemonCommand: Command = {
       case 'status':
         console.log('\n📊 Daemon Status\n');
         console.log('  ┌─────────────────────────────────────────┐');
-        console.log('  │ claude-flow daemon                      │');
+        console.log('  │ cortex-agent daemon                      │');
         console.log('  ├─────────────────────────────────────────┤');
         if (existingDaemon) {
           const uptime = Math.floor((Date.now() - new Date(existingDaemon.startedAt).getTime()) / 1000);
@@ -192,7 +192,7 @@ const daemonCommand: Command = {
         }
         console.log('  └─────────────────────────────────────────┘');
         if (!existingDaemon) {
-          console.log('\n  To start: claude-flow process daemon --action start');
+          console.log('\n  To start: cortex-agent process daemon --action start');
         }
         break;
     }
@@ -241,10 +241,10 @@ const monitorCommand: Command = {
     },
   ],
   examples: [
-    { command: 'claude-flow process monitor', description: 'Show process dashboard' },
-    { command: 'claude-flow process monitor --watch --interval 5', description: 'Watch mode' },
-    { command: 'claude-flow process monitor --components agents,memory,tasks', description: 'Monitor specific components' },
-    { command: 'claude-flow process monitor --format json', description: 'JSON output' },
+    { command: 'cortex-agent process monitor', description: 'Show process dashboard' },
+    { command: 'cortex-agent process monitor --watch --interval 5', description: 'Watch mode' },
+    { command: 'cortex-agent process monitor --components agents,memory,tasks', description: 'Monitor specific components' },
+    { command: 'cortex-agent process monitor --format json', description: 'JSON output' },
   ],
   action: async (ctx: CommandContext): Promise<CommandResult> => {
     const interval = (ctx.flags?.interval as number) || 2;
@@ -303,7 +303,7 @@ const monitorCommand: Command = {
 
     // Dashboard format
     console.log('\n╔══════════════════════════════════════════════════════════════╗');
-    console.log('║            🖥️  CLAUDE-FLOW PROCESS MONITOR                    ║');
+    console.log('║            🖥️  CORTEX-AGENT PROCESS MONITOR                    ║');
     console.log('╠══════════════════════════════════════════════════════════════╣');
 
     // System metrics
@@ -402,10 +402,10 @@ const workersCommand: Command = {
     },
   ],
   examples: [
-    { command: 'claude-flow process workers --action list', description: 'List all workers' },
-    { command: 'claude-flow process workers --action spawn --type task --count 3', description: 'Spawn task workers' },
-    { command: 'claude-flow process workers --action kill --id worker-123', description: 'Kill specific worker' },
-    { command: 'claude-flow process workers --action scale --type memory --count 5', description: 'Scale memory workers' },
+    { command: 'cortex-agent process workers --action list', description: 'List all workers' },
+    { command: 'cortex-agent process workers --action spawn --type task --count 3', description: 'Spawn task workers' },
+    { command: 'cortex-agent process workers --action kill --id worker-123', description: 'Kill specific worker' },
+    { command: 'cortex-agent process workers --action scale --type memory --count 5', description: 'Scale memory workers' },
   ],
   action: async (ctx: CommandContext): Promise<CommandResult> => {
     const action = (ctx.flags?.action as string) || 'list';
@@ -508,9 +508,9 @@ const signalsCommand: Command = {
     },
   ],
   examples: [
-    { command: 'claude-flow process signals --target daemon --signal graceful-shutdown', description: 'Graceful shutdown' },
-    { command: 'claude-flow process signals --target workers --signal pause', description: 'Pause workers' },
-    { command: 'claude-flow process signals --target all --signal reload-config', description: 'Reload all configs' },
+    { command: 'cortex-agent process signals --target daemon --signal graceful-shutdown', description: 'Graceful shutdown' },
+    { command: 'cortex-agent process signals --target workers --signal pause', description: 'Pause workers' },
+    { command: 'cortex-agent process signals --target all --signal reload-config', description: 'Reload all configs' },
   ],
   action: async (ctx: CommandContext): Promise<CommandResult> => {
     const target = ctx.flags?.target as string;
@@ -587,10 +587,10 @@ const logsCommand: Command = {
     },
   ],
   examples: [
-    { command: 'claude-flow process logs', description: 'Show recent logs' },
-    { command: 'claude-flow process logs --source daemon --tail 100', description: 'Daemon logs' },
-    { command: 'claude-flow process logs --follow --level error', description: 'Follow error logs' },
-    { command: 'claude-flow process logs --since 1h --grep "error"', description: 'Search logs' },
+    { command: 'cortex-agent process logs', description: 'Show recent logs' },
+    { command: 'cortex-agent process logs --source daemon --tail 100', description: 'Daemon logs' },
+    { command: 'cortex-agent process logs --follow --level error', description: 'Follow error logs' },
+    { command: 'cortex-agent process logs --since 1h --grep "error"', description: 'Search logs' },
   ],
   action: async (ctx: CommandContext): Promise<CommandResult> => {
     const source = (ctx.flags?.source as string) || 'all';
@@ -669,10 +669,10 @@ export const processCommand: Command = {
     },
   ],
   examples: [
-    { command: 'claude-flow process daemon --action start', description: 'Start daemon' },
-    { command: 'claude-flow process monitor --watch', description: 'Watch processes' },
-    { command: 'claude-flow process workers --action list', description: 'List workers' },
-    { command: 'claude-flow process logs --follow', description: 'Follow logs' },
+    { command: 'cortex-agent process daemon --action start', description: 'Start daemon' },
+    { command: 'cortex-agent process monitor --watch', description: 'Watch processes' },
+    { command: 'cortex-agent process workers --action list', description: 'List workers' },
+    { command: 'cortex-agent process logs --follow', description: 'Follow logs' },
   ],
   action: async (_ctx: CommandContext): Promise<CommandResult> => {
     // Show help if no subcommand
@@ -685,10 +685,10 @@ export const processCommand: Command = {
     console.log('  signals    - Send signals to processes');
     console.log('  logs       - View and manage process logs');
     console.log('\nExamples:');
-    console.log('  claude-flow process daemon --action start');
-    console.log('  claude-flow process monitor --watch');
-    console.log('  claude-flow process workers --action spawn --type task --count 3');
-    console.log('  claude-flow process logs --follow --level error');
+    console.log('  cortex-agent process daemon --action start');
+    console.log('  cortex-agent process monitor --watch');
+    console.log('  cortex-agent process workers --action spawn --type task --count 3');
+    console.log('  cortex-agent process logs --follow --level error');
 
     return { success: true, data: { help: true } };
   },

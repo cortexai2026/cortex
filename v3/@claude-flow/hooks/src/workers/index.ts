@@ -1,7 +1,7 @@
 /**
  * V3 Workers System - Cross-Platform Background Workers
  *
- * Optimizes Claude Flow with non-blocking, scheduled workers.
+ * Optimizes Cortex Agent with non-blocking, scheduled workers.
  * Works on Linux, macOS, and Windows.
  */
 
@@ -448,7 +448,7 @@ export class WorkerManager extends EventEmitter {
   constructor(projectRoot?: string) {
     super();
     this.projectRoot = projectRoot || process.cwd();
-    this.metricsDir = path.join(this.projectRoot, '.claude-flow', 'metrics');
+    this.metricsDir = path.join(this.projectRoot, '.cortex-agent', 'metrics');
     this.persistPath = path.join(this.metricsDir, 'workers-state.json');
     this.statuslinePath = path.join(this.metricsDir, 'statusline.json');
     this.initializeMetrics();
@@ -1132,7 +1132,7 @@ export function createSwarmWorker(projectRoot: string): WorkerHandler {
     const startTime = Date.now();
 
     // Check for swarm activity file
-    const activityPath = path.join(projectRoot, '.claude-flow', 'metrics', 'swarm-activity.json');
+    const activityPath = path.join(projectRoot, '.cortex-agent', 'metrics', 'swarm-activity.json');
     let swarmData: Record<string, unknown> = {};
 
     try {
@@ -1143,7 +1143,7 @@ export function createSwarmWorker(projectRoot: string): WorkerHandler {
     }
 
     // Check for queue messages
-    const queuePath = path.join(projectRoot, '.claude-flow', 'swarm', 'queue');
+    const queuePath = path.join(projectRoot, '.cortex-agent', 'swarm', 'queue');
     let queueCount = 0;
     try {
       const files = await fs.readdir(queuePath);
@@ -1213,7 +1213,7 @@ export function createLearningWorker(projectRoot: string): WorkerHandler {
   return async (): Promise<WorkerResult> => {
     const startTime = Date.now();
 
-    const patternsDbPath = path.join(projectRoot, '.claude-flow', 'learning', 'patterns.db');
+    const patternsDbPath = path.join(projectRoot, '.cortex-agent', 'learning', 'patterns.db');
     let learningData: Record<string, unknown> = {
       patternsDb: false,
       shortTerm: 0,
@@ -1226,7 +1226,7 @@ export function createLearningWorker(projectRoot: string): WorkerHandler {
       learningData.patternsDb = true;
 
       // Read learning metrics if available
-      const metricsPath = path.join(projectRoot, '.claude-flow', 'metrics', 'learning.json');
+      const metricsPath = path.join(projectRoot, '.cortex-agent', 'metrics', 'learning.json');
       try {
         const content = await fs.readFile(metricsPath, 'utf-8');
         const metrics = safeJsonParse<Record<string, unknown>>(content);
@@ -1290,16 +1290,16 @@ export function createADRWorker(projectRoot: string): WorkerHandler {
 
       // ADR-002: DDD domains (parallel check)
       Promise.allSettled(
-        dddDomains.map(d => fs.access(path.join(v3Path, '@claude-flow', d)))
+        dddDomains.map(d => fs.access(path.join(v3Path, '@cortex-agent', d)))
       ),
 
       // ADR-005: MCP-first design
-      fs.access(path.join(v3Path, '@claude-flow', 'mcp'))
+      fs.access(path.join(v3Path, '@cortex-agent', 'mcp'))
         .then(() => ({ compliant: true, reason: 'MCP package exists' }))
         .catch(() => ({ compliant: false, reason: 'No MCP package' })),
 
       // ADR-006: Memory unification
-      fs.access(path.join(v3Path, '@claude-flow', 'memory'))
+      fs.access(path.join(v3Path, '@cortex-agent', 'memory'))
         .then(() => ({ compliant: true, reason: 'Memory package exists' }))
         .catch(() => ({ compliant: false, reason: 'No memory package' })),
 
@@ -1313,12 +1313,12 @@ export function createADRWorker(projectRoot: string): WorkerHandler {
         .catch(() => ({ compliant: false, reason: 'Package not readable' })),
 
       // ADR-011: LLM Provider System
-      fs.access(path.join(v3Path, '@claude-flow', 'providers'))
+      fs.access(path.join(v3Path, '@cortex-agent', 'providers'))
         .then(() => ({ compliant: true, reason: 'Providers package exists' }))
         .catch(() => ({ compliant: false, reason: 'No providers package' })),
 
       // ADR-012: MCP Security
-      fs.readFile(path.join(v3Path, '@claude-flow', 'mcp', 'src', 'index.ts'), 'utf-8')
+      fs.readFile(path.join(v3Path, '@cortex-agent', 'mcp', 'src', 'index.ts'), 'utf-8')
         .then(content => {
           const hasRateLimiter = content.includes('RateLimiter');
           const hasOAuth = content.includes('OAuth');
@@ -1351,7 +1351,7 @@ export function createADRWorker(projectRoot: string): WorkerHandler {
 
     // Save results
     try {
-      const outputPath = path.join(projectRoot, '.claude-flow', 'metrics', 'adr-compliance.json');
+      const outputPath = path.join(projectRoot, '.cortex-agent', 'metrics', 'adr-compliance.json');
       await fs.writeFile(outputPath, JSON.stringify({
         timestamp: new Date().toISOString(),
         compliance: Math.round((compliantCount / totalCount) * 100),
@@ -1386,12 +1386,12 @@ export function createDDDWorker(projectRoot: string): WorkerHandler {
     let maxScore = 0;
 
     const modules = [
-      '@claude-flow/hooks',
-      '@claude-flow/mcp',
-      '@claude-flow/integration',
-      '@claude-flow/providers',
-      '@claude-flow/memory',
-      '@claude-flow/security',
+      '@cortex-agent/hooks',
+      '@cortex-agent/mcp',
+      '@cortex-agent/integration',
+      '@cortex-agent/providers',
+      '@cortex-agent/memory',
+      '@cortex-agent/security',
     ];
 
     // Process all modules in parallel for 70-90% speedup
@@ -1440,7 +1440,7 @@ export function createDDDWorker(projectRoot: string): WorkerHandler {
 
     // Save metrics
     try {
-      const outputPath = path.join(projectRoot, '.claude-flow', 'metrics', 'ddd-progress.json');
+      const outputPath = path.join(projectRoot, '.cortex-agent', 'metrics', 'ddd-progress.json');
       await fs.writeFile(outputPath, JSON.stringify({
         timestamp: new Date().toISOString(),
         progress: progressPct,
@@ -1519,7 +1519,7 @@ export function createSecurityWorker(projectRoot: string): WorkerHandler {
 
     // Save results
     try {
-      const outputPath = path.join(projectRoot, '.claude-flow', 'security', 'scan-results.json');
+      const outputPath = path.join(projectRoot, '.cortex-agent', 'security', 'scan-results.json');
       await fs.mkdir(path.dirname(outputPath), { recursive: true });
       await fs.writeFile(outputPath, JSON.stringify({
         timestamp: new Date().toISOString(),
@@ -1555,7 +1555,7 @@ export function createPatternsWorker(projectRoot: string): WorkerHandler {
   return async (): Promise<WorkerResult> => {
     const startTime = Date.now();
 
-    const learningDir = path.join(projectRoot, '.claude-flow', 'learning');
+    const learningDir = path.join(projectRoot, '.cortex-agent', 'learning');
     let patternsData: Record<string, unknown> = {
       shortTerm: 0,
       longTerm: 0,
@@ -1594,7 +1594,7 @@ export function createPatternsWorker(projectRoot: string): WorkerHandler {
       };
 
       // Write consolidated metrics
-      const metricsPath = path.join(projectRoot, '.claude-flow', 'metrics', 'patterns.json');
+      const metricsPath = path.join(projectRoot, '.cortex-agent', 'metrics', 'patterns.json');
       await fs.writeFile(metricsPath, JSON.stringify({
         timestamp: new Date().toISOString(),
         ...patternsData,
@@ -1621,10 +1621,10 @@ export function createCacheWorker(projectRoot: string): WorkerHandler {
     let cleaned = 0;
     let freedBytes = 0;
 
-    // Only clean directories within .claude-flow (safe)
+    // Only clean directories within .cortex-agent (safe)
     const safeCleanDirs = [
-      '.claude-flow/cache',
-      '.claude-flow/temp',
+      '.cortex-agent/cache',
+      '.cortex-agent/temp',
     ];
 
     const maxAgeMs = 7 * 24 * 60 * 60 * 1000; // 7 days
@@ -1844,7 +1844,7 @@ export function createV3ProgressWorker(projectRoot: string): WorkerHandler {
   return async (): Promise<WorkerResult> => {
     const startTime = Date.now();
     const v3Path = path.join(projectRoot, 'v3');
-    const cliPath = path.join(v3Path, '@claude-flow', 'cli', 'src');
+    const cliPath = path.join(v3Path, '@cortex-agent', 'cli', 'src');
 
     // Count CLI commands (excluding index.ts)
     let cliCommands = 0;
@@ -1889,11 +1889,11 @@ export function createV3ProgressWorker(projectRoot: string): WorkerHandler {
       hooksSubcommands = 20; // Known count
     }
 
-    // Count @claude-flow packages (excluding hidden directories)
+    // Count @cortex-agent packages (excluding hidden directories)
     let packages = 0;
     const packageDirs: string[] = [];
     try {
-      const packagesPath = path.join(v3Path, '@claude-flow');
+      const packagesPath = path.join(v3Path, '@cortex-agent');
       const dirs = await fs.readdir(packagesPath, { withFileTypes: true });
       for (const dir of dirs) {
         if (dir.isDirectory() && !dir.name.startsWith('.')) {
@@ -1917,7 +1917,7 @@ export function createV3ProgressWorker(projectRoot: string): WorkerHandler {
       if (pkg.startsWith('.')) continue;
 
       try {
-        const srcPath = path.join(v3Path, '@claude-flow', pkg, 'src');
+        const srcPath = path.join(v3Path, '@cortex-agent', pkg, 'src');
         const srcDirs = await fs.readdir(srcPath, { withFileTypes: true });
         const hasDomain = srcDirs.some(d => d.isDirectory() && d.name === 'domain');
         const hasApp = srcDirs.some(d => d.isDirectory() && d.name === 'application');
@@ -1935,9 +1935,9 @@ export function createV3ProgressWorker(projectRoot: string): WorkerHandler {
     let totalFiles = 0;
     let totalLines = 0;
     try {
-      const v3ClaudeFlow = path.join(v3Path, '@claude-flow');
-      totalFiles = await countFilesRecursive(v3ClaudeFlow, '.ts');
-      totalLines = await countLines(v3ClaudeFlow, '.ts');
+      const v3CortexAgent = path.join(v3Path, '@cortex-agent');
+      totalFiles = await countFilesRecursive(v3CortexAgent, '.ts');
+      totalLines = await countLines(v3CortexAgent, '.ts');
     } catch {
       totalFiles = 419;
       totalLines = 290913;
@@ -1998,7 +1998,7 @@ export function createV3ProgressWorker(projectRoot: string): WorkerHandler {
 
     // Write to v3-progress.json
     try {
-      const metricsDir = path.join(projectRoot, '.claude-flow', 'metrics');
+      const metricsDir = path.join(projectRoot, '.cortex-agent', 'metrics');
       await fs.mkdir(metricsDir, { recursive: true });
       const outputPath = path.join(metricsDir, 'v3-progress.json');
       await fs.writeFile(outputPath, JSON.stringify(metrics, null, 2));

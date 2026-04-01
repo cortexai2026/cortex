@@ -10,7 +10,7 @@ export async function createClaudeConfig(options: InitOptions): Promise<void> {
     version: '1.0.71',
     project: {
       name: path.basename(process.cwd()),
-      type: 'claude-flow',
+      type: 'cortex-agent',
       created: new Date().toISOString(),
     },
     features: {

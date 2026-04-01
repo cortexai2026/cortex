@@ -1,8 +1,8 @@
 /**
- * AgentAdapter - Bridge between Claude Flow and agentic-flow Agents
+ * AgentAdapter - Bridge between Cortex Agent and agentic-flow Agents
  *
  * Provides bidirectional conversion and delegation patterns between:
- * - Claude Flow v3 DDD agent architecture
+ * - Cortex Agent v3 DDD agent architecture
  * - agentic-flow's optimized agent implementations
  *
  * This implements ADR-001: Adopt agentic-flow as Core Foundation
@@ -85,7 +85,7 @@ export interface AgentConversionResult {
 }
 
 /**
- * AgentAdapter - Bridges Claude Flow and agentic-flow agents
+ * AgentAdapter - Bridges Cortex Agent and agentic-flow agents
  *
  * This adapter provides:
  * 1. Format conversion between agent representations
@@ -103,10 +103,10 @@ export interface AgentConversionResult {
  *
  * await adapter.initialize();
  *
- * // Convert agentic-flow agent to Claude Flow agent
+ * // Convert agentic-flow agent to Cortex Agent agent
  * const { agent, success } = adapter.fromAgenticFlow(agenticFlowAgent);
  *
- * // Create Claude Flow agent with agentic-flow delegation
+ * // Create Cortex Agent agent with agentic-flow delegation
  * const delegatedAgent = await adapter.createWithDelegation({
  *   id: 'agent-1',
  *   name: 'Coder',
@@ -185,9 +185,9 @@ export class AgentAdapter extends EventEmitter {
   }
 
   /**
-   * Convert agentic-flow agent to Claude Flow AgenticFlowAgent
+   * Convert agentic-flow agent to Cortex Agent AgenticFlowAgent
    *
-   * This method creates a Claude Flow agent wrapper around an existing
+   * This method creates a Cortex Agent agent wrapper around an existing
    * agentic-flow agent instance, enabling delegation and integration.
    *
    * @param agenticFlowAgent - agentic-flow agent instance
@@ -200,7 +200,7 @@ export class AgentAdapter extends EventEmitter {
     const unmappedFields: string[] = [];
 
     try {
-      // Map agentic-flow config to Claude Flow config
+      // Map agentic-flow config to Cortex Agent config
       const config: AgentConfig = {
         id: agenticFlowAgent.id,
         name: agenticFlowAgent.name,
@@ -212,7 +212,7 @@ export class AgentAdapter extends EventEmitter {
         agenticFlowConfig: agenticFlowAgent.config,
       };
 
-      // Create Claude Flow agent
+      // Create Cortex Agent agent
       const agent = new AgenticFlowAgent(config);
 
       // Set delegation reference
@@ -277,12 +277,12 @@ export class AgentAdapter extends EventEmitter {
   }
 
   /**
-   * Convert Claude Flow AgenticFlowAgent to agentic-flow format
+   * Convert Cortex Agent AgenticFlowAgent to agentic-flow format
    *
    * This exports the agent configuration in a format compatible with
    * agentic-flow's Agent constructor/factory.
    *
-   * @param agent - Claude Flow agent instance
+   * @param agent - Cortex Agent agent instance
    * @returns agentic-flow compatible configuration
    */
   toAgenticFlow(agent: AgenticFlowAgent): Record<string, unknown> {
@@ -307,7 +307,7 @@ export class AgentAdapter extends EventEmitter {
   }
 
   /**
-   * Create a Claude Flow agent with agentic-flow delegation
+   * Create a Cortex Agent agent with agentic-flow delegation
    *
    * This is the primary method for creating agents in v3 with
    * automatic delegation to agentic-flow when available.
@@ -472,7 +472,7 @@ export class AgentAdapter extends EventEmitter {
   }
 
   /**
-   * Map agentic-flow agent type to Claude Flow AgentType
+   * Map agentic-flow agent type to Cortex Agent AgentType
    */
   private mapAgentType(type: string, warnings: string[]): AgentType | string {
     // Known valid agent types that pass through directly
@@ -562,13 +562,13 @@ export class AgentAdapter extends EventEmitter {
   }
 
   /**
-   * Sync status between Claude Flow and agentic-flow agents
+   * Sync status between Cortex Agent and agentic-flow agents
    */
   private syncStatus(
     agent: AgenticFlowAgent,
     agenticFlowAgent: AgenticFlowAgent_External
   ): void {
-    // Map agentic-flow status to Claude Flow status
+    // Map agentic-flow status to Cortex Agent status
     const statusMap: Record<string, AgentStatus> = {
       'initializing': 'spawning',
       'ready': 'idle',

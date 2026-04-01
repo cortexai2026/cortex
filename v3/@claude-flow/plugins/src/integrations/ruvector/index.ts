@@ -5,7 +5,7 @@
  * advanced vector search, attention mechanisms, graph neural networks,
  * and hyperbolic embeddings.
  *
- * @module @claude-flow/plugins/integrations/ruvector
+ * @module @cortex-agent/plugins/integrations/ruvector
  */
 
 // Export the main bridge plugin

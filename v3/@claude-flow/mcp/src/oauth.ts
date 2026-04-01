@@ -1,5 +1,5 @@
 /**
- * @claude-flow/mcp - OAuth 2.1 Authentication
+ * @cortex-agent/mcp - OAuth 2.1 Authentication
  *
  * MCP 2025-11-25 compliant OAuth 2.1 with PKCE
  */

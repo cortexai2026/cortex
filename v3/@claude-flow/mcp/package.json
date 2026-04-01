@@ -1,5 +1,5 @@
 {
-  "name": "@claude-flow/mcp",
+  "name": "@cortex-agent/mcp",
   "version": "3.0.0-alpha.8",
   "type": "module",
   "description": "Standalone MCP (Model Context Protocol) server - stdio/http/websocket transports, connection pooling, tool registry",

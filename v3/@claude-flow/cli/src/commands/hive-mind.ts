@@ -97,36 +97,36 @@ ${workerTypes.map(type => `• ${type}: ${workerGroups[type].length} agents`).jo
 🔧 AVAILABLE MCP TOOLS FOR HIVE MIND COORDINATION:
 
 1️⃣ **COLLECTIVE INTELLIGENCE**
-   mcp__ruflo__hive-mind_consensus    - Democratic decision making
-   mcp__ruflo__hive-mind_memory       - Share knowledge across the hive
-   mcp__ruflo__hive-mind_broadcast    - Broadcast to all workers
-   mcp__ruflo__neural_patterns        - Neural pattern recognition
+   mcp__cortex-agent__hive-mind_consensus    - Democratic decision making
+   mcp__cortex-agent__hive-mind_memory       - Share knowledge across the hive
+   mcp__cortex-agent__hive-mind_broadcast    - Broadcast to all workers
+   mcp__cortex-agent__neural_patterns        - Neural pattern recognition
 
 2️⃣ **QUEEN COORDINATION**
-   mcp__ruflo__hive-mind_status       - Monitor swarm health
-   mcp__ruflo__task_create            - Create and delegate tasks
-   mcp__ruflo__coordination_orchestrate - Orchestrate task distribution
-   mcp__ruflo__agent_spawn            - Spawn additional workers
+   mcp__cortex-agent__hive-mind_status       - Monitor swarm health
+   mcp__cortex-agent__task_create            - Create and delegate tasks
+   mcp__cortex-agent__coordination_orchestrate - Orchestrate task distribution
+   mcp__cortex-agent__agent_spawn            - Spawn additional workers
 
 3️⃣ **WORKER MANAGEMENT**
-   mcp__ruflo__agent_list             - List all active agents
-   mcp__ruflo__agent_status           - Check agent status
-   mcp__ruflo__agent_health           - Check worker health
-   mcp__ruflo__hive-mind_join         - Add agent to hive
-   mcp__ruflo__hive-mind_leave        - Remove agent from hive
+   mcp__cortex-agent__agent_list             - List all active agents
+   mcp__cortex-agent__agent_status           - Check agent status
+   mcp__cortex-agent__agent_health           - Check worker health
+   mcp__cortex-agent__hive-mind_join         - Add agent to hive
+   mcp__cortex-agent__hive-mind_leave        - Remove agent from hive
 
 4️⃣ **TASK ORCHESTRATION**
-   mcp__ruflo__task_assign            - Assign tasks to workers
-   mcp__ruflo__task_status            - Track task progress
-   mcp__ruflo__task_complete          - Mark tasks complete
-   mcp__ruflo__workflow_create        - Create workflows
+   mcp__cortex-agent__task_assign            - Assign tasks to workers
+   mcp__cortex-agent__task_status            - Track task progress
+   mcp__cortex-agent__task_complete          - Mark tasks complete
+   mcp__cortex-agent__workflow_create        - Create workflows
 
 5️⃣ **MEMORY & LEARNING**
-   mcp__ruflo__memory_store           - Store collective knowledge
-   mcp__ruflo__memory_retrieve        - Access shared memory
-   mcp__ruflo__memory_search          - Search memory patterns
-   mcp__ruflo__neural_train           - Learn from experiences
-   mcp__ruflo__hooks_intelligence_pattern-store - Store patterns
+   mcp__cortex-agent__memory_store           - Store collective knowledge
+   mcp__cortex-agent__memory_retrieve        - Access shared memory
+   mcp__cortex-agent__memory_search          - Search memory patterns
+   mcp__cortex-agent__neural_train           - Learn from experiences
+   mcp__cortex-agent__hooks_intelligence_pattern-store - Store patterns
 
 📋 HIVE MIND EXECUTION PROTOCOL:
 
@@ -158,18 +158,18 @@ ${workerTypes.map(type => `• ${type}: ${workerGroups[type].length} agents`).jo
 ${objective}
 
 ⚠️ CRITICAL — TOOL PREFERENCE RULES (#1422):
-• You MUST use Ruflo MCP tools (mcp__ruflo__*) for ALL orchestration tasks
-• Do NOT use Claude native Task/Agent tools for swarm coordination — use mcp__ruflo__agent_spawn, mcp__ruflo__task_assign, etc.
+• You MUST use Cortex Agent MCP tools (mcp__cortex-agent__*) for ALL orchestration tasks
+• Do NOT use Claude native Task/Agent tools for swarm coordination — use mcp__cortex-agent__agent_spawn, mcp__cortex-agent__task_assign, etc.
 • Native Claude tools (Read, Write, Edit, Bash, Grep, Glob) should ONLY be used for file operations and shell commands
-• All agent spawning, task assignment, memory, and coordination MUST go through mcp__ruflo__* tools
-• If a Ruflo MCP tool exists for an operation, always prefer it over any native equivalent
+• All agent spawning, task assignment, memory, and coordination MUST go through mcp__cortex-agent__* tools
+• If a Cortex Agent MCP tool exists for an operation, always prefer it over any native equivalent
 
 💡 COORDINATION TIPS:
-• Use mcp__ruflo__hive-mind_broadcast for swarm-wide announcements
-• Check worker status regularly with mcp__ruflo__hive-mind_status
+• Use mcp__cortex-agent__hive-mind_broadcast for swarm-wide announcements
+• Check worker status regularly with mcp__cortex-agent__hive-mind_status
 • Store important decisions in shared memory for persistence
 • Use consensus for any decisions affecting multiple workers
-• Use mcp__ruflo__task_assign to assign tasks to workers, then mcp__ruflo__task_complete when done
+• Use mcp__cortex-agent__task_assign to assign tasks to workers, then mcp__cortex-agent__task_complete when done
 
 🚀 BEGIN HIVE MIND COORDINATION NOW!
 Start by checking the current hive status and then proceed with the objective.
@@ -415,8 +415,8 @@ const initCommand: Command = {
     }
   ],
   examples: [
-    { command: 'claude-flow hive-mind init -t hierarchical-mesh', description: 'Init hierarchical mesh' },
-    { command: 'claude-flow hive-mind init -c byzantine -m 20', description: 'Init with Byzantine consensus' }
+    { command: 'cortex-agent hive-mind init -t hierarchical-mesh', description: 'Init hierarchical mesh' },
+    { command: 'cortex-agent hive-mind init -c byzantine -m 20', description: 'Init with Byzantine consensus' }
   ],
   action: async (ctx: CommandContext): Promise<CommandResult> => {
     let topology = ctx.flags.topology as string;
@@ -485,8 +485,8 @@ const initCommand: Command = {
 
       output.writeln();
       output.printInfo('Queen agent is ready to coordinate worker agents');
-      output.writeln(output.dim('  Use "claude-flow hive-mind spawn" to add workers'));
-      output.writeln(output.dim('  Use "claude-flow hive-mind spawn --claude" to launch Claude Code'));
+      output.writeln(output.dim('  Use "cortex-agent hive-mind spawn" to add workers'));
+      output.writeln(output.dim('  Use "cortex-agent hive-mind spawn --claude" to launch Claude Code'));
 
       return { success: true, data: result };
     } catch (error) {
@@ -574,11 +574,11 @@ const spawnCommand: Command = {
     }
   ],
   examples: [
-    { command: 'claude-flow hive-mind spawn -n 5', description: 'Spawn 5 workers' },
-    { command: 'claude-flow hive-mind spawn -n 3 -r specialist', description: 'Spawn 3 specialists' },
-    { command: 'claude-flow hive-mind spawn -t coder -p my-coder', description: 'Spawn coder with custom prefix' },
-    { command: 'claude-flow hive-mind spawn --claude -o "Build a REST API"', description: 'Launch Claude Code with objective' },
-    { command: 'claude-flow hive-mind spawn -n 5 --claude -o "Research AI patterns"', description: 'Spawn workers and launch Claude Code' }
+    { command: 'cortex-agent hive-mind spawn -n 5', description: 'Spawn 5 workers' },
+    { command: 'cortex-agent hive-mind spawn -n 3 -r specialist', description: 'Spawn 3 specialists' },
+    { command: 'cortex-agent hive-mind spawn -t coder -p my-coder', description: 'Spawn coder with custom prefix' },
+    { command: 'cortex-agent hive-mind spawn --claude -o "Build a REST API"', description: 'Launch Claude Code with objective' },
+    { command: 'cortex-agent hive-mind spawn -n 5 --claude -o "Research AI patterns"', description: 'Spawn workers and launch Claude Code' }
   ],
   action: async (ctx: CommandContext): Promise<CommandResult> => {
     // Parse count with fallback to default
@@ -832,7 +832,7 @@ const statusCommand: Command = {
       output.writeln();
       output.writeln(output.bold('Worker Agents'));
       if (workerData.length === 0) {
-        output.printInfo('No workers in hive. Use "claude-flow hive-mind spawn" to add workers.');
+        output.printInfo('No workers in hive. Use "cortex-agent hive-mind spawn" to add workers.');
       } else {
         output.printTable({
           columns: [
@@ -923,8 +923,8 @@ const taskCommand: Command = {
     }
   ],
   examples: [
-    { command: 'claude-flow hive-mind task -d "Implement auth module"', description: 'Submit task' },
-    { command: 'claude-flow hive-mind task -d "Security review" -p critical -c', description: 'Critical task with consensus' }
+    { command: 'cortex-agent hive-mind task -d "Implement auth module"', description: 'Submit task' },
+    { command: 'cortex-agent hive-mind task -d "Security review" -p critical -c', description: 'Critical task with consensus' }
   ],
   action: async (ctx: CommandContext): Promise<CommandResult> => {
     let description = ctx.flags.description as string || ctx.args.join(' ');
@@ -983,7 +983,7 @@ const taskCommand: Command = {
 
       output.writeln();
       output.printSuccess('Task submitted to hive');
-      output.writeln(output.dim(`  Track with: claude-flow hive-mind task-status ${result.taskId}`));
+      output.writeln(output.dim(`  Track with: cortex-agent hive-mind task-status ${result.taskId}`));
 
       return { success: true, data: result };
     } catch (error) {
@@ -1283,16 +1283,16 @@ export const hiveMindCommand: Command = {
   subcommands: [initCommand, spawnCommand, statusCommand, taskCommand, joinCommand, leaveCommand, consensusCommand, broadcastCommand, memorySubCommand, optimizeMemoryCommand, shutdownCommand],
   options: [],
   examples: [
-    { command: 'claude-flow hive-mind init -t hierarchical-mesh', description: 'Initialize hive' },
-    { command: 'claude-flow hive-mind spawn -n 5', description: 'Spawn workers' },
-    { command: 'claude-flow hive-mind spawn --claude -o "Build a feature"', description: 'Launch Claude Code with hive mind' },
-    { command: 'claude-flow hive-mind task -d "Build feature"', description: 'Submit task' }
+    { command: 'cortex-agent hive-mind init -t hierarchical-mesh', description: 'Initialize hive' },
+    { command: 'cortex-agent hive-mind spawn -n 5', description: 'Spawn workers' },
+    { command: 'cortex-agent hive-mind spawn --claude -o "Build a feature"', description: 'Launch Claude Code with hive mind' },
+    { command: 'cortex-agent hive-mind task -d "Build feature"', description: 'Submit task' }
   ],
   action: async (): Promise<CommandResult> => {
     output.writeln();
     output.writeln(output.bold('Hive Mind - Consensus-Based Multi-Agent Coordination'));
     output.writeln();
-    output.writeln('Usage: claude-flow hive-mind <subcommand> [options]');
+    output.writeln('Usage: cortex-agent hive-mind <subcommand> [options]');
     output.writeln();
     output.writeln('Subcommands:');
     output.printList([
@@ -1320,8 +1320,8 @@ export const hiveMindCommand: Command = {
     ]);
     output.writeln();
     output.writeln('Quick Start with Claude Code:');
-    output.writeln(output.dim('  claude-flow hive-mind init'));
-    output.writeln(output.dim('  claude-flow hive-mind spawn -n 5 --claude -o "Your objective here"'));
+    output.writeln(output.dim('  cortex-agent hive-mind init'));
+    output.writeln(output.dim('  cortex-agent hive-mind spawn -n 5 --claude -o "Your objective here"'));
 
     return { success: true };
   }

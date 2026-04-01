@@ -17,7 +17,7 @@
     "template",
     "ai-development"
   ],
-  "author": "Claude Flow Team",
+  "author": "Cortex Agent Team",
   "engines": {
     "node": ">=14.0.0"
   },

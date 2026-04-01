@@ -13,7 +13,7 @@
  *
  * @example
  * ```typescript
- * import { reasoningBankPlugin } from '@claude-flow/plugins/examples/ruvector-plugins';
+ * import { reasoningBankPlugin } from '@cortex-agent/plugins/examples/ruvector-plugins';
  * await getDefaultRegistry().register(reasoningBankPlugin);
  * ```
  */
@@ -301,16 +301,16 @@ export class ReasoningBank {
 
   /**
    * External embedding provider (optional - set via setEmbeddingProvider)
-   * When set, uses @claude-flow/embeddings for high-quality embeddings
+   * When set, uses @cortex-agent/embeddings for high-quality embeddings
    */
   private embeddingProvider: ((text: string) => Promise<Float32Array>) | null = null;
 
   /**
-   * Set external embedding provider from @claude-flow/embeddings
+   * Set external embedding provider from @cortex-agent/embeddings
    *
    * @example
    * ```typescript
-   * import { createEmbeddingService } from '@claude-flow/embeddings';
+   * import { createEmbeddingService } from '@cortex-agent/embeddings';
    * const embeddings = createEmbeddingService({ provider: 'transformers' });
    * await embeddings.initialize();
    * bank.setEmbeddingProvider(async (text) => {
@@ -350,7 +350,7 @@ export class ReasoningBank {
 
   /**
    * Hash-based embedding fallback (fast but low quality)
-   * Used when @claude-flow/embeddings is not configured
+   * Used when @cortex-agent/embeddings is not configured
    */
   private generateHashEmbedding(text: string): Float32Array {
     const embedding = new Float32Array(this.dimensions);
@@ -439,7 +439,7 @@ async function getReasoningBank(): Promise<ReasoningBank> {
 
 export const reasoningBankPlugin = new PluginBuilder('reasoning-bank', '1.0.0')
   .withDescription('Store and retrieve reasoning trajectories using @ruvector/wasm HNSW indexing')
-  .withAuthor('Claude Flow Team')
+  .withAuthor('Cortex Agent Team')
   .withTags(['reasoning', 'memory', 'learning', 'ruvector', 'hnsw'])
   .withMCPTools([
     new MCPToolBuilder('reasoning-store')

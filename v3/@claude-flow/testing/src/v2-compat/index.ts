@@ -15,7 +15,7 @@
  *   V2_MCP_TOOLS,
  *   V2_HOOKS,
  *   V2_API_INTERFACES
- * } from '@claude-flow/testing/v2-compat';
+ * } from '@cortex-agent/testing/v2-compat';
  *
  * // Run full validation
  * const validator = new V2CompatibilityValidator({ verbose: true });

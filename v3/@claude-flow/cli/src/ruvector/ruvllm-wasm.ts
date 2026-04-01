@@ -18,7 +18,7 @@
  * - GenerateConfig float precision loss (f32 roundtrip)
  * - MicroLoRA apply() hardcoded to 768 dims regardless of config
  *
- * @module @claude-flow/cli/ruvector/ruvllm-wasm
+ * @module @cortex-agent/cli/ruvector/ruvllm-wasm
  */
 
 import { readFileSync } from 'node:fs';

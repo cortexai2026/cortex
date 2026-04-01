@@ -29,8 +29,8 @@ interface DaemonInstance {
  * Default daemon manager configuration
  */
 const DEFAULT_CONFIG: DaemonManagerConfig = {
-  pidDirectory: '.claude-flow/pids',
-  logDirectory: '.claude-flow/logs',
+  pidDirectory: '.cortex-agent/pids',
+  logDirectory: '.cortex-agent/logs',
   daemons: [],
   autoRestart: true,
   maxRestartAttempts: 3,

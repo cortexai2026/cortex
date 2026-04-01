@@ -1,5 +1,5 @@
 /**
- * @claude-flow/mcp - Tool Registry
+ * @cortex-agent/mcp - Tool Registry
  *
  * High-performance tool management with O(1) lookup
  */

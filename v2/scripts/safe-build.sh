@@ -1,42 +1,42 @@
 #!/bin/bash
 # Safe build script that preserves the existing binary
 
-echo "🔨 Safe Build Script for Claude Flow"
+echo "🔨 Safe Build Script for Cortex Agent"
 echo "===================================="
 
 # Create bin directory if it doesn't exist
 mkdir -p bin
 
 # Backup existing binary if it exists
-if [ -f "bin/claude-flow" ]; then
+if [ -f "bin/cortex-agent" ]; then
     echo "📦 Backing up existing binary..."
-    cp bin/claude-flow bin/claude-flow.backup
+    cp bin/cortex-agent bin/cortex-agent.backup
 fi
 
 # Set Deno path
 export PATH="/home/codespace/.deno/bin:$PATH"
 
 # Build to a temporary file first
-echo "🏗️  Building Claude Flow..."
-if deno compile --allow-all --no-check --output=bin/claude-flow.tmp src/cli/main.ts 2>/dev/null; then
+echo "🏗️  Building Cortex Agent..."
+if deno compile --allow-all --no-check --output=bin/cortex-agent.tmp src/cli/main.ts 2>/dev/null; then
     echo "✅ Build successful!"
     
     # Remove old binary and move new one
-    if [ -f "bin/claude-flow.tmp" ]; then
-        mv -f bin/claude-flow.tmp bin/claude-flow
-        chmod +x bin/claude-flow
+    if [ -f "bin/cortex-agent.tmp" ]; then
+        mv -f bin/cortex-agent.tmp bin/cortex-agent
+        chmod +x bin/cortex-agent
         echo "✅ Binary updated successfully!"
         
         # Remove backup since build was successful
-        rm -f bin/claude-flow.backup
+        rm -f bin/cortex-agent.backup
     fi
 else
     echo "❌ Build failed!"
     
     # Restore backup if build failed
-    if [ -f "bin/claude-flow.backup" ]; then
+    if [ -f "bin/cortex-agent.backup" ]; then
         echo "🔄 Restoring backup..."
-        mv bin/claude-flow.backup bin/claude-flow
+        mv bin/cortex-agent.backup bin/cortex-agent
         echo "✅ Backup restored!"
     fi
     
@@ -59,5 +59,5 @@ fi
 
 echo ""
 echo "✅ Build complete!"
-echo "   Claude Flow binary: bin/claude-flow"
+echo "   Cortex Agent binary: bin/cortex-agent"
 echo "   Prompt Copier binary: bin/prompt-copier"

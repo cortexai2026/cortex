@@ -1,5 +1,5 @@
 /**
- * @claude-flow/codex - Validators
+ * @cortex-agent/codex - Validators
  *
  * Comprehensive validation functions for AGENTS.md, SKILL.md, and config.toml
  * Provides detailed error messages and suggestions for fixes.
@@ -466,7 +466,7 @@ export async function validateConfigToml(content: string): Promise<ValidationRes
     warnings.push({
       path: 'config.toml',
       message: 'No MCP servers configured',
-      suggestion: 'Add [mcp_servers.claude-flow] for Claude Flow integration',
+      suggestion: 'Add [mcp_servers.cortex-agent] for Cortex Agent integration',
     });
   } else {
     // Validate MCP server configurations

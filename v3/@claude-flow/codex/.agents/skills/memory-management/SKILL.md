@@ -26,14 +26,14 @@ AgentDB memory system with HNSW vector search.
 Store a pattern in memory
 
 ```bash
-npx @claude-flow/cli memory store --key "key" --value "value" --namespace patterns
+npx @cortex-agent/cli memory store --key "key" --value "value" --namespace patterns
 ```
 
 ### Search Data
 Semantic search in memory
 
 ```bash
-npx @claude-flow/cli memory search --query "search terms" --limit 10
+npx @cortex-agent/cli memory search --query "search terms" --limit 10
 ```
 
 

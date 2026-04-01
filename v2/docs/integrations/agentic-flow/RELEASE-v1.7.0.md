@@ -303,7 +303,7 @@ npm run bench:batch -- --count 1000
 ### Claude-Flow Integration
 - **ReasoningBank Architecture**: [../../reasoningbank/architecture.md](../../reasoningbank/architecture.md)
 - **ReasoningBank Adapter**: [../../integrations/reasoningbank/REASONINGBANK_ARCHITECTURE.md](../reasoningbank/REASONINGBANK_ARCHITECTURE.md)
-- **AgentDB Integration (claude-flow)**: [../../agentdb/](../../agentdb/)
+- **AgentDB Integration (cortex-agent)**: [../../agentdb/](../../agentdb/)
 
 ### Impact on Claude-Flow
 
@@ -328,7 +328,7 @@ See [GitHub Issue #34](https://github.com/ruvnet/agentic-flow/issues/34) for imp
 
 - **AgentDB**: https://agentdb.ruv.io - Frontier memory for AI agents
 - **Contributors**: @ruvnet
-- **Testing**: claude-flow integration testing (issue #829)
+- **Testing**: cortex-agent integration testing (issue #829)
 
 ---
 
@@ -344,5 +344,5 @@ See [GitHub Issue #34](https://github.com/ruvnet/agentic-flow/issues/34) for imp
 
 ---
 
-*This release documentation is part of the claude-flow project's integration tracking.*
-*See [claude-flow issue #829](https://github.com/ruvnet/claude-flow/issues/829) for integration details.*
+*This release documentation is part of the cortex-agent project's integration tracking.*
+*See [cortex-agent issue #829](https://github.com/ruvnet/cortex-agent/issues/829) for integration details.*

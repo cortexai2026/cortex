@@ -1,10 +1,10 @@
 #!/bin/bash
-# Test script for LOCAL claude-flow (skills-copier fix validation)
+# Test script for LOCAL cortex-agent (skills-copier fix validation)
 
 set -e  # Exit on error
 
 echo "=========================================="
-echo "🔧 Testing LOCAL claude-flow Skills Fix"
+echo "🔧 Testing LOCAL cortex-agent Skills Fix"
 echo "=========================================="
 echo ""
 
@@ -42,7 +42,7 @@ section() {
 
 # Test 1: Version Check
 section "Test 1: Version Check"
-VERSION=$(claude-flow --version 2>&1)
+VERSION=$(cortex-agent --version 2>&1)
 info "Version: $VERSION"
 if [[ "$VERSION" == *"2.7.0-alpha.11"* ]]; then
     pass "Version detected"
@@ -55,8 +55,8 @@ section "Test 2: Init Command with Skills System"
 cd /test
 
 # Run init with verbose output
-info "Running: npx claude-flow init --skip-open --project-name test-project"
-npx claude-flow init --skip-open --project-name "test-project" 2>&1 | tee /tmp/init-output.log
+info "Running: npx cortex-agent init --skip-open --project-name test-project"
+npx cortex-agent init --skip-open --project-name "test-project" 2>&1 | tee /tmp/init-output.log
 
 echo ""
 info "Init output saved to /tmp/init-output.log"

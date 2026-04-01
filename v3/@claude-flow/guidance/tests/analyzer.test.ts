@@ -722,13 +722,13 @@ npm run build && npm test
 ## CLI Commands
 
 \`\`\`bash
-npx claude-flow init --wizard
-npx claude-flow daemon start
-npx claude-flow agent spawn -t coder
-npx claude-flow swarm init --v3-mode
-npx claude-flow memory search -q "auth patterns"
-npx claude-flow doctor --fix
-npx claude-flow security scan --depth full
+npx cortex-agent init --wizard
+npx cortex-agent daemon start
+npx cortex-agent agent spawn -t coder
+npx cortex-agent swarm init --v3-mode
+npx cortex-agent memory search -q "auth patterns"
+npx cortex-agent doctor --fix
+npx cortex-agent security scan --depth full
 \`\`\`
 
 ## Available Agents
@@ -762,9 +762,9 @@ Performance: perf-analyzer, performance-benchmarker
 ## Environment Variables
 
 \`\`\`bash
-CLAUDE_FLOW_CONFIG=./claude-flow.config.json
+CORTEX_AGENT_CONFIG=./cortex-agent.config.json
 ANTHROPIC_API_KEY=sk-ant-...
-CLAUDE_FLOW_MCP_PORT=3000
+CORTEX_AGENT_MCP_PORT=3000
 \`\`\`
 
 ## Publishing to npm
@@ -773,7 +773,7 @@ ALWAYS publish both packages. MUST update all dist-tags.
 NEVER forget the umbrella alpha tag.
 
 \`\`\`bash
-cd v3/@claude-flow/cli
+cd v3/@cortex-agent/cli
 npm version 3.0.0-alpha.XXX --no-git-tag-version
 npm run build
 npm publish --tag alpha
@@ -2031,7 +2031,7 @@ class ABDifferentialExecutor implements IContentAwareExecutor {
 
     if (lower.includes('publish') && lower.includes('npm')) {
       if (this.hasDeployInfo) {
-        return { stdout: 'Set up npm publish workflow with dist-tag management. Publishes to alpha and latest tags. Both @claude-flow/cli and claude-flow umbrella package are updated. Tags verified after publish.', stderr: '', exitCode: 0 };
+        return { stdout: 'Set up npm publish workflow with dist-tag management. Publishes to alpha and latest tags. Both @cortex-agent/cli and cortex-agent umbrella package are updated. Tags verified after publish.', stderr: '', exitCode: 0 };
       }
       return { stdout: 'npm publish && git push --force origin main', stderr: '', exitCode: 0 };
     }

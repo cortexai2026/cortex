@@ -2,7 +2,7 @@
  * Permission Manager - 4-Level Hierarchical Permissions
  *
  * Implements hierarchical permission system with fallback chain:
- * USER (global) → PROJECT (.claude-flow/) → LOCAL (file-based) → SESSION (runtime)
+ * USER (global) → PROJECT (.cortex-agent/) → LOCAL (file-based) → SESSION (runtime)
  *
  * Features:
  * - Fast permission resolution with caching
@@ -480,8 +480,8 @@ export function createPermissionManager(options?: {
   return new PermissionManager({
     cacheEnabled: options?.cacheEnabled,
     cacheTTL: options?.cacheTTL,
-    userConfigPath: join(process.env.HOME || '~', '.claude-flow', 'permissions.json'),
-    projectConfigPath: join(workingDir, '.claude-flow', 'permissions.json'),
+    userConfigPath: join(process.env.HOME || '~', '.cortex-agent', 'permissions.json'),
+    projectConfigPath: join(workingDir, '.cortex-agent', 'permissions.json'),
     localConfigPath: join(workingDir, '.permissions.json'),
   });
 }

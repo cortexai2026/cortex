@@ -30,7 +30,7 @@ interface LegacyMemoryStore {
 }
 
 // Paths
-const MEMORY_DIR = '.claude-flow/memory';
+const MEMORY_DIR = '.cortex-agent/memory';
 const LEGACY_MEMORY_FILE = 'store.json';
 const MIGRATION_MARKER = '.migrated-to-sqlite';
 

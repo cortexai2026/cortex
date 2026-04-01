@@ -27,7 +27,7 @@ import { RequestRouter } from './router.js';
 import { SessionManager, ISessionManager } from './session-manager.js';
 import { AuthManager, IAuthManager } from './auth.js';
 import { LoadBalancer, ILoadBalancer, RequestQueue } from './load-balancer.js';
-import { createClaudeFlowTools, ClaudeFlowToolContext } from './claude-flow-tools.js';
+import { createCortexAgentTools, CortexAgentToolContext } from './cortex-agent-tools.js';
 import { createSwarmTools, SwarmToolContext } from './swarm-tools.js';
 import {
   createRuvSwarmTools,
@@ -506,16 +506,16 @@ export class MCPServer implements IMCPServer {
 
     // Register Claude-Flow specific tools if orchestrator is available
     if (this.orchestrator) {
-      const claudeFlowTools = await createClaudeFlowTools(this.logger);
+      const claudeFlowTools = await createCortexAgentTools(this.logger);
 
       for (const tool of claudeFlowTools) {
         // Wrap the handler to inject orchestrator context
         const originalHandler = tool.handler;
         tool.handler = async (input: unknown, context?: MCPContext) => {
-          const claudeFlowContext: ClaudeFlowToolContext = {
+          const claudeFlowContext: CortexAgentToolContext = {
             ...context,
             orchestrator: this.orchestrator,
-          } as ClaudeFlowToolContext;
+          } as CortexAgentToolContext;
 
           return await originalHandler(input, claudeFlowContext);
         };

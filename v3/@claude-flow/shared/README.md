@@ -1,12 +1,12 @@
-# @claude-flow/shared
+# @cortex-agent/shared
 
-[![npm version](https://img.shields.io/npm/v/@claude-flow/shared.svg)](https://www.npmjs.com/package/@claude-flow/shared)
-[![npm downloads](https://img.shields.io/npm/dm/@claude-flow/shared.svg)](https://www.npmjs.com/package/@claude-flow/shared)
+[![npm version](https://img.shields.io/npm/v/@cortex-agent/shared.svg)](https://www.npmjs.com/package/@cortex-agent/shared)
+[![npm downloads](https://img.shields.io/npm/dm/@cortex-agent/shared.svg)](https://www.npmjs.com/package/@cortex-agent/shared)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue.svg)](https://www.typescriptlang.org/)
-[![Core](https://img.shields.io/badge/Module-Core-blue.svg)](https://github.com/ruvnet/claude-flow)
+[![Core](https://img.shields.io/badge/Module-Core-blue.svg)](https://github.com/ruvnet/cortex-agent)
 
-> Shared utilities, types, and core infrastructure for Claude Flow V3 - the foundation module used by all other @claude-flow packages.
+> Shared utilities, types, and core infrastructure for Cortex Agent V3 - the foundation module used by all other @cortex-agent packages.
 
 ## Features
 
@@ -21,7 +21,7 @@
 ## Installation
 
 ```bash
-npm install @claude-flow/shared
+npm install @cortex-agent/shared
 ```
 
 ## Quick Start
@@ -33,7 +33,7 @@ import {
   MemoryEntry,
   EventBus,
   ConfigLoader
-} from '@claude-flow/shared';
+} from '@cortex-agent/shared';
 
 // Use shared types
 const agent: AgentState = {
@@ -57,16 +57,16 @@ eventBus.on('task.completed', (event) => {
 
 ```typescript
 // Main entry (recommended - includes all modules)
-import { ... } from '@claude-flow/shared';
+import { ... } from '@cortex-agent/shared';
 
 // Submodule exports (for tree-shaking or specific imports)
-import { ... } from '@claude-flow/shared/types';      // Type definitions
-import { ... } from '@claude-flow/shared/core';       // Config, interfaces, orchestrator
-import { ... } from '@claude-flow/shared/events';     // Event sourcing (ADR-007)
-import { ... } from '@claude-flow/shared/hooks';      // Hooks system
-import { ... } from '@claude-flow/shared/mcp';        // MCP server infrastructure
-import { ... } from '@claude-flow/shared/security';   // Security utilities
-import { ... } from '@claude-flow/shared/resilience'; // Retry, circuit breaker, rate limiter
+import { ... } from '@cortex-agent/shared/types';      // Type definitions
+import { ... } from '@cortex-agent/shared/core';       // Config, interfaces, orchestrator
+import { ... } from '@cortex-agent/shared/events';     // Event sourcing (ADR-007)
+import { ... } from '@cortex-agent/shared/hooks';      // Hooks system
+import { ... } from '@cortex-agent/shared/mcp';        // MCP server infrastructure
+import { ... } from '@cortex-agent/shared/security';   // Security utilities
+import { ... } from '@cortex-agent/shared/resilience'; // Retry, circuit breaker, rate limiter
 ```
 
 ## API Reference
@@ -105,7 +105,7 @@ import type {
   MCPTool,
   MCPRequest,
   MCPResponse
-} from '@claude-flow/shared/types';
+} from '@cortex-agent/shared/types';
 ```
 
 ### Core Interfaces
@@ -117,7 +117,7 @@ import type {
   IMemory,
   ICoordinator,
   IEventHandler
-} from '@claude-flow/shared/core';
+} from '@cortex-agent/shared/core';
 
 // Agent interface
 interface IAgent {
@@ -152,7 +152,7 @@ import {
   ConfigValidator,
   defaultConfig,
   ConfigSchema
-} from '@claude-flow/shared/core';
+} from '@cortex-agent/shared/core';
 
 // Load configuration
 const config = await ConfigLoader.load('./config.json');
@@ -171,7 +171,7 @@ const defaults = defaultConfig();
 ### Event System
 
 ```typescript
-import { EventBus, EventCoordinator } from '@claude-flow/shared/events';
+import { EventBus, EventCoordinator } from '@cortex-agent/shared/events';
 
 const eventBus = new EventBus();
 
@@ -202,7 +202,7 @@ coordinator.orchestrate([
 ### Hooks System
 
 ```typescript
-import { HooksManager, Hook } from '@claude-flow/shared/hooks';
+import { HooksManager, Hook } from '@cortex-agent/shared/hooks';
 
 const hooks = new HooksManager();
 
@@ -234,7 +234,7 @@ import {
   createSessionManager,
   defineTool,
   quickStart,
-} from '@claude-flow/shared/mcp';
+} from '@cortex-agent/shared/mcp';
 
 // Quick start - simplest way to create an MCP server
 const server = await quickStart({
@@ -265,7 +265,7 @@ const session = await sessions.create({ clientInfo: { name: 'client' } });
 ### Health Monitor
 
 ```typescript
-import { HealthMonitor, HealthCheck } from '@claude-flow/shared/core';
+import { HealthMonitor, HealthCheck } from '@cortex-agent/shared/core';
 
 const monitor = new HealthMonitor();
 
@@ -304,19 +304,19 @@ export * from './types/mcp.types';
 
 ## Used By
 
-This package is a dependency of all other @claude-flow modules:
+This package is a dependency of all other @cortex-agent modules:
 
-- [@claude-flow/cli](../cli) - CLI module
-- [@claude-flow/security](../security) - Security & validation
-- [@claude-flow/memory](../memory) - AgentDB & HNSW indexing
-- [@claude-flow/neural](../neural) - SONA learning & RL algorithms
-- [@claude-flow/performance](../performance) - Benchmarking & optimization
-- [@claude-flow/swarm](../swarm) - 15-agent coordination
-- [@claude-flow/integration](../integration) - agentic-flow@alpha bridge
-- [@claude-flow/testing](../testing) - TDD framework & fixtures
-- [@claude-flow/deployment](../deployment) - Release management
-- [@claude-flow/embeddings](../embeddings) - Embedding service
-- [@claude-flow/hooks](../hooks) - Hooks system
+- [@cortex-agent/cli](../cli) - CLI module
+- [@cortex-agent/security](../security) - Security & validation
+- [@cortex-agent/memory](../memory) - AgentDB & HNSW indexing
+- [@cortex-agent/neural](../neural) - SONA learning & RL algorithms
+- [@cortex-agent/performance](../performance) - Benchmarking & optimization
+- [@cortex-agent/swarm](../swarm) - 15-agent coordination
+- [@cortex-agent/integration](../integration) - agentic-flow@alpha bridge
+- [@cortex-agent/testing](../testing) - TDD framework & fixtures
+- [@cortex-agent/deployment](../deployment) - Release management
+- [@cortex-agent/embeddings](../embeddings) - Embedding service
+- [@cortex-agent/hooks](../hooks) - Hooks system
 
 ## License
 

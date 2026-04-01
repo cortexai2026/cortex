@@ -7,8 +7,8 @@
  *
  * @example
  * ```typescript
- * import { pluginCreatorPlugin } from '@claude-flow/plugins/examples/plugin-creator';
- * import { getDefaultRegistry } from '@claude-flow/plugins';
+ * import { pluginCreatorPlugin } from '@cortex-agent/plugins/examples/plugin-creator';
+ * import { getDefaultRegistry } from '@cortex-agent/plugins';
  *
  * await getDefaultRegistry().register(pluginCreatorPlugin);
  * ```
@@ -320,7 +320,7 @@ export function generatePlugin(options: CreatePluginOptions): GeneratedPlugin {
   codeBlocks.push(`import {
   PluginBuilder,${enabledFeatures.tools ? '\n  MCPToolBuilder,' : ''}${enabledFeatures.hooks ? '\n  HookBuilder,\n  HookEvent,\n  HookPriority,' : ''}${enabledFeatures.workers ? '\n  WorkerFactory,' : ''}${enabledFeatures.security ? '\n  Security,' : ''}
   type IPlugin,${enabledFeatures.workers ? '\n  type WorkerDefinition,' : ''}${agents.length > 0 ? '\n  type AgentTypeDefinition,' : ''}
-} from '@claude-flow/plugins';
+} from '@cortex-agent/plugins';
 `);
 
   // Generate tools
@@ -453,7 +453,7 @@ function getEventEnumName(event: HookEvent): string {
  */
 export const pluginCreatorPlugin = new PluginBuilder('plugin-creator', '1.0.0')
   .withDescription('A meta-plugin that creates new plugins with various configurations')
-  .withAuthor('Claude Flow Team')
+  .withAuthor('Cortex Agent Team')
   .withTags(['meta', 'generator', 'developer-tools'])
   .withMCPTools([
     // Tool: Create Plugin

@@ -244,10 +244,10 @@ export async function streamChainCommand(args, flags) {
 function showHelp() {
   console.log(`
 🔗 NAME
-    claude-flow stream-chain - Connect multiple Claude instances via stream-json for chained workflows
+    cortex-agent stream-chain - Connect multiple Claude instances via stream-json for chained workflows
 
 📋 SYNOPSIS
-    claude-flow stream-chain <subcommand> [options]
+    cortex-agent stream-chain <subcommand> [options]
 
 📝 DESCRIPTION
     Stream chaining enables multi-step Claude workflows where each step receives the full
@@ -307,22 +307,22 @@ function showHelp() {
 
 💡 EXAMPLES
     # Run a custom 3-step code improvement chain
-    claude-flow stream-chain run "analyze this code" "suggest improvements" "implement the top 3"
+    cortex-agent stream-chain run "analyze this code" "suggest improvements" "implement the top 3"
     
     # Execute the demo chain to see stream chaining in action
-    claude-flow stream-chain demo
+    cortex-agent stream-chain demo
     
     # Run the analysis pipeline on your codebase
-    claude-flow stream-chain pipeline analysis
+    cortex-agent stream-chain pipeline analysis
     
     # Test that stream chaining is working correctly
-    claude-flow stream-chain test --verbose
+    cortex-agent stream-chain test --verbose
     
     # Custom refactoring workflow with extended timeout
-    claude-flow stream-chain run "find code smells" "prioritize fixes" "refactor" --timeout 60
+    cortex-agent stream-chain run "find code smells" "prioritize fixes" "refactor" --timeout 60
     
     # Debug mode to see raw stream-json messages
-    claude-flow stream-chain demo --debug --verbose
+    cortex-agent stream-chain demo --debug --verbose
 
 🔧 HOW IT WORKS
     1. Step 1 executes with --output-format stream-json to capture structured output
@@ -366,17 +366,17 @@ function showHelp() {
     → Report issue if stream format has changed
 
 🔗 SEE ALSO
-    claude-flow swarm        - Multi-agent coordination
-    claude-flow hive-mind    - Collective intelligence mode
-    claude-flow sparc        - SPARC development methodology
+    cortex-agent swarm        - Multi-agent coordination
+    cortex-agent hive-mind    - Collective intelligence mode
+    cortex-agent sparc        - SPARC development methodology
     
 📖 DOCUMENTATION
-    Full docs: ./claude-flow-wiki/Stream-Chain-Command.md
+    Full docs: ./cortex-agent-wiki/Stream-Chain-Command.md
     Stream spec: ./docs/stream-chaining.md
-    GitHub: https://github.com/ruvnet/claude-flow
+    GitHub: https://github.com/ruvnet/cortex-agent
 
 🏷️ VERSION
-    Claude Flow Alpha 89 - Stream Chain v2.0.0
+    Cortex Agent Alpha 89 - Stream Chain v2.0.0
   `);
 }
 
@@ -463,7 +463,7 @@ async function runPipeline(args, flags) {
   if (!pipelineType || !pipelines[pipelineType]) {
     console.error('❌ Invalid or missing pipeline type');
     console.log('Available pipelines: ' + Object.keys(pipelines).join(', '));
-    console.log('Usage: claude-flow stream-chain pipeline <type>');
+    console.log('Usage: cortex-agent stream-chain pipeline <type>');
     return;
   }
   

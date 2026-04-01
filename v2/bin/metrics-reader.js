@@ -7,8 +7,8 @@ const execAsync = promisify(exec);
 
 class MetricsReader {
   constructor() {
-    this.metricsDir = '.claude-flow/metrics';
-    this.sessionsDir = '.claude-flow/sessions';
+    this.metricsDir = '.cortex-agent/metrics';
+    this.sessionsDir = '.cortex-agent/sessions';
   }
 
   async getSystemMetrics() {
@@ -26,7 +26,7 @@ class MetricsReader {
 
   async getTaskQueue() {
     try {
-      const queueFile = '.claude-flow/tasks/queue.json';
+      const queueFile = '.cortex-agent/tasks/queue.json';
       const content = await fs.readFile(queueFile, 'utf8');
       return JSON.parse(content);
     } catch (error) {
@@ -58,8 +58,8 @@ class MetricsReader {
     try {
       const agents = [];
       
-      // Check for agents in the .claude-flow/agents directory
-      const agentsDir = '.claude-flow/agents';
+      // Check for agents in the .cortex-agent/agents directory
+      const agentsDir = '.cortex-agent/agents';
       try {
         const agentFiles = await fs.readdir(agentsDir);
         for (const file of agentFiles) {
@@ -194,7 +194,7 @@ class MetricsReader {
       const processCount = parseInt(stdout.trim(), 10);
       
       // Check for orchestrator running
-      const { stdout: orchestratorOut } = await execAsync('ps aux | grep -E "claude-flow start" | grep -v grep | wc -l');
+      const { stdout: orchestratorOut } = await execAsync('ps aux | grep -E "cortex-agent start" | grep -v grep | wc -l');
       const orchestratorRunning = parseInt(orchestratorOut.trim(), 10) > 0;
       
       // Determine status

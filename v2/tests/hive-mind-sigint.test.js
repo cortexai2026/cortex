@@ -67,7 +67,7 @@ describe('Hive Mind SIGINT Handler', () => {
       expect(code).toBe(0);
       expect(output).toContain('Pausing session...');
       expect(output).toContain('Session paused successfully');
-      expect(output).toContain(`claude-flow hive-mind resume ${sessionId}`);
+      expect(output).toContain(`cortex-agent hive-mind resume ${sessionId}`);
 
       // Verify session was paused in database
       if (existsSync(dbPath)) {

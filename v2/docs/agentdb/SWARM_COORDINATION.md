@@ -85,19 +85,19 @@
 
 ### Swarm Memory
 
-All agents used claude-flow hooks for coordination:
+All agents used cortex-agent hooks for coordination:
 
 ```bash
 # Pre-task
-npx claude-flow@alpha hooks pre-task --description "[task]"
+npx cortex-agent@alpha hooks pre-task --description "[task]"
 
 # During work
-npx claude-flow@alpha hooks post-edit --file "[file]" --memory-key "swarm/[agent]/[step]"
-npx claude-flow@alpha hooks notify --message "[status]"
+npx cortex-agent@alpha hooks post-edit --file "[file]" --memory-key "swarm/[agent]/[step]"
+npx cortex-agent@alpha hooks notify --message "[status]"
 
 # Post-task
-npx claude-flow@alpha hooks post-task --task-id "[task-id]"
-npx claude-flow@alpha hooks session-end --export-metrics true
+npx cortex-agent@alpha hooks post-task --task-id "[task-id]"
+npx cortex-agent@alpha hooks session-end --export-metrics true
 ```
 
 ### Memory Store

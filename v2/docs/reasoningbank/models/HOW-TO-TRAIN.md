@@ -21,8 +21,8 @@ This guide shows you how to create custom pre-trained ReasoningBank models with 
 # Install dependencies
 npm install better-sqlite3
 
-# Ensure claude-flow is available
-npx claude-flow@alpha --version
+# Ensure cortex-agent is available
+npx cortex-agent@alpha --version
 ```
 
 ### Create a Simple Model (100 patterns)
@@ -145,7 +145,7 @@ node _scripts/validation-suite.cjs my-custom-model my-custom-model
 
 ### Required Tables
 
-Every `memory.db` must include these tables for full claude-flow compatibility:
+Every `memory.db` must include these tables for full cortex-agent compatibility:
 
 **ReasoningBank Core:**
 - `patterns` - Core pattern storage
@@ -399,13 +399,13 @@ console.log('✅ All agents completed training');
 
 ```bash
 # Store training progress in shared memory
-npx claude-flow@alpha memory store \
+npx cortex-agent@alpha memory store \
   "training/progress/agent-1" \
   '{"patterns": 250, "status": "in_progress"}' \
   --namespace training --reasoningbank
 
 # Query agent status
-npx claude-flow@alpha memory query \
+npx cortex-agent@alpha memory query \
   "training/progress" \
   --namespace training --reasoningbank
 ```

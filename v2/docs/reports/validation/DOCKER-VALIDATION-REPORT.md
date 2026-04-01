@@ -25,7 +25,7 @@
 
 | Test | Status | Details |
 |------|--------|---------|
-| Binary exists | ✅ PASS | `/bin/claude-flow` created successfully |
+| Binary exists | ✅ PASS | `/bin/cortex-agent` created successfully |
 | Help command | ✅ PASS | Full help output displayed |
 | Version command | ✅ PASS | Version information correct |
 
@@ -41,13 +41,13 @@
 
 **Sample Output**:
 ```bash
-$ ./bin/claude-flow memory store docker_test 'validation test'
+$ ./bin/cortex-agent memory store docker_test 'validation test'
 ✅ Stored successfully
 📝 Key: docker_test
 📦 Namespace: default
 💾 Size: 15 bytes
 
-$ ./bin/claude-flow memory query docker_test
+$ ./bin/cortex-agent memory query docker_test
 ✅ Found 1 results:
 📌 docker_test
    Value: validation test
@@ -122,7 +122,7 @@ Dependencies installed:
 ```bash
 ✅ npm install --legacy-peer-deps
 ✅ npm run build (585 files compiled)
-✅ All directories created (memory, .swarm, .claude-flow)
+✅ All directories created (memory, .swarm, .cortex-agent)
 ```
 
 ---
@@ -172,28 +172,28 @@ All tests used the compiled binary in isolation:
 
 ```bash
 # CLI Tests
-./bin/claude-flow --help
-./bin/claude-flow --version
-./bin/claude-flow agent --help
+./bin/cortex-agent --help
+./bin/cortex-agent --version
+./bin/cortex-agent agent --help
 
 # Memory Tests
-./bin/claude-flow memory store docker_test 'validation test'
-./bin/claude-flow memory query docker_test
-./bin/claude-flow memory stats
-./bin/claude-flow memory detect
-./bin/claude-flow memory mode
+./bin/cortex-agent memory store docker_test 'validation test'
+./bin/cortex-agent memory query docker_test
+./bin/cortex-agent memory stats
+./bin/cortex-agent memory detect
+./bin/cortex-agent memory mode
 
 # Agent Tests
-./bin/claude-flow agent agents
-./bin/claude-flow agent --help
+./bin/cortex-agent agent agents
+./bin/cortex-agent agent --help
 
 # Proxy Tests
-./bin/claude-flow proxy --help
+./bin/cortex-agent proxy --help
 
 # Help System Tests
-./bin/claude-flow --help | grep -i reasoningbank
-./bin/claude-flow --help | grep -i proxy
-./bin/claude-flow agent --help | grep -i booster
+./bin/cortex-agent --help | grep -i reasoningbank
+./bin/cortex-agent --help | grep -i proxy
+./bin/cortex-agent agent --help | grep -i booster
 ```
 
 ---
@@ -217,8 +217,8 @@ The following environments are validated and ready:
 - **Clean installations** (no local dependencies required)
 
 ### Installation Methods Validated
-1. **NPM Global**: `npm install -g claude-flow@alpha`
-2. **NPX**: `npx claude-flow@alpha`
+1. **NPM Global**: `npm install -g cortex-agent@alpha`
+2. **NPX**: `npx cortex-agent@alpha`
 3. **Binary**: Direct binary execution
 
 ### Recommended Next Steps
@@ -268,8 +268,8 @@ The following environments are validated and ready:
 ## 📞 Support & Issues
 
 If you encounter any issues not covered in this validation:
-- GitHub Issues: https://github.com/ruvnet/claude-flow/issues
-- Documentation: https://github.com/ruvnet/claude-flow
+- GitHub Issues: https://github.com/ruvnet/cortex-agent/issues
+- Documentation: https://github.com/ruvnet/cortex-agent
 - Test Suite: `./tests/docker/quick-validation.sh`
 
 ---

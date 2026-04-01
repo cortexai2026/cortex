@@ -1,14 +1,14 @@
 /**
- * @claude-flow/memory - V3 Unified Memory System
+ * @cortex-agent/memory - V3 Unified Memory System
  *
  * Provides a unified memory interface backed by AgentDB with HNSW indexing
  * for 150x-12,500x faster vector search compared to brute-force approaches.
  *
- * @module @claude-flow/memory
+ * @module @cortex-agent/memory
  *
  * @example
  * ```typescript
- * import { UnifiedMemoryService, query, QueryTemplates } from '@claude-flow/memory';
+ * import { UnifiedMemoryService, query, QueryTemplates } from '@cortex-agent/memory';
  *
  * // Initialize the memory service
  * const memory = new UnifiedMemoryService({

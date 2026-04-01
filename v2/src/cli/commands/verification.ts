@@ -1,8 +1,8 @@
 /**
- * Verification Commands for Claude Flow CLI
+ * Verification Commands for Cortex Agent CLI
  * 
  * Provides CLI commands for verification system management and execution.
- * Integrates with the existing claude-flow command structure.
+ * Integrates with the existing cortex-agent command structure.
  */
 
 import { Logger } from '../../core/logger.js';
@@ -151,10 +151,10 @@ async function executeRollbackCommand(args: any): Promise<any> {
  */
 function showVerificationHelp(): any {
   const help = `
-🔍 Claude Flow Verification System
+🔍 Cortex Agent Verification System
 
 USAGE:
-  npx claude-flow verification <subcommand> [options]
+  npx cortex-agent verification <subcommand> [options]
 
 SUBCOMMANDS:
   status      Show verification system status and metrics
@@ -170,16 +170,16 @@ SUBCOMMANDS:
   help        Show this help message
 
 EXAMPLES:
-  npx claude-flow verification status
-  npx claude-flow verification check --taskId task-123
-  npx claude-flow verification config --action set --key preTask.enabled --value true
-  npx claude-flow verification validate --taskId task-123
-  npx claude-flow verification cleanup --force --maxAge 86400000
-  npx claude-flow verification pre-task --taskId task-123 --sessionId session-456
-  npx claude-flow verification post-task --taskId task-123
-  npx claude-flow verification integration --parallel true
-  npx claude-flow verification truth --metric accuracy --threshold 0.8
-  npx claude-flow verification rollback --taskId task-123 --strategy automatic
+  npx cortex-agent verification status
+  npx cortex-agent verification check --taskId task-123
+  npx cortex-agent verification config --action set --key preTask.enabled --value true
+  npx cortex-agent verification validate --taskId task-123
+  npx cortex-agent verification cleanup --force --maxAge 86400000
+  npx cortex-agent verification pre-task --taskId task-123 --sessionId session-456
+  npx cortex-agent verification post-task --taskId task-123
+  npx cortex-agent verification integration --parallel true
+  npx cortex-agent verification truth --metric accuracy --threshold 0.8
+  npx cortex-agent verification rollback --taskId task-123 --strategy automatic
 
 GLOBAL OPTIONS:
   --json      Output results in JSON format
@@ -187,7 +187,7 @@ GLOBAL OPTIONS:
   --help      Show help for specific subcommand
 
 For more information about a specific subcommand:
-  npx claude-flow verification <subcommand> --help
+  npx cortex-agent verification <subcommand> --help
 `;
 
   console.log(help);
@@ -316,9 +316,9 @@ export function registerVerificationCommands(commandRegistry: any): void {
       description: 'Verification system management',
       handler: verificationCommand,
       examples: [
-        'npx claude-flow verification status',
-        'npx claude-flow verification check --taskId task-123',
-        'npx claude-flow verification validate --taskId task-123'
+        'npx cortex-agent verification status',
+        'npx cortex-agent verification check --taskId task-123',
+        'npx cortex-agent verification validate --taskId task-123'
       ]
     });
 
@@ -328,8 +328,8 @@ export function registerVerificationCommands(commandRegistry: any): void {
       description: 'Execute verification hooks',
       handler: hookCommand,
       examples: [
-        'npx claude-flow hook --type pre-task --taskId task-123',
-        'npx claude-flow hook --type post-task --taskId task-123'
+        'npx cortex-agent hook --type pre-task --taskId task-123',
+        'npx cortex-agent hook --type post-task --taskId task-123'
       ]
     });
 

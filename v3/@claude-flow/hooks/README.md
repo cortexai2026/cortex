@@ -1,14 +1,14 @@
-# @claude-flow/hooks
+# @cortex-agent/hooks
 
-[![npm version](https://img.shields.io/npm/v/@claude-flow/hooks.svg)](https://www.npmjs.com/package/@claude-flow/hooks)
-[![npm downloads](https://img.shields.io/npm/dm/@claude-flow/hooks.svg)](https://www.npmjs.com/package/@claude-flow/hooks)
+[![npm version](https://img.shields.io/npm/v/@cortex-agent/hooks.svg)](https://www.npmjs.com/package/@cortex-agent/hooks)
+[![npm downloads](https://img.shields.io/npm/dm/@cortex-agent/hooks.svg)](https://www.npmjs.com/package/@cortex-agent/hooks)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.3+-blue.svg)](https://www.typescriptlang.org/)
 [![Node.js](https://img.shields.io/badge/Node.js-20+-green.svg)](https://nodejs.org/)
 
-> Event-driven lifecycle hooks with ReasoningBank learning integration for Claude Flow V3
+> Event-driven lifecycle hooks with ReasoningBank learning integration for Cortex Agent V3
 
-The `@claude-flow/hooks` package provides a comprehensive hooks system for intercepting and extending Claude Flow operations. It enables intelligent task routing, pattern learning, background metrics collection, and real-time statusline integration.
+The `@cortex-agent/hooks` package provides a comprehensive hooks system for intercepting and extending Cortex Agent operations. It enables intelligent task routing, pattern learning, background metrics collection, and real-time statusline integration.
 
 ## Features
 
@@ -25,13 +25,13 @@ The `@claude-flow/hooks` package provides a comprehensive hooks system for inter
 
 ```bash
 # Using npm
-npm install @claude-flow/hooks
+npm install @cortex-agent/hooks
 
 # Using pnpm
-pnpm add @claude-flow/hooks
+pnpm add @cortex-agent/hooks
 
 # Using yarn
-yarn add @claude-flow/hooks
+yarn add @cortex-agent/hooks
 ```
 
 ## Quick Start
@@ -44,7 +44,7 @@ import {
   HookExecutor,
   HookEvent,
   HookPriority,
-} from '@claude-flow/hooks';
+} from '@cortex-agent/hooks';
 
 // Create registry and executor
 const registry = new HookRegistry();
@@ -69,7 +69,7 @@ console.log(`Hooks executed: ${result.hooksExecuted}`);
 ### Initialize with Daemons
 
 ```typescript
-import { initializeHooks } from '@claude-flow/hooks';
+import { initializeHooks } from '@cortex-agent/hooks';
 
 // Initialize full system with background daemons
 const { registry, executor, statusline } = await initializeHooks({
@@ -84,7 +84,7 @@ console.log(statusline.generateStatusline());
 ### Using MCP Tools
 
 ```typescript
-import { hooksMCPTools, getHooksTool } from '@claude-flow/hooks';
+import { hooksMCPTools, getHooksTool } from '@cortex-agent/hooks';
 
 // Get specific tool
 const routeTool = getHooksTool('hooks/route');
@@ -151,7 +151,7 @@ statusline --help
 
 **Example Output:**
 ```
-▊ Claude Flow V3 ● agentic-flow@alpha  │  ⎇ v3
+▊ Cortex Agent V3 ● agentic-flow@alpha  │  ⎇ v3
 ─────────────────────────────────────────────────────
 🏗️  DDD Domains    [●●●●●]  5/5    ⚡ 1.0x → 2.49x-7.47x
 🤖 Swarm Agents    ◉ [ 5/15]      🟢 CVE 3/3    💾 156 patterns
@@ -220,22 +220,22 @@ The hooks system includes 12 specialized background workers that can be triggere
 
 ```bash
 # List all available workers
-claude-flow hooks worker list
+cortex-agent hooks worker list
 
 # Detect triggers from prompt text
-claude-flow hooks worker detect --prompt "optimize performance"
+cortex-agent hooks worker detect --prompt "optimize performance"
 
 # Auto-dispatch when triggers match (confidence ≥0.6)
-claude-flow hooks worker detect --prompt "deep dive into auth" --auto-dispatch --min-confidence 0.6
+cortex-agent hooks worker detect --prompt "deep dive into auth" --auto-dispatch --min-confidence 0.6
 
 # Manually dispatch a worker
-claude-flow hooks worker dispatch --trigger refactor --context "auth module"
+cortex-agent hooks worker dispatch --trigger refactor --context "auth module"
 
 # Check worker status
-claude-flow hooks worker status
+cortex-agent hooks worker status
 
 # Cancel a running worker
-claude-flow hooks worker cancel --id worker_refactor_1_abc123
+cortex-agent hooks worker cancel --id worker_refactor_1_abc123
 ```
 
 ### Performance Targets
@@ -258,7 +258,7 @@ Workers are automatically triggered via the `UserPromptSubmit` hook when prompt 
       "hooks": [{
         "type": "command",
         "timeout": 6000,
-        "command": "claude-flow hooks worker detect --prompt \"$USER_PROMPT\" --auto-dispatch --min-confidence 0.6"
+        "command": "cortex-agent hooks worker detect --prompt \"$USER_PROMPT\" --auto-dispatch --min-confidence 0.6"
       }]
     }]
   }
@@ -384,13 +384,13 @@ class StatuslineGenerator {
 
 | Variable | Description | Default |
 |----------|-------------|---------|
-| `CLAUDE_FLOW_HOOK_TIMEOUT` | Hook execution timeout (ms) | `5000` |
-| `CLAUDE_FLOW_REASONINGBANK_ENABLED` | Enable ReasoningBank | `true` |
-| `CLAUDE_FLOW_HOOKS_NAMESPACE` | Learning namespace | `hooks-learning` |
-| `CLAUDE_FLOW_HOOKS_LOG_LEVEL` | Logging level | `info` |
-| `CLAUDE_FLOW_SHOW_HOOKS_METRICS` | Show hooks in statusline | `true` |
-| `CLAUDE_FLOW_SHOW_SWARM_ACTIVITY` | Show swarm in statusline | `true` |
-| `CLAUDE_FLOW_SHOW_PERFORMANCE` | Show performance targets | `true` |
+| `CORTEX_AGENT_HOOK_TIMEOUT` | Hook execution timeout (ms) | `5000` |
+| `CORTEX_AGENT_REASONINGBANK_ENABLED` | Enable ReasoningBank | `true` |
+| `CORTEX_AGENT_HOOKS_NAMESPACE` | Learning namespace | `hooks-learning` |
+| `CORTEX_AGENT_HOOKS_LOG_LEVEL` | Logging level | `info` |
+| `CORTEX_AGENT_SHOW_HOOKS_METRICS` | Show hooks in statusline | `true` |
+| `CORTEX_AGENT_SHOW_SWARM_ACTIVITY` | Show swarm in statusline | `true` |
+| `CORTEX_AGENT_SHOW_PERFORMANCE` | Show performance targets | `true` |
 
 ## Integration with Claude Code
 
@@ -430,11 +430,11 @@ Add to your Claude settings (`~/.claude/settings.json`):
 
 ## Related Packages
 
-- [@claude-flow/shared](../shared) - Shared utilities and types
-- [@claude-flow/neural](../neural) - Neural network and SONA learning
-- [@claude-flow/swarm](../swarm) - Multi-agent coordination
-- [@claude-flow/memory](../memory) - AgentDB memory system
+- [@cortex-agent/shared](../shared) - Shared utilities and types
+- [@cortex-agent/neural](../neural) - Neural network and SONA learning
+- [@cortex-agent/swarm](../swarm) - Multi-agent coordination
+- [@cortex-agent/memory](../memory) - AgentDB memory system
 
 ## License
 
-MIT © [Claude Flow Team](https://github.com/ruvnet/claude-flow)
+MIT © [Cortex Agent Team](https://github.com/ruvnet/cortex-agent)

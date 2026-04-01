@@ -17,9 +17,9 @@ const compileCommand: Command = {
     { name: 'json', type: 'boolean', description: 'Output as JSON', default: 'false' },
   ],
   examples: [
-    { command: 'claude-flow guidance compile', description: 'Compile default CLAUDE.md' },
-    { command: 'claude-flow guidance compile -r ./CLAUDE.md -l ./CLAUDE.local.md', description: 'Compile with local overlay' },
-    { command: 'claude-flow guidance compile --json', description: 'Output compiled bundle as JSON' },
+    { command: 'cortex-agent guidance compile', description: 'Compile default CLAUDE.md' },
+    { command: 'cortex-agent guidance compile -r ./CLAUDE.md -l ./CLAUDE.local.md', description: 'Compile with local overlay' },
+    { command: 'cortex-agent guidance compile --json', description: 'Output compiled bundle as JSON' },
   ],
   action: async (ctx: CommandContext): Promise<CommandResult> => {
     const rootPath = ctx.flags.root as string || './CLAUDE.md';
@@ -45,7 +45,7 @@ const compileCommand: Command = {
         localContent = await readFile(localPath, 'utf-8');
       }
 
-      const { GuidanceCompiler } = await import('@claude-flow/guidance/compiler');
+      const { GuidanceCompiler } = await import('@cortex-agent/guidance/compiler');
       const compiler = new GuidanceCompiler();
       const bundle = compiler.compile(rootContent, localContent);
 
@@ -99,8 +99,8 @@ const retrieveCommand: Command = {
     { name: 'json', type: 'boolean', description: 'Output as JSON', default: 'false' },
   ],
   examples: [
-    { command: 'claude-flow guidance retrieve -t "Fix SQL injection in user search"', description: 'Retrieve guidance for a security task' },
-    { command: 'claude-flow guidance retrieve -t "Add unit tests" -n 3', description: 'Retrieve top 3 shards for testing' },
+    { command: 'cortex-agent guidance retrieve -t "Fix SQL injection in user search"', description: 'Retrieve guidance for a security task' },
+    { command: 'cortex-agent guidance retrieve -t "Add unit tests" -n 3', description: 'Retrieve top 3 shards for testing' },
   ],
   action: async (ctx: CommandContext): Promise<CommandResult> => {
     const task = ctx.flags.task as string;
@@ -122,8 +122,8 @@ const retrieveCommand: Command = {
     try {
       const { readFile } = await import('node:fs/promises');
       const { existsSync } = await import('node:fs');
-      const { GuidanceCompiler } = await import('@claude-flow/guidance/compiler');
-      const { ShardRetriever, HashEmbeddingProvider } = await import('@claude-flow/guidance/retriever');
+      const { GuidanceCompiler } = await import('@cortex-agent/guidance/compiler');
+      const { ShardRetriever, HashEmbeddingProvider } = await import('@cortex-agent/guidance/retriever');
 
       if (!existsSync(rootPath)) {
         output.writeln(output.error(`Root guidance file not found: ${rootPath}`));
@@ -195,8 +195,8 @@ const gatesCommand: Command = {
     { name: 'json', type: 'boolean', description: 'Output as JSON', default: 'false' },
   ],
   examples: [
-    { command: 'claude-flow guidance gates -c "rm -rf /tmp"', description: 'Check if a command is destructive' },
-    { command: 'claude-flow guidance gates --content "api_key=sk-abc123..."', description: 'Check content for secrets' },
+    { command: 'cortex-agent guidance gates -c "rm -rf /tmp"', description: 'Check if a command is destructive' },
+    { command: 'cortex-agent guidance gates --content "api_key=sk-abc123..."', description: 'Check content for secrets' },
   ],
   action: async (ctx: CommandContext): Promise<CommandResult> => {
     const command = ctx.flags.command as string | undefined;
@@ -209,7 +209,7 @@ const gatesCommand: Command = {
     output.writeln(output.dim('─'.repeat(50)));
 
     try {
-      const { EnforcementGates } = await import('@claude-flow/guidance/gates');
+      const { EnforcementGates } = await import('@cortex-agent/guidance/gates');
       const gates = new EnforcementGates();
 
       const results: Array<{ type: string; result: any }> = [];
@@ -299,7 +299,7 @@ const statusCommand: Command = {
       const statusData = {
         rootGuidance: rootExists ? 'found' : 'not found',
         localOverlay: localExists ? 'found' : 'not configured',
-        dataDir: existsSync('./.claude-flow/guidance') ? 'exists' : 'not created',
+        dataDir: existsSync('./.cortex-agent/guidance') ? 'exists' : 'not created',
       };
 
       if (jsonOutput) {
@@ -311,7 +311,7 @@ const statusCommand: Command = {
 
         if (rootExists) {
           const { readFile } = await import('node:fs/promises');
-          const { GuidanceCompiler } = await import('@claude-flow/guidance/compiler');
+          const { GuidanceCompiler } = await import('@cortex-agent/guidance/compiler');
           const rootContent = await readFile('./CLAUDE.md', 'utf-8');
           const compiler = new GuidanceCompiler();
           const bundle = compiler.compile(rootContent);
@@ -348,10 +348,10 @@ const optimizeCommand: Command = {
     { name: 'json', type: 'boolean', description: 'Output as JSON', default: 'false' },
   ],
   examples: [
-    { command: 'claude-flow guidance optimize', description: 'Analyze current CLAUDE.md and show suggestions' },
-    { command: 'claude-flow guidance optimize --apply', description: 'Apply optimizations to CLAUDE.md' },
-    { command: 'claude-flow guidance optimize -s compact --apply', description: 'Optimize for compact context window' },
-    { command: 'claude-flow guidance optimize --target-score 95', description: 'Optimize until score reaches 95' },
+    { command: 'cortex-agent guidance optimize', description: 'Analyze current CLAUDE.md and show suggestions' },
+    { command: 'cortex-agent guidance optimize --apply', description: 'Apply optimizations to CLAUDE.md' },
+    { command: 'cortex-agent guidance optimize -s compact --apply', description: 'Optimize for compact context window' },
+    { command: 'cortex-agent guidance optimize --target-score 95', description: 'Optimize until score reaches 95' },
   ],
   action: async (ctx: CommandContext): Promise<CommandResult> => {
     const rootPath = ctx.flags.root as string || './CLAUDE.md';
@@ -382,7 +382,7 @@ const optimizeCommand: Command = {
       }
 
       // Step 1: Analyze current state
-      const { analyze, formatReport, optimizeForSize, formatBenchmark } = await import('@claude-flow/guidance/analyzer');
+      const { analyze, formatReport, optimizeForSize, formatBenchmark } = await import('@cortex-agent/guidance/analyzer');
       const analysis = analyze(rootContent, localContent);
 
       if (jsonOutput && !applyChanges) {
@@ -465,10 +465,10 @@ const abTestCommand: Command = {
     { name: 'json', type: 'boolean', description: 'Output as JSON', default: 'false' },
   ],
   examples: [
-    { command: 'claude-flow guidance ab-test', description: 'Run default A/B test (no guidance vs ./CLAUDE.md)' },
-    { command: 'claude-flow guidance ab-test -a old.md -b new.md', description: 'Compare two CLAUDE.md versions' },
-    { command: 'claude-flow guidance ab-test --tasks custom-tasks.json', description: 'Run with custom test tasks' },
-    { command: 'claude-flow guidance ab-test --json', description: 'Output full report as JSON' },
+    { command: 'cortex-agent guidance ab-test', description: 'Run default A/B test (no guidance vs ./CLAUDE.md)' },
+    { command: 'cortex-agent guidance ab-test -a old.md -b new.md', description: 'Compare two CLAUDE.md versions' },
+    { command: 'cortex-agent guidance ab-test --tasks custom-tasks.json', description: 'Run with custom test tasks' },
+    { command: 'cortex-agent guidance ab-test --json', description: 'Output full report as JSON' },
   ],
   action: async (ctx: CommandContext): Promise<CommandResult> => {
     const configAPath = ctx.flags['config-a'] as string | undefined;
@@ -484,7 +484,7 @@ const abTestCommand: Command = {
     try {
       const { readFile } = await import('node:fs/promises');
       const { existsSync } = await import('node:fs');
-      const { abBenchmark, getDefaultABTasks } = await import('@claude-flow/guidance/analyzer');
+      const { abBenchmark, getDefaultABTasks } = await import('@cortex-agent/guidance/analyzer');
 
       // Load Config B (candidate) content
       if (!existsSync(configBPath)) {
@@ -590,12 +590,12 @@ export const guidanceCommand: Command = {
   ],
   options: [],
   examples: [
-    { command: 'claude-flow guidance compile', description: 'Compile CLAUDE.md into policy bundle' },
-    { command: 'claude-flow guidance retrieve -t "Fix auth bug"', description: 'Retrieve relevant guidance' },
-    { command: 'claude-flow guidance gates -c "rm -rf /"', description: 'Check enforcement gates' },
-    { command: 'claude-flow guidance status', description: 'Show control plane status' },
-    { command: 'claude-flow guidance optimize', description: 'Analyze and optimize CLAUDE.md' },
-    { command: 'claude-flow guidance ab-test', description: 'Run A/B behavioral comparison' },
+    { command: 'cortex-agent guidance compile', description: 'Compile CLAUDE.md into policy bundle' },
+    { command: 'cortex-agent guidance retrieve -t "Fix auth bug"', description: 'Retrieve relevant guidance' },
+    { command: 'cortex-agent guidance gates -c "rm -rf /"', description: 'Check enforcement gates' },
+    { command: 'cortex-agent guidance status', description: 'Show control plane status' },
+    { command: 'cortex-agent guidance optimize', description: 'Analyze and optimize CLAUDE.md' },
+    { command: 'cortex-agent guidance ab-test', description: 'Run A/B behavioral comparison' },
   ],
   action: async (ctx: CommandContext): Promise<CommandResult> => {
     output.writeln();
@@ -610,7 +610,7 @@ export const guidanceCommand: Command = {
     output.writeln(`  ${output.bold('optimize')}  Analyze and optimize CLAUDE.md`);
     output.writeln(`  ${output.bold('ab-test')}   Run A/B behavioral comparison`);
     output.writeln();
-    output.writeln(output.dim('Use claude-flow guidance <subcommand> --help for details'));
+    output.writeln(output.dim('Use cortex-agent guidance <subcommand> --help for details'));
 
     return { success: true };
   },

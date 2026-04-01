@@ -1,7 +1,7 @@
 #!/bin/bash
 # Capture hook guidance for Claude visibility
-GUIDANCE_FILE=".claude-flow/last-guidance.txt"
-mkdir -p .claude-flow
+GUIDANCE_FILE=".cortex-agent/last-guidance.txt"
+mkdir -p .cortex-agent
 
 case "$1" in
   "route")

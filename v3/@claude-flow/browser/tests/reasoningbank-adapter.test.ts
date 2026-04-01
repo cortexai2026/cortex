@@ -1,5 +1,5 @@
 /**
- * @claude-flow/browser - ReasoningBank Adapter Tests
+ * @cortex-agent/browser - ReasoningBank Adapter Tests
  */
 
 import { describe, it, expect, beforeEach } from 'vitest';

@@ -3,7 +3,7 @@
  *
  * Supports Claude 3.5, 3 Opus, Sonnet, and Haiku models.
  *
- * @module @claude-flow/providers/anthropic-provider
+ * @module @cortex-agent/providers/anthropic-provider
  */
 
 import { BaseProvider, BaseProviderOptions } from './base-provider.js';

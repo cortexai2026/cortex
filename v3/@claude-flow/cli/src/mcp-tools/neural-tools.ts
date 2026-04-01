@@ -4,19 +4,19 @@
  * V2 Compatibility - Neural network and ML tools
  *
  * ✅ HYBRID Implementation:
- * - Uses @claude-flow/embeddings for REAL embeddings when available
- * - Falls back to simulated embeddings when @claude-flow/embeddings not installed
+ * - Uses @cortex-agent/embeddings for REAL embeddings when available
+ * - Falls back to simulated embeddings when @cortex-agent/embeddings not installed
  * - Pattern storage and search with cosine similarity
  * - Training progress tracked (actual model training requires external tools)
  *
- * Note: For production neural features, use @claude-flow/neural module
+ * Note: For production neural features, use @cortex-agent/neural module
  */
 
 import type { MCPTool } from './types.js';
 import { existsSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
 
-// Try to import real embeddings — prefer agentic-flow v3 ReasoningBank, then @claude-flow/embeddings
+// Try to import real embeddings — prefer agentic-flow v3 ReasoningBank, then @cortex-agent/embeddings
 let realEmbeddings: { embed: (text: string) => Promise<number[]> } | null = null;
 let embeddingServiceName: string = 'none';
 try {
@@ -27,9 +27,9 @@ try {
     embeddingServiceName = 'agentic-flow/reasoningbank';
   }
 
-  // Tier 2: @claude-flow/embeddings
+  // Tier 2: @cortex-agent/embeddings
   if (!realEmbeddings) {
-    const embeddingsModule = await import('@claude-flow/embeddings').catch(() => null);
+    const embeddingsModule = await import('@cortex-agent/embeddings').catch(() => null);
     if (embeddingsModule?.createEmbeddingService) {
       try {
         const service = embeddingsModule.createEmbeddingService({ provider: 'agentic-flow' });
@@ -57,7 +57,7 @@ try {
 }
 
 // Storage paths
-const STORAGE_DIR = '.claude-flow';
+const STORAGE_DIR = '.cortex-agent';
 const NEURAL_DIR = 'neural';
 const MODELS_FILE = 'models.json';
 const PATTERNS_FILE = 'patterns.json';
@@ -457,7 +457,7 @@ export const neuralTools: MCPTool[] = [
 
       return {
         _realEmbeddings: !!realEmbeddings,
-        embeddingProvider: realEmbeddings ? `@claude-flow/embeddings (${embeddingServiceName})` : 'hash-based (deterministic)',
+        embeddingProvider: realEmbeddings ? `@cortex-agent/embeddings (${embeddingServiceName})` : 'hash-based (deterministic)',
         models: {
           total: models.length,
           ready: models.filter(m => m.status === 'ready').length,

@@ -224,12 +224,12 @@ const server = createMCPServer({
 
 ```bash
 # V2 (deprecated but supported)
-npx claude-flow hive-mind init
-npx claude-flow hive-mind status
+npx cortex-agent hive-mind init
+npx cortex-agent hive-mind status
 
 # V3 (recommended)
-npx @claude-flow/cli swarm init
-npx @claude-flow/cli swarm status
+npx @cortex-agent/cli swarm init
+npx @cortex-agent/cli swarm status
 ```
 
 #### MCP Tool Migration
@@ -261,12 +261,12 @@ const agent = await mcp.callTool('agent/spawn', {
 
 ```typescript
 // V2 imports
-import { HiveMind } from 'claude-flow/hive-mind';
-import { MemoryManager } from 'claude-flow/memory';
+import { HiveMind } from 'cortex-agent/hive-mind';
+import { MemoryManager } from 'cortex-agent/memory';
 
 // V3 imports with aliases
-import { UnifiedSwarmCoordinator as HiveMind } from '@claude-flow/swarm';
-import { UnifiedMemoryService as MemoryManager } from '@claude-flow/memory';
+import { UnifiedSwarmCoordinator as HiveMind } from '@cortex-agent/swarm';
+import { UnifiedMemoryService as MemoryManager } from '@cortex-agent/memory';
 
 // Usage remains the same
 const hive = new HiveMind();
@@ -280,29 +280,29 @@ const agent = await hive.spawn('coder');
 
 ```bash
 # Run the V3 migration tool
-npx @claude-flow/cli migrate --from v2 --to v3
+npx @cortex-agent/cli migrate --from v2 --to v3
 
 # Migrate configuration
-npx @claude-flow/cli migrate config --input .claude-flow/config.yaml
+npx @cortex-agent/cli migrate config --input .cortex-agent/config.yaml
 
 # Migrate memory database
-npx @claude-flow/cli migrate memory --input .claude-flow/memory.db
+npx @cortex-agent/cli migrate memory --input .cortex-agent/memory.db
 ```
 
 #### Manual Configuration Migration
 
 ```yaml
-# V2 Configuration (.claude-flow/config.yaml)
+# V2 Configuration (.cortex-agent/config.yaml)
 orchestrator:
   maxAgents: 10
   defaultStrategy: balanced
 memory:
   backend: sqlite
-  path: ./.claude-flow/memory.db
+  path: ./.cortex-agent/memory.db
 coordination:
   topology: hierarchical
 
-# V3 Configuration (.claude-flow/config.yaml)
+# V3 Configuration (.cortex-agent/config.yaml)
 swarm:
   topology: hierarchical-mesh
   maxAgents: 15
@@ -312,7 +312,7 @@ swarm:
 memory:
   backend: hybrid
   sqlite:
-    path: ./.claude-flow/memory.db
+    path: ./.cortex-agent/memory.db
   agentdb:
     enableHNSW: true
     dimensions: 384
@@ -325,10 +325,10 @@ hooks:
 
 1. Enable V2 compatibility mode in MCP server configuration
 2. Update tool calls to use new naming convention (e.g., agent/spawn)
-3. Update import statements to use @claude-flow/* packages
+3. Update import statements to use @cortex-agent/* packages
 4. Use provided import aliases for backward compatibility
 5. Consider using tool name translation layer for gradual migration
-6. Run migration script: npx @claude-flow/cli migrate
+6. Run migration script: npx @cortex-agent/cli migrate
 7. Update to Node.js 20+ (Deno support removed)
 
 ## Feature Compatibility Matrix
@@ -374,14 +374,14 @@ hooks:
 
 | V2 Import | V3 Import |
 |-----------|-----------|
-| claude-flow/hive-mind | @claude-flow/swarm |
-| claude-flow/swarm | @claude-flow/swarm |
-| claude-flow/memory | @claude-flow/memory |
-| claude-flow/agents | @claude-flow/agent-lifecycle |
-| claude-flow/tasks | @claude-flow/task-execution |
-| claude-flow/hooks | @claude-flow/hooks |
-| claude-flow/config | @claude-flow/config |
-| claude-flow | @claude-flow/core |
+| cortex-agent/hive-mind | @cortex-agent/swarm |
+| cortex-agent/swarm | @cortex-agent/swarm |
+| cortex-agent/memory | @cortex-agent/memory |
+| cortex-agent/agents | @cortex-agent/agent-lifecycle |
+| cortex-agent/tasks | @cortex-agent/task-execution |
+| cortex-agent/hooks | @cortex-agent/hooks |
+| cortex-agent/config | @cortex-agent/config |
+| cortex-agent | @cortex-agent/core |
 
 ### C. V2 to V3 Class Aliases
 

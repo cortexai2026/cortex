@@ -18,7 +18,7 @@ function getConnectionConfig(ctx: CommandContext) {
     user: (ctx.flags.user as string) || process.env.PGUSER || 'postgres',
     password: (ctx.flags.password as string) || process.env.PGPASSWORD || '',
     ssl: (ctx.flags.ssl as boolean) || process.env.PGSSLMODE === 'require',
-    schema: (ctx.flags.schema as string) || 'claude_flow',
+    schema: (ctx.flags.schema as string) || 'cortex_agent',
   };
 }
 
@@ -113,14 +113,14 @@ export const optimizeCommand: Command = {
       short: 's',
       description: 'Schema name',
       type: 'string',
-      default: 'claude_flow',
+      default: 'cortex_agent',
     },
   ],
   examples: [
-    { command: 'claude-flow ruvector optimize --analyze', description: 'Analyze and show recommendations' },
-    { command: 'claude-flow ruvector optimize --apply', description: 'Apply optimizations' },
-    { command: 'claude-flow ruvector optimize --vacuum', description: 'Run VACUUM ANALYZE' },
-    { command: 'claude-flow ruvector optimize --reindex', description: 'Rebuild all indexes' },
+    { command: 'cortex-agent ruvector optimize --analyze', description: 'Analyze and show recommendations' },
+    { command: 'cortex-agent ruvector optimize --apply', description: 'Apply optimizations' },
+    { command: 'cortex-agent ruvector optimize --vacuum', description: 'Run VACUUM ANALYZE' },
+    { command: 'cortex-agent ruvector optimize --reindex', description: 'Rebuild all indexes' },
   ],
   action: async (ctx: CommandContext): Promise<CommandResult> => {
     const config = getConnectionConfig(ctx);
@@ -546,9 +546,9 @@ export const optimizeCommand: Command = {
         `  Low: ${low.length}`,
         '',
         'Quick commands:',
-        `  claude-flow ruvector optimize --vacuum    # Clean up tables`,
-        `  claude-flow ruvector optimize --reindex  # Rebuild indexes`,
-        `  claude-flow ruvector optimize --apply    # Apply critical fixes`,
+        `  cortex-agent ruvector optimize --vacuum    # Clean up tables`,
+        `  cortex-agent ruvector optimize --reindex  # Rebuild indexes`,
+        `  cortex-agent ruvector optimize --apply    # Apply critical fixes`,
       ].join('\n'), 'Optimization Summary');
 
       return {

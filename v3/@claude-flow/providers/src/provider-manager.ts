@@ -7,7 +7,7 @@
  * - Request caching
  * - Cost optimization
  *
- * @module @claude-flow/providers/provider-manager
+ * @module @cortex-agent/providers/provider-manager
  */
 
 import { EventEmitter } from 'events';

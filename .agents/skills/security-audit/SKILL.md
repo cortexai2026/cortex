@@ -33,83 +33,83 @@ Comprehensive security scanning and vulnerability detection. Includes input vali
 Run comprehensive security analysis on the codebase
 
 ```bash
-npx @claude-flow/cli security scan --depth full
+npx @cortex-agent/cli security scan --depth full
 ```
 
 **Example:**
 ```bash
-npx @claude-flow/cli security scan --depth full --output security-report.json
+npx @cortex-agent/cli security scan --depth full --output security-report.json
 ```
 
 ### Input Validation Check
 Check for input validation issues
 
 ```bash
-npx @claude-flow/cli security scan --check input-validation
+npx @cortex-agent/cli security scan --check input-validation
 ```
 
 **Example:**
 ```bash
-npx @claude-flow/cli security scan --check input-validation --path ./src/api
+npx @cortex-agent/cli security scan --check input-validation --path ./src/api
 ```
 
 ### Path Traversal Check
 Check for path traversal vulnerabilities
 
 ```bash
-npx @claude-flow/cli security scan --check path-traversal
+npx @cortex-agent/cli security scan --check path-traversal
 ```
 
 ### SQL Injection Check
 Check for SQL injection vulnerabilities
 
 ```bash
-npx @claude-flow/cli security scan --check sql-injection
+npx @cortex-agent/cli security scan --check sql-injection
 ```
 
 ### XSS Check
 Check for cross-site scripting vulnerabilities
 
 ```bash
-npx @claude-flow/cli security scan --check xss
+npx @cortex-agent/cli security scan --check xss
 ```
 
 ### CVE Scan
 Scan dependencies for known CVEs
 
 ```bash
-npx @claude-flow/cli security cve --scan
+npx @cortex-agent/cli security cve --scan
 ```
 
 **Example:**
 ```bash
-npx @claude-flow/cli security cve --scan --severity high
+npx @cortex-agent/cli security cve --scan --severity high
 ```
 
 ### Security Audit Report
 Generate full security audit report
 
 ```bash
-npx @claude-flow/cli security audit --report
+npx @cortex-agent/cli security audit --report
 ```
 
 **Example:**
 ```bash
-npx @claude-flow/cli security audit --report --format markdown --output SECURITY.md
+npx @cortex-agent/cli security audit --report --format markdown --output SECURITY.md
 ```
 
 ### Threat Modeling
 Run threat modeling analysis
 
 ```bash
-npx @claude-flow/cli security threats --analyze
+npx @cortex-agent/cli security threats --analyze
 ```
 
 ### Validate Secrets
 Check for hardcoded secrets
 
 ```bash
-npx @claude-flow/cli security validate --check secrets
+npx @cortex-agent/cli security validate --check secrets
 ```
 
 

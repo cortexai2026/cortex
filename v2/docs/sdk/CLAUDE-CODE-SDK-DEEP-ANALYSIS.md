@@ -184,10 +184,10 @@ type McpServerConfig =
 - **sdk**: In-process, **<0.1ms** - **10-100x faster**
 
 **Claude-Flow Opportunity**:
-Create `claude-flow-swarm` as in-process MCP server:
+Create `cortex-agent-swarm` as in-process MCP server:
 ```typescript
 const swarmServer = createSdkMcpServer({
-  name: 'claude-flow-swarm',
+  name: 'cortex-agent-swarm',
   version: '2.5.0-alpha.130',
   tools: [
     tool('swarm_init', 'Initialize multi-agent swarm', {...}, handler),
@@ -555,7 +555,7 @@ const hooks: Partial<Record<HookEvent, HookCallbackMatcher[]>> = {
 import { createSdkMcpServer, tool } from '@anthropic-ai/claude-code/sdk';
 
 const claudeFlowSwarmServer = createSdkMcpServer({
-  name: 'claude-flow-swarm',
+  name: 'cortex-agent-swarm',
   version: '2.5.0-alpha.130',
   tools: [
     tool('swarm_init', 'Initialize multi-agent swarm', {
@@ -587,9 +587,9 @@ const response = query({
   prompt: 'Deploy a 5-agent swarm to analyze this codebase',
   options: {
     mcpServers: {
-      'claude-flow-swarm': {
+      'cortex-agent-swarm': {
         type: 'sdk',
-        name: 'claude-flow-swarm',
+        name: 'cortex-agent-swarm',
         instance: claudeFlowSwarmServer.instance
       }
     }
@@ -617,8 +617,8 @@ const response = query({
 2. **Phase 3**: Refactor memory system to use SDK session persistence
 3. **Phase 4**: Implement session forking for parallel agents
 4. **Phase 5**: Replace custom hooks with SDK native hooks
-5. **Phase 6**: Create `claude-flow-swarm` in-process MCP server
-6. **Testing**: Comprehensive integration tests with `./claude-flow`
+5. **Phase 6**: Create `cortex-agent-swarm` in-process MCP server
+6. **Testing**: Comprehensive integration tests with `./cortex-agent`
 7. **Documentation**: Update all integration guides
 
 ---

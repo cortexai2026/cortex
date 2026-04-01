@@ -1,4 +1,4 @@
-# @claude-flow/guidance Documentation
+# @cortex-agent/guidance Documentation
 
 ## Guides
 

@@ -41,15 +41,15 @@ CATEGORIES:
 #### New CLI Commands
 ```bash
 # Execute agents with multi-provider support
-claude-flow agent run <agent> "<task>" [--provider <provider>]
+cortex-agent agent run <agent> "<task>" [--provider <provider>]
 
 # List all available agents
-claude-flow agent agents
+cortex-agent agent agents
 
 # Execute with specific provider
-claude-flow agent run coder "Build REST API" --provider anthropic
-claude-flow agent run researcher "AI trends" --provider openrouter  # 99% cheaper!
-claude-flow agent run reviewer "Security audit" --provider onnx     # Local + private
+cortex-agent agent run coder "Build REST API" --provider anthropic
+cortex-agent agent run researcher "AI trends" --provider openrouter  # 99% cheaper!
+cortex-agent agent run reviewer "Security audit" --provider onnx     # Local + private
 ```
 
 #### Files Added
@@ -98,16 +98,16 @@ claude-flow agent run reviewer "Security audit" --provider onnx     # Local + pr
 #### Memory Command Integration
 ```bash
 # Automatic warning (no redaction)
-claude-flow memory store api_key "sk-ant-..." --namespace config
+cortex-agent memory store api_key "sk-ant-..." --namespace config
 ⚠️  Potential sensitive data detected! Use --redact flag
 
 # Active protection (with redaction)
-claude-flow memory store api_key "sk-ant-..." --redact
+cortex-agent memory store api_key "sk-ant-..." --redact
 🔒 Stored successfully (with redaction)
 🔒 Security: 1 sensitive pattern(s) redacted
 
 # Query with display redaction
-claude-flow memory query api --redact
+cortex-agent memory query api --redact
 Value: sk-ant-a...[REDACTED]
 🔒 Status: Redacted on storage
 ```
@@ -213,7 +213,7 @@ Performance Impact:
 
 **Multi-Provider Execution Engine**
 ```
-claude-flow (Coordination)
+cortex-agent (Coordination)
     ↓
 agentic-flow (Execution)
     ↓
@@ -279,7 +279,7 @@ Enhanced Files (5):
 ├── src/cli/simple-commands/memory.js  (Redaction integration)
 ├── src/cli/simple-cli.ts              (Help text updates)
 ├── package.json                       (Version + dependency)
-├── bin/claude-flow                    (Version update)
+├── bin/cortex-agent                    (Version update)
 └── src/core/version.ts                (Auto-reads package.json)
 ```
 
@@ -291,17 +291,17 @@ Enhanced Files (5):
 
 ```bash
 # Use Anthropic for highest quality
-claude-flow agent run coder "Build authentication system" \
+cortex-agent agent run coder "Build authentication system" \
   --provider anthropic \
   --model claude-sonnet-4-5-20250929
 
 # Use OpenRouter for 99% cost savings
-claude-flow agent run researcher "Research AI trends 2025" \
+cortex-agent agent run researcher "Research AI trends 2025" \
   --provider openrouter \
   --model meta-llama/llama-3.1-8b-instruct
 
 # Use ONNX for local privacy
-claude-flow agent run reviewer "Security audit of code" \
+cortex-agent agent run reviewer "Security audit of code" \
   --provider onnx \
   --model Xenova/gpt2
 ```
@@ -310,18 +310,18 @@ claude-flow agent run reviewer "Security audit of code" \
 
 ```bash
 # Store API configuration with automatic redaction
-claude-flow memory store api_config \
+cortex-agent memory store api_config \
   "ANTHROPIC_API_KEY=sk-ant-..." \
   --namespace production \
   --redact
 
 # Query configuration safely
-claude-flow memory query api_config \
+cortex-agent memory query api_config \
   --namespace production \
   --redact
 
 # Export memory (redacted entries are safe to share)
-claude-flow memory export backup.json \
+cortex-agent memory export backup.json \
   --namespace production
 ```
 
@@ -329,14 +329,14 @@ claude-flow memory export backup.json \
 
 ```bash
 # Configure default provider
-claude-flow config set defaultProvider openrouter
+cortex-agent config set defaultProvider openrouter
 
 # Set API keys (automatically redacted in logs)
-claude-flow config set anthropicApiKey "sk-ant-..."
-claude-flow config set openrouterApiKey "sk-or-..."
+cortex-agent config set anthropicApiKey "sk-ant-..."
+cortex-agent config set openrouterApiKey "sk-or-..."
 
 # View configuration (redacted display)
-claude-flow config show
+cortex-agent config show
 ```
 
 ---
@@ -416,11 +416,11 @@ claude-flow config show
 **Now Working:**
 ```bash
 # List agents
-claude-flow agent agents  # ✅ Works
+cortex-agent agent agents  # ✅ Works
 
 # Execute agents (with valid API keys)
-claude-flow agent run coder "Build REST API" --provider anthropic  # ✅ Works
-claude-flow agent run researcher "AI trends" --provider openrouter  # ✅ Works
+cortex-agent agent run coder "Build REST API" --provider anthropic  # ✅ Works
+cortex-agent agent run researcher "AI trends" --provider openrouter  # ✅ Works
 ```
 
 **Resolution Report:** See `docs/AGENTIC_FLOW_EXECUTION_FIX_REPORT.md`
@@ -479,9 +479,9 @@ claude-flow agent run researcher "AI trends" --provider openrouter  # ✅ Works
 
 ### Updated Help Text
 ```bash
-claude-flow --help        # Shows v2.6.0 features
-claude-flow agent --help  # Shows new agent commands
-claude-flow memory --help # Shows security features
+cortex-agent --help        # Shows v2.6.0 features
+cortex-agent agent --help  # Shows new agent commands
+cortex-agent memory --help # Shows security features
 ```
 
 ---
@@ -497,22 +497,22 @@ claude-flow memory --help # Shows security features
 1. **Multi-Provider Execution:**
    ```bash
    # List available agents
-   claude-flow agent agents
+   cortex-agent agent agents
 
    # Execute with OpenRouter for cost savings
-   claude-flow agent run coder "your task" --provider openrouter
+   cortex-agent agent run coder "your task" --provider openrouter
    ```
 
 2. **Secure Memory Storage:**
    ```bash
    # Enable redaction for API keys
-   claude-flow memory store key "value" --redact
+   cortex-agent memory store key "value" --redact
    ```
 
 3. **Configure Providers:**
    ```bash
    # Set default provider
-   claude-flow config set defaultProvider openrouter
+   cortex-agent config set defaultProvider openrouter
    ```
 
 ### For New Users
@@ -520,16 +520,16 @@ claude-flow memory --help # Shows security features
 **Quick Start:**
 ```bash
 # Install
-npm install -g claude-flow@alpha
+npm install -g cortex-agent@alpha
 
 # List agents
-claude-flow agent agents
+cortex-agent agent agents
 
 # Execute an agent
-claude-flow agent run coder "Build a REST API" --provider openrouter
+cortex-agent agent run coder "Build a REST API" --provider openrouter
 
 # Store data securely
-claude-flow memory store config "..." --redact
+cortex-agent memory store config "..." --redact
 ```
 
 ---
@@ -562,9 +562,9 @@ claude-flow memory store config "..." --redact
 ## 📞 Support & Feedback
 
 ### Documentation
-- GitHub: https://github.com/ruvnet/claude-flow
-- Issues: https://github.com/ruvnet/claude-flow/issues
-- Wiki: https://github.com/ruvnet/claude-flow/wiki
+- GitHub: https://github.com/ruvnet/cortex-agent
+- Issues: https://github.com/ruvnet/cortex-agent/issues
+- Wiki: https://github.com/ruvnet/cortex-agent/wiki
 
 ### Community
 - Report bugs via GitHub Issues

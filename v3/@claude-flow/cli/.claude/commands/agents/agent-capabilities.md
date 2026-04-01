@@ -6,7 +6,7 @@ type: reference
 
 # Agent Capabilities Reference
 
-Matrix of agent capabilities and their specializations for Claude Flow V3.
+Matrix of agent capabilities and their specializations for Cortex Agent V3.
 
 ## Capability Matrix
 
@@ -89,23 +89,23 @@ tester: Read, Write, Bash, Glob
 
 ### Swarm Tools
 ```
-hierarchical-coordinator: mcp__claude-flow__swarm_*, mcp__claude-flow__agent_*
-mesh-coordinator: mcp__claude-flow__swarm_*, mcp__claude-flow__coordination_*
-adaptive-coordinator: mcp__claude-flow__topology_*, mcp__claude-flow__swarm_*
+hierarchical-coordinator: mcp__cortex-agent__swarm_*, mcp__cortex-agent__agent_*
+mesh-coordinator: mcp__cortex-agent__swarm_*, mcp__cortex-agent__coordination_*
+adaptive-coordinator: mcp__cortex-agent__topology_*, mcp__cortex-agent__swarm_*
 ```
 
 ### GitHub Tools
 ```
 pr-manager: mcp__github__*, Bash (gh CLI)
-code-review-swarm: mcp__github__*, mcp__claude-flow__swarm_*
-release-manager: mcp__github__*, mcp__claude-flow__workflow_*
+code-review-swarm: mcp__github__*, mcp__cortex-agent__swarm_*
+release-manager: mcp__github__*, mcp__cortex-agent__workflow_*
 ```
 
 ## Querying Capabilities
 
 ```bash
 # List all capabilities for an agent type
-npx claude-flow agent spawn -t coder --help
+npx cortex-agent agent spawn -t coder --help
 
 # View agent definition
 cat .claude/agents/core/coder.md

@@ -44,19 +44,19 @@ Use `new_task` to assign:
 ### Option 1: Using MCP Tools (Preferred in Claude Code)
 ```javascript
 // Run SPARC orchestrator (default)
-mcp__claude-flow__sparc_mode {
+mcp__cortex-agent__sparc_mode {
   mode: "sparc",
   task_description: "build complete authentication system"
 }
 
 // Run a specific mode
-mcp__claude-flow__sparc_mode {
+mcp__cortex-agent__sparc_mode {
   mode: "architect",
   task_description: "design API structure"
 }
 
 // TDD workflow
-mcp__claude-flow__sparc_mode {
+mcp__cortex-agent__sparc_mode {
   mode: "tdd",
   task_description: "implement user authentication",
   options: {workflow: "full"}
@@ -66,27 +66,27 @@ mcp__claude-flow__sparc_mode {
 ### Option 2: Using NPX CLI (Fallback when MCP not available)
 ```bash
 # Run SPARC orchestrator (default)
-npx claude-flow sparc "build complete authentication system"
+npx cortex-agent sparc "build complete authentication system"
 
 # Run a specific mode
-npx claude-flow sparc run architect "design API structure"
-npx claude-flow sparc run tdd "implement user service"
+npx cortex-agent sparc run architect "design API structure"
+npx cortex-agent sparc run tdd "implement user service"
 
 # Execute full TDD workflow
-npx claude-flow sparc tdd "implement user authentication"
+npx cortex-agent sparc tdd "implement user authentication"
 
 # List all modes with details
-npx claude-flow sparc modes --verbose
+npx cortex-agent sparc modes --verbose
 
 # For alpha features
-npx claude-flow@alpha sparc run <mode> "your task"
+npx cortex-agent@alpha sparc run <mode> "your task"
 ```
 
 ### Option 3: Local Installation
 ```bash
-# If claude-flow is installed locally
-./claude-flow sparc "build complete authentication system"
-./claude-flow sparc run architect "design API structure"
+# If cortex-agent is installed locally
+./cortex-agent sparc "build complete authentication system"
+./cortex-agent sparc run architect "design API structure"
 ```
 
 ## SPARC Methodology Phases
@@ -102,7 +102,7 @@ npx claude-flow@alpha sparc run <mode> "your task"
 ### Using MCP Tools (Preferred)
 ```javascript
 // Store specifications
-mcp__claude-flow__memory_usage {
+mcp__cortex-agent__memory_usage {
   action: "store",
   key: "spec_auth",
   value: "OAuth2 + JWT requirements",
@@ -110,7 +110,7 @@ mcp__claude-flow__memory_usage {
 }
 
 // Store architectural decisions
-mcp__claude-flow__memory_usage {
+mcp__cortex-agent__memory_usage {
   action: "store",
   key: "arch_decisions",
   value: "Microservices with API Gateway",
@@ -121,16 +121,16 @@ mcp__claude-flow__memory_usage {
 ### Using NPX CLI (Fallback)
 ```bash
 # Store specifications
-npx claude-flow memory store "spec_auth" "OAuth2 + JWT requirements" --namespace spec
+npx cortex-agent memory store "spec_auth" "OAuth2 + JWT requirements" --namespace spec
 
 # Store architectural decisions
-./claude-flow memory store "arch_api" "RESTful microservices design" --namespace arch
+./cortex-agent memory store "arch_api" "RESTful microservices design" --namespace arch
 
 # Query previous work
-./claude-flow memory query "authentication" --limit 10
+./cortex-agent memory query "authentication" --limit 10
 
 # Export project memory
-./claude-flow memory export sparc-project-backup.json
+./cortex-agent memory export sparc-project-backup.json
 ```
 
 ## Advanced Swarm Mode
@@ -138,21 +138,21 @@ npx claude-flow memory store "spec_auth" "OAuth2 + JWT requirements" --namespace
 For complex tasks requiring multiple agents with timeout-free execution:
 ```bash
 # Development swarm with monitoring
-./claude-flow swarm "Build e-commerce platform" --strategy development --monitor --review
+./cortex-agent swarm "Build e-commerce platform" --strategy development --monitor --review
 
 # Background optimization swarm
-./claude-flow swarm "Optimize system performance" --strategy optimization --background
+./cortex-agent swarm "Optimize system performance" --strategy optimization --background
 
 # Distributed research swarm
-./claude-flow swarm "Analyze market trends" --strategy research --distributed --ui
+./cortex-agent swarm "Analyze market trends" --strategy research --distributed --ui
 ```
 
 ## Non-Interactive Mode
 
 For CI/CD integration and automation:
 ```bash
-./claude-flow sparc run code "implement API" --non-interactive
-./claude-flow sparc tdd "user tests" --non-interactive --enable-permissions
+./cortex-agent sparc run code "implement API" --non-interactive
+./cortex-agent sparc tdd "user tests" --non-interactive --enable-permissions
 ```
 
 ## Best Practices
@@ -163,4 +163,4 @@ For CI/CD integration and automation:
 ✅ **Memory Usage**: Store important decisions and context
 ✅ **Task Completion**: All tasks should end with `attempt_completion`
 
-See `/claude-flow-help` for all available commands.
+See `/cortex-agent-help` for all available commands.

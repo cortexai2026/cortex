@@ -1,5 +1,5 @@
 /**
- * @claude-flow/mcp - Prompt Registry
+ * @cortex-agent/mcp - Prompt Registry
  *
  * MCP 2025-11-25 compliant prompt management
  * Supports: list, get, arguments, templates, embedded resources

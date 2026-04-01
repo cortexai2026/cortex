@@ -1,10 +1,10 @@
 /**
- * RVFA Runner -- Boot and run self-contained Ruflo appliances.
+ * RVFA Runner -- Boot and run self-contained Cortex Agent appliances.
  *
  * Supports three run modes (cli, mcp, verify) and two isolation
  * strategies (native Node.js, container via Docker).
  *
- * @module @claude-flow/cli/appliance/rvfa-runner
+ * @module @cortex-agent/cli/appliance/rvfa-runner
  */
 
 import { writeFile, mkdir, rm } from 'node:fs/promises';
@@ -113,7 +113,7 @@ export class RvfaRunner {
   }
 
   /**
-   * Run natively via Node.js: extract RUFLO section to a temp dir,
+   * Run natively via Node.js: extract CORTEX_AGENT section to a temp dir,
    * configure env vars, optionally decrypt API-key vault, and spawn.
    */
   async runNative(options: RunOptions): Promise<RunResult> {
@@ -121,11 +121,11 @@ export class RvfaRunner {
     try {
       await mkdir(workDir, { recursive: true });
 
-      const ruflo = tryExtract(this.reader, 'ruflo');
-      if (!ruflo) return fail('RVFA appliance does not contain a "ruflo" section');
+      const cortex-agent = tryExtract(this.reader, 'cortex-agent');
+      if (!cortex-agent) return fail('RVFA appliance does not contain a "cortex-agent" section');
 
-      const entryFile = join(workDir, 'ruflo-bundle.js');
-      await writeFile(entryFile, ruflo);
+      const entryFile = join(workDir, 'cortex-agent-bundle.js');
+      await writeFile(entryFile, cortex-agent);
 
       const env: Record<string, string> = {
         ...this.header.boot.env,
@@ -168,9 +168,9 @@ export class RvfaRunner {
     try {
       await mkdir(workDir, { recursive: true });
 
-      const ruflo = tryExtract(this.reader, 'ruflo');
-      if (!ruflo) return fail('RVFA appliance does not contain a "ruflo" section');
-      await writeFile(join(workDir, 'ruflo-bundle.js'), ruflo);
+      const cortex-agent = tryExtract(this.reader, 'cortex-agent');
+      if (!cortex-agent) return fail('RVFA appliance does not contain a "cortex-agent" section');
+      await writeFile(join(workDir, 'cortex-agent-bundle.js'), cortex-agent);
 
       const data = tryExtract(this.reader, 'data');
       if (data) await writeFile(join(workDir, 'data.bin'), data);
@@ -182,8 +182,8 @@ export class RvfaRunner {
       const baseImage = this.header.platform === 'alpine' ? 'node:20-alpine' : 'node:20-slim';
       const cmdArgs = this.header.boot.args.map((a) => `, "${a}"`).join('');
       const dockerfile = [
-        `FROM ${baseImage}`, 'WORKDIR /app', 'COPY ruflo-bundle.js .',
-        data ? 'COPY data.bin .' : '', `CMD ["node", "ruflo-bundle.js"${cmdArgs}]`,
+        `FROM ${baseImage}`, 'WORKDIR /app', 'COPY cortex-agent-bundle.js .',
+        data ? 'COPY data.bin .' : '', `CMD ["node", "cortex-agent-bundle.js"${cmdArgs}]`,
       ].filter(Boolean).join('\n');
       await writeFile(join(workDir, 'Dockerfile'), dockerfile);
 

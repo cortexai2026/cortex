@@ -148,12 +148,12 @@ vi.mock('../src/mcp-tools/auto-install.js', () => ({
 }));
 
 // Mock security package
-vi.mock('@claude-flow/aidefence', () => {
+vi.mock('@cortex-agent/aidefence', () => {
   throw new Error('Cannot find package');
 });
 
 // Mock embeddings package
-vi.mock('@claude-flow/embeddings', () => {
+vi.mock('@cortex-agent/embeddings', () => {
   throw new Error('Cannot find package');
 });
 

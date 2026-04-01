@@ -1,41 +1,41 @@
 # API Quick Reference
 
-All exports from `@claude-flow/guidance`. Each module is also available as a standalone import.
+All exports from `@cortex-agent/guidance`. Each module is also available as a standalone import.
 
 ## Import Map
 
 | Import Path | Key Exports |
 |-------------|-------------|
-| `@claude-flow/guidance` | `GuidanceControlPlane`, `createGuidanceControlPlane` |
-| `@claude-flow/guidance/compiler` | `GuidanceCompiler`, `createCompiler` |
-| `@claude-flow/guidance/retriever` | `ShardRetriever`, `createRetriever`, `HashEmbeddingProvider` |
-| `@claude-flow/guidance/gates` | `EnforcementGates`, `createGates` |
-| `@claude-flow/guidance/hooks` | `GuidanceHookProvider`, `createGuidanceHooks` |
-| `@claude-flow/guidance/ledger` | `RunLedger`, `createLedger`, `TestsPassEvaluator`, `ForbiddenCommandEvaluator`, `ForbiddenDependencyEvaluator`, `ViolationRateEvaluator`, `DiffQualityEvaluator` |
-| `@claude-flow/guidance/optimizer` | `OptimizerLoop`, `createOptimizer` |
-| `@claude-flow/guidance/persistence` | `PersistentLedger`, `EventStore`, `createPersistentLedger`, `createEventStore` |
-| `@claude-flow/guidance/headless` | `HeadlessRunner`, `createHeadlessRunner`, `createComplianceSuite` |
-| `@claude-flow/guidance/gateway` | `DeterministicToolGateway`, `createToolGateway` |
-| `@claude-flow/guidance/artifacts` | `ArtifactLedger`, `createArtifactLedger` |
-| `@claude-flow/guidance/evolution` | `EvolutionPipeline`, `createEvolutionPipeline` |
-| `@claude-flow/guidance/manifest-validator` | `ManifestValidator`, `ConformanceSuite`, `createManifestValidator`, `createConformanceSuite` |
-| `@claude-flow/guidance/proof` | `ProofChain`, `createProofChain` |
-| `@claude-flow/guidance/memory-gate` | `MemoryWriteGate`, `createMemoryWriteGate`, `createMemoryEntry` |
-| `@claude-flow/guidance/coherence` | `CoherenceScheduler`, `EconomicGovernor`, `createCoherenceScheduler`, `createEconomicGovernor` |
-| `@claude-flow/guidance/capabilities` | `CapabilityAlgebra`, `createCapabilityAlgebra` |
-| `@claude-flow/guidance/conformance-kit` | `SimulatedRuntime`, `MemoryClerkCell`, `ConformanceRunner`, `createMemoryClerkCell`, `createConformanceRunner` |
-| `@claude-flow/guidance/ruvbot-integration` | `RuvBotGuidanceBridge`, `AIDefenceGate`, `RuvBotMemoryAdapter`, `createRuvBotBridge`, `createAIDefenceGate`, `createRuvBotMemoryAdapter` |
-| `@claude-flow/guidance/meta-governance` | `MetaGovernor`, `createMetaGovernor` |
-| `@claude-flow/guidance/adversarial` | `ThreatDetector`, `CollusionDetector`, `MemoryQuorum`, `createThreatDetector`, `createCollusionDetector`, `createMemoryQuorum` |
-| `@claude-flow/guidance/trust` | `TrustAccumulator`, `TrustScoreLedger`, `TrustSystem`, `getTrustBasedRateLimit`, `createTrustAccumulator`, `createTrustSystem` |
-| `@claude-flow/guidance/truth-anchors` | `TruthAnchorStore`, `TruthResolver`, `createTruthAnchorStore`, `createTruthResolver` |
-| `@claude-flow/guidance/uncertainty` | `UncertaintyLedger`, `UncertaintyAggregator`, `createUncertaintyLedger`, `createUncertaintyAggregator` |
-| `@claude-flow/guidance/temporal` | `TemporalStore`, `TemporalReasoner`, `createTemporalStore`, `createTemporalReasoner` |
-| `@claude-flow/guidance/authority` | `AuthorityGate`, `IrreversibilityClassifier`, `createAuthorityGate`, `createIrreversibilityClassifier`, `isHigherAuthority`, `getAuthorityHierarchy` |
-| `@claude-flow/guidance/continue-gate` | `ContinueGate`, `createContinueGate` |
-| `@claude-flow/guidance/wasm-kernel` | `getKernel`, `isWasmAvailable`, `resetKernel` |
-| `@claude-flow/guidance/generators` | `generateClaudeMd`, `generateClaudeLocalMd`, `generateSkillMd`, `generateAgentMd`, `generateAgentIndex`, `scaffold` |
-| `@claude-flow/guidance/analyzer` | `analyze`, `benchmark`, `autoOptimize`, `optimizeForSize`, `headlessBenchmark`, `validateEffect`, `abBenchmark`, `getDefaultABTasks`, `formatReport`, `formatBenchmark` |
+| `@cortex-agent/guidance` | `GuidanceControlPlane`, `createGuidanceControlPlane` |
+| `@cortex-agent/guidance/compiler` | `GuidanceCompiler`, `createCompiler` |
+| `@cortex-agent/guidance/retriever` | `ShardRetriever`, `createRetriever`, `HashEmbeddingProvider` |
+| `@cortex-agent/guidance/gates` | `EnforcementGates`, `createGates` |
+| `@cortex-agent/guidance/hooks` | `GuidanceHookProvider`, `createGuidanceHooks` |
+| `@cortex-agent/guidance/ledger` | `RunLedger`, `createLedger`, `TestsPassEvaluator`, `ForbiddenCommandEvaluator`, `ForbiddenDependencyEvaluator`, `ViolationRateEvaluator`, `DiffQualityEvaluator` |
+| `@cortex-agent/guidance/optimizer` | `OptimizerLoop`, `createOptimizer` |
+| `@cortex-agent/guidance/persistence` | `PersistentLedger`, `EventStore`, `createPersistentLedger`, `createEventStore` |
+| `@cortex-agent/guidance/headless` | `HeadlessRunner`, `createHeadlessRunner`, `createComplianceSuite` |
+| `@cortex-agent/guidance/gateway` | `DeterministicToolGateway`, `createToolGateway` |
+| `@cortex-agent/guidance/artifacts` | `ArtifactLedger`, `createArtifactLedger` |
+| `@cortex-agent/guidance/evolution` | `EvolutionPipeline`, `createEvolutionPipeline` |
+| `@cortex-agent/guidance/manifest-validator` | `ManifestValidator`, `ConformanceSuite`, `createManifestValidator`, `createConformanceSuite` |
+| `@cortex-agent/guidance/proof` | `ProofChain`, `createProofChain` |
+| `@cortex-agent/guidance/memory-gate` | `MemoryWriteGate`, `createMemoryWriteGate`, `createMemoryEntry` |
+| `@cortex-agent/guidance/coherence` | `CoherenceScheduler`, `EconomicGovernor`, `createCoherenceScheduler`, `createEconomicGovernor` |
+| `@cortex-agent/guidance/capabilities` | `CapabilityAlgebra`, `createCapabilityAlgebra` |
+| `@cortex-agent/guidance/conformance-kit` | `SimulatedRuntime`, `MemoryClerkCell`, `ConformanceRunner`, `createMemoryClerkCell`, `createConformanceRunner` |
+| `@cortex-agent/guidance/ruvbot-integration` | `RuvBotGuidanceBridge`, `AIDefenceGate`, `RuvBotMemoryAdapter`, `createRuvBotBridge`, `createAIDefenceGate`, `createRuvBotMemoryAdapter` |
+| `@cortex-agent/guidance/meta-governance` | `MetaGovernor`, `createMetaGovernor` |
+| `@cortex-agent/guidance/adversarial` | `ThreatDetector`, `CollusionDetector`, `MemoryQuorum`, `createThreatDetector`, `createCollusionDetector`, `createMemoryQuorum` |
+| `@cortex-agent/guidance/trust` | `TrustAccumulator`, `TrustScoreLedger`, `TrustSystem`, `getTrustBasedRateLimit`, `createTrustAccumulator`, `createTrustSystem` |
+| `@cortex-agent/guidance/truth-anchors` | `TruthAnchorStore`, `TruthResolver`, `createTruthAnchorStore`, `createTruthResolver` |
+| `@cortex-agent/guidance/uncertainty` | `UncertaintyLedger`, `UncertaintyAggregator`, `createUncertaintyLedger`, `createUncertaintyAggregator` |
+| `@cortex-agent/guidance/temporal` | `TemporalStore`, `TemporalReasoner`, `createTemporalStore`, `createTemporalReasoner` |
+| `@cortex-agent/guidance/authority` | `AuthorityGate`, `IrreversibilityClassifier`, `createAuthorityGate`, `createIrreversibilityClassifier`, `isHigherAuthority`, `getAuthorityHierarchy` |
+| `@cortex-agent/guidance/continue-gate` | `ContinueGate`, `createContinueGate` |
+| `@cortex-agent/guidance/wasm-kernel` | `getKernel`, `isWasmAvailable`, `resetKernel` |
+| `@cortex-agent/guidance/generators` | `generateClaudeMd`, `generateClaudeLocalMd`, `generateSkillMd`, `generateAgentMd`, `generateAgentIndex`, `scaffold` |
+| `@cortex-agent/guidance/analyzer` | `analyze`, `benchmark`, `autoOptimize`, `optimizeForSize`, `headlessBenchmark`, `validateEffect`, `abBenchmark`, `getDefaultABTasks`, `formatReport`, `formatBenchmark` |
 
 ---
 
@@ -362,7 +362,7 @@ const k = getKernel()
 ## Generators
 
 ```ts
-import { generateClaudeMd, scaffold } from '@claude-flow/guidance/generators';
+import { generateClaudeMd, scaffold } from '@cortex-agent/guidance/generators';
 ```
 
 | Function | Returns | Description |
@@ -381,7 +381,7 @@ import { generateClaudeMd, scaffold } from '@claude-flow/guidance/generators';
 ## Analyzer
 
 ```ts
-import { analyze, validateEffect } from '@claude-flow/guidance/analyzer';
+import { analyze, validateEffect } from '@cortex-agent/guidance/analyzer';
 ```
 
 ### Scoring & Reporting

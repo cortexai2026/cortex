@@ -11,12 +11,12 @@ import { generateStatuslineScript, generateStatuslineHook } from './statusline-g
  */
 export function generatePreCommitHook(): string {
   return `#!/bin/bash
-# Ruflo Pre-Commit Hook
+# Cortex Agent Pre-Commit Hook
 # Validates code quality before commit
 
 set -e
 
-echo "🔍 Running Ruflo pre-commit checks..."
+echo "🔍 Running Cortex Agent pre-commit checks..."
 
 # Get staged files
 STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM)
@@ -25,7 +25,7 @@ STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM)
 for FILE in $STAGED_FILES; do
   if [[ "$FILE" =~ \\.(ts|js|tsx|jsx)$ ]]; then
     echo "  Validating: $FILE"
-    npx @claude-flow/cli hooks pre-edit --file "$FILE" --validate-syntax 2>/dev/null || true
+    npx @cortex-agent/cli hooks pre-edit --file "$FILE" --validate-syntax 2>/dev/null || true
   fi
 done
 
@@ -44,7 +44,7 @@ echo "✅ Pre-commit checks complete"
  */
 export function generatePostCommitHook(): string {
   return `#!/bin/bash
-# Ruflo Post-Commit Hook
+# Cortex Agent Post-Commit Hook
 # Records commit metrics and trains patterns
 
 COMMIT_HASH=$(git rev-parse HEAD)
@@ -52,8 +52,8 @@ COMMIT_MSG=$(git log -1 --pretty=%B)
 
 echo "📊 Recording commit metrics..."
 
-# Notify ruflo of commit
-npx ruflo@latest hooks notify \\
+# Notify cortex-agent of commit
+npx cortex-agent@latest hooks notify \\
   --message "Commit: $COMMIT_MSG" \\
   --level info \\
   --metadata '{"hash": "'$COMMIT_HASH'"}' 2>/dev/null || true
@@ -68,14 +68,14 @@ echo "✅ Commit recorded"
 export function generateSessionManager(): string {
   return `#!/usr/bin/env node
 /**
- * Ruflo Session Manager
+ * Cortex Agent Session Manager
  * Handles session lifecycle: start, restore, end
  */
 
 const fs = require('fs');
 const path = require('path');
 
-const SESSION_DIR = path.join(process.cwd(), '.claude-flow', 'sessions');
+const SESSION_DIR = path.join(process.cwd(), '.cortex-agent', 'sessions');
 const SESSION_FILE = path.join(SESSION_DIR, 'current.json');
 
 const commands = {
@@ -202,7 +202,7 @@ module.exports = commands;
 export function generateAgentRouter(): string {
   return `#!/usr/bin/env node
 /**
- * Ruflo Agent Router
+ * Cortex Agent Agent Router
  * Routes tasks to optimal agents based on learned patterns
  */
 
@@ -275,14 +275,14 @@ module.exports = { routeTask, AGENT_CAPABILITIES, TASK_PATTERNS };
 export function generateMemoryHelper(): string {
   return `#!/usr/bin/env node
 /**
- * Ruflo Memory Helper
+ * Cortex Agent Memory Helper
  * Simple key-value memory for cross-session context
  */
 
 const fs = require('fs');
 const path = require('path');
 
-const MEMORY_DIR = path.join(process.cwd(), '.claude-flow', 'data');
+const MEMORY_DIR = path.join(process.cwd(), '.cortex-agent', 'data');
 const MEMORY_FILE = path.join(MEMORY_DIR, 'memory.json');
 
 function loadMemory() {
@@ -369,7 +369,7 @@ export function generateHookHandler(): string {
   const lines = [
     '#!/usr/bin/env node',
     '/**',
-    ' * Ruflo Hook Handler (Cross-Platform)',
+    ' * Cortex Agent Hook Handler (Cross-Platform)',
     ' * Dispatches hook events to the appropriate helper modules.',
     ' */',
     '',
@@ -613,11 +613,11 @@ export function generateIntelligenceStub(): string {
     "const path = require('path');",
     "const os = require('os');",
     '',
-    "const DATA_DIR = path.join(process.cwd(), '.claude-flow', 'data');",
+    "const DATA_DIR = path.join(process.cwd(), '.cortex-agent', 'data');",
     "const STORE_PATH = path.join(DATA_DIR, 'auto-memory-store.json');",
     "const RANKED_PATH = path.join(DATA_DIR, 'ranked-context.json');",
     "const PENDING_PATH = path.join(DATA_DIR, 'pending-insights.jsonl');",
-    "const SESSION_DIR = path.join(process.cwd(), '.claude-flow', 'sessions');",
+    "const SESSION_DIR = path.join(process.cwd(), '.cortex-agent', 'sessions');",
     "const SESSION_FILE = path.join(SESSION_DIR, 'current.json');",
     '',
     'function ensureDir(dir) {',
@@ -661,7 +661,7 @@ export function generateIntelligenceStub(): string {
     '  var entries = [];',
     '  var candidates = [',
     '    path.join(os.homedir(), ".claude", "projects"),',
-    '    path.join(process.cwd(), ".claude-flow", "memory"),',
+    '    path.join(process.cwd(), ".cortex-agent", "memory"),',
     '    path.join(process.cwd(), ".claude", "memory"),',
     '  ];',
     '  for (var i = 0; i < candidates.length; i++) {',
@@ -815,7 +815,7 @@ export function generateIntelligenceStub(): string {
 /**
  * Generate a minimal auto-memory-hook.mjs fallback for fresh installs.
  * This ESM script handles import/sync/status commands gracefully when
- * @claude-flow/memory is not installed. Gets overwritten when source copy succeeds.
+ * @cortex-agent/memory is not installed. Gets overwritten when source copy succeeds.
  */
 export function generateAutoMemoryHook(): string {
   return `#!/usr/bin/env node
@@ -836,7 +836,7 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const PROJECT_ROOT = join(__dirname, '../..');
-const DATA_DIR = join(PROJECT_ROOT, '.claude-flow', 'data');
+const DATA_DIR = join(PROJECT_ROOT, '.cortex-agent', 'data');
 const STORE_PATH = join(DATA_DIR, 'auto-memory-store.json');
 
 const DIM = '\\x1b[2m';
@@ -848,21 +848,21 @@ if (!existsSync(DATA_DIR)) mkdirSync(DATA_DIR, { recursive: true });
 
 async function loadMemoryPackage() {
   // Strategy 1: Use createRequire for CJS-style resolution (handles nested node_modules
-  // when installed as a transitive dependency via npx ruflo / npx claude-flow)
+  // when installed as a transitive dependency via npx cortex-agent / npx cortex-agent)
   try {
     const { createRequire } = await import('module');
     const require = createRequire(join(PROJECT_ROOT, 'package.json'));
-    return require('@claude-flow/memory');
+    return require('@cortex-agent/memory');
   } catch { /* fall through */ }
 
-  // Strategy 2: ESM import (works when @claude-flow/memory is a direct dependency)
-  try { return await import('@claude-flow/memory'); } catch { /* fall through */ }
+  // Strategy 2: ESM import (works when @cortex-agent/memory is a direct dependency)
+  try { return await import('@cortex-agent/memory'); } catch { /* fall through */ }
 
   // Strategy 3: Walk up from PROJECT_ROOT looking for the package in any node_modules
   let searchDir = PROJECT_ROOT;
   const { parse } = await import('path');
   while (searchDir !== parse(searchDir).root) {
-    const candidate = join(searchDir, 'node_modules', '@claude-flow', 'memory', 'dist', 'index.js');
+    const candidate = join(searchDir, 'node_modules', '@cortex-agent', 'memory', 'dist', 'index.js');
     if (existsSync(candidate)) {
       try { return await import(\`file://\${candidate}\`); } catch { /* fall through */ }
     }
@@ -934,7 +934,7 @@ process.exit(0);
  * Generate Windows PowerShell daemon manager
  */
 export function generateWindowsDaemonManager(): string {
-  return `# RuFlo V3 Daemon Manager for Windows
+  return `# Cortex Agent V3 Daemon Manager for Windows
 # PowerShell script for managing background processes
 
 param(
@@ -944,8 +944,8 @@ param(
 )
 
 $ErrorActionPreference = 'SilentlyContinue'
-$ClaudeFlowDir = Join-Path $PWD '.claude-flow'
-$PidDir = Join-Path $ClaudeFlowDir 'pids'
+$CortexAgentDir = Join-Path $PWD '.cortex-agent'
+$PidDir = Join-Path $CortexAgentDir 'pids'
 
 # Ensure directories exist
 if (-not (Test-Path $PidDir)) {
@@ -977,7 +977,7 @@ function Start-SwarmMonitor {
     Write-Host "Starting swarm monitor..." -ForegroundColor Cyan
     $process = Start-Process -FilePath 'node' -ArgumentList @(
         '-e',
-        'setInterval(() => { require("fs").writeFileSync(".claude-flow/metrics/swarm-activity.json", JSON.stringify({swarm:{active:true,agent_count:0},timestamp:Date.now()})) }, 5000)'
+        'setInterval(() => { require("fs").writeFileSync(".cortex-agent/metrics/swarm-activity.json", JSON.stringify({swarm:{active:true,agent_count:0},timestamp:Date.now()})) }, 5000)'
     ) -PassThru -WindowStyle Hidden
 
     $process.Id | Out-File $pidFile
@@ -1000,7 +1000,7 @@ function Stop-SwarmMonitor {
 
 function Show-Status {
     Write-Host ""
-    Write-Host "RuFlo V3 Daemon Status" -ForegroundColor Cyan
+    Write-Host "Cortex Agent V3 Daemon Status" -ForegroundColor Cyan
     Write-Host "=============================" -ForegroundColor Cyan
 
     $swarmPid = Join-Path $PidDir 'swarm-monitor.pid'
@@ -1041,7 +1041,7 @@ switch ($Action) {
  */
 export function generateWindowsBatchWrapper(): string {
   return `@echo off
-REM RuFlo V3 - Windows Batch Wrapper
+REM Cortex Agent V3 - Windows Batch Wrapper
 REM Routes to PowerShell daemon manager
 
 PowerShell -ExecutionPolicy Bypass -File "%~dp0daemon-manager.ps1" %*
@@ -1054,7 +1054,7 @@ PowerShell -ExecutionPolicy Bypass -File "%~dp0daemon-manager.ps1" %*
 export function generateCrossPlatformSessionManager(): string {
   return `#!/usr/bin/env node
 /**
- * Ruflo Cross-Platform Session Manager
+ * Cortex Agent Cross-Platform Session Manager
  * Works on Windows, macOS, and Linux
  */
 
@@ -1068,18 +1068,18 @@ const homeDir = os.homedir();
 
 // Get data directory based on platform
 function getDataDir() {
-  const localDir = path.join(process.cwd(), '.claude-flow', 'sessions');
+  const localDir = path.join(process.cwd(), '.cortex-agent', 'sessions');
   if (fs.existsSync(path.dirname(localDir))) {
     return localDir;
   }
 
   switch (platform) {
     case 'win32':
-      return path.join(process.env.APPDATA || homeDir, 'claude-flow', 'sessions');
+      return path.join(process.env.APPDATA || homeDir, 'cortex-agent', 'sessions');
     case 'darwin':
-      return path.join(homeDir, 'Library', 'Application Support', 'claude-flow', 'sessions');
+      return path.join(homeDir, 'Library', 'Application Support', 'cortex-agent', 'sessions');
     default:
-      return path.join(homeDir, '.claude-flow', 'sessions');
+      return path.join(homeDir, '.cortex-agent', 'sessions');
   }
 }
 

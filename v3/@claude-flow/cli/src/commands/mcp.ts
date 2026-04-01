@@ -2,7 +2,7 @@
  * V3 CLI MCP Command
  * MCP server control and management with real server integration
  *
- * @module @claude-flow/cli/commands/mcp
+ * @module @cortex-agent/cli/commands/mcp
  * @version 3.0.0
  */
 
@@ -96,10 +96,10 @@ const startCommand: Command = {
     }
   ],
   examples: [
-    { command: 'claude-flow mcp start', description: 'Start with defaults (stdio)' },
-    { command: 'claude-flow mcp start -p 8080 -t http', description: 'Start HTTP server' },
-    { command: 'claude-flow mcp start -d', description: 'Start as daemon' },
-    { command: 'claude-flow mcp start -f', description: 'Force restart (kill existing)' }
+    { command: 'cortex-agent mcp start', description: 'Start with defaults (stdio)' },
+    { command: 'cortex-agent mcp start -p 8080 -t http', description: 'Start HTTP server' },
+    { command: 'cortex-agent mcp start -d', description: 'Start as daemon' },
+    { command: 'cortex-agent mcp start -f', description: 'Force restart (kill existing)' }
   ],
   action: async (ctx: CommandContext): Promise<CommandResult> => {
     const port = (ctx.flags.port as number) ?? 3000;
@@ -130,7 +130,7 @@ const startCommand: Command = {
 
         if (health.healthy) {
           output.printWarning(`MCP Server already running (PID: ${existingStatus.pid})`);
-          output.writeln(output.dim('Use "claude-flow mcp stop" to stop the server first, or use --force'));
+          output.writeln(output.dim('Use "cortex-agent mcp stop" to stop the server first, or use --force'));
           return { success: false, exitCode: 1 };
         }
       }
@@ -292,7 +292,7 @@ const statusCommand: Command = {
       // If PID-based check says not running, detect stdio mode
       if (!status.running) {
         const isStdio = !process.stdin.isTTY;
-        const envTransport = process.env.CLAUDE_FLOW_MCP_TRANSPORT;
+        const envTransport = process.env.CORTEX_AGENT_MCP_TRANSPORT;
         if (isStdio || envTransport === 'stdio') {
           status = {
             running: true,
@@ -323,7 +323,7 @@ const statusCommand: Command = {
         });
 
         output.writeln();
-        output.writeln(output.dim('Run "claude-flow mcp start" to start the server'));
+        output.writeln(output.dim('Run "cortex-agent mcp start" to start the server'));
         return { success: true, data: status };
       }
 
@@ -559,7 +559,7 @@ const execCommand: Command = {
     }
   ],
   examples: [
-    { command: 'claude-flow mcp exec -t swarm_init -p \'{"topology":"mesh"}\'', description: 'Execute tool' }
+    { command: 'cortex-agent mcp exec -t swarm_init -p \'{"topology":"mesh"}\'', description: 'Execute tool' }
   ],
   action: async (ctx: CommandContext): Promise<CommandResult> => {
     const tool = ctx.flags.tool as string || ctx.args[0];
@@ -780,17 +780,17 @@ export const mcpCommand: Command = {
   ],
   options: [],
   examples: [
-    { command: 'claude-flow mcp start', description: 'Start MCP server' },
-    { command: 'claude-flow mcp start -t http -p 8080', description: 'Start HTTP server on port 8080' },
-    { command: 'claude-flow mcp status', description: 'Show server status' },
-    { command: 'claude-flow mcp tools', description: 'List tools' },
-    { command: 'claude-flow mcp stop', description: 'Stop the server' }
+    { command: 'cortex-agent mcp start', description: 'Start MCP server' },
+    { command: 'cortex-agent mcp start -t http -p 8080', description: 'Start HTTP server on port 8080' },
+    { command: 'cortex-agent mcp status', description: 'Show server status' },
+    { command: 'cortex-agent mcp tools', description: 'List tools' },
+    { command: 'cortex-agent mcp stop', description: 'Stop the server' }
   ],
   action: async (ctx: CommandContext): Promise<CommandResult> => {
     output.writeln();
     output.writeln(output.bold('MCP Server Management'));
     output.writeln();
-    output.writeln('Usage: claude-flow mcp <subcommand> [options]');
+    output.writeln('Usage: cortex-agent mcp <subcommand> [options]');
     output.writeln();
     output.writeln('Subcommands:');
     output.printList([

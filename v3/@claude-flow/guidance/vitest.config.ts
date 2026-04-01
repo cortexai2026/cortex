@@ -4,7 +4,7 @@ import { resolve } from 'node:path';
 export default defineConfig({
   resolve: {
     alias: {
-      '@claude-flow/hooks': resolve(__dirname, '../hooks/src/index.ts'),
+      '@cortex-agent/hooks': resolve(__dirname, '../hooks/src/index.ts'),
     },
   },
   test: {

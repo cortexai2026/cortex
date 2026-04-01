@@ -1,5 +1,5 @@
 /**
- * @claude-flow/mcp - Integration Tests
+ * @cortex-agent/mcp - Integration Tests
  *
  * End-to-end tests for MCP 2025-11-25 features
  */

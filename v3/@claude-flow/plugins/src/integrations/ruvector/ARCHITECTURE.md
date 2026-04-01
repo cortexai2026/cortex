@@ -6,7 +6,7 @@
 |----------|-------|
 | Version | 1.0.0 |
 | Status | Draft |
-| Author | Claude Flow Architecture Team |
+| Author | Cortex Agent Architecture Team |
 | Last Updated | 2026-01-16 |
 | ADR References | ADR-006 (Unified Memory), ADR-009 (Hybrid Memory Backend) |
 
@@ -64,7 +64,7 @@ The RuVector PostgreSQL Bridge plugin provides a high-performance integration la
 ### 3.1 Plugin Container Structure
 
 ```
-@claude-flow/plugins/src/integrations/ruvector/
+@cortex-agent/plugins/src/integrations/ruvector/
 |
 +-- index.ts                    # Plugin entry point & exports
 +-- plugin.ts                   # Main plugin class (extends BasePlugin)
@@ -716,7 +716,7 @@ interface QueryPattern {
 ### 6.1 Plugin Interface
 
 ```typescript
-import { BasePlugin } from '@claude-flow/plugins';
+import { BasePlugin } from '@cortex-agent/plugins';
 
 export class RuVectorPostgreSQLBridgePlugin extends BasePlugin {
   // Metadata

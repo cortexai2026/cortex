@@ -205,21 +205,21 @@ The 1:1 ratio of source-to-test lines (14,212 vs 13,949 LOC) is not overhead —
 
 ```bash
 # Install
-npm install @claude-flow/guidance@alpha
+npm install @cortex-agent/guidance@alpha
 
 # Run all 1,328 tests
 npm test
 
 # Score your CLAUDE.md
 npx ts-node -e "
-  import { analyze, formatReport } from '@claude-flow/guidance/analyzer';
+  import { analyze, formatReport } from '@cortex-agent/guidance/analyzer';
   import { readFileSync } from 'fs';
   console.log(formatReport(analyze(readFileSync('CLAUDE.md', 'utf-8'))));
 "
 
 # Run the A/B benchmark
 npx ts-node -e "
-  import { abBenchmark } from '@claude-flow/guidance/analyzer';
+  import { abBenchmark } from '@cortex-agent/guidance/analyzer';
   import { readFileSync } from 'fs';
   const report = await abBenchmark(readFileSync('CLAUDE.md', 'utf-8'));
   console.log(report.report);
@@ -230,8 +230,8 @@ npx ts-node -e "
 
 ## Links
 
-- **GitHub**: [github.com/ruvnet/claude-flow](https://github.com/ruvnet/claude-flow)
-- **npm**: [@claude-flow/guidance](https://www.npmjs.com/package/@claude-flow/guidance)
-- **npm**: [claude-flow](https://www.npmjs.com/package/claude-flow)
+- **GitHub**: [github.com/ruvnet/cortex-agent](https://github.com/ruvnet/cortex-agent)
+- **npm**: [@cortex-agent/guidance](https://www.npmjs.com/package/@cortex-agent/guidance)
+- **npm**: [cortex-agent](https://www.npmjs.com/package/cortex-agent)
 - **npm**: [ruvbot](https://www.npmjs.com/package/ruvbot)
 - **ruv.io**: [ruv.io](https://ruv.io)

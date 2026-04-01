@@ -1,21 +1,21 @@
-# @claude-flow/codex
+# @cortex-agent/codex
 
 <p align="center">
-  <strong>OpenAI Codex CLI Adapter for Claude Flow V3</strong><br/>
+  <strong>OpenAI Codex CLI Adapter for Cortex Agent V3</strong><br/>
   <em>Self-learning multi-agent orchestration following the <a href="https://agentics.org">Agentics Foundation</a> standard</em>
 </p>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/@claude-flow/codex"><img src="https://img.shields.io/npm/v/@claude-flow/codex?label=npm&color=blue" alt="npm version"></a>
-  <a href="https://github.com/ruvnet/claude-flow"><img src="https://img.shields.io/badge/license-MIT-green" alt="license"></a>
+  <a href="https://www.npmjs.com/package/@cortex-agent/codex"><img src="https://img.shields.io/npm/v/@cortex-agent/codex?label=npm&color=blue" alt="npm version"></a>
+  <a href="https://github.com/ruvnet/cortex-agent"><img src="https://img.shields.io/badge/license-MIT-green" alt="license"></a>
   <a href="https://agentics.org"><img src="https://img.shields.io/badge/standard-Agentics-purple" alt="Agentics Standard"></a>
 </p>
 
 ---
 
-## Why @claude-flow/codex?
+## Why @cortex-agent/codex?
 
-Transform OpenAI Codex CLI into a **self-improving AI development system**. While Codex executes code, claude-flow orchestrates, coordinates, and **learns from every interaction**.
+Transform OpenAI Codex CLI into a **self-improving AI development system**. While Codex executes code, cortex-agent orchestrates, coordinates, and **learns from every interaction**.
 
 | Traditional Codex | With Claude-Flow |
 |-------------------|------------------|
@@ -29,7 +29,7 @@ Transform OpenAI Codex CLI into a **self-improving AI development system**. Whil
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│  CLAUDE-FLOW = ORCHESTRATOR (tracks state, stores memory)       │
+│  CORTEX-AGENT = ORCHESTRATOR (tracks state, stores memory)       │
 │  CODEX = EXECUTOR (writes code, runs commands, implements)      │
 └─────────────────────────────────────────────────────────────────┘
 ```
@@ -64,13 +64,13 @@ Transform OpenAI Codex CLI into a **self-improving AI development system**. Whil
 
 ```bash
 # Initialize for Codex (recommended)
-npx claude-flow@alpha init --codex
+npx cortex-agent@alpha init --codex
 
 # Full setup with all 137+ skills
-npx claude-flow@alpha init --codex --full
+npx cortex-agent@alpha init --codex --full
 
 # Dual mode (both Claude Code and Codex)
-npx claude-flow@alpha init --dual
+npx cortex-agent@alpha init --dual
 ```
 
 **That's it!** The MCP server is auto-registered, skills are installed, and your project is ready for self-learning development.
@@ -110,7 +110,7 @@ codex mcp list
 
 # Expected output:
 # Name         Command  Args                   Status
-# claude-flow  npx      claude-flow mcp start  enabled
+# cortex-agent  npx      cortex-agent mcp start  enabled
 ```
 
 ### Manual Registration
@@ -118,7 +118,7 @@ codex mcp list
 If MCP is not present, add manually:
 
 ```bash
-codex mcp add claude-flow -- npx claude-flow mcp start
+codex mcp add cortex-agent -- npx cortex-agent mcp start
 ```
 
 ### MCP Tools Reference
@@ -239,7 +239,7 @@ project/
 ├── .codex/                      # Local overrides (gitignored)
 │   ├── config.toml              # Local development settings
 │   └── AGENTS.override.md       # Local instruction overrides
-└── .claude-flow/                # Runtime data
+└── .cortex-agent/                # Runtime data
     ├── config.yaml              # Runtime configuration
     ├── data/                    # Memory and cache
     │   └── memory.db            # SQLite with vector embeddings
@@ -253,7 +253,7 @@ project/
 | `AGENTS.md` | Main instructions for Codex (required) |
 | `.agents/config.toml` | Project-wide configuration |
 | `.codex/config.toml` | Local overrides (gitignored) |
-| `.claude-flow/data/memory.db` | Vector memory database |
+| `.cortex-agent/data/memory.db` | Vector memory database |
 
 </details>
 
@@ -275,13 +275,13 @@ project/
 
 ```bash
 # Minimal (fastest init)
-npx claude-flow@alpha init --codex --minimal
+npx cortex-agent@alpha init --codex --minimal
 
 # Default
-npx claude-flow@alpha init --codex
+npx cortex-agent@alpha init --codex
 
 # Full (all skills)
-npx claude-flow@alpha init --codex --full
+npx cortex-agent@alpha init --codex --full
 ```
 
 ### Template Contents
@@ -325,13 +325,13 @@ npx claude-flow@alpha init --codex --full
 Run `init --dual` to set up both platforms:
 
 ```bash
-npx claude-flow@alpha init --dual
+npx cortex-agent@alpha init --dual
 ```
 
 This creates:
 - `CLAUDE.md` for Claude Code users
 - `AGENTS.md` for Codex users
-- Shared `.claude-flow/` runtime
+- Shared `.cortex-agent/` runtime
 - Cross-compatible skills
 
 </details>
@@ -549,12 +549,12 @@ Run Claude Code for interactive development and spawn headless Codex workers for
 
 ```bash
 # Initialize dual-mode
-npx claude-flow@alpha init --dual
+npx cortex-agent@alpha init --dual
 
 # Creates both:
 # - CLAUDE.md (Claude Code configuration)
 # - AGENTS.md (Codex configuration)
-# - Shared .claude-flow/ runtime
+# - Shared .cortex-agent/ runtime
 ```
 
 ### Spawning Parallel Codex Workers
@@ -612,10 +612,10 @@ wait  # Wait for all to complete
 
 ### Memory Sharing
 
-Both platforms share the same `.claude-flow/` runtime:
+Both platforms share the same `.cortex-agent/` runtime:
 
 ```
-.claude-flow/
+.cortex-agent/
 ├── data/
 │   └── memory.db      # Shared vector memory
 ├── config.yaml        # Shared configuration
@@ -634,23 +634,23 @@ Both platforms share the same `.claude-flow/` runtime:
 
 ### CLI Commands (NEW in v3.0.0-alpha.8)
 
-The `@claude-flow/codex` package now includes built-in dual-mode orchestration:
+The `@cortex-agent/codex` package now includes built-in dual-mode orchestration:
 
 ```bash
 # List available collaboration templates
-npx claude-flow-codex dual templates
+npx cortex-agent-codex dual templates
 
 # Run a feature development swarm
-npx claude-flow-codex dual run --template feature --task "Add user authentication"
+npx cortex-agent-codex dual run --template feature --task "Add user authentication"
 
 # Run a security audit swarm
-npx claude-flow-codex dual run --template security --task "src/auth/"
+npx cortex-agent-codex dual run --template security --task "src/auth/"
 
 # Run a refactoring swarm
-npx claude-flow-codex dual run --template refactor --task "src/legacy/"
+npx cortex-agent-codex dual run --template refactor --task "src/legacy/"
 
 # Check collaboration status
-npx claude-flow-codex dual status
+npx cortex-agent-codex dual status
 ```
 
 ### Pre-Built Templates
@@ -664,7 +664,7 @@ npx claude-flow-codex dual status
 ### Programmatic API
 
 ```typescript
-import { DualModeOrchestrator, CollaborationTemplates } from '@claude-flow/codex';
+import { DualModeOrchestrator, CollaborationTemplates } from '@cortex-agent/codex';
 
 // Create orchestrator
 const orchestrator = new DualModeOrchestrator({
@@ -710,9 +710,9 @@ sandbox_mode = "workspace-write"
 web_search = "cached"
 
 # MCP Servers
-[mcp_servers.claude-flow]
+[mcp_servers.cortex-agent]
 command = "npx"
-args = ["claude-flow", "mcp", "start"]
+args = ["cortex-agent", "mcp", "start"]
 enabled = true
 
 # Skills
@@ -740,7 +740,7 @@ sandbox_mode = "danger-full-access"
 web_search = "live"
 
 # Disable MCP in local if needed
-[mcp_servers.claude-flow]
+[mcp_servers.cortex-agent]
 enabled = false
 ```
 
@@ -748,15 +748,15 @@ enabled = false
 
 ```bash
 # Configuration paths
-CLAUDE_FLOW_CONFIG=./claude-flow.config.json
-CLAUDE_FLOW_MEMORY_PATH=./.claude-flow/data
+CORTEX_AGENT_CONFIG=./cortex-agent.config.json
+CORTEX_AGENT_MEMORY_PATH=./.cortex-agent/data
 
 # Provider keys
 ANTHROPIC_API_KEY=sk-ant-...
 OPENAI_API_KEY=sk-...
 
 # MCP settings
-CLAUDE_FLOW_MCP_PORT=3000
+CORTEX_AGENT_MCP_PORT=3000
 ```
 
 </details>
@@ -811,7 +811,7 @@ memory_search({ query: "user profile API", namespace: "tasks" })
 ### CodexInitializer Class
 
 ```typescript
-import { CodexInitializer } from '@claude-flow/codex';
+import { CodexInitializer } from '@cortex-agent/codex';
 
 class CodexInitializer {
   /**
@@ -829,7 +829,7 @@ class CodexInitializer {
 ### initializeCodexProject Function
 
 ```typescript
-import { initializeCodexProject } from '@claude-flow/codex';
+import { initializeCodexProject } from '@cortex-agent/codex';
 
 /**
  * Quick initialization helper
@@ -875,7 +875,7 @@ interface CodexInitResult {
 ### Programmatic Usage
 
 ```typescript
-import { CodexInitializer, initializeCodexProject } from '@claude-flow/codex';
+import { CodexInitializer, initializeCodexProject } from '@cortex-agent/codex';
 
 // Quick initialization
 const result = await initializeCodexProject('/path/to/project', {
@@ -913,7 +913,7 @@ if (result.warnings?.length) {
 ### Convert CLAUDE.md to AGENTS.md
 
 ```typescript
-import { migrate } from '@claude-flow/codex';
+import { migrate } from '@cortex-agent/codex';
 
 const result = await migrate({
   sourcePath: './CLAUDE.md',
@@ -932,14 +932,14 @@ console.log(`Skills generated: ${result.skillsGenerated.length}`);
 2. **Move skills**: `.claude/skills/` → `.agents/skills/`
 3. **Update syntax**: `/skill-name` → `$skill-name`
 4. **Convert settings**: `settings.json` → `config.toml`
-5. **Register MCP**: `codex mcp add claude-flow -- npx claude-flow mcp start`
+5. **Register MCP**: `codex mcp add cortex-agent -- npx cortex-agent mcp start`
 
 ### Dual Mode Alternative
 
 Instead of migrating, use dual mode to support both:
 
 ```bash
-npx claude-flow@alpha init --dual
+npx cortex-agent@alpha init --dual
 ```
 
 This keeps both `CLAUDE.md` and `AGENTS.md` in sync.
@@ -958,24 +958,24 @@ This keeps both `CLAUDE.md` and `AGENTS.md` in sync.
 codex mcp list
 
 # Re-register
-codex mcp remove claude-flow
-codex mcp add claude-flow -- npx claude-flow mcp start
+codex mcp remove cortex-agent
+codex mcp add cortex-agent -- npx cortex-agent mcp start
 
 # Test connection
-npx claude-flow mcp test
+npx cortex-agent mcp test
 ```
 
 ### Memory Search Returns Empty
 
 ```bash
 # Initialize memory database
-npx claude-flow memory init --force
+npx cortex-agent memory init --force
 
 # Check if entries exist
-npx claude-flow memory list
+npx cortex-agent memory list
 
 # Manually add a test pattern
-npx claude-flow memory store --key "test" --value "test pattern" --namespace patterns
+npx cortex-agent memory store --key "test" --value "test pattern" --namespace patterns
 ```
 
 ### Skills Not Loading
@@ -988,17 +988,17 @@ ls -la .agents/skills/
 cat .agents/config.toml | grep skills
 
 # Rebuild skills
-npx claude-flow@alpha init --codex --force
+npx cortex-agent@alpha init --codex --force
 ```
 
 ### Vector Search Slow
 
 ```bash
 # Check HNSW index
-npx claude-flow memory stats
+npx cortex-agent memory stats
 
 # Rebuild index
-npx claude-flow memory optimize --rebuild-index
+npx cortex-agent memory optimize --rebuild-index
 ```
 
 </details>
@@ -1009,10 +1009,10 @@ npx claude-flow memory optimize --rebuild-index
 
 | Package | Description |
 |---------|-------------|
-| [@claude-flow/cli](https://www.npmjs.com/package/@claude-flow/cli) | Main CLI (26 commands, 140+ subcommands) |
-| [claude-flow](https://www.npmjs.com/package/claude-flow) | Umbrella package |
-| [@claude-flow/memory](https://www.npmjs.com/package/@claude-flow/memory) | AgentDB with HNSW vector search |
-| [@claude-flow/security](https://www.npmjs.com/package/@claude-flow/security) | Security module |
+| [@cortex-agent/cli](https://www.npmjs.com/package/@cortex-agent/cli) | Main CLI (26 commands, 140+ subcommands) |
+| [cortex-agent](https://www.npmjs.com/package/cortex-agent) | Umbrella package |
+| [@cortex-agent/memory](https://www.npmjs.com/package/@cortex-agent/memory) | AgentDB with HNSW vector search |
+| [@cortex-agent/security](https://www.npmjs.com/package/@cortex-agent/security) | Security module |
 
 ## License
 
@@ -1020,5 +1020,5 @@ MIT
 
 ## Support
 
-- Documentation: https://github.com/ruvnet/claude-flow
-- Issues: https://github.com/ruvnet/claude-flow/issues
+- Documentation: https://github.com/ruvnet/cortex-agent
+- Issues: https://github.com/ruvnet/cortex-agent/issues

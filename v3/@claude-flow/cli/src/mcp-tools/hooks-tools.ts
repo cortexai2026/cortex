@@ -161,7 +161,7 @@ function generateSimpleEmbedding(text: string, dimension: number = 384): Float32
 // ── Runtime routing outcome persistence ──────────────────────────────
 // Closes the learning loop: post-task records outcomes → route loads them.
 
-const ROUTING_OUTCOMES_PATH = join(resolve('.'), '.claude-flow/routing-outcomes.json');
+const ROUTING_OUTCOMES_PATH = join(resolve('.'), '.cortex-agent/routing-outcomes.json');
 
 const ROUTING_STOPWORDS = new Set([
   'the','a','an','is','are','was','were','be','been','being','have','has','had',
@@ -452,7 +452,7 @@ interface MemoryStore {
   version: string;
 }
 
-const MEMORY_DIR = '.claude-flow/memory';
+const MEMORY_DIR = '.cortex-agent/memory';
 const MEMORY_FILE = 'store.json';
 
 function getMemoryPath(): string {
@@ -2333,7 +2333,7 @@ export const hooksPatternSearch: MCPTool = {
       results: [],
       searchTimeMs: 0,
       backend: 'unavailable',
-      note: 'Real vector search not available. Initialize memory database with: claude-flow memory init',
+      note: 'Real vector search not available. Initialize memory database with: cortex-agent memory init',
     };
   },
 };

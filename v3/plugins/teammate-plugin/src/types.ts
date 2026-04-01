@@ -1,10 +1,10 @@
 /**
- * @claude-flow/teammate-plugin Types
+ * @cortex-agent/teammate-plugin Types
  *
  * Complete type definitions for TeammateTool integration.
  * Requires Claude Code >= 2.1.19
  *
- * @module @claude-flow/teammate-plugin/types
+ * @module @cortex-agent/teammate-plugin/types
  * @version 1.0.0-alpha.1
  */
 

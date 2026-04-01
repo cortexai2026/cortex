@@ -273,9 +273,9 @@ export class MigrationRunner {
       }
 
       const scripts = {
-        migrate: 'claude-flow migrate',
-        'migrate:analyze': 'claude-flow migrate analyze',
-        'migrate:rollback': 'claude-flow migrate rollback',
+        migrate: 'cortex-agent migrate',
+        'migrate:analyze': 'cortex-agent migrate analyze',
+        'migrate:rollback': 'cortex-agent migrate rollback',
       };
 
       let modified = false;
@@ -498,9 +498,9 @@ export class MigrationRunner {
           { source: 'sparc/architect.md', target: 'sparc-architect.md' },
           { source: 'sparc/code.md', target: 'sparc-code.md' },
           { source: 'sparc/tdd.md', target: 'sparc-tdd.md' },
-          { source: 'claude-flow-help.md', target: 'claude-flow-help.md' },
-          { source: 'claude-flow-memory.md', target: 'claude-flow-memory.md' },
-          { source: 'claude-flow-swarm.md', target: 'claude-flow-swarm.md' },
+          { source: 'cortex-agent-help.md', target: 'cortex-agent-help.md' },
+          { source: 'cortex-agent-memory.md', target: 'cortex-agent-memory.md' },
+          { source: 'cortex-agent-swarm.md', target: 'cortex-agent-swarm.md' },
         ],
         configurations: {},
         templates: {},
@@ -576,7 +576,7 @@ export class MigrationRunner {
     if (result.rollbackPath) {
       console.log(`\n${chalk.bold('Rollback Available:')} ${result.rollbackPath}`);
       console.log(
-        chalk.gray(`  Run "claude-flow migrate rollback -t ${result.rollbackPath}" to revert`),
+        chalk.gray(`  Run "cortex-agent migrate rollback -t ${result.rollbackPath}" to revert`),
       );
     }
 

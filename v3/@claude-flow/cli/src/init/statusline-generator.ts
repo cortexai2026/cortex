@@ -15,7 +15,7 @@ import type { InitOptions } from './types.js';
 /**
  * Generate optimized statusline script
  * Output format:
- * ▊ RuFlo V3.5 ● user  │  ⎇ branch  │  Opus 4.6 (1M context)
+ * ▊ Cortex Agent V3.5 ● user  │  ⎇ branch  │  Opus 4.6 (1M context)
  * ─────────────────────────────────────────────────────
  * 🏗️  DDD Domains    [●●○○○]  2/5    ⚡ HNSW 150x
  * 🤖 Swarm  ◉ [ 5/15]  👥 2    🪝 10/17    🟢 CVE 3/3    💾 4MB    🧠  63%
@@ -27,7 +27,7 @@ export function generateStatuslineScript(options: InitOptions): string {
 
   return `#!/usr/bin/env node
 /**
- * RuFlo V3 Statusline Generator (Optimized)
+ * Cortex Agent V3 Statusline Generator (Optimized)
  * Displays real-time V3 implementation progress and system status
  *
  * Usage: node statusline.cjs [--json] [--compact]
@@ -206,7 +206,7 @@ function getModelName() {
 function getLearningStats() {
   const memoryPaths = [
     path.join(CWD, '.swarm', 'memory.db'),
-    path.join(CWD, '.claude-flow', 'memory.db'),
+    path.join(CWD, '.cortex-agent', 'memory.db'),
     path.join(CWD, '.claude', 'memory.db'),
     path.join(CWD, 'data', 'memory.db'),
     path.join(CWD, '.agentdb', 'memory.db'),
@@ -241,7 +241,7 @@ function getV3Progress() {
   const learning = getLearningStats();
   const totalDomains = 5;
 
-  const dddData = readJSON(path.join(CWD, '.claude-flow', 'metrics', 'ddd-progress.json'));
+  const dddData = readJSON(path.join(CWD, '.cortex-agent', 'metrics', 'ddd-progress.json'));
   let dddProgress = dddData ? (dddData.progress || 0) : 0;
   let domainsCompleted = Math.min(5, Math.floor(dddProgress / 20));
 
@@ -263,7 +263,7 @@ function getV3Progress() {
 
 // Security status (pure file reads)
 function getSecurityStatus() {
-  const auditData = readJSON(path.join(CWD, '.claude-flow', 'security', 'audit-status.json'));
+  const auditData = readJSON(path.join(CWD, '.cortex-agent', 'security', 'audit-status.json'));
   if (auditData) {
     const auditDate = auditData.lastAudit || auditData.lastScan;
     if (!auditDate) {
@@ -298,7 +298,7 @@ function getSwarmStatus() {
   const staleThresholdMs = 5 * 60 * 1000;
   const now = Date.now();
 
-  const swarmStatePath = path.join(CWD, '.claude-flow', 'swarm', 'swarm-state.json');
+  const swarmStatePath = path.join(CWD, '.cortex-agent', 'swarm', 'swarm-state.json');
   const swarmState = readJSON(swarmStatePath);
   if (swarmState) {
     const updatedAt = swarmState.updatedAt || swarmState.startedAt;
@@ -312,7 +312,7 @@ function getSwarmStatus() {
     }
   }
 
-  const activityData = readJSON(path.join(CWD, '.claude-flow', 'metrics', 'swarm-activity.json'));
+  const activityData = readJSON(path.join(CWD, '.cortex-agent', 'metrics', 'swarm-activity.json'));
   if (activityData && activityData.swarm) {
     const updatedAt = activityData.timestamp || (activityData.swarm && activityData.swarm.timestamp);
     const age = updatedAt ? now - new Date(updatedAt).getTime() : Infinity;
@@ -335,7 +335,7 @@ function getSystemMetrics() {
   const agentdb = getAgentDBStats();
 
   // Intelligence from learning.json
-  const learningData = readJSON(path.join(CWD, '.claude-flow', 'metrics', 'learning.json'));
+  const learningData = readJSON(path.join(CWD, '.cortex-agent', 'metrics', 'learning.json'));
   let intelligencePct = 0;
   let contextPct = 0;
 
@@ -368,7 +368,7 @@ function getSystemMetrics() {
 
   // Sub-agents from file metrics (no ps aux)
   let subAgents = 0;
-  const activityData = readJSON(path.join(CWD, '.claude-flow', 'metrics', 'swarm-activity.json'));
+  const activityData = readJSON(path.join(CWD, '.cortex-agent', 'metrics', 'swarm-activity.json'));
   if (activityData && activityData.processes && activityData.processes.estimated_agents) {
     subAgents = activityData.processes.estimated_agents;
   }
@@ -382,7 +382,7 @@ function getADRStatus() {
   const adrPaths = [
     path.join(CWD, 'v3', 'implementation', 'adrs'),
     path.join(CWD, 'docs', 'adrs'),
-    path.join(CWD, '.claude-flow', 'adrs'),
+    path.join(CWD, '.cortex-agent', 'adrs'),
   ];
 
   for (const adrPath of adrPaths) {
@@ -439,7 +439,7 @@ function getAgentDBStats() {
   let hasHnsw = false;
 
   // 1. Count real entries from auto-memory-store.json
-  const storePath = path.join(CWD, '.claude-flow', 'data', 'auto-memory-store.json');
+  const storePath = path.join(CWD, '.cortex-agent', 'data', 'auto-memory-store.json');
   const storeStat = safeStat(storePath);
   if (storeStat) {
     dbSizeKB += storeStat.size / 1024;
@@ -452,14 +452,14 @@ function getAgentDBStats() {
 
   // 2. Count entries from ranked-context.json
   try {
-    const ranked = readJSON(path.join(CWD, '.claude-flow', 'data', 'ranked-context.json'));
+    const ranked = readJSON(path.join(CWD, '.cortex-agent', 'data', 'ranked-context.json'));
     if (ranked && ranked.entries && ranked.entries.length > vectorCount) vectorCount = ranked.entries.length;
   } catch { /* ignore */ }
 
   // 3. Add DB file sizes
   const dbFiles = [
     path.join(CWD, 'data', 'memory.db'),
-    path.join(CWD, '.claude-flow', 'memory.db'),
+    path.join(CWD, '.cortex-agent', 'memory.db'),
     path.join(CWD, '.swarm', 'memory.db'),
   ];
   for (const f of dbFiles) {
@@ -477,15 +477,15 @@ function getAgentDBStats() {
   // 5. HNSW index or memory package
   const hnswPaths = [
     path.join(CWD, '.swarm', 'hnsw.index'),
-    path.join(CWD, '.claude-flow', 'hnsw.index'),
+    path.join(CWD, '.cortex-agent', 'hnsw.index'),
   ];
   for (const p of hnswPaths) {
     if (safeStat(p)) { hasHnsw = true; break; }
   }
   if (!hasHnsw) {
     const memPkgPaths = [
-      path.join(CWD, 'v3', '@claude-flow', 'memory', 'dist'),
-      path.join(CWD, 'node_modules', '@claude-flow', 'memory'),
+      path.join(CWD, 'v3', '@cortex-agent', 'memory', 'dist'),
+      path.join(CWD, 'node_modules', '@cortex-agent', 'memory'),
     ];
     for (const p of memPkgPaths) {
       if (fs.existsSync(p)) { hasHnsw = true; break; }
@@ -549,7 +549,7 @@ function getIntegrationStatus() {
     }
   }
 
-  const hasDatabase = ['.swarm/memory.db', '.claude-flow/memory.db', 'data/memory.db']
+  const hasDatabase = ['.swarm/memory.db', '.cortex-agent/memory.db', 'data/memory.db']
     .some(p => fs.existsSync(path.join(CWD, p)));
   const hasApi = !!(process.env.ANTHROPIC_API_KEY || process.env.OPENAI_API_KEY);
 
@@ -558,7 +558,7 @@ function getIntegrationStatus() {
 
 // Session stats (pure file reads)
 function getSessionStats() {
-  var sessionPaths = ['.claude-flow/session.json', '.claude/session.json'];
+  var sessionPaths = ['.cortex-agent/session.json', '.claude/session.json'];
   for (var i = 0; i < sessionPaths.length; i++) {
     const data = readJSON(path.join(CWD, sessionPaths[i]));
     if (data && data.startTime) {
@@ -598,7 +598,7 @@ function generateStatusline() {
   const lines = [];
 
   // Header
-  let header = c.bold + c.brightPurple + '\\u258A RuFlo V3.5 ' + c.reset;
+  let header = c.bold + c.brightPurple + '\\u258A Cortex Agent V3.5 ' + c.reset;
   header += (swarm.coordinationActive ? c.brightCyan : c.dim) + '\\u25CF ' + c.brightCyan + git.name + c.reset;
   if (git.gitBranch) {
     header += '  ' + c.dim + '\\u2502' + c.reset + '  ' + c.brightBlue + '\\u23C7 ' + git.gitBranch + c.reset;
@@ -811,22 +811,22 @@ export function generateStatuslineHook(options: InitOptions): string {
   }
 
   return `#!/bin/bash
-# RuFlo V3 Statusline Hook
+# Cortex Agent V3 Statusline Hook
 # Source this in your .bashrc/.zshrc for terminal statusline
 
 # Function to get statusline
-claude_flow_statusline() {
-  local statusline_script="\${CLAUDE_FLOW_DIR:-.claude}/helpers/statusline.cjs"
+cortex_agent_statusline() {
+  local statusline_script="\${CORTEX_AGENT_DIR:-.claude}/helpers/statusline.cjs"
   if [ -f "$statusline_script" ]; then
     node "$statusline_script" 2>/dev/null || echo ""
   fi
 }
 
 # Bash: Add to PS1
-# export PS1='$(claude_flow_statusline) \\n\\$ '
+# export PS1='$(cortex_agent_statusline) \\n\\$ '
 
 # Zsh: Add to RPROMPT
-# export RPROMPT='$(claude_flow_statusline)'
+# export RPROMPT='$(cortex_agent_statusline)'
 
 # Claude Code: Add to .claude/settings.json
 # "statusLine": {

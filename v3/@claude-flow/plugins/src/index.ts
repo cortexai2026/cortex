@@ -1,7 +1,7 @@
 /**
- * @claude-flow/plugins
+ * @cortex-agent/plugins
  *
- * Unified Plugin SDK for Claude Flow v3
+ * Unified Plugin SDK for Cortex Agent v3
  *
  * This package provides a comprehensive plugin development framework including:
  * - Plugin lifecycle management
@@ -20,7 +20,7 @@
  *   WorkerFactory,
  *   ProviderFactory,
  *   Security,
- * } from '@claude-flow/plugins';
+ * } from '@cortex-agent/plugins';
  *
  * // Create a plugin with the builder
  * const myPlugin = new PluginBuilder('my-plugin', '1.0.0')

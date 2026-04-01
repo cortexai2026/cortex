@@ -217,7 +217,7 @@ export function suggestCommand(
   if (suggestions.length === 0) {
     return {
       suggestions: [],
-      message: 'Run "claude-flow --help" to see available commands.'
+      message: 'Run "cortex-agent --help" to see available commands.'
     };
   }
 

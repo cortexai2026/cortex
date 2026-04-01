@@ -1,10 +1,10 @@
 /**
- * Claude Flow MCP Integration - SDK + Existing MCP Tools
+ * Cortex Agent MCP Integration - SDK + Existing MCP Tools
  * Claude-Flow v2.5-alpha.130+
  *
- * Integrates SDK-powered features WITH existing Claude Flow MCP tools:
+ * Integrates SDK-powered features WITH existing Cortex Agent MCP tools:
  * - Uses SDK for session management, forking, checkpoints
- * - Uses Claude Flow MCP tools for swarm coordination, neural features
+ * - Uses Cortex Agent MCP tools for swarm coordination, neural features
  * - Combines both for maximum power
  *
  * VERIFIED: Real integration of SDK + MCP tools
@@ -24,7 +24,7 @@ import {
 /**
  * Integration Configuration
  */
-export interface ClaudeFlowIntegrationConfig {
+export interface CortexAgentIntegrationConfig {
   // SDK features
   enableSessionForking?: boolean;
   enableQueryControl?: boolean;
@@ -49,17 +49,17 @@ export interface ClaudeFlowIntegrationConfig {
 }
 
 /**
- * Integrated Claude Flow Session
+ * Integrated Cortex Agent Session
  *
- * Combines SDK features with Claude Flow MCP tools
+ * Combines SDK features with Cortex Agent MCP tools
  */
-export class IntegratedClaudeFlowSession {
+export class IntegratedCortexAgentSession {
   private forking?: RealSessionForking;
   private controller?: RealQueryController;
   private checkpointManager?: RealCheckpointManager;
-  private config: ClaudeFlowIntegrationConfig;
+  private config: CortexAgentIntegrationConfig;
 
-  constructor(config: ClaudeFlowIntegrationConfig = {}) {
+  constructor(config: CortexAgentIntegrationConfig = {}) {
     this.config = config;
 
     // Initialize SDK features based on config
@@ -79,7 +79,7 @@ export class IntegratedClaudeFlowSession {
   }
 
   /**
-   * Create a query that uses BOTH SDK features AND Claude Flow MCP tools
+   * Create a query that uses BOTH SDK features AND Cortex Agent MCP tools
    */
   async createIntegratedQuery(
     prompt: string,
@@ -103,8 +103,8 @@ export class IntegratedClaudeFlowSession {
       mcpServers.queryControl = createQueryControlMcpServer();
     }
 
-    // Add Claude Flow MCP tools (these use stdio/subprocess)
-    // The MCP server is already configured globally via `claude mcp add claude-flow`
+    // Add Cortex Agent MCP tools (these use stdio/subprocess)
+    // The MCP server is already configured globally via `claude mcp add cortex-agent`
     // So we don't need to add it here - it's automatically available
 
     // Create the query
@@ -133,7 +133,7 @@ export class IntegratedClaudeFlowSession {
   }
 
   /**
-   * Fork a session (SDK) while using Claude Flow MCP tools for coordination
+   * Fork a session (SDK) while using Cortex Agent MCP tools for coordination
    */
   async forkWithMcpCoordination(
     baseSessionId: string,
@@ -227,10 +227,10 @@ export class IntegratedClaudeFlowSession {
 }
 
 /**
- * Example: Use Claude Flow MCP tools WITH SDK features
+ * Example: Use Cortex Agent MCP tools WITH SDK features
  */
-export async function exampleClaudeFlowMcpWithSdk() {
-  const session = new IntegratedClaudeFlowSession({
+export async function exampleCortexAgentMcpWithSdk() {
+  const session = new IntegratedCortexAgentSession({
     enableSessionForking: true,
     enableQueryControl: true,
     enableCheckpoints: true,
@@ -251,10 +251,10 @@ export async function exampleClaudeFlowMcpWithSdk() {
 
   // Create query that uses BOTH:
   // - In-process MCP servers (SDK)
-  // - Claude Flow MCP tools (stdio)
+  // - Cortex Agent MCP tools (stdio)
   const mainQuery = await session.createIntegratedQuery(
     `
-    Initialize a mesh swarm with 8 agents using Claude Flow MCP tools.
+    Initialize a mesh swarm with 8 agents using Cortex Agent MCP tools.
     Then use the math MCP server to calculate factorial of 10.
     Store results in session and create a checkpoint.
     `,
@@ -265,7 +265,7 @@ export async function exampleClaudeFlowMcpWithSdk() {
   console.log('Created integrated query with:');
   console.log('- SDK: Session forking, checkpoints, query control');
   console.log('- In-process MCP: math, session, checkpoint, queryControl');
-  console.log('- Claude Flow MCP tools: swarm_init, agent_spawn, etc.');
+  console.log('- Cortex Agent MCP tools: swarm_init, agent_spawn, etc.');
 
   // Fork the session to try different approaches
   const fork1 = await session.forkWithMcpCoordination(
@@ -292,16 +292,16 @@ export async function exampleClaudeFlowMcpWithSdk() {
 /**
  * NPX Command Integration
  *
- * Show how to use Claude Flow NPX commands with SDK features
+ * Show how to use Cortex Agent NPX commands with SDK features
  */
 export function exampleNpxIntegration() {
   console.log(`
 ╔════════════════════════════════════════════════════════════╗
-║  Claude Flow NPX + SDK Integration                         ║
+║  Cortex Agent NPX + SDK Integration                         ║
 ╚════════════════════════════════════════════════════════════╝
 
-# Install Claude Flow MCP server
-claude mcp add claude-flow npx claude-flow@alpha mcp start
+# Install Cortex Agent MCP server
+claude mcp add cortex-agent npx cortex-agent@alpha mcp start
 
 # Optional: Add ruv-swarm for enhanced coordination
 claude mcp add ruv-swarm npx ruv-swarm mcp start
@@ -314,7 +314,7 @@ import { RealSessionForking } from './sdk/session-forking';
 
 const forking = new RealSessionForking();
 const q = query({
-  prompt: 'Use mcp__claude-flow__swarm_init to create mesh topology',
+  prompt: 'Use mcp__cortex-agent__swarm_init to create mesh topology',
   options: {
     // MCP tools are auto-available via 'claude mcp add'
   }
@@ -328,13 +328,13 @@ import { RealCheckpointManager } from './sdk/checkpoint-manager';
 
 const manager = new RealCheckpointManager();
 const q = query({
-  prompt: 'Use mcp__claude-flow__neural_train to train patterns',
+  prompt: 'Use mcp__cortex-agent__neural_train to train patterns',
 });
 
 await manager.trackSession('neural-session', q, true);
 const cp = await manager.createCheckpoint('neural-session', 'Before training');
 
-// Train neural patterns with Claude Flow MCP
+// Train neural patterns with Cortex Agent MCP
 // Then rollback if needed:
 await manager.rollbackToCheckpoint(cp);
 
@@ -344,7 +344,7 @@ import { RealQueryController } from './sdk/query-control';
 const controller = new RealQueryController();
 const q = query({
   prompt: \`
-    Use mcp__claude-flow__task_orchestrate to:
+    Use mcp__cortex-agent__task_orchestrate to:
     - Break down complex task
     - Distribute to agents
     - Monitor progress
@@ -358,19 +358,19 @@ const pauseId = await controller.pauseQuery(q, 'task-session', 'Task', {});
 // Resume later
 const resumed = await controller.resumeQuery('task-session');
 
-## 4. In-Process MCP + Claude Flow MCP Together
+## 4. In-Process MCP + Cortex Agent MCP Together
 import { createMathMcpServer } from './sdk/in-process-mcp';
 
 const q = query({
   prompt: \`
     Use math server to calculate factorial.
-    Use mcp__claude-flow__memory_usage to store result.
-    Use mcp__claude-flow__agent_spawn to process result.
+    Use mcp__cortex-agent__memory_usage to store result.
+    Use mcp__cortex-agent__agent_spawn to process result.
   \`,
   options: {
     mcpServers: {
       math: createMathMcpServer(), // In-process (fast!)
-      // claude-flow MCP tools auto-available
+      // cortex-agent MCP tools auto-available
     }
   }
 });
@@ -384,4 +384,4 @@ const q = query({
   `);
 }
 
-export { IntegratedClaudeFlowSession };
+export { IntegratedCortexAgentSession };

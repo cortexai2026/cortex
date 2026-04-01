@@ -1,5 +1,5 @@
 /**
- * @claude-flow/testing - Mocks Index
+ * @cortex-agent/testing - Mocks Index
  *
  * Central export for all mock implementations
  */

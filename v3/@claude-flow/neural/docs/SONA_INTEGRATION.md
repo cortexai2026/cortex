@@ -26,8 +26,8 @@ import {
   createSONALearningEngine,
   type Trajectory,
   type Context,
-} from '@claude-flow/neural';
-import { getModeConfig } from '@claude-flow/neural';
+} from '@cortex-agent/neural';
+import { getModeConfig } from '@cortex-agent/neural';
 
 // Create SONA engine with balanced mode
 const modeConfig = getModeConfig('balanced');
@@ -341,7 +341,7 @@ See `/examples/sona-usage.ts` for comprehensive examples:
 Run examples:
 
 ```bash
-cd v3/@claude-flow/neural
+cd v3/@cortex-agent/neural
 npx tsx examples/sona-usage.ts
 ```
 
@@ -350,7 +350,7 @@ npx tsx examples/sona-usage.ts
 The SONA integration works seamlessly with other V3 neural components:
 
 ```typescript
-import { createNeuralLearningSystem } from '@claude-flow/neural';
+import { createNeuralLearningSystem } from '@cortex-agent/neural';
 
 const system = createNeuralLearningSystem('balanced');
 await system.initialize();

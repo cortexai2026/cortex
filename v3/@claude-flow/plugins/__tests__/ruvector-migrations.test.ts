@@ -7,7 +7,7 @@
  * - Rollback support
  * - Partial failure handling
  *
- * @module @claude-flow/plugins/__tests__/ruvector-migrations
+ * @module @cortex-agent/plugins/__tests__/ruvector-migrations
  */
 
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';

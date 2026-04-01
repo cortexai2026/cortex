@@ -13,7 +13,7 @@
  *
  * @example
  * ```typescript
- * import { mcpToolOptimizerPlugin } from '@claude-flow/plugins/examples/ruvector-plugins';
+ * import { mcpToolOptimizerPlugin } from '@cortex-agent/plugins/examples/ruvector-plugins';
  * await getDefaultRegistry().register(mcpToolOptimizerPlugin);
  * ```
  */
@@ -339,7 +339,7 @@ async function getOptimizer(): Promise<MCPToolOptimizer> {
 
 export const mcpToolOptimizerPlugin = new PluginBuilder('mcp-tool-optimizer', '1.0.0')
   .withDescription('Learn tool patterns and suggest optimal sequences using @ruvector/wasm + @ruvector/learning-wasm')
-  .withAuthor('Claude Flow Team')
+  .withAuthor('Cortex Agent Team')
   .withTags(['optimization', 'tools', 'patterns', 'ruvector', 'learning', 'hnsw'])
   .withMCPTools([
     new MCPToolBuilder('tool-optimize')

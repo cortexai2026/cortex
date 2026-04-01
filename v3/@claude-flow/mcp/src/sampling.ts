@@ -1,5 +1,5 @@
 /**
- * @claude-flow/mcp - Sampling (Server-Initiated LLM)
+ * @cortex-agent/mcp - Sampling (Server-Initiated LLM)
  *
  * MCP 2025-11-25 compliant sampling for server-initiated LLM calls
  */

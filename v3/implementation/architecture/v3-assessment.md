@@ -458,18 +458,18 @@ CLI → Orchestrator → [TerminalManager, MemoryManager, CoordinationManager, M
 
 3. **Memory Integration**
    - Use agentic-flow's memory system as primary
-   - Add claude-flow-specific extensions via plugins
+   - Add cortex-agent-specific extensions via plugins
    - Leverage agentic-flow's distributed memory
 
 4. **Task Execution**
    - Use agentic-flow's task graph execution
-   - Add claude-flow-specific task types
+   - Add cortex-agent-specific task types
    - Leverage agentic-flow's retry and fault tolerance
 
 **Architecture Shift:**
 ```
-Current: claude-flow implements everything, integrates with agentic-flow
-   v3: agentic-flow provides core, claude-flow extends and specializes
+Current: cortex-agent implements everything, integrates with agentic-flow
+   v3: agentic-flow provides core, cortex-agent extends and specializes
 ```
 
 ---
@@ -569,7 +569,7 @@ src/
 
 ```typescript
 // Plugin interface
-interface ClaudeFlowPlugin {
+interface CortexAgentPlugin {
   name: string;
   version: string;
   initialize(context: PluginContext): Promise<void>;
@@ -598,7 +598,7 @@ interface ClaudeFlowPlugin {
 
 **Plugin Loading:**
 ```typescript
-const core = new ClaudeFlowCore();
+const core = new CortexAgentCore();
 
 // Load required plugins
 await core.loadPlugin(new AgentLifecyclePlugin());
@@ -1426,7 +1426,7 @@ Orchestrator (core/orchestrator.ts)
 - Swarm coordination from agentic-flow
 - Task graph execution from agentic-flow
 - Memory system from agentic-flow
-- Add claude-flow extensions via plugins
+- Add cortex-agent extensions via plugins
 ```
 
 ### Appendix D: Testing Strategy

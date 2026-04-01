@@ -2,7 +2,7 @@
 
 ## Executive Summary
 
-All 5 ReasoningBank pre-trained models have been **successfully updated and verified** to be fully compatible with claude-flow.
+All 5 ReasoningBank pre-trained models have been **successfully updated and verified** to be fully compatible with cortex-agent.
 
 **Status**: ✅ **PRODUCTION READY**
 **Date**: 2025-10-15
@@ -19,7 +19,7 @@ All 5 ReasoningBank pre-trained models have been **successfully updated and veri
 The original models only had **ReasoningBank-specific tables**:
 - `patterns`, `pattern_embeddings`, `pattern_links`, `task_trajectories`
 
-They were **missing required claude-flow tables**:
+They were **missing required cortex-agent tables**:
 - ❌ `memory` - General memory storage
 - ❌ `memory_entries` - Memory consolidation
 - ❌ `collective_memory` - Hive-mind swarm memory
@@ -76,7 +76,7 @@ test|demo|works||0|2025-10-15...
 
 **Test 2: Claude-Flow Commands** ✅
 ```bash
-$ npx claude-flow@alpha memory query "test" --namespace demo
+$ npx cortex-agent@alpha memory query "test" --namespace demo
 ✅ Found 8 results (semantic search)
 ```
 
@@ -148,23 +148,23 @@ $ sqlite3 ~/.swarm/memory.db "SELECT COUNT(*) FROM patterns"
 
 ```bash
 # General memory (NEW)
-npx claude-flow@alpha memory store <key> <value>
-npx claude-flow@alpha memory query <query>
-npx claude-flow@alpha memory list
+npx cortex-agent@alpha memory store <key> <value>
+npx cortex-agent@alpha memory query <query>
+npx cortex-agent@alpha memory list
 
 # ReasoningBank patterns (ORIGINAL)
-npx claude-flow@alpha memory query <query> --reasoningbank
+npx cortex-agent@alpha memory query <query> --reasoningbank
 
 # Hive-mind (NEW)
-npx claude-flow@alpha hive-mind init
-npx claude-flow@alpha hive-mind status
+npx cortex-agent@alpha hive-mind init
+npx cortex-agent@alpha hive-mind status
 
 # Session tracking (NEW)
-npx claude-flow@alpha hooks session-restore
-npx claude-flow@alpha hooks session-end
+npx cortex-agent@alpha hooks session-restore
+npx cortex-agent@alpha hooks session-end
 
 # Memory consolidation (NEW)
-npx claude-flow@alpha memory consolidate
+npx cortex-agent@alpha memory consolidate
 ```
 
 ---
@@ -203,7 +203,7 @@ npx claude-flow@alpha memory consolidate
 
 ```bash
 cp models/safla/memory.db ~/.swarm/memory.db
-npx claude-flow@alpha memory query "your question"
+npx cortex-agent@alpha memory query "your question"
 ```
 
 ### For Existing Users
@@ -336,7 +336,7 @@ cp models/safla/memory.db.backup models/safla/memory.db
 
 ### Feedback
 
-Open an issue: [GitHub Issues](https://github.com/ruvnet/claude-flow/issues)
+Open an issue: [GitHub Issues](https://github.com/ruvnet/cortex-agent/issues)
 
 ---
 
@@ -363,7 +363,7 @@ Open an issue: [GitHub Issues](https://github.com/ruvnet/claude-flow/issues)
 
 ---
 
-**The pre-trained ReasoningBank models are now 100% compatible with all claude-flow features!** 🎉
+**The pre-trained ReasoningBank models are now 100% compatible with all cortex-agent features!** 🎉
 
 Use them with confidence - all data is preserved, all features work, and all tests pass.
 

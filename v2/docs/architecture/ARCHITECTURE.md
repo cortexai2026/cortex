@@ -664,7 +664,7 @@ class MetricsDecorator implements Agent {
 ### File Structure
 
 ```
-claude-flow/
+cortex-agent/
 ├── src/
 │   ├── core/           # Core orchestration logic
 │   ├── agents/         # Agent implementations
@@ -713,20 +713,20 @@ CMD ["node", "dist/index.js"]
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: claude-flow
+  name: cortex-agent
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: claude-flow
+      app: cortex-agent
   template:
     metadata:
       labels:
-        app: claude-flow
+        app: cortex-agent
     spec:
       containers:
-      - name: claude-flow
-        image: claude-flow:latest
+      - name: cortex-agent
+        image: cortex-agent:latest
         ports:
         - containerPort: 3000
         resources:
@@ -1234,12 +1234,12 @@ class ShardManager {
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: claude-flow-hpa
+  name: cortex-agent-hpa
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: claude-flow
+    name: cortex-agent
   minReplicas: 3
   maxReplicas: 100
   metrics:
@@ -1570,21 +1570,21 @@ class MetricsCollector {
   
   // Counter metrics
   private taskCounter = new Counter({
-    name: 'claude_flow_tasks_total',
+    name: 'cortex_agent_tasks_total',
     help: 'Total number of tasks processed',
     labelNames: ['type', 'status']
   });
   
   // Gauge metrics
   private activeAgents = new Gauge({
-    name: 'claude_flow_active_agents',
+    name: 'cortex_agent_active_agents',
     help: 'Number of active agents',
     labelNames: ['type']
   });
   
   // Histogram metrics
   private taskDuration = new Histogram({
-    name: 'claude_flow_task_duration_seconds',
+    name: 'cortex_agent_task_duration_seconds',
     help: 'Task execution duration',
     labelNames: ['type'],
     buckets: [0.1, 0.5, 1, 2, 5, 10, 30, 60]
@@ -1615,7 +1615,7 @@ class Logger {
         winston.format.errors({ stack: true }),
         winston.format.json()
       ),
-      defaultMeta: { service: 'claude-flow' },
+      defaultMeta: { service: 'cortex-agent' },
       transports: [
         new winston.transports.File({ filename: 'error.log', level: 'error' }),
         new winston.transports.File({ filename: 'combined.log' }),

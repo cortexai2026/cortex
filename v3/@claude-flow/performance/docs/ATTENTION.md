@@ -26,7 +26,7 @@ npm install @ruvector/attention@latest
 ### Basic Usage
 
 ```typescript
-import { createFlashAttentionOptimizer } from '@claude-flow/performance';
+import { createFlashAttentionOptimizer } from '@cortex-agent/performance';
 
 // Create optimizer
 const optimizer = createFlashAttentionOptimizer(512, 64);
@@ -47,7 +47,7 @@ console.log(`Runtime: ${output.runtime}`); // 'napi', 'wasm', or 'js'
 ### Performance Benchmarking
 
 ```typescript
-import { quickBenchmark } from '@claude-flow/performance';
+import { quickBenchmark } from '@cortex-agent/performance';
 
 // Quick benchmark
 const result = await quickBenchmark(512);
@@ -58,7 +58,7 @@ console.log(`Meets target: ${result.meetsTarget ? 'YES' : 'NO'}`);
 ### V3 Target Validation
 
 ```typescript
-import { quickValidation } from '@claude-flow/performance';
+import { quickValidation } from '@cortex-agent/performance';
 
 // Validate V3 performance targets (2.49x-7.47x)
 const isValid = await quickValidation();
@@ -68,7 +68,7 @@ const isValid = await quickValidation();
 ### Comprehensive Benchmark Suite
 
 ```typescript
-import { runAndDisplaySuite } from '@claude-flow/performance';
+import { runAndDisplaySuite } from '@cortex-agent/performance';
 
 // Run full benchmark suite across multiple dimensions
 const suite = await runAndDisplaySuite();
@@ -192,7 +192,7 @@ See `/src/examples/flash-attention-demo.ts` for comprehensive examples:
 
 ```bash
 # Run all examples
-npx tsx v3/@claude-flow/performance/src/examples/flash-attention-demo.ts
+npx tsx v3/@cortex-agent/performance/src/examples/flash-attention-demo.ts
 ```
 
 ## Technical Details
@@ -227,7 +227,7 @@ Benchmarks measure:
 Performance metrics are automatically exported for the V3 metrics dashboard:
 
 ```typescript
-import { FlashAttentionOptimizer } from '@claude-flow/performance';
+import { FlashAttentionOptimizer } from '@cortex-agent/performance';
 
 const optimizer = new FlashAttentionOptimizer();
 // ... run operations ...

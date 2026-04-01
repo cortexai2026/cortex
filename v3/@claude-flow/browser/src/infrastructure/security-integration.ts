@@ -1,5 +1,5 @@
 /**
- * @claude-flow/browser - Security Integration
+ * @cortex-agent/browser - Security Integration
  * AIDefence integration for URL validation, PII detection, and threat scanning
  */
 

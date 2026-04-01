@@ -13,9 +13,9 @@ import { execSync } from 'child_process';
  */
 export class VerificationTrainingIntegration {
   constructor() {
-    this.trainingDataPath = '.claude-flow/training/verification-data.jsonl';
-    this.modelPath = '.claude-flow/models/verification-model.json';
-    this.metricsPath = '.claude-flow/metrics/agent-performance.json';
+    this.trainingDataPath = '.cortex-agent/training/verification-data.jsonl';
+    this.modelPath = '.cortex-agent/models/verification-model.json';
+    this.metricsPath = '.cortex-agent/metrics/agent-performance.json';
     this.learningRate = 0.1;
     this.initialized = false;
   }
@@ -26,9 +26,9 @@ export class VerificationTrainingIntegration {
   async initialize() {
     // Ensure directories exist
     const dirs = [
-      '.claude-flow/training',
-      '.claude-flow/models',
-      '.claude-flow/metrics'
+      '.cortex-agent/training',
+      '.cortex-agent/models',
+      '.cortex-agent/metrics'
     ];
     
     for (const dir of dirs) {
@@ -220,7 +220,7 @@ export class VerificationTrainingIntegration {
    * Update agent-specific model
    */
   async updateAgentModel(agentType, verification) {
-    const modelFile = `.claude-flow/models/agent-${agentType}.json`;
+    const modelFile = `.cortex-agent/models/agent-${agentType}.json`;
     
     let agentModel = {};
     try {
@@ -434,7 +434,7 @@ export class VerificationTrainingIntegration {
     try {
       // Call the training command
       const result = execSync(
-        'npx claude-flow training neural-train --data .claude-flow/training/verification-data.jsonl --model verification-predictor --epochs 100',
+        'npx cortex-agent training neural-train --data .cortex-agent/training/verification-data.jsonl --model verification-predictor --epochs 100',
         { encoding: 'utf8', stdio: 'pipe' }
       );
       

@@ -1,5 +1,5 @@
 /**
- * Core interfaces for the claude-flow init system
+ * Core interfaces for the cortex-agent init system
  */
 
 export type InitMode = 'standard' | 'github' | 'hive-mind' | 'sparc' | 'neural' | 'enterprise';

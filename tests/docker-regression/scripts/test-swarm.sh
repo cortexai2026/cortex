@@ -41,13 +41,13 @@ run_test() {
 # ============================================================================
 echo "── Topology Initialization ──"
 
-run_test "Centralized topology" "npx claude-flow swarm init --topology centralized 2>/dev/null || echo 'centralized init'"
-run_test "Distributed topology" "npx claude-flow swarm init --topology distributed 2>/dev/null || echo 'distributed init'"
-run_test "Hierarchical topology" "npx claude-flow swarm init --topology hierarchical 2>/dev/null || echo 'hierarchical init'"
-run_test "Mesh topology" "npx claude-flow swarm init --topology mesh 2>/dev/null || echo 'mesh init'"
-run_test "Hybrid topology" "npx claude-flow swarm init --topology hybrid 2>/dev/null || echo 'hybrid init'"
-run_test "Hierarchical-mesh topology" "npx claude-flow swarm init --topology hierarchical-mesh 2>/dev/null || echo 'hierarchical-mesh init'"
-run_test "Adaptive topology" "npx claude-flow swarm init --topology adaptive 2>/dev/null || echo 'adaptive init'"
+run_test "Centralized topology" "npx cortex-agent swarm init --topology centralized 2>/dev/null || echo 'centralized init'"
+run_test "Distributed topology" "npx cortex-agent swarm init --topology distributed 2>/dev/null || echo 'distributed init'"
+run_test "Hierarchical topology" "npx cortex-agent swarm init --topology hierarchical 2>/dev/null || echo 'hierarchical init'"
+run_test "Mesh topology" "npx cortex-agent swarm init --topology mesh 2>/dev/null || echo 'mesh init'"
+run_test "Hybrid topology" "npx cortex-agent swarm init --topology hybrid 2>/dev/null || echo 'hybrid init'"
+run_test "Hierarchical-mesh topology" "npx cortex-agent swarm init --topology hierarchical-mesh 2>/dev/null || echo 'hierarchical-mesh init'"
+run_test "Adaptive topology" "npx cortex-agent swarm init --topology adaptive 2>/dev/null || echo 'adaptive init'"
 
 # ============================================================================
 # 2. AGENT COUNT CONFIGURATION
@@ -55,10 +55,10 @@ run_test "Adaptive topology" "npx claude-flow swarm init --topology adaptive 2>/
 echo ""
 echo "── Agent Count Configuration ──"
 
-run_test "2 agents" "npx claude-flow swarm init --agents 2 2>/dev/null || echo '2 agents'"
-run_test "5 agents" "npx claude-flow swarm init --agents 5 2>/dev/null || echo '5 agents'"
-run_test "10 agents" "npx claude-flow swarm init --agents 10 2>/dev/null || echo '10 agents'"
-run_test "15 agents (max)" "npx claude-flow swarm init --agents 15 2>/dev/null || echo '15 agents'"
+run_test "2 agents" "npx cortex-agent swarm init --agents 2 2>/dev/null || echo '2 agents'"
+run_test "5 agents" "npx cortex-agent swarm init --agents 5 2>/dev/null || echo '5 agents'"
+run_test "10 agents" "npx cortex-agent swarm init --agents 10 2>/dev/null || echo '10 agents'"
+run_test "15 agents (max)" "npx cortex-agent swarm init --agents 15 2>/dev/null || echo '15 agents'"
 
 # ============================================================================
 # 3. SWARM STATUS & MONITORING
@@ -66,10 +66,10 @@ run_test "15 agents (max)" "npx claude-flow swarm init --agents 15 2>/dev/null |
 echo ""
 echo "── Swarm Status & Monitoring ──"
 
-run_test "Swarm status" "npx claude-flow swarm status 2>/dev/null || echo 'status ok'"
-run_test "Swarm metrics" "npx claude-flow swarm metrics 2>/dev/null || echo 'metrics ok'"
-run_test "Active agents" "npx claude-flow swarm agents 2>/dev/null || echo 'agents ok'"
-run_test "Task queue" "npx claude-flow swarm queue 2>/dev/null || echo 'queue ok'"
+run_test "Swarm status" "npx cortex-agent swarm status 2>/dev/null || echo 'status ok'"
+run_test "Swarm metrics" "npx cortex-agent swarm metrics 2>/dev/null || echo 'metrics ok'"
+run_test "Active agents" "npx cortex-agent swarm agents 2>/dev/null || echo 'agents ok'"
+run_test "Task queue" "npx cortex-agent swarm queue 2>/dev/null || echo 'queue ok'"
 
 # ============================================================================
 # 4. TASK ORCHESTRATION
@@ -77,9 +77,9 @@ run_test "Task queue" "npx claude-flow swarm queue 2>/dev/null || echo 'queue ok
 echo ""
 echo "── Task Orchestration ──"
 
-run_test "Task submit" "npx claude-flow swarm task submit 'Test task' 2>/dev/null || echo 'task submitted'"
-run_test "Task status" "npx claude-flow swarm task status 2>/dev/null || echo 'task status'"
-run_test "Task cancel" "npx claude-flow swarm task cancel --all 2>/dev/null || echo 'task cancel'"
+run_test "Task submit" "npx cortex-agent swarm task submit 'Test task' 2>/dev/null || echo 'task submitted'"
+run_test "Task status" "npx cortex-agent swarm task status 2>/dev/null || echo 'task status'"
+run_test "Task cancel" "npx cortex-agent swarm task cancel --all 2>/dev/null || echo 'task cancel'"
 
 # ============================================================================
 # 5. COORDINATION PATTERNS
@@ -132,8 +132,8 @@ run_test "Agent coordination < 50ms" "echo 'agent coordination test' && echo 'ok
 echo ""
 echo "── Swarm Shutdown ──"
 
-run_test "Graceful shutdown" "npx claude-flow swarm shutdown 2>/dev/null || echo 'shutdown ok'"
-run_test "Force shutdown" "npx claude-flow swarm shutdown --force 2>/dev/null || echo 'force shutdown ok'"
+run_test "Graceful shutdown" "npx cortex-agent swarm shutdown 2>/dev/null || echo 'shutdown ok'"
+run_test "Force shutdown" "npx cortex-agent swarm shutdown --force 2>/dev/null || echo 'force shutdown ok'"
 
 # ============================================================================
 # SUMMARY

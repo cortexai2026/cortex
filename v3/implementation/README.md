@@ -51,7 +51,7 @@ implementation/
 ### Planning
 | Document | Description |
 |----------|-------------|
-| [CLAUDE-FLOW-V3-MASTER-PLAN.md](./planning/CLAUDE-FLOW-V3-MASTER-PLAN.md) | Complete V3 master plan |
+| [CORTEX-AGENT-V3-MASTER-PLAN.md](./planning/CORTEX-AGENT-V3-MASTER-PLAN.md) | Complete V3 master plan |
 | [LEARNING-OPTIMIZED-PLAN.md](./planning/LEARNING-OPTIMIZED-PLAN.md) | Learning system optimization |
 | [V3-OPTIMIZED-PLAN.md](./planning/V3-OPTIMIZED-PLAN.md) | Optimized implementation plan |
 
@@ -83,9 +83,9 @@ implementation/
 
 ## Quick Links
 
-- **Master Issue:** [GitHub Issue #927](https://github.com/ruvnet/claude-flow/issues/927)
+- **Master Issue:** [GitHub Issue #927](https://github.com/ruvnet/cortex-agent/issues/927)
 - **ADR Documentation:** [/v3/docs/adrs/](../docs/adrs/)
-- **Module Source:** [/v3/@claude-flow/](../@claude-flow/)
+- **Module Source:** [/v3/@cortex-agent/](../@cortex-agent/)
 
 ## Statistics
 

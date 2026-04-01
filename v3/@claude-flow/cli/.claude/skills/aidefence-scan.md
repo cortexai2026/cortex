@@ -13,7 +13,7 @@ invocation:
 
 # Dependencies
 requires:
-  - "@claude-flow/aidefence"
+  - "@cortex-agent/aidefence"
 ---
 
 # AIDefence Scan Skill
@@ -40,7 +40,7 @@ When this skill is invoked, execute the following:
 ### Step 1: Initialize AIDefence
 
 ```typescript
-import { createAIDefence } from '@claude-flow/aidefence';
+import { createAIDefence } from '@cortex-agent/aidefence';
 
 const aidefence = createAIDefence({ enableLearning: true });
 ```
@@ -145,7 +145,7 @@ Detection time: 0.06ms
 
 ## Integration Notes
 
-- This skill uses the embedded `@claude-flow/aidefence` package
+- This skill uses the embedded `@cortex-agent/aidefence` package
 - No external server required
 - Learning is enabled by default for pattern improvement
 - Detection targets: <10ms (actual: ~0.06ms)

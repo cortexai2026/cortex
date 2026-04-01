@@ -120,7 +120,7 @@ SELECT ruvector.enable_learning_optimizer(
 ### Plugin Structure
 
 ```
-v3/@claude-flow/plugins/src/
+v3/@cortex-agent/plugins/src/
 ├── bridges/
 │   └── ruvector-postgres/
 │       ├── index.ts                 # Plugin entry point
@@ -142,7 +142,7 @@ v3/@claude-flow/plugins/src/
 ### Plugin Implementation
 
 ```typescript
-// v3/@claude-flow/plugins/src/bridges/ruvector-postgres/plugin.ts
+// v3/@cortex-agent/plugins/src/bridges/ruvector-postgres/plugin.ts
 
 import { IPlugin, PluginMetadata, PluginContext } from '../../core/plugin-interface.js';
 import { ConnectionManager } from './connection-manager.js';
@@ -153,7 +153,7 @@ export class RuVectorPostgresPlugin implements IPlugin {
     name: 'ruvector-postgres',
     version: '1.0.0',
     description: 'RuVector PostgreSQL integration for high-performance vector/graph operations',
-    author: 'Claude Flow Team',
+    author: 'Cortex Agent Team',
     tags: ['vector', 'graph', 'postgresql', 'storage', 'production'],
     dependencies: [
       { name: 'core-plugin', version: '^3.0.0' }
@@ -240,7 +240,7 @@ export class RuVectorPostgresPlugin implements IPlugin {
 ### Connection Pooling
 
 ```typescript
-// v3/@claude-flow/plugins/src/bridges/ruvector-postgres/connection-manager.ts
+// v3/@cortex-agent/plugins/src/bridges/ruvector-postgres/connection-manager.ts
 
 import { Pool, PoolClient, PoolConfig } from 'pg';
 
@@ -408,7 +408,7 @@ export class ConnectionManager {
 ### MCP Tool Definitions
 
 ```typescript
-// v3/@claude-flow/plugins/src/mcp-tools/ruvector-postgres-tools.ts
+// v3/@cortex-agent/plugins/src/mcp-tools/ruvector-postgres-tools.ts
 
 import type { MCPTool } from '../core/types.js';
 
@@ -637,7 +637,7 @@ export const ruvectorPostgresTools: MCPTool[] = [
 ### Async Operations with Batching
 
 ```typescript
-// v3/@claude-flow/plugins/src/bridges/ruvector-postgres/embedding-adapter.ts
+// v3/@cortex-agent/plugins/src/bridges/ruvector-postgres/embedding-adapter.ts
 
 export class EmbeddingAdapter {
   private connectionManager: ConnectionManager;
@@ -949,7 +949,7 @@ async function withAudit<T>(
 The migration provides a backward-compatible layer that allows gradual transition:
 
 ```typescript
-// v3/@claude-flow/plugins/src/bridges/ruvector-postgres/migration-helper.ts
+// v3/@cortex-agent/plugins/src/bridges/ruvector-postgres/migration-helper.ts
 
 export class MigrationHelper {
   private agentDB: AgentDBAdapter;
@@ -1073,7 +1073,7 @@ class DualWriteAdapter implements IMemoryBackend {
 
 2. **Phase 2: Enable Dual-Write**
    ```typescript
-   // claude-flow.config.ts
+   // cortex-agent.config.ts
    export default {
      memory: {
        backend: 'dual-write',
@@ -1088,7 +1088,7 @@ class DualWriteAdapter implements IMemoryBackend {
 
 3. **Phase 3: Migrate Existing Data**
    ```bash
-   npx claude-flow migrate \
+   npx cortex-agent migrate \
      --from agentdb \
      --to ruvector-postgres \
      --batch-size 5000
@@ -1188,7 +1188,7 @@ await plugin.attentionQuery({ query: 'complex reasoning', mechanism: 'multi_head
 - [ ] End-to-end tests
 - [ ] Security audit
 - [ ] Performance optimization
-- [ ] CLI integration (`claude-flow memory --backend ruvector-postgres`)
+- [ ] CLI integration (`cortex-agent memory --backend ruvector-postgres`)
 - [ ] User documentation
 
 ## References
@@ -1290,7 +1290,7 @@ SELECT * FROM ruvector.hyperbolic_search(
 const devConfig: RuVectorPostgresConfig = {
   host: 'localhost',
   port: 5432,
-  database: 'claude_flow_dev',
+  database: 'cortex_agent_dev',
   user: 'dev_user',
   password: 'dev_password',
   poolSize: 5,

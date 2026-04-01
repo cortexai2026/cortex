@@ -19,89 +19,89 @@ V3 CLI is streamlined with 7 core commands. Many V2 commands need migration or h
 ### agent
 ```bash
 # V2
-npx claude-flow agent spawn --type coder --name my-coder
-npx claude-flow agent list --detailed
-npx claude-flow agent info <agentId>
-npx claude-flow agent terminate <agentId>
+npx cortex-agent agent spawn --type coder --name my-coder
+npx cortex-agent agent list --detailed
+npx cortex-agent agent info <agentId>
+npx cortex-agent agent terminate <agentId>
 
 # V3 (same)
-npx claude-flow agent spawn --type coder --id my-coder
-npx claude-flow agent list --detailed
-npx claude-flow agent status <agentId>
-npx claude-flow agent terminate <agentId>
+npx cortex-agent agent spawn --type coder --id my-coder
+npx cortex-agent agent list --detailed
+npx cortex-agent agent status <agentId>
+npx cortex-agent agent terminate <agentId>
 ```
 
 ### memory
 ```bash
 # V2
-npx claude-flow memory store --namespace default --content "data"
-npx claude-flow memory query --search "keyword" --limit 10
-npx claude-flow memory list --namespace default
+npx cortex-agent memory store --namespace default --content "data"
+npx cortex-agent memory query --search "keyword" --limit 10
+npx cortex-agent memory list --namespace default
 
 # V3 (enhanced)
-npx claude-flow memory store --type episodic --content "data"
-npx claude-flow memory search --query "keyword" --search-type hybrid
-npx claude-flow memory list --type all --sort-by relevance
+npx cortex-agent memory store --type episodic --content "data"
+npx cortex-agent memory search --query "keyword" --search-type hybrid
+npx cortex-agent memory list --type all --sort-by relevance
 ```
 
 ### swarm
 ```bash
 # V2
-npx claude-flow swarm --strategy auto --max-agents 5
+npx cortex-agent swarm --strategy auto --max-agents 5
 
 # V3 (enhanced)
-npx claude-flow swarm init --topology hierarchical-mesh --max-agents 15
-npx claude-flow swarm status --include-metrics
-npx claude-flow swarm scale --target 10 --strategy gradual
+npx cortex-agent swarm init --topology hierarchical-mesh --max-agents 15
+npx cortex-agent swarm status --include-metrics
+npx cortex-agent swarm scale --target 10 --strategy gradual
 ```
 
 ### hooks
 ```bash
 # V2
-npx claude-flow hooks pre-edit --file src/app.ts
-npx claude-flow hooks post-edit --file src/app.ts --success true
+npx cortex-agent hooks pre-edit --file src/app.ts
+npx cortex-agent hooks post-edit --file src/app.ts --success true
 
 # V3 (enhanced with learning)
-npx claude-flow hooks pre-edit src/app.ts
-npx claude-flow hooks post-edit src/app.ts --success true
-npx claude-flow hooks route "implement feature X"
-npx claude-flow hooks explain "implement feature X"
-npx claude-flow hooks pretrain
-npx claude-flow hooks metrics
+npx cortex-agent hooks pre-edit src/app.ts
+npx cortex-agent hooks post-edit src/app.ts --success true
+npx cortex-agent hooks route "implement feature X"
+npx cortex-agent hooks explain "implement feature X"
+npx cortex-agent hooks pretrain
+npx cortex-agent hooks metrics
 ```
 
 ### mcp
 ```bash
 # V2
-npx claude-flow mcp start --port 3000 --transport stdio
-npx claude-flow mcp stop
-npx claude-flow mcp status
+npx cortex-agent mcp start --port 3000 --transport stdio
+npx cortex-agent mcp stop
+npx cortex-agent mcp status
 
 # V3 (same)
-npx claude-flow mcp start --port 3000 --transport stdio
-npx claude-flow mcp stop
-npx claude-flow mcp status
+npx cortex-agent mcp start --port 3000 --transport stdio
+npx cortex-agent mcp stop
+npx cortex-agent mcp status
 ```
 
 ### config
 ```bash
 # V2
-npx claude-flow config get orchestrator
-npx claude-flow config set orchestrator.maxAgents 10
+npx cortex-agent config get orchestrator
+npx cortex-agent config set orchestrator.maxAgents 10
 
 # V3
-npx claude-flow config load --scope project
-npx claude-flow config save --create-backup
-npx claude-flow config validate --strict
+npx cortex-agent config load --scope project
+npx cortex-agent config save --create-backup
+npx cortex-agent config validate --strict
 ```
 
 ### migrate
 ```bash
 # V3 only
-npx claude-flow migrate status
-npx claude-flow migrate run --target all --backup
-npx claude-flow migrate verify
-npx claude-flow migrate rollback --backup-id <id>
+npx cortex-agent migrate status
+npx cortex-agent migrate run --target all --backup
+npx cortex-agent migrate verify
+npx cortex-agent migrate rollback --backup-id <id>
 ```
 
 ## Missing Commands ❌
@@ -111,12 +111,12 @@ npx claude-flow migrate rollback --backup-id <id>
 #### init
 ```bash
 # V2
-npx claude-flow init
-npx claude-flow init --minimal
-npx claude-flow init --flow-nexus
+npx cortex-agent init
+npx cortex-agent init --minimal
+npx cortex-agent init --flow-nexus
 
 # V3 Migration needed:
-# Add to v3/@claude-flow/cli/src/commands/init.ts
+# Add to v3/@cortex-agent/cli/src/commands/init.ts
 export const initCommand = {
   command: 'init',
   description: 'Initialize Claude Code integration files',
@@ -126,7 +126,7 @@ export const initCommand = {
     { flags: '--flow-nexus', description: 'Initialize with Flow Nexus' }
   ],
   action: async (options) => {
-    await createClaudeFlowConfig(options);
+    await createCortexAgentConfig(options);
     await createDefaultAgents(options);
     if (!options.minimal) {
       await createHooksConfig(options);
@@ -139,12 +139,12 @@ export const initCommand = {
 #### start
 ```bash
 # V2
-npx claude-flow start
-npx claude-flow start --daemon
-npx claude-flow start --port 3000
+npx cortex-agent start
+npx cortex-agent start --daemon
+npx cortex-agent start --port 3000
 
 # V3 Migration needed:
-# Add to v3/@claude-flow/cli/src/commands/start.ts
+# Add to v3/@cortex-agent/cli/src/commands/start.ts
 export const startCommand = {
   command: 'start',
   description: 'Start the orchestration system',
@@ -165,13 +165,13 @@ export const startCommand = {
 #### status
 ```bash
 # V2
-npx claude-flow status
-npx claude-flow status --watch
-npx claude-flow status --json
-npx claude-flow status --health-check
+npx cortex-agent status
+npx cortex-agent status --watch
+npx cortex-agent status --json
+npx cortex-agent status --health-check
 
 # V3 Migration needed:
-# Add to v3/@claude-flow/cli/src/commands/status.ts
+# Add to v3/@cortex-agent/cli/src/commands/status.ts
 export const statusCommand = {
   command: 'status',
   description: 'Show enhanced system status',
@@ -198,14 +198,14 @@ export const statusCommand = {
 #### task
 ```bash
 # V2
-npx claude-flow task create --type implementation --description "Build feature"
-npx claude-flow task list --status running
-npx claude-flow task status <taskId>
-npx claude-flow task cancel <taskId>
-npx claude-flow task assign <taskId> --agent <agentId>
+npx cortex-agent task create --type implementation --description "Build feature"
+npx cortex-agent task list --status running
+npx cortex-agent task status <taskId>
+npx cortex-agent task cancel <taskId>
+npx cortex-agent task assign <taskId> --agent <agentId>
 
 # V3 Migration needed:
-# Add to v3/@claude-flow/cli/src/commands/task.ts
+# Add to v3/@cortex-agent/cli/src/commands/task.ts
 export const taskCommand = {
   command: 'task',
   description: 'Manage tasks',
@@ -230,15 +230,15 @@ export const taskCommand = {
 #### session
 ```bash
 # V2
-npx claude-flow session list
-npx claude-flow session save --description "Checkpoint"
-npx claude-flow session restore <sessionId>
-npx claude-flow session delete <sessionId>
-npx claude-flow session export --include-memory
-npx claude-flow session import <file>
+npx cortex-agent session list
+npx cortex-agent session save --description "Checkpoint"
+npx cortex-agent session restore <sessionId>
+npx cortex-agent session delete <sessionId>
+npx cortex-agent session export --include-memory
+npx cortex-agent session import <file>
 
 # V3 Migration needed:
-# Add to v3/@claude-flow/cli/src/commands/session.ts
+# Add to v3/@cortex-agent/cli/src/commands/session.ts
 export const sessionCommand = {
   command: 'session',
   description: 'Manage Claude-Flow sessions',
@@ -258,18 +258,18 @@ export const sessionCommand = {
 #### hive
 ```bash
 # V2
-npx claude-flow hive --topology mesh --consensus quorum --max-agents 8
-npx claude-flow hive-mind init
-npx claude-flow hive-mind status
-npx claude-flow hive-mind spawn --type queen
-npx claude-flow hive-mind task --description "Task"
-npx claude-flow hive-mind wizard
-npx claude-flow hive-mind pause
-npx claude-flow hive-mind resume
-npx claude-flow hive-mind stop
+npx cortex-agent hive --topology mesh --consensus quorum --max-agents 8
+npx cortex-agent hive-mind init
+npx cortex-agent hive-mind status
+npx cortex-agent hive-mind spawn --type queen
+npx cortex-agent hive-mind task --description "Task"
+npx cortex-agent hive-mind wizard
+npx cortex-agent hive-mind pause
+npx cortex-agent hive-mind resume
+npx cortex-agent hive-mind stop
 
 # V3 Migration needed:
-# Add to v3/@claude-flow/cli/src/commands/hive.ts
+# Add to v3/@cortex-agent/cli/src/commands/hive.ts
 export const hiveCommand = {
   command: 'hive',
   description: 'Hive Mind multi-agent coordination',
@@ -294,14 +294,14 @@ export const hiveCommand = {
 #### sparc
 ```bash
 # V2
-npx claude-flow sparc modes
-npx claude-flow sparc info <mode>
-npx claude-flow sparc run --mode specification
-npx claude-flow sparc tdd --sequential
-npx claude-flow sparc workflow --dry-run
+npx cortex-agent sparc modes
+npx cortex-agent sparc info <mode>
+npx cortex-agent sparc run --mode specification
+npx cortex-agent sparc tdd --sequential
+npx cortex-agent sparc workflow --dry-run
 
 # V3 Migration needed:
-# Add to v3/@claude-flow/cli/src/commands/sparc.ts
+# Add to v3/@cortex-agent/cli/src/commands/sparc.ts
 export const sparcCommand = {
   command: 'sparc',
   description: 'SPARC methodology commands',
@@ -318,13 +318,13 @@ export const sparcCommand = {
 #### monitor
 ```bash
 # V2
-npx claude-flow monitor
-npx claude-flow monitor --interval 2
-npx claude-flow monitor --compact
-npx claude-flow monitor --focus agents
+npx cortex-agent monitor
+npx cortex-agent monitor --interval 2
+npx cortex-agent monitor --compact
+npx cortex-agent monitor --focus agents
 
 # V3 Migration needed:
-# Add to v3/@claude-flow/cli/src/commands/monitor.ts
+# Add to v3/@cortex-agent/cli/src/commands/monitor.ts
 export const monitorCommand = {
   command: 'monitor',
   description: 'Start live monitoring dashboard',
@@ -343,16 +343,16 @@ export const monitorCommand = {
 #### github
 ```bash
 # V2
-npx claude-flow github init
-npx claude-flow github gh-coordinator
-npx claude-flow github pr-manager
-npx claude-flow github issue-tracker
-npx claude-flow github release-manager
-npx claude-flow github repo-architect
-npx claude-flow github sync-coordinator
+npx cortex-agent github init
+npx cortex-agent github gh-coordinator
+npx cortex-agent github pr-manager
+npx cortex-agent github issue-tracker
+npx cortex-agent github release-manager
+npx cortex-agent github repo-architect
+npx cortex-agent github sync-coordinator
 
 # V3 Migration needed:
-# Add to v3/@claude-flow/cli/src/commands/github.ts
+# Add to v3/@cortex-agent/cli/src/commands/github.ts
 export const githubCommand = {
   command: 'github',
   description: 'GitHub workflow automation',
@@ -377,29 +377,29 @@ export const githubCommand = {
 #### neural
 ```bash
 # V2
-npx claude-flow neural init
-npx claude-flow neural init --force --target .claude/agents/neural
+npx cortex-agent neural init
+npx cortex-agent neural init --force --target .claude/agents/neural
 
 # V3: Replaced by hooks pretrain
-npx claude-flow hooks pretrain
+npx cortex-agent hooks pretrain
 ```
 
 #### goal
 ```bash
 # V2
-npx claude-flow goal init
+npx cortex-agent goal init
 
 # V3: Replaced by hooks system
-npx claude-flow hooks pretrain --include-goap
+npx cortex-agent hooks pretrain --include-goap
 ```
 
 #### claude
 ```bash
 # V2
-npx claude-flow claude spawn --tools View,Edit,Bash --mode full
+npx cortex-agent claude spawn --tools View,Edit,Bash --mode full
 
 # V3 Migration needed:
-# Add to v3/@claude-flow/cli/src/commands/claude.ts
+# Add to v3/@cortex-agent/cli/src/commands/claude.ts
 export const claudeCommand = {
   command: 'claude',
   description: 'Spawn Claude instances',
@@ -419,21 +419,21 @@ export const claudeCommand = {
 #### workflow
 ```bash
 # V2
-npx claude-flow workflow create --name "my-workflow"
-npx claude-flow workflow execute <workflow>
-npx claude-flow workflow list
+npx cortex-agent workflow create --name "my-workflow"
+npx cortex-agent workflow execute <workflow>
+npx cortex-agent workflow list
 
 # V3 Migration needed:
-# Add to v3/@claude-flow/cli/src/commands/workflow.ts
+# Add to v3/@cortex-agent/cli/src/commands/workflow.ts
 ```
 
 #### repl
 ```bash
 # V2
-npx claude-flow repl
+npx cortex-agent repl
 
 # V3 Migration needed:
-# Add to v3/@claude-flow/cli/src/commands/repl.ts
+# Add to v3/@cortex-agent/cli/src/commands/repl.ts
 export const replCommand = {
   command: 'repl',
   description: 'Start interactive REPL mode',
@@ -447,8 +447,8 @@ export const replCommand = {
 #### version
 ```bash
 # V2
-npx claude-flow version
-npx claude-flow version --short
+npx cortex-agent version
+npx cortex-agent version --short
 
 # V3 Migration needed:
 # Add version flag to CLI root
@@ -457,11 +457,11 @@ npx claude-flow version --short
 #### completion
 ```bash
 # V2
-npx claude-flow completion bash
-npx claude-flow completion --install
+npx cortex-agent completion bash
+npx cortex-agent completion --install
 
 # V3 Migration needed:
-# Add to v3/@claude-flow/cli/src/commands/completion.ts
+# Add to v3/@cortex-agent/cli/src/commands/completion.ts
 ```
 
 ## Implementation Plan

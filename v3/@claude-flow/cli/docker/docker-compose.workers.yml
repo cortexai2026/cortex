@@ -1,4 +1,4 @@
-# Docker Compose for Claude Flow V3 Headless Worker Pool
+# Docker Compose for Cortex Agent V3 Headless Worker Pool
 # ADR-020: Headless Worker Integration Architecture - Phase 3
 #
 # Usage:
@@ -10,15 +10,15 @@
 #   ANTHROPIC_API_KEY - Your Anthropic API key
 #
 # Optional:
-#   CLAUDE_FLOW_WORKERS - Comma-separated list of workers to enable
-#   CLAUDE_FLOW_SANDBOX - Sandbox mode (strict, permissive, disabled)
+#   CORTEX_AGENT_WORKERS - Comma-separated list of workers to enable
+#   CORTEX_AGENT_SANDBOX - Sandbox mode (strict, permissive, disabled)
 
 version: '3.8'
 
 services:
   # Worker Pool - Scalable headless worker containers
   worker-pool:
-    image: ghcr.io/ruvnet/claude-flow-headless:latest
+    image: ghcr.io/ruvnet/cortex-agent-headless:latest
     build:
       context: .
       dockerfile: Dockerfile.headless
@@ -38,17 +38,17 @@ services:
     environment:
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
       - CLAUDE_CODE_HEADLESS=true
-      - CLAUDE_CODE_SANDBOX_MODE=${CLAUDE_FLOW_SANDBOX:-strict}
-      - CLAUDE_FLOW_WORKERS=${CLAUDE_FLOW_WORKERS:-audit,optimize,testgaps}
+      - CLAUDE_CODE_SANDBOX_MODE=${CORTEX_AGENT_SANDBOX:-strict}
+      - CORTEX_AGENT_WORKERS=${CORTEX_AGENT_WORKERS:-audit,optimize,testgaps}
       - REDIS_URL=redis://redis:6379
       - NODE_ENV=production
     volumes:
       - workspace:/workspace:ro
-      - claude-flow-state:/root/.claude-flow
-      - worker-logs:/var/log/claude-flow
-    command: npx claude-flow@v3alpha daemon start --foreground --headless
+      - cortex-agent-state:/root/.cortex-agent
+      - worker-logs:/var/log/cortex-agent
+    command: npx cortex-agent@v3alpha daemon start --foreground --headless
     networks:
-      - claude-flow-network
+      - cortex-agent-network
     depends_on:
       redis:
         condition: service_healthy
@@ -61,7 +61,7 @@ services:
 
   # Queue Manager - Coordinates task distribution
   queue-manager:
-    image: ghcr.io/ruvnet/claude-flow-headless:latest
+    image: ghcr.io/ruvnet/cortex-agent-headless:latest
     build:
       context: .
       dockerfile: Dockerfile.headless
@@ -71,11 +71,11 @@ services:
       - MAX_WORKERS=${MAX_WORKERS:-10}
       - NODE_ENV=production
     volumes:
-      - claude-flow-state:/root/.claude-flow
+      - cortex-agent-state:/root/.cortex-agent
       - queue-logs:/var/log/queue-manager
-    command: npx claude-flow@v3alpha queue manager --workers ${MAX_WORKERS:-10}
+    command: npx cortex-agent@v3alpha queue manager --workers ${MAX_WORKERS:-10}
     networks:
-      - claude-flow-network
+      - cortex-agent-network
     depends_on:
       redis:
         condition: service_healthy
@@ -92,7 +92,7 @@ services:
     volumes:
       - redis-data:/data
     networks:
-      - claude-flow-network
+      - cortex-agent-network
     ports:
       - "6379:6379"
     healthcheck:
@@ -112,7 +112,7 @@ services:
     ports:
       - "9090:9090"
     networks:
-      - claude-flow-network
+      - cortex-agent-network
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
@@ -133,12 +133,12 @@ services:
     ports:
       - "3000:3000"
     networks:
-      - claude-flow-network
+      - cortex-agent-network
     depends_on:
       - metrics
 
 networks:
-  claude-flow-network:
+  cortex-agent-network:
     driver: bridge
     ipam:
       config:
@@ -151,7 +151,7 @@ volumes:
       type: none
       o: bind
       device: ${WORKSPACE_PATH:-.}
-  claude-flow-state:
+  cortex-agent-state:
   worker-logs:
   queue-logs:
   redis-data:

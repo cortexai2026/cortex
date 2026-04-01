@@ -30,12 +30,12 @@ The system monitors workload and spawns additional agents when:
 **Status Monitoring:**
 ```javascript
 // Check swarm health
-mcp__claude-flow__swarm_status({
+mcp__cortex-agent__swarm_status({
   "swarmId": "current"
 })
 
 // Monitor agent performance
-mcp__claude-flow__agent_metrics({
+mcp__cortex-agent__agent_metrics({
   "agentId": "agent-123"
 })
 ```
@@ -43,17 +43,17 @@ mcp__claude-flow__agent_metrics({
 ## Configuration
 
 ### MCP Tool Integration
-Uses Claude Flow MCP tools for agent coordination:
+Uses Cortex Agent MCP tools for agent coordination:
 ```javascript
 // Initialize swarm with appropriate topology
-mcp__claude-flow__swarm_init({
+mcp__cortex-agent__swarm_init({
   "topology": "mesh",
   "maxAgents": 8,
   "strategy": "auto"
 })
 
 // Spawn agents based on file type
-mcp__claude-flow__agent_spawn({
+mcp__cortex-agent__agent_spawn({
   "type": "coder",
   "name": "JavaScript Handler",
   "capabilities": ["javascript", "typescript"]
@@ -63,7 +63,7 @@ mcp__claude-flow__agent_spawn({
 ### Fallback Configuration
 If MCP tools are unavailable:
 ```bash
-npx claude-flow hook pre-task --auto-spawn-agents
+npx cortex-agent hook pre-task --auto-spawn-agents
 ```
 
 ## Benefits

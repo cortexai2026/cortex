@@ -2,7 +2,7 @@
  * Security System Integration Examples
  * 
  * Demonstrates how to integrate the security enforcement system
- * with existing Claude Flow components and real-world scenarios.
+ * with existing Cortex Agent components and real-world scenarios.
  */
 
 import { EventEmitter } from 'events';
@@ -194,7 +194,7 @@ export class AdvancedSecurityIntegration {
 
 // ======================== CLAUDE FLOW AGENT INTEGRATION ========================
 
-export class ClaudeFlowAgentSecurityWrapper {
+export class CortexAgentAgentSecurityWrapper {
   private security: SecurityEnforcementSystem;
   private registeredAgents = new Set<string>();
 
@@ -202,8 +202,8 @@ export class ClaudeFlowAgentSecurityWrapper {
     this.security = security;
   }
 
-  // Secure agent registration for Claude Flow
-  async registerClaudeFlowAgent(agentConfig: {
+  // Secure agent registration for Cortex Agent
+  async registerCortexAgentAgent(agentConfig: {
     agentId: string;
     type: string;
     capabilities: string[];
@@ -215,7 +215,7 @@ export class ClaudeFlowAgentSecurityWrapper {
     await this.security.registerAgent(agentConfig.agentId, capabilities, securityLevel);
     this.registeredAgents.add(agentConfig.agentId);
     
-    console.log(`Claude Flow agent secured: ${agentConfig.agentId} (${agentConfig.type})`);
+    console.log(`Cortex Agent agent secured: ${agentConfig.agentId} (${agentConfig.type})`);
   }
 
   // Secure task execution wrapper
@@ -523,7 +523,7 @@ export class ProductionDeploymentExample {
 export {
   BasicSecurityIntegration,
   AdvancedSecurityIntegration,
-  ClaudeFlowAgentSecurityWrapper,
+  CortexAgentAgentSecurityWrapper,
   SecurityTestingExample,
   ProductionDeploymentExample
 };
@@ -540,9 +540,9 @@ const advancedSecurity = new AdvancedSecurityIntegration();
 await advancedSecurity.initialize();
 advancedSecurity.addThreatIndicator("malicious-pattern-x");
 
-// Claude Flow integration:
-const wrapper = new ClaudeFlowAgentSecurityWrapper(securitySystem);
-await wrapper.registerClaudeFlowAgent({
+// Cortex Agent integration:
+const wrapper = new CortexAgentAgentSecurityWrapper(securitySystem);
+await wrapper.registerCortexAgentAgent({
   agentId: "claude-coder-1",
   type: "coder",
   capabilities: ["code", "review", "test"]

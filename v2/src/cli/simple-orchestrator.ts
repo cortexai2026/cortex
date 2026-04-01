@@ -219,7 +219,7 @@ function startWebUI(host: string, port: number) {
         </div>
         <div class="console-container">
             <div class="console-output scrollbar" id="output"></div>
-            <input type="text" class="console-input" id="input" placeholder="Enter claude-flow command..." autocomplete="off">
+            <input type="text" class="console-input" id="input" placeholder="Enter cortex-agent command..." autocomplete="off">
         </div>
 
         <script>
@@ -273,7 +273,7 @@ function startWebUI(host: string, port: number) {
                         }
                         
                         appendOutput('\n<span class="success">🔗 Connected to Claude-Flow Console</span>\n');
-                        appendOutput('<span class="info">Type "help" for available commands or use any claude-flow command</span>\n\n');
+                        appendOutput('<span class="info">Type "help" for available commands or use any cortex-agent command</span>\n\n');
                     };
                     
                     ws.onmessage = (event) => {
@@ -339,7 +339,7 @@ function startWebUI(host: string, port: number) {
                         appendOutput('<span class="error">' + data.data + '</span>');
                         break;
                     case 'command_complete':
-                        appendOutput('\n<span class="prompt">claude-flow> </span>');
+                        appendOutput('\n<span class="prompt">cortex-agent> </span>');
                         break;
                     case 'status':
                         updateStatus(data.data);
@@ -365,7 +365,7 @@ function startWebUI(host: string, port: number) {
             
             function sendCommand(command) {
                 if (ws && ws.readyState === WebSocket.OPEN) {
-                    appendOutput('<span class="prompt">claude-flow> </span>' + command + '\n');
+                    appendOutput('<span class="prompt">cortex-agent> </span>' + command + '\n');
                     ws.send(JSON.stringify({
                         type: 'command',
                         data: command
@@ -653,7 +653,7 @@ function startWebUI(host: string, port: number) {
 • <span class="info">clear</span> - Clear console
 • <span class="info">version</span> - Show version information
 
-<span class="warning">Note:</span> This is a web console interface for claude-flow CLI commands.
+<span class="warning">Note:</span> This is a web console interface for cortex-agent CLI commands.
 `;
       sendResponse(ws, {
         type: 'output',
@@ -700,14 +700,14 @@ function startWebUI(host: string, port: number) {
     const cmd = args[0];
     const cmdArgs = args.slice(1);
 
-    // Determine the correct claude-flow executable path
+    // Determine the correct cortex-agent executable path
     const rootDir = path.resolve(__dirname, '../..');
-    const cliPath = path.join(rootDir, 'bin', 'claude-flow');
+    const cliPath = path.join(rootDir, 'bin', 'cortex-agent');
 
     // Spawn the command
     const child = spawn('node', [path.join(rootDir, 'src/cli/simple-cli.js'), ...cmdArgs], {
       stdio: ['pipe', 'pipe', 'pipe'],
-      env: { ...process.env, CLAUDE_FLOW_WEB_MODE: 'true' },
+      env: { ...process.env, CORTEX_AGENT_WEB_MODE: 'true' },
     });
 
     // Handle stdout
@@ -799,7 +799,7 @@ function startWebUI(host: string, port: number) {
     server.on('error', (err: any) => {
       if (err.code === 'EADDRINUSE') {
         console.error(`\n❌ Port ${port} is already in use`);
-        console.log(`💡 Try a different port: claude-flow start --ui --port ${port + 1}`);
+        console.log(`💡 Try a different port: cortex-agent start --ui --port ${port + 1}`);
         console.log(`💡 Or stop the process using port ${port}: lsof -ti:${port} | xargs kill -9`);
         componentStatus.webUI = false;
         reject(err);
@@ -882,8 +882,8 @@ export async function startOrchestrator(options: any) {
     );
   }
 
-  console.log('\n💡 Use "claude-flow status" to check system status');
-  console.log('💡 Use "claude-flow stop" to stop the orchestrator');
+  console.log('\n💡 Use "cortex-agent status" to check system status');
+  console.log('💡 Use "cortex-agent stop" to stop the orchestrator');
 
   // Keep the process running
   if (!options.daemon) {

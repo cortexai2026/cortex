@@ -1,7 +1,7 @@
 /**
  * Prime Radiant Plugin - Entry Point
  *
- * Mathematical AI Interpretability for Claude Flow V3
+ * Mathematical AI Interpretability for Cortex Agent V3
  *
  * Provides:
  * - Sheaf Laplacian coherence detection (CohomologyEngine)
@@ -259,15 +259,15 @@ export const pluginMetadata = {
     'Mathematical AI interpretability with sheaf cohomology, spectral analysis, and causal inference',
   author: 'rUv',
   license: 'MIT',
-  repository: 'https://github.com/ruvnet/claude-flow',
+  repository: 'https://github.com/ruvnet/cortex-agent',
   wasmSize: '92KB',
   dependencies: {
     required: [
-      '@claude-flow/memory',
-      '@claude-flow/security',
-      '@claude-flow/coordination',
+      '@cortex-agent/memory',
+      '@cortex-agent/security',
+      '@cortex-agent/coordination',
     ],
-    optional: ['@claude-flow/embeddings', '@claude-flow/aidefence'],
+    optional: ['@cortex-agent/embeddings', '@cortex-agent/aidefence'],
   },
   capabilities: [
     'coherence-checking',

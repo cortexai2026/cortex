@@ -1,5 +1,5 @@
 /**
- * @claude-flow/mcp - MCP Server
+ * @cortex-agent/mcp - MCP Server
  *
  * High-performance MCP server implementation
  */

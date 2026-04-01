@@ -140,14 +140,14 @@ Fallback:      JSON (compatibility)
 
 **Before** (Windows):
 ```bash
-$ npm install claude-flow@alpha
+$ npm install cortex-agent@alpha
 ⚠️  Warning: Use pnpm on Windows
 ❌ Error: better-sqlite3 compilation failed
 ```
 
 **After** (Windows):
 ```bash
-$ npm install claude-flow@alpha
+$ npm install cortex-agent@alpha
 ✅ Installed successfully
 ℹ️  Using sql.js (cross-platform mode)
 ```
@@ -247,10 +247,10 @@ JSON              | ✅            | ❌            | ❌
 - [SQLite WASM Documentation](https://sqlite.org/wasm)
 
 ### Codebase Files
-- `/home/user/claude-flow/src/memory/sqlite-wrapper.js` - Main abstraction
-- `/home/user/claude-flow/src/core/DatabaseManager.ts` - Provider manager
-- `/home/user/claude-flow/src/memory/backends/sqlite.ts` - Current backend
-- `/home/user/claude-flow/src/utils/error-recovery.ts` - Error handling
+- `/home/user/cortex-agent/src/memory/sqlite-wrapper.js` - Main abstraction
+- `/home/user/cortex-agent/src/core/DatabaseManager.ts` - Provider manager
+- `/home/user/cortex-agent/src/memory/backends/sqlite.ts` - Current backend
+- `/home/user/cortex-agent/src/utils/error-recovery.ts` - Error handling
 
 ---
 

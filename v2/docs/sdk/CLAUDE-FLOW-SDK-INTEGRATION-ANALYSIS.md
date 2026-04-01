@@ -124,7 +124,7 @@ class SwarmOrchestrator {
 
 ```typescript
 // New architecture leveraging SDK
-export class ClaudeFlowOrchestrator {
+export class CortexAgentOrchestrator {
   private sdk: ClaudeAgentSDK;
   private swarmCoordinator: SwarmCoordinator;
   private consensusManager: ConsensusManager;

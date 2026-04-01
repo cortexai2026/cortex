@@ -6,7 +6,7 @@
  */
 
 import type {
-  ClaudeFlowPlugin,
+  CortexAgentPlugin,
   PluginInfo,
   PluginLifecycleState,
   PluginContext,
@@ -33,7 +33,7 @@ export class PluginRegistry {
    * Register a plugin in the registry
    */
   registerPlugin(
-    plugin: ClaudeFlowPlugin,
+    plugin: CortexAgentPlugin,
     initialState: PluginLifecycleState,
     context: PluginContext
   ): void {

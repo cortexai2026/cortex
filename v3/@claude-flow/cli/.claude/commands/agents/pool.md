@@ -11,7 +11,7 @@ Manage the agent pool for automatic scaling and resource optimization.
 ## Usage
 
 ```bash
-npx claude-flow agent pool [options]
+npx cortex-agent agent pool [options]
 ```
 
 ## Options
@@ -28,19 +28,19 @@ npx claude-flow agent pool [options]
 
 ```bash
 # View current pool status
-npx claude-flow agent pool
+npx cortex-agent agent pool
 
 # Set pool size
-npx claude-flow agent pool --size 5
+npx cortex-agent agent pool --size 5
 
 # Configure auto-scaling
-npx claude-flow agent pool --min 2 --max 15 --auto-scale
+npx cortex-agent agent pool --min 2 --max 15 --auto-scale
 
 # Pre-warm agents for fast response
-npx claude-flow agent pool --warmup
+npx cortex-agent agent pool --warmup
 
 # Disable auto-scaling
-npx claude-flow agent pool --auto-scale false
+npx cortex-agent agent pool --auto-scale false
 ```
 
 ## Output
@@ -89,7 +89,7 @@ Auto-Scale Rules
 Pre-warm agents to reduce cold-start latency:
 
 ```bash
-npx claude-flow agent pool --warmup
+npx cortex-agent agent pool --warmup
 
 # Pre-warms default agent types:
 # - coder (2 instances)
@@ -99,7 +99,7 @@ npx claude-flow agent pool --warmup
 
 ## Pool Configuration File
 
-Configure in `.claude-flow/config.yaml`:
+Configure in `.cortex-agent/config.yaml`:
 
 ```yaml
 agent:
@@ -122,6 +122,6 @@ agent:
 
 ## Related Commands
 
-- `npx claude-flow agent spawn` - Manual agent spawning
-- `npx claude-flow agent list` - View active agents
-- `npx claude-flow swarm scale` - Swarm-level scaling
+- `npx cortex-agent agent spawn` - Manual agent spawning
+- `npx cortex-agent agent list` - View active agents
+- `npx cortex-agent swarm scale` - Swarm-level scaling

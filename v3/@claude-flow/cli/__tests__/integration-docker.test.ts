@@ -1,7 +1,7 @@
 /**
  * Integration Docker Validation Tests
  *
- * Validates the RuFlo Docker-based deployment stack without running Docker.
+ * Validates the Cortex Agent Docker-based deployment stack without running Docker.
  * Checks docker-compose.yml, nginx.conf, MCP bridge source, CLI Dockerfile,
  * and CLI build/init/doctor commands for correctness.
  *
@@ -23,16 +23,16 @@ import { resolve, join } from 'path';
 // Paths
 // ---------------------------------------------------------------------------
 
-const ROOT = resolve(__dirname, '..', '..', '..', '..');            // /workspaces/claude-flow
-const CLI_DIR = resolve(__dirname, '..');                             // v3/@claude-flow/cli
-const RUFLO_DIR = join(ROOT, 'ruflo');
-const COMPOSE_PATH = join(RUFLO_DIR, 'docker-compose.yml');
-const NGINX_CONF_PATH = join(RUFLO_DIR, 'src', 'nginx', 'nginx.conf');
-const NGINX_DOCKERFILE = join(RUFLO_DIR, 'src', 'nginx', 'Dockerfile');
-const MCP_BRIDGE_INDEX = join(RUFLO_DIR, 'src', 'mcp-bridge', 'index.js');
-const MCP_BRIDGE_DOCKERFILE = join(RUFLO_DIR, 'src', 'mcp-bridge', 'Dockerfile');
+const ROOT = resolve(__dirname, '..', '..', '..', '..');            // /workspaces/cortex-agent
+const CLI_DIR = resolve(__dirname, '..');                             // v3/@cortex-agent/cli
+const CORTEX_AGENT_DIR = join(ROOT, 'cortex-agent');
+const COMPOSE_PATH = join(CORTEX_AGENT_DIR, 'docker-compose.yml');
+const NGINX_CONF_PATH = join(CORTEX_AGENT_DIR, 'src', 'nginx', 'nginx.conf');
+const NGINX_DOCKERFILE = join(CORTEX_AGENT_DIR, 'src', 'nginx', 'Dockerfile');
+const MCP_BRIDGE_INDEX = join(CORTEX_AGENT_DIR, 'src', 'mcp-bridge', 'index.js');
+const MCP_BRIDGE_DOCKERFILE = join(CORTEX_AGENT_DIR, 'src', 'mcp-bridge', 'Dockerfile');
 const CLI_DOCKERFILE = join(CLI_DIR, 'docker', 'Dockerfile');
-const ENV_EXAMPLE = join(RUFLO_DIR, '.env.example');
+const ENV_EXAMPLE = join(CORTEX_AGENT_DIR, '.env.example');
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -230,8 +230,8 @@ describe('Nginx Configuration', () => {
     expect(nginxContent).toContain('proxy_set_header Accept-Encoding ""');
   });
 
-  it('injects RuFlo welcome.js script via sub_filter', () => {
-    expect(nginxContent).toMatch(/sub_filter\s+'<\/head>'\s+'<script src="\/ruflo\/welcome\.js"/);
+  it('injects Cortex Agent welcome.js script via sub_filter', () => {
+    expect(nginxContent).toMatch(/sub_filter\s+'<\/head>'\s+'<script src="\/cortex-agent\/welcome\.js"/);
   });
 
   it('has sub_filter_once off for multiple replacements', () => {
@@ -249,8 +249,8 @@ describe('Nginx Configuration', () => {
     expect(nginxContent).toContain('alias /etc/nginx/static/');
   });
 
-  it('serves /ruflo/ static assets from /etc/nginx/static/', () => {
-    expect(nginxContent).toMatch(/location\s+\/ruflo\//);
+  it('serves /cortex-agent/ static assets from /etc/nginx/static/', () => {
+    expect(nginxContent).toMatch(/location\s+\/cortex-agent\//);
   });
 
   it('rewrites localhost:3000 URLs to relative paths via sub_filter', () => {
@@ -398,10 +398,10 @@ describe('MCP Bridge Dockerfile', () => {
     expect(dockerContent).toContain('COPY mcp-stdio-kernel.js ./');
   });
 
-  it('creates writable .claude-flow directories', () => {
-    expect(dockerContent).toContain('/app/.claude-flow/tasks');
-    expect(dockerContent).toContain('/app/.claude-flow/memory');
-    expect(dockerContent).toContain('/app/.claude-flow/sessions');
+  it('creates writable .cortex-agent directories', () => {
+    expect(dockerContent).toContain('/app/.cortex-agent/tasks');
+    expect(dockerContent).toContain('/app/.cortex-agent/memory');
+    expect(dockerContent).toContain('/app/.cortex-agent/sessions');
   });
 
   it('runs as non-root user', () => {
@@ -428,7 +428,7 @@ describe('MCP Bridge Dockerfile', () => {
 // 6. CLI Dockerfile Validation
 // ---------------------------------------------------------------------------
 
-describe('CLI Dockerfile (ruflo:lite)', () => {
+describe('CLI Dockerfile (cortex-agent:lite)', () => {
   let dockerContent: string;
 
   beforeAll(() => {
@@ -455,8 +455,8 @@ describe('CLI Dockerfile (ruflo:lite)', () => {
     expect(dockerContent).toMatch(/FROM\s+node:22-alpine\s+AS\s+production/);
   });
 
-  it('installs ruflo globally in the build stage', () => {
-    expect(dockerContent).toContain('npm install -g ruflo@latest');
+  it('installs cortex-agent globally in the build stage', () => {
+    expect(dockerContent).toContain('npm install -g cortex-agent@latest');
   });
 
   it('prunes heavy optional dependencies to reduce image size', () => {
@@ -469,10 +469,10 @@ describe('CLI Dockerfile (ruflo:lite)', () => {
     }
   });
 
-  it('creates a non-root user (ruflo)', () => {
+  it('creates a non-root user (cortex-agent)', () => {
     expect(dockerContent).toContain('adduser');
-    expect(dockerContent).toContain('ruflo');
-    expect(dockerContent).toContain('USER ruflo');
+    expect(dockerContent).toContain('cortex-agent');
+    expect(dockerContent).toContain('USER cortex-agent');
   });
 
   it('installs dumb-init for PID 1 signal handling', () => {
@@ -484,13 +484,13 @@ describe('CLI Dockerfile (ruflo:lite)', () => {
     expect(dockerContent).toContain('NODE_ENV=production');
   });
 
-  it('has a HEALTHCHECK using ruflo doctor', () => {
+  it('has a HEALTHCHECK using cortex-agent doctor', () => {
     expect(dockerContent).toContain('HEALTHCHECK');
-    expect(dockerContent).toContain('ruflo doctor');
+    expect(dockerContent).toContain('cortex-agent doctor');
   });
 
   it('default CMD starts MCP server', () => {
-    expect(dockerContent).toContain('CMD ["ruflo", "mcp", "start"]');
+    expect(dockerContent).toContain('CMD ["cortex-agent", "mcp", "start"]');
   });
 });
 
@@ -548,7 +548,7 @@ describe('Environment Example (.env.example)', () => {
 describe('CLI Build', () => {
   it('package.json exists and has correct name', () => {
     const pkg = JSON.parse(readFile(join(CLI_DIR, 'package.json')));
-    expect(pkg.name).toBe('@claude-flow/cli');
+    expect(pkg.name).toBe('@cortex-agent/cli');
   });
 
   it('package.json defines build script as tsc', () => {
@@ -649,7 +649,7 @@ describe('Security Checks', () => {
 
   it('CLI Dockerfile runs as non-root', () => {
     const dockerfile = readFile(CLI_DOCKERFILE);
-    expect(dockerfile).toContain('USER ruflo');
+    expect(dockerfile).toContain('USER cortex-agent');
   });
 
   it('nginx CORS allows all origins (expected for development)', () => {

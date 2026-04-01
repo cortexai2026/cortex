@@ -10,7 +10,7 @@
  *   {storagePath}/index.json     - Metadata index (counts, timestamps, task IDs)
  *   {storagePath}/.lock          - Lock file for concurrent access prevention
  *
- * @module @claude-flow/guidance/persistence
+ * @module @cortex-agent/guidance/persistence
  */
 
 import { mkdir, readFile, writeFile, appendFile, stat, unlink, rename } from 'node:fs/promises';
@@ -28,7 +28,7 @@ import type { RunEvent } from './types.js';
  * Configuration for the persistent ledger
  */
 export interface PersistenceConfig {
-  /** Directory path for storage files (default: '.claude-flow/guidance') */
+  /** Directory path for storage files (default: '.cortex-agent/guidance') */
   storagePath: string;
   /** Maximum events to keep; oldest evicted on compact (default: 10000) */
   maxEvents: number;
@@ -71,7 +71,7 @@ interface StorageIndex {
 // ============================================================================
 
 const DEFAULT_PERSISTENCE_CONFIG: PersistenceConfig = {
-  storagePath: '.claude-flow/guidance',
+  storagePath: '.cortex-agent/guidance',
   maxEvents: 10_000,
   compactIntervalMs: 60 * 60 * 1000, // 1 hour
   enableWAL: true,

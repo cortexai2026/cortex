@@ -594,7 +594,7 @@ export class InitController {
     await this.security.validateEnvironment();
 
     // Check for secure token
-    if (!process.env.CLAUDE_FLOW_TOKEN) {
+    if (!process.env.CORTEX_AGENT_TOKEN) {
       const token = this.security.generateSecureToken();
       console.log('Generated secure token - add to environment');
     }
@@ -609,9 +609,9 @@ export class InitController {
       '.claude/commands',
       '.claude/skills',
       '.claude/checkpoints/active',
-      '.claude-flow/coordination',
-      '.claude-flow/training',
-      '.claude-flow/metrics'
+      '.cortex-agent/coordination',
+      '.cortex-agent/training',
+      '.cortex-agent/metrics'
     ];
 
     for (const dir of dirs) {
@@ -956,21 +956,21 @@ npm run test:compatibility
 
 ```bash
 # Fresh v3 installation
-npx claude-flow init --mode sparc --sona research
+npx cortex-agent init --mode sparc --sona research
 
 # With all features
-npx claude-flow init --mode enterprise --sona research --attention flash
+npx cortex-agent init --mode enterprise --sona research --attention flash
 
 # Minimal (fast startup)
-npx claude-flow init --mode standard --sona real-time
+npx cortex-agent init --mode standard --sona real-time
 
 # Migrate from v2
-npx claude-flow init --migrate
+npx cortex-agent init --migrate
 ```
 
 ```typescript
 // v3 API usage
-import { InitController, SwarmCoordinator, SONAManager } from 'claude-flow/v3';
+import { InitController, SwarmCoordinator, SONAManager } from 'cortex-agent/v3';
 
 // Initialize with learning
 const init = new InitController({

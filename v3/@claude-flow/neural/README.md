@@ -1,12 +1,12 @@
-# @claude-flow/neural
+# @cortex-agent/neural
 
-[![npm version](https://img.shields.io/npm/v/@claude-flow/neural.svg)](https://www.npmjs.com/package/@claude-flow/neural)
-[![npm downloads](https://img.shields.io/npm/dm/@claude-flow/neural.svg)](https://www.npmjs.com/package/@claude-flow/neural)
+[![npm version](https://img.shields.io/npm/v/@cortex-agent/neural.svg)](https://www.npmjs.com/package/@cortex-agent/neural)
+[![npm downloads](https://img.shields.io/npm/dm/@cortex-agent/neural.svg)](https://www.npmjs.com/package/@cortex-agent/neural)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue.svg)](https://www.typescriptlang.org/)
-[![AI Learning](https://img.shields.io/badge/AI-Self--Learning-purple.svg)](https://github.com/ruvnet/claude-flow)
+[![AI Learning](https://img.shields.io/badge/AI-Self--Learning-purple.svg)](https://github.com/ruvnet/cortex-agent)
 
-> Self-Optimizing Neural Architecture (SONA) module for Claude Flow V3 - adaptive learning, trajectory tracking, and pattern-based optimization.
+> Self-Optimizing Neural Architecture (SONA) module for Cortex Agent V3 - adaptive learning, trajectory tracking, and pattern-based optimization.
 
 ## Features
 
@@ -21,13 +21,13 @@
 ## Installation
 
 ```bash
-npm install @claude-flow/neural
+npm install @cortex-agent/neural
 ```
 
 ## Quick Start
 
 ```typescript
-import { SONAManager, createSONAManager } from '@claude-flow/neural';
+import { SONAManager, createSONAManager } from '@cortex-agent/neural';
 
 // Create SONA manager
 const sona = createSONAManager('balanced');
@@ -74,7 +74,7 @@ const { mode, config, optimizations } = sona.getConfig();
 ### SONA Manager
 
 ```typescript
-import { SONAManager } from '@claude-flow/neural';
+import { SONAManager } from '@cortex-agent/neural';
 
 const sona = new SONAManager('balanced');
 await sona.initialize();
@@ -100,7 +100,7 @@ const stats = sona.getStats();
 ### RL Algorithms
 
 ```typescript
-import { PPO, A2C, DQN, QLearning, SARSA, DecisionTransformer } from '@claude-flow/neural';
+import { PPO, A2C, DQN, QLearning, SARSA, DecisionTransformer } from '@cortex-agent/neural';
 
 // Proximal Policy Optimization
 const ppo = new PPO({
@@ -241,19 +241,19 @@ import type {
   LoRAWeights,
   EWCConfig,
   RLAlgorithm
-} from '@claude-flow/neural';
+} from '@cortex-agent/neural';
 ```
 
 ## Dependencies
 
-- [@claude-flow/memory](../memory) - Memory integration
+- [@cortex-agent/memory](../memory) - Memory integration
 - `@ruvector/sona` - SONA learning engine
 
 ## Related Packages
 
-- [@claude-flow/memory](../memory) - Vector memory for patterns
-- [@claude-flow/integration](../integration) - agentic-flow integration
-- [@claude-flow/performance](../performance) - Benchmarking
+- [@cortex-agent/memory](../memory) - Vector memory for patterns
+- [@cortex-agent/integration](../integration) - agentic-flow integration
+- [@cortex-agent/performance](../performance) - Benchmarking
 
 ## License
 

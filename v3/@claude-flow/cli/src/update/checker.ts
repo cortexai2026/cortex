@@ -1,5 +1,5 @@
 /**
- * Update checker for @claude-flow packages
+ * Update checker for @cortex-agent packages
  * Queries npm registry and compares versions
  */
 
@@ -37,22 +37,22 @@ const DEFAULT_CONFIG: UpdateConfig = {
     major: false,
   },
   priority: {
-    '@claude-flow/security': 'critical',
-    '@claude-flow/cli': 'high',
-    '@claude-flow/embeddings': 'normal',
-    '@claude-flow/integration': 'normal',
-    '@claude-flow/testing': 'low',
+    '@cortex-agent/security': 'critical',
+    '@cortex-agent/cli': 'high',
+    '@cortex-agent/embeddings': 'normal',
+    '@cortex-agent/integration': 'normal',
+    '@cortex-agent/testing': 'low',
   },
   exclude: [],
 };
 
 // Packages to check for updates
-const CLAUDE_FLOW_PACKAGES = [
-  '@claude-flow/cli',
-  '@claude-flow/embeddings',
-  '@claude-flow/security',
-  '@claude-flow/integration',
-  '@claude-flow/testing',
+const CORTEX_AGENT_PACKAGES = [
+  '@cortex-agent/cli',
+  '@cortex-agent/embeddings',
+  '@cortex-agent/security',
+  '@cortex-agent/integration',
+  '@cortex-agent/testing',
 ];
 
 interface NpmPackageInfo {
@@ -176,7 +176,7 @@ export async function checkForUpdates(
   const versionCache: Record<string, string> = {};
 
   // Check each package
-  const packagesToCheck = CLAUDE_FLOW_PACKAGES.filter(
+  const packagesToCheck = CORTEX_AGENT_PACKAGES.filter(
     (pkg) => !config.exclude.includes(pkg)
   );
 

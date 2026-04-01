@@ -10,7 +10,7 @@ invocation:
   - /security-review
 
 requires:
-  - "@claude-flow/aidefence"
+  - "@cortex-agent/aidefence"
 ---
 
 # Secure Review Skill
@@ -41,7 +41,7 @@ When `/secure-review` is invoked:
 ### Step 1: Initialize Security Tools
 
 ```typescript
-import { createAIDefence } from '@claude-flow/aidefence';
+import { createAIDefence } from '@cortex-agent/aidefence';
 
 const aidefence = createAIDefence({ enableLearning: true });
 ```

@@ -3,14 +3,14 @@
 
 **Validation Date:** 2025-10-11
 **Version:** v2.6.0-alpha.2
-**Method:** Real-world command testing with `./bin/claude-flow`
+**Method:** Real-world command testing with `./bin/cortex-agent`
 **Status:** ✅ **ALL TESTS PASSED - READY FOR PUBLISH**
 
 ---
 
 ## Executive Summary
 
-Comprehensive validation of all user-facing capabilities has been completed using the actual `./bin/claude-flow` command-line interface. All critical features are operational and ready for production release.
+Comprehensive validation of all user-facing capabilities has been completed using the actual `./bin/cortex-agent` command-line interface. All critical features are operational and ready for production release.
 
 **Test Results:** 100% PASS (14/14 tests)
 **Validation Duration:** ~5 minutes
@@ -25,7 +25,7 @@ Comprehensive validation of all user-facing capabilities has been completed usin
 
 **Test Command:**
 ```bash
-./bin/claude-flow --version
+./bin/cortex-agent --version
 ```
 
 **Expected:** Display current version
@@ -34,7 +34,7 @@ Comprehensive validation of all user-facing capabilities has been completed usin
 
 **Test Command:**
 ```bash
-./bin/claude-flow --help
+./bin/cortex-agent --help
 ```
 
 **Expected:** Display comprehensive help
@@ -56,7 +56,7 @@ Comprehensive validation of all user-facing capabilities has been completed usin
 
 **Test Command:**
 ```bash
-./bin/claude-flow agent agents
+./bin/cortex-agent agent agents
 ```
 
 **Expected:** Display 66+ available agents
@@ -106,7 +106,7 @@ CORE:
 
 **Test Command:**
 ```bash
-./bin/claude-flow agent info coder
+./bin/cortex-agent agent info coder
 ```
 
 **Expected:** Display agent details
@@ -126,7 +126,7 @@ CORE:
 
 **Test Command:**
 ```bash
-./bin/claude-flow agent execute coder "Write a one-line function that adds two numbers" --format json
+./bin/cortex-agent agent execute coder "Write a one-line function that adds two numbers" --format json
 ```
 
 **Expected:** Execute agent and return result
@@ -195,7 +195,7 @@ and are immediately clear in their intent.
 
 **Test Command:**
 ```bash
-./bin/claude-flow memory store validation_test "Test data for final validation" --namespace release_check
+./bin/cortex-agent memory store validation_test "Test data for final validation" --namespace release_check
 ```
 
 **Expected:** Store data successfully
@@ -221,7 +221,7 @@ and are immediately clear in their intent.
 
 **Test Command:**
 ```bash
-./bin/claude-flow memory query validation --namespace release_check
+./bin/cortex-agent memory query validation --namespace release_check
 ```
 
 **Expected:** Retrieve stored data
@@ -250,7 +250,7 @@ and are immediately clear in their intent.
 
 **Test Command:**
 ```bash
-./bin/claude-flow memory store secure_test "key=sk-ant-api_test..." --namespace release_check --redact
+./bin/cortex-agent memory store secure_test "key=sk-ant-api_test..." --namespace release_check --redact
 ```
 
 **Expected:** Detect API key and redact
@@ -289,7 +289,7 @@ and are immediately clear in their intent.
 
 **Test Command:**
 ```bash
-./bin/claude-flow memory stats
+./bin/cortex-agent memory stats
 ```
 
 **Expected:** Display memory usage stats
@@ -324,7 +324,7 @@ and are immediately clear in their intent.
 
 **Test Command:**
 ```bash
-./bin/claude-flow agent --help
+./bin/cortex-agent agent --help
 ```
 
 **Expected:** Display agent command help
@@ -333,10 +333,10 @@ and are immediately clear in their intent.
 **Output:**
 ```
 NAME
-    claude-flow agent - Manage individual agents
+    cortex-agent agent - Manage individual agents
 
 SYNOPSIS
-    claude-flow agent <action> [options]
+    cortex-agent agent <action> [options]
 
 COMMANDS
     spawn                      Create a new agent
@@ -353,8 +353,8 @@ OPTIONS
     --json                     Output in JSON format
 
 EXAMPLES
-    claude-flow agent spawn researcher --name "Research Bot"
-    claude-flow agent list --json
+    cortex-agent agent spawn researcher --name "Research Bot"
+    cortex-agent agent list --json
 ```
 
 **Validation:**
@@ -369,7 +369,7 @@ EXAMPLES
 
 **Test Command:**
 ```bash
-./bin/claude-flow memory --help
+./bin/cortex-agent memory --help
 ```
 
 **Expected:** Display memory command help
@@ -378,10 +378,10 @@ EXAMPLES
 **Output:**
 ```
 NAME
-    claude-flow memory - Manage persistent memory operations
+    cortex-agent memory - Manage persistent memory operations
 
 SYNOPSIS
-    claude-flow memory <action> [key] [value] [options]
+    cortex-agent memory <action> [key] [value] [options]
 
 COMMANDS
     store                      Store data in memory
@@ -397,9 +397,9 @@ OPTIONS
     --format <type>            Export format
 
 EXAMPLES
-    claude-flow memory store "api_design" "REST endpoints specification"
-    claude-flow memory query "authentication"
-    claude-flow memory export backup.json
+    cortex-agent memory store "api_design" "REST endpoints specification"
+    cortex-agent memory query "authentication"
+    cortex-agent memory export backup.json
 ```
 
 **Validation:**
@@ -418,7 +418,7 @@ EXAMPLES
 
 **Test Command:**
 ```bash
-./bin/claude-flow agent execute nonexistent_agent "test"
+./bin/cortex-agent agent execute nonexistent_agent "test"
 ```
 
 **Expected:** Clear error message
@@ -450,7 +450,7 @@ Command failed: npx agentic-flow --agent nonexistent_agent --task "test"
 
 **Test Command:**
 ```bash
-./bin/claude-flow memory query nonexistent_key --namespace nonexistent_ns
+./bin/cortex-agent memory query nonexistent_key --namespace nonexistent_ns
 ```
 
 **Expected:** Graceful handling of missing data
@@ -816,7 +816,7 @@ The system demonstrates:
 
 **Validation Completed:** 2025-10-11
 **Validator:** Claude Code Pre-Publish Validation System
-**Method:** Real-world CLI testing with `./bin/claude-flow`
+**Method:** Real-world CLI testing with `./bin/cortex-agent`
 **Tests Executed:** 14
 **Pass Rate:** 100%
 **Confidence:** VERY HIGH (98%)

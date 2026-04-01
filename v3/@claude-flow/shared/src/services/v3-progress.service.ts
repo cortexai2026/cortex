@@ -9,7 +9,7 @@
  *
  * Can be used from CLI, MCP tools, hooks, or programmatically.
  *
- * @module @claude-flow/shared/services/v3-progress
+ * @module @cortex-agent/shared/services/v3-progress
  */
 
 import { promises as fs, existsSync, mkdirSync, readFileSync, writeFileSync, readdirSync } from 'fs';
@@ -112,8 +112,8 @@ export class V3ProgressService extends EventEmitter {
     super();
     this.projectRoot = options.projectRoot || process.cwd();
     this.v3Path = join(this.projectRoot, 'v3');
-    this.cliPath = join(this.v3Path, '@claude-flow', 'cli', 'src');
-    this.metricsPath = options.outputPath || join(this.projectRoot, '.claude-flow', 'metrics', 'v3-progress.json');
+    this.cliPath = join(this.v3Path, '@cortex-agent', 'cli', 'src');
+    this.metricsPath = options.outputPath || join(this.projectRoot, '.cortex-agent', 'metrics', 'v3-progress.json');
   }
 
   /**
@@ -372,7 +372,7 @@ export class V3ProgressService extends EventEmitter {
     packages: { total: number; withDDD: number; target: number; list: string[] };
     ddd: { explicit: number; utility: number };
   }> {
-    const packagesPath = join(this.v3Path, '@claude-flow');
+    const packagesPath = join(this.v3Path, '@cortex-agent');
     const list: string[] = [];
     let explicit = 0;
     let utility = 0;
@@ -421,7 +421,7 @@ export class V3ProgressService extends EventEmitter {
   }
 
   private async countCodebase(): Promise<{ totalFiles: number; totalLines: number }> {
-    const v3ClaudeFlow = join(this.v3Path, '@claude-flow');
+    const v3CortexAgent = join(this.v3Path, '@cortex-agent');
     let totalFiles = 0;
     let totalLines = 0;
 
@@ -445,7 +445,7 @@ export class V3ProgressService extends EventEmitter {
       } catch {}
     };
 
-    await countDir(v3ClaudeFlow);
+    await countDir(v3CortexAgent);
 
     return {
       totalFiles: totalFiles || 419,

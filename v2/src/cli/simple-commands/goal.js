@@ -11,8 +11,8 @@ export async function goalCommand(args, flags) {
   const subcommand = args[0];
   
   if (!subcommand) {
-    console.log(chalk.magenta('🎯 Claude Flow Goal Module'));
-    console.log('\nUsage: claude-flow goal <command> [options]');
+    console.log(chalk.magenta('🎯 Cortex Agent Goal Module'));
+    console.log('\nUsage: cortex-agent goal <command> [options]');
     console.log('\nCommands:');
     console.log('  init    Initialize GOAP goal module');
     console.log('\nOptions:');
@@ -32,7 +32,7 @@ export async function goalCommand(args, flags) {
 async function initGoalModule(flags = {}) {
   const targetDir = path.resolve(process.cwd(), flags.target || '.claude/agents/goal');
   
-  console.log(chalk.magenta('🎯 Initializing Claude Flow Goal Module...'));
+  console.log(chalk.magenta('🎯 Initializing Cortex Agent Goal Module...'));
   console.log(chalk.gray(`  Target: ${targetDir}`));
   
   try {
@@ -99,20 +99,20 @@ Your planning methodology follows the GOAP algorithm:
 
 \`\`\`javascript
 // Orchestrate complex goal achievement
-mcp__claude-flow__task_orchestrate {
+mcp__cortex-agent__task_orchestrate {
   task: "achieve_production_deployment",
   strategy: "adaptive",
   priority: "high"
 }
 
 // Coordinate with swarm for parallel planning
-mcp__claude-flow__swarm_init {
+mcp__cortex-agent__swarm_init {
   topology: "hierarchical",
   maxAgents: 5
 }
 
 // Store successful plans for reuse
-mcp__claude-flow__memory_usage {
+mcp__cortex-agent__memory_usage {
   action: "store",
   namespace: "goap-plans",
   key: "deployment_plan_v1",

@@ -2,12 +2,12 @@
  * Claude API specific error types with enhanced error handling
  */
 
-import { ClaudeFlowError } from '../utils/errors.js';
+import { CortexAgentError } from '../utils/errors.js';
 
 /**
  * Base error class for Claude API errors
  */
-export class ClaudeAPIError extends ClaudeFlowError {
+export class ClaudeAPIError extends CortexAgentError {
   constructor(
     message: string,
     public readonly statusCode?: number,

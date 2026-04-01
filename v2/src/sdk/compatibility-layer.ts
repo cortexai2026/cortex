@@ -5,7 +5,7 @@
  * Maintains backward compatibility while transitioning to SDK
  */
 
-import { ClaudeFlowSDKAdapter } from './sdk-config.js';
+import { CortexAgentSDKAdapter } from './sdk-config.js';
 import Anthropic from '@anthropic-ai/sdk';
 
 /**
@@ -13,11 +13,11 @@ import Anthropic from '@anthropic-ai/sdk';
  * while transitioning from custom implementations to SDK
  */
 export class SDKCompatibilityLayer {
-  private adapter: ClaudeFlowSDKAdapter;
+  private adapter: CortexAgentSDKAdapter;
   private legacyMode: boolean = false;
   private deprecationWarnings: Set<string> = new Set();
 
-  constructor(adapter: ClaudeFlowSDKAdapter) {
+  constructor(adapter: CortexAgentSDKAdapter) {
     this.adapter = adapter;
   }
 
@@ -85,7 +85,7 @@ export class SDKCompatibilityLayer {
       // Legacy file-based persistence
       const fs = await import('fs/promises');
       const path = await import('path');
-      const storagePath = '.claude-flow/storage';
+      const storagePath = '.cortex-agent/storage';
       await fs.mkdir(storagePath, { recursive: true });
       await fs.writeFile(
         path.join(storagePath, `${key}.json`),
@@ -233,7 +233,7 @@ export class SDKCompatibilityLayer {
 
 // Export singleton for convenience
 export const createCompatibilityLayer = (
-  adapter: ClaudeFlowSDKAdapter
+  adapter: CortexAgentSDKAdapter
 ): SDKCompatibilityLayer => {
   return new SDKCompatibilityLayer(adapter);
 };

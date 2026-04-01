@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Claude Flow V3 Statusline Generator
+ * Cortex Agent V3 Statusline Generator
  * Displays real-time V3 implementation progress and system status
  *
  * Usage: node statusline.cjs [options]
@@ -300,10 +300,10 @@ function getSystemMetrics() {
   try {
     if (isWindows) {
       // Windows: use tasklist and findstr for agent counting
-      const agents = execSync('tasklist 2>NUL | findstr /I "claude-flow" 2>NUL | find /C /V "" 2>NUL || echo 0', { encoding: 'utf-8' });
+      const agents = execSync('tasklist 2>NUL | findstr /I "cortex-agent" 2>NUL | find /C /V "" 2>NUL || echo 0', { encoding: 'utf-8' });
       subAgents = Math.max(0, parseInt(agents.trim()) || 0);
     } else {
-      const agents = execSync('ps aux 2>/dev/null | grep -c "claude-flow.*agent" || echo "0"', { encoding: 'utf-8' });
+      const agents = execSync('ps aux 2>/dev/null | grep -c "cortex-agent.*agent" || echo "0"', { encoding: 'utf-8' });
       subAgents = Math.max(0, parseInt(agents.trim()) - 1);
     }
   } catch (e) {
@@ -336,7 +336,7 @@ function generateStatusline() {
   const lines = [];
 
   // Header Line
-  let header = `${c.bold}${c.brightPurple}▊ Claude Flow V3 ${c.reset}`;
+  let header = `${c.bold}${c.brightPurple}▊ Cortex Agent V3 ${c.reset}`;
   header += `${swarm.coordinationActive ? c.brightCyan : c.dim}● ${c.brightCyan}${user.name}${c.reset}`;
   if (user.gitBranch) {
     header += `  ${c.dim}│${c.reset}  ${c.brightBlue}⎇ ${user.gitBranch}${c.reset}`;
@@ -403,7 +403,7 @@ function generateJSON() {
 /**
  * Generate single-line output for Claude Code compatibility
  * This avoids the collision zone issue entirely by using one line
- * @see https://github.com/ruvnet/claude-flow/issues/985
+ * @see https://github.com/ruvnet/cortex-agent/issues/985
  */
 function generateSingleLine() {
   if (!CONFIG.enabled) return '';
@@ -429,7 +429,7 @@ function generateSingleLine() {
  * Generate safe multi-line statusline that avoids Claude Code collision zone
  * The collision zone is columns 15-25 on the second-to-last line.
  * We pad that line with spaces to push content past column 25.
- * @see https://github.com/ruvnet/claude-flow/issues/985
+ * @see https://github.com/ruvnet/cortex-agent/issues/985
  */
 function generateSafeStatusline() {
   if (!CONFIG.enabled) return '';
@@ -442,7 +442,7 @@ function generateSafeStatusline() {
   const lines = [];
 
   // Header Line
-  let header = `${c.bold}${c.brightPurple}▊ Claude Flow V3 ${c.reset}`;
+  let header = `${c.bold}${c.brightPurple}▊ Cortex Agent V3 ${c.reset}`;
   header += `${swarm.coordinationActive ? c.brightCyan : c.dim}● ${c.brightCyan}${user.name}${c.reset}`;
   if (user.gitBranch) {
     header += `  ${c.dim}│${c.reset}  ${c.brightBlue}⎇ ${user.gitBranch}${c.reset}`;

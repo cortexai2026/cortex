@@ -1,4 +1,4 @@
-# ADR-025: Auto-Update System for @claude-flow Packages
+# ADR-025: Auto-Update System for @cortex-agent Packages
 
 ## Status
 **Implemented** - 2026-01-13
@@ -14,16 +14,16 @@
 | CLI Commands | `src/commands/update.ts` | ~340 |
 | Startup Integration | `src/index.ts` | ~20 |
 
-**Published:** @claude-flow/cli@3.0.0-alpha.83
+**Published:** @cortex-agent/cli@3.0.0-alpha.83
 
 ## Context
 
-The Claude Flow V3 ecosystem consists of multiple packages:
-- `@claude-flow/cli` - Main CLI tool
-- `@claude-flow/embeddings` - Vector embeddings
-- `@claude-flow/security` - Security utilities
-- `@claude-flow/integration` - agentic-flow integration
-- `@claude-flow/testing` - Test utilities
+The Cortex Agent V3 ecosystem consists of multiple packages:
+- `@cortex-agent/cli` - Main CLI tool
+- `@cortex-agent/embeddings` - Vector embeddings
+- `@cortex-agent/security` - Security utilities
+- `@cortex-agent/integration` - agentic-flow integration
+- `@cortex-agent/testing` - Test utilities
 
 When one package is updated, dependent packages may need updates for compatibility. Currently, users must manually check for updates, leading to:
 - Version mismatches causing runtime errors
@@ -55,10 +55,10 @@ Implement an **auto-update system** that:
 
 | Priority | Packages | Auto-Update |
 |----------|----------|-------------|
-| Critical | `@claude-flow/security` | Always (patches) |
-| High | `@claude-flow/cli` | Minor + Patch |
-| Normal | `@claude-flow/embeddings`, `@claude-flow/integration` | Patch only |
-| Low | `@claude-flow/testing` | Notify only |
+| Critical | `@cortex-agent/security` | Always (patches) |
+| High | `@cortex-agent/cli` | Minor + Patch |
+| Normal | `@cortex-agent/embeddings`, `@cortex-agent/integration` | Patch only |
+| Low | `@cortex-agent/testing` | Notify only |
 
 ## Implementation
 
@@ -129,7 +129,7 @@ interface RateLimitState {
   packageVersions: Record<string, string>;
 }
 
-// Stored in: ~/.claude-flow/update-state.json
+// Stored in: ~/.cortex-agent/update-state.json
 ```
 
 #### 3. PackageValidator (`src/update/validator.ts`)
@@ -148,10 +148,10 @@ interface ValidationResult {
 ```
 1. CLI Start
    │
-   ├─► Check rate limit cache (~/.claude-flow/update-state.json)
+   ├─► Check rate limit cache (~/.cortex-agent/update-state.json)
    │   └─► If checked within 24h AND no --force-update → Skip
    │
-   ├─► Query npm registry for @claude-flow/* packages
+   ├─► Query npm registry for @cortex-agent/* packages
    │   └─► Compare versions using semver
    │
    ├─► For each package with available update:
@@ -160,45 +160,45 @@ interface ValidationResult {
    │   └─► Determine if auto-update applies
    │
    ├─► Execute auto-updates (if any)
-   │   ├─► npm install @claude-flow/package@version
+   │   ├─► npm install @cortex-agent/package@version
    │   ├─► Verify installation success
    │   └─► Log to update history
    │
    └─► Display notification for non-auto updates
-       └─► "Run `npx claude-flow update` to update X packages"
+       └─► "Run `npx cortex-agent update` to update X packages"
 ```
 
 ### CLI Commands
 
 ```bash
 # Check for updates (manual)
-npx claude-flow update check
+npx cortex-agent update check
 
 # Update all packages
-npx claude-flow update all
+npx cortex-agent update all
 
 # Update specific package
-npx claude-flow update @claude-flow/embeddings
+npx cortex-agent update @cortex-agent/embeddings
 
 # View update history
-npx claude-flow update history
+npx cortex-agent update history
 
 # Rollback last update
-npx claude-flow update rollback
+npx cortex-agent update rollback
 
 # Configure auto-update
-npx claude-flow config set update.autoUpdateMinor true
-npx claude-flow config set update.checkIntervalHours 12
+npx cortex-agent config set update.autoUpdateMinor true
+npx cortex-agent config set update.checkIntervalHours 12
 ```
 
 ### Environment Variables
 
 ```bash
 # Disable auto-update entirely
-CLAUDE_FLOW_AUTO_UPDATE=false
+CORTEX_AGENT_AUTO_UPDATE=false
 
 # Force update check
-CLAUDE_FLOW_FORCE_UPDATE=true
+CORTEX_AGENT_FORCE_UPDATE=true
 
 # CI/CD mode (no interactive prompts, no auto-update)
 CI=true
@@ -207,7 +207,7 @@ CI=true
 ### Configuration File
 
 ```json
-// claude-flow.config.json
+// cortex-agent.config.json
 {
   "update": {
     "enabled": true,
@@ -218,11 +218,11 @@ CI=true
       "major": false
     },
     "priority": {
-      "@claude-flow/security": "critical",
-      "@claude-flow/cli": "high",
-      "@claude-flow/embeddings": "normal",
-      "@claude-flow/integration": "normal",
-      "@claude-flow/testing": "low"
+      "@cortex-agent/security": "critical",
+      "@cortex-agent/cli": "high",
+      "@cortex-agent/embeddings": "normal",
+      "@cortex-agent/integration": "normal",
+      "@cortex-agent/testing": "low"
     },
     "exclude": []
   }

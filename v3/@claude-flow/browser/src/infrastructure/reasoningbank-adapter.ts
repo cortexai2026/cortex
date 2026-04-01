@@ -1,5 +1,5 @@
 /**
- * @claude-flow/browser - ReasoningBank Integration
+ * @cortex-agent/browser - ReasoningBank Integration
  * Connects browser trajectories to agentic-flow's learning system
  */
 

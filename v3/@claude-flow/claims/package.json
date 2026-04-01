@@ -1,7 +1,7 @@
 {
-  "name": "@claude-flow/claims",
+  "name": "@cortex-agent/claims",
   "version": "3.0.0-alpha.8",
-  "description": "Issue claiming and work coordination module for Claude Flow V3",
+  "description": "Issue claiming and work coordination module for Cortex Agent V3",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
@@ -37,7 +37,7 @@
     "typecheck": "tsc --noEmit"
   },
   "keywords": [
-    "claude-flow",
+    "cortex-agent",
     "claims",
     "issue-tracking",
     "work-coordination",
@@ -45,17 +45,17 @@
     "swarm",
     "mcp"
   ],
-  "author": "Claude Flow Team",
+  "author": "Cortex Agent Team",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ruvnet/claude-flow.git",
-    "directory": "v3/@claude-flow/claims"
+    "url": "https://github.com/ruvnet/cortex-agent.git",
+    "directory": "v3/@cortex-agent/claims"
   },
   "bugs": {
-    "url": "https://github.com/ruvnet/claude-flow/issues"
+    "url": "https://github.com/ruvnet/cortex-agent/issues"
   },
-  "homepage": "https://github.com/ruvnet/claude-flow#readme",
+  "homepage": "https://github.com/ruvnet/cortex-agent#readme",
   "dependencies": {
     "zod": "^3.22.4"
   },
@@ -67,10 +67,10 @@
     "vitest": "^4.0.16"
   },
   "peerDependencies": {
-    "@claude-flow/shared": "^3.0.0-alpha.1"
+    "@cortex-agent/shared": "^3.0.0-alpha.1"
   },
   "peerDependenciesMeta": {
-    "@claude-flow/shared": {
+    "@cortex-agent/shared": {
       "optional": true
     }
   },

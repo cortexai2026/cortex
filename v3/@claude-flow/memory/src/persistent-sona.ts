@@ -9,7 +9,7 @@
  * it defines its own compatible types and delegates persistence to
  * RvfLearningStore.
  *
- * @module @claude-flow/memory/persistent-sona
+ * @module @cortex-agent/memory/persistent-sona
  */
 
 import {

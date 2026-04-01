@@ -1,7 +1,7 @@
 /**
  * SDK Bridge for agentic-flow API Compatibility
  *
- * Provides API compatibility layer between claude-flow v3 and
+ * Provides API compatibility layer between cortex-agent v3 and
  * agentic-flow@alpha, handling version negotiation, feature
  * detection, and fallback behavior.
  *
@@ -65,7 +65,7 @@ const DEPRECATED_API_MAP: Record<string, {
  * SDKBridge - API Compatibility Layer
  *
  * This bridge handles version compatibility, feature detection,
- * and API translation between claude-flow and agentic-flow.
+ * and API translation between cortex-agent and agentic-flow.
  */
 export class SDKBridge extends EventEmitter {
   private config: SDKBridgeConfig;

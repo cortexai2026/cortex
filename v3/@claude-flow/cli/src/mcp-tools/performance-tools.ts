@@ -18,7 +18,7 @@ import { join } from 'node:path';
 import * as os from 'node:os';
 
 // Storage paths
-const STORAGE_DIR = '.claude-flow';
+const STORAGE_DIR = '.cortex-agent';
 const PERF_DIR = 'performance';
 const METRICS_FILE = 'metrics.json';
 const BENCHMARKS_FILE = 'benchmarks.json';

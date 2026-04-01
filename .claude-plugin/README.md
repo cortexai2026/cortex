@@ -1,6 +1,6 @@
-# 🚀 Claude Flow Plugin - Complete Enterprise AI Agent Orchestration
+# 🚀 Cortex Agent Plugin - Complete Enterprise AI Agent Orchestration
 
-[![Version](https://img.shields.io/badge/version-2.5.0-blue.svg)](https://github.com/ruvnet/claude-flow)
+[![Version](https://img.shields.io/badge/version-2.5.0-blue.svg)](https://github.com/ruvnet/cortex-agent)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-%3E%3D2.0.0-purple.svg)](https://claude.com/code)
 
@@ -25,7 +25,7 @@
 
 ## 🌟 Overview
 
-Claude Flow is the most comprehensive Claude Code plugin for enterprise AI agent orchestration. It provides a complete ecosystem for:
+Cortex Agent is the most comprehensive Claude Code plugin for enterprise AI agent orchestration. It provides a complete ecosystem for:
 
 - **Multi-Agent Coordination**: 74+ specialized agents with swarm intelligence
 - **SPARC Methodology**: Systematic development with 18 specialized modes
@@ -282,14 +282,14 @@ Claude Flow is the most comprehensive Claude Code plugin for enterprise AI agent
 In Claude Code:
 
 ```
-/plugin add ruvnet/claude-flow
+/plugin add ruvnet/cortex-agent
 ```
 
 Or from local directory:
 
 ```bash
-git clone https://github.com/ruvnet/claude-flow.git
-cd claude-flow
+git clone https://github.com/ruvnet/cortex-agent.git
+cd cortex-agent
 ```
 
 Then in Claude Code:
@@ -307,7 +307,7 @@ Then in Claude Code:
 
 ```bash
 # Add MCP servers to Claude Code
-claude mcp add claude-flow npx claude-flow@alpha mcp start
+claude mcp add cortex-agent npx cortex-agent@alpha mcp start
 claude mcp add ruv-swarm npx ruv-swarm mcp start  # Optional
 claude mcp add flow-nexus npx flow-nexus@latest mcp start  # Optional
 ```
@@ -338,7 +338,7 @@ claude plugin list
 
 In Claude Code:
 ```
-/plugin add ruvnet/claude-flow
+/plugin add ruvnet/cortex-agent
 /restart
 ```
 
@@ -346,8 +346,8 @@ In Claude Code:
 
 ```bash
 # Clone the repository
-git clone https://github.com/ruvnet/claude-flow.git
-cd claude-flow/claude-plugin
+git clone https://github.com/ruvnet/cortex-agent.git
+cd cortex-agent/claude-plugin
 
 # Run installation script
 bash scripts/install.sh
@@ -361,7 +361,7 @@ cp -r agents ~/.claude/agents/
 
 ```bash
 # Run setup via npx
-npx claude-flow@alpha init --plugin
+npx cortex-agent@alpha init --plugin
 
 # This will:
 # 1. Create .claude directory
@@ -377,7 +377,7 @@ npx claude-flow@alpha init --plugin
 ### Directory Structure
 
 ```
-claude-flow/
+cortex-agent/
 ├── .claude-plugin/
 │   ├── plugin.json          # Plugin metadata
 │   ├── README.md            # This file
@@ -502,16 +502,16 @@ claude-flow/
 
 ## 🔌 MCP Integration
 
-Claude Flow integrates with 3 MCP servers providing 110+ tools:
+Cortex Agent integrates with 3 MCP servers providing 110+ tools:
 
-### Claude Flow MCP (Required)
+### Cortex Agent MCP (Required)
 
 ```json
 {
   "mcpServers": {
-    "claude-flow": {
+    "cortex-agent": {
       "command": "npx",
-      "args": ["claude-flow@alpha", "mcp", "start"]
+      "args": ["cortex-agent@alpha", "mcp", "start"]
     }
   }
 }
@@ -645,9 +645,9 @@ Claude Flow integrates with 3 MCP servers providing 110+ tools:
 
 ## 🤝 Support
 
-- **Documentation**: [GitHub Wiki](https://github.com/ruvnet/claude-flow/wiki)
-- **Issues**: [GitHub Issues](https://github.com/ruvnet/claude-flow/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/ruvnet/claude-flow/discussions)
+- **Documentation**: [GitHub Wiki](https://github.com/ruvnet/cortex-agent/wiki)
+- **Issues**: [GitHub Issues](https://github.com/ruvnet/cortex-agent/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/ruvnet/cortex-agent/discussions)
 - **Website**: [Flow Nexus](https://flow-nexus.ruv.io)
 
 ---
@@ -711,7 +711,7 @@ MIT License - see [LICENSE](LICENSE) file for details
 
 ## 🌟 Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=ruvnet/claude-flow&type=Date)](https://star-history.com/#ruvnet/claude-flow&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=ruvnet/cortex-agent&type=Date)](https://star-history.com/#ruvnet/cortex-agent&Date)
 
 ---
 

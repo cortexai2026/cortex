@@ -1,7 +1,7 @@
 /**
  * Plugins System - ADR-004 Implementation
  *
- * Plugin architecture for extending Claude Flow functionality.
+ * Plugin architecture for extending Cortex Agent functionality.
  *
  * @module v3/shared/plugins
  */
@@ -12,7 +12,7 @@ export type {
   PluginContext,
   PluginEvent,
   PluginEventHandler,
-  ClaudeFlowPlugin,
+  CortexAgentPlugin,
   PluginMetadata,
   IPluginRegistry,
   IPluginLoader,

@@ -1537,9 +1537,9 @@ describe('Init System', () => {
       expect(md.length).toBeGreaterThan(100);
     });
 
-    it('should contain header with RuFlo V3', () => {
+    it('should contain header with Cortex Agent V3', () => {
       const md = generateClaudeMd(DEFAULT_INIT_OPTIONS);
-      expect(md).toContain('RuFlo V3');
+      expect(md).toContain('Cortex Agent V3');
     });
 
     it('should contain behavioral rules', () => {

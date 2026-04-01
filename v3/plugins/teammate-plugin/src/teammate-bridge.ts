@@ -13,7 +13,7 @@
  * - Session memory persistence
  * - Teleport/session resume
  *
- * @module @claude-flow/teammate-plugin/bridge
+ * @module @cortex-agent/teammate-plugin/bridge
  * @version 1.0.0-alpha.1
  */
 

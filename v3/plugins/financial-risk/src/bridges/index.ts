@@ -1,7 +1,7 @@
 /**
  * Financial Risk Plugin - Bridges Barrel Export
  *
- * @module @claude-flow/plugin-financial-risk/bridges
+ * @module @cortex-agent/plugin-financial-risk/bridges
  */
 
 export {

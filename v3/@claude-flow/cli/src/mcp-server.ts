@@ -13,7 +13,7 @@
  * - Health check: <10ms
  * - Graceful shutdown: <5s
  *
- * @module @claude-flow/cli/mcp-server
+ * @module @cortex-agent/cli/mcp-server
  * @version 3.0.0
  */
 
@@ -71,8 +71,8 @@ const DEFAULT_OPTIONS: Required<MCPServerOptions> = {
   transport: 'stdio',
   host: 'localhost',
   port: 3000,
-  pidFile: path.join(os.tmpdir(), 'claude-flow-mcp.pid'),
-  logFile: path.join(os.tmpdir(), 'claude-flow-mcp.log'),
+  pidFile: path.join(os.tmpdir(), 'cortex-agent-mcp.pid'),
+  logFile: path.join(os.tmpdir(), 'cortex-agent-mcp.log'),
   tools: 'all',
   daemonize: false,
   timeout: 30000,
@@ -206,7 +206,7 @@ export class MCPServerManager extends EventEmitter {
       // No PID file found. Detect if we are running in stdio mode
       // (e.g., launched by Claude Code via `claude mcp add`).
       const isStdio = !process.stdin.isTTY;
-      const envTransport = process.env.CLAUDE_FLOW_MCP_TRANSPORT;
+      const envTransport = process.env.CORTEX_AGENT_MCP_TRANSPORT;
       if (isStdio || envTransport === 'stdio' || this.options.transport === 'stdio') {
         return {
           running: true,
@@ -316,7 +316,7 @@ export class MCPServerManager extends EventEmitter {
 
     // Log to stderr to not corrupt stdout
     console.error(
-      `[${new Date().toISOString()}] INFO [claude-flow-mcp] (${sessionId}) Starting in stdio mode`
+      `[${new Date().toISOString()}] INFO [cortex-agent-mcp] (${sessionId}) Starting in stdio mode`
     );
     console.error(JSON.stringify({
       arch: process.arch,
@@ -335,7 +335,7 @@ export class MCPServerManager extends EventEmitter {
       method: 'server.initialized',
       params: {
         serverInfo: {
-          name: 'ruflo',
+          name: 'cortex-agent',
           version: VERSION,
           capabilities: {
             tools: { listChanged: true },
@@ -354,7 +354,7 @@ export class MCPServerManager extends EventEmitter {
 
       if (buffer.length > MAX_BUFFER_SIZE) {
         console.error(
-          `[${new Date().toISOString()}] ERROR [claude-flow-mcp] Buffer exceeded ${MAX_BUFFER_SIZE} bytes, rejecting`
+          `[${new Date().toISOString()}] ERROR [cortex-agent-mcp] Buffer exceeded ${MAX_BUFFER_SIZE} bytes, rejecting`
         );
         buffer = '';
         console.log(JSON.stringify({
@@ -378,7 +378,7 @@ export class MCPServerManager extends EventEmitter {
             }
           } catch (error) {
             console.error(
-              `[${new Date().toISOString()}] ERROR [claude-flow-mcp] Failed to parse message:`,
+              `[${new Date().toISOString()}] ERROR [cortex-agent-mcp] Failed to parse message:`,
               error instanceof Error ? error.message : String(error)
             );
           }
@@ -388,7 +388,7 @@ export class MCPServerManager extends EventEmitter {
 
     process.stdin.on('end', () => {
       console.error(
-        `[${new Date().toISOString()}] INFO [claude-flow-mcp] (${sessionId}) stdin closed, shutting down...`
+        `[${new Date().toISOString()}] INFO [cortex-agent-mcp] (${sessionId}) stdin closed, shutting down...`
       );
       process.exit(0);
     });
@@ -396,14 +396,14 @@ export class MCPServerManager extends EventEmitter {
     // Handle process termination
     process.on('SIGINT', () => {
       console.error(
-        `[${new Date().toISOString()}] INFO [claude-flow-mcp] (${sessionId}) Received SIGINT, shutting down...`
+        `[${new Date().toISOString()}] INFO [cortex-agent-mcp] (${sessionId}) Received SIGINT, shutting down...`
       );
       process.exit(0);
     });
 
     process.on('SIGTERM', () => {
       console.error(
-        `[${new Date().toISOString()}] INFO [claude-flow-mcp] (${sessionId}) Received SIGTERM, shutting down...`
+        `[${new Date().toISOString()}] INFO [cortex-agent-mcp] (${sessionId}) Received SIGTERM, shutting down...`
       );
       process.exit(0);
     });
@@ -439,7 +439,7 @@ export class MCPServerManager extends EventEmitter {
             id: message.id,
             result: {
               protocolVersion: '2024-11-05',
-              serverInfo: { name: 'ruflo', version: '3.0.0' },
+              serverInfo: { name: 'cortex-agent', version: '3.0.0' },
               capabilities: {
                 tools: { listChanged: true },
                 resources: { subscribe: true, listChanged: true },
@@ -494,7 +494,7 @@ export class MCPServerManager extends EventEmitter {
         case 'notifications/initialized':
           // Client notification - no response needed
           console.error(
-            `[${new Date().toISOString()}] INFO [claude-flow-mcp] (${sessionId}) Client initialized`
+            `[${new Date().toISOString()}] INFO [cortex-agent-mcp] (${sessionId}) Client initialized`
           );
           return null;
 
@@ -514,7 +514,7 @@ export class MCPServerManager extends EventEmitter {
       }
     } catch (error) {
       console.error(
-        `[${new Date().toISOString()}] ERROR [claude-flow-mcp] Error handling ${message.method}:`,
+        `[${new Date().toISOString()}] ERROR [cortex-agent-mcp] Error handling ${message.method}:`,
         error
       );
       return {
@@ -534,7 +534,7 @@ export class MCPServerManager extends EventEmitter {
   private async startHttpServer(): Promise<void> {
     // Dynamically import the MCP server package
     // FIX for issue #942: Use proper package import instead of broken relative path
-    const { createMCPServer } = await import('@claude-flow/mcp');
+    const { createMCPServer } = await import('@cortex-agent/mcp');
 
     const logger = {
       debug: (msg: string, data?: unknown) => this.emit('log', { level: 'debug', msg, data }),
@@ -653,7 +653,7 @@ export class MCPServerManager extends EventEmitter {
     }
     // Also clean up legacy PID file location from older versions
     try {
-      const legacyPath = path.join(process.cwd(), '.claude-flow', 'mcp-server.pid');
+      const legacyPath = path.join(process.cwd(), '.cortex-agent', 'mcp-server.pid');
       if (legacyPath !== this.options.pidFile) {
         await fs.promises.unlink(legacyPath);
       }
@@ -663,7 +663,7 @@ export class MCPServerManager extends EventEmitter {
   }
 
   /**
-   * Check if process is running AND is a node/claude-flow process.
+   * Check if process is running AND is a node/cortex-agent process.
    * Plain `kill -0` returns true for any process with the same owner,
    * which causes false positives when the OS recycles the PID.
    */
@@ -682,7 +682,7 @@ export class MCPServerManager extends EventEmitter {
         timeout: 1000,
       }).trim();
       // Must be a node process to be our MCP server
-      return cmdline.includes('node') || cmdline.includes('claude-flow') || cmdline.includes('npx');
+      return cmdline.includes('node') || cmdline.includes('cortex-agent') || cmdline.includes('npx');
     } catch {
       // If we can't inspect the process (macOS, Windows, permissions), fall back to kill check
       return true;

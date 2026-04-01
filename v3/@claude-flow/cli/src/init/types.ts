@@ -24,7 +24,7 @@ export interface InitComponents {
   statusline: boolean;
   /** Create MCP configuration */
   mcp: boolean;
-  /** Create .claude-flow/ directory (V3 runtime) */
+  /** Create .cortex-agent/ directory (V3 runtime) */
   runtime: boolean;
   /** Create CLAUDE.md with swarm guidance */
   claudeMd: boolean;
@@ -164,7 +164,7 @@ export interface StatuslineConfig {
  * MCP configuration
  */
 export interface MCPConfig {
-  /** Include claude-flow MCP server */
+  /** Include cortex-agent MCP server */
   claudeFlow: boolean;
   /** Include ruv-swarm MCP server */
   ruvSwarm: boolean;
@@ -177,7 +177,7 @@ export interface MCPConfig {
 }
 
 /**
- * Runtime configuration (.claude-flow/)
+ * Runtime configuration (.cortex-agent/)
  */
 export interface RuntimeConfig {
   /** Swarm topology */

@@ -1,5 +1,5 @@
 /**
- * @claude-flow/deployment
+ * @cortex-agent/deployment
  * Release management, CI/CD, and versioning module
  */
 

@@ -35,7 +35,7 @@
 
 **Test Output**:
 ```bash
-🔍 Testing WASM import in claude-flow...
+🔍 Testing WASM import in cortex-agent...
 
 1. Checking agentic-flow installation...
    ✅ agentic-flow@1.5.12 installed
@@ -128,7 +128,7 @@ wasm.__wbindgen_start();
    - Regenerated WASM bindings with ESM format
    - Added proper .js extensions to import paths
 
-2. **Integration Fix (claude-flow@2.7.0-alpha.7)**:
+2. **Integration Fix (cortex-agent@2.7.0-alpha.7)**:
    - Updated dependency: `agentic-flow@^1.5.12`
    - Removed CommonJS workarounds from adapter
    - Added `--experimental-wasm-modules` flag to package.json
@@ -227,19 +227,19 @@ Node Version: 20.x LTS
 
 1. **NPM Global Install**:
    ```bash
-   npm install -g claude-flow@alpha
+   npm install -g cortex-agent@alpha
    # ✅ Works with --experimental-wasm-modules
    ```
 
 2. **NPX Execution**:
    ```bash
-   npx claude-flow@alpha memory store test "value" --reasoningbank
+   npx cortex-agent@alpha memory store test "value" --reasoningbank
    # ✅ WASM loads correctly
    ```
 
 3. **Docker Containerized**:
    ```bash
-   docker run -v /app node:20 npx claude-flow@alpha --help
+   docker run -v /app node:20 npx cortex-agent@alpha --help
    # ✅ Full functionality in container
    ```
 

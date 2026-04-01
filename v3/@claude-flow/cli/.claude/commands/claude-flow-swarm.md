@@ -1,5 +1,5 @@
 ---
-name: claude-flow-swarm
+name: cortex-agent-swarm
 description: Coordinate multi-agent swarms for complex tasks
 ---
 
@@ -9,7 +9,7 @@ Advanced multi-agent coordination system with timeout-free execution, distribute
 
 ## Basic Usage
 ```bash
-./claude-flow swarm "your complex task" --strategy <type> [options]
+./cortex-agent swarm "your complex task" --strategy <type> [options]
 ```
 
 ## 🎯 Swarm Strategies
@@ -59,7 +59,7 @@ Advanced multi-agent coordination system with timeout-free execution, distribute
 
 ### Development Swarm with Review
 ```bash
-./claude-flow swarm "Build e-commerce REST API" \
+./cortex-agent swarm "Build e-commerce REST API" \
   --strategy development \
   --monitor \
   --review \
@@ -68,7 +68,7 @@ Advanced multi-agent coordination system with timeout-free execution, distribute
 
 ### Long-Running Research Swarm
 ```bash
-./claude-flow swarm "Analyze AI market trends 2024-2025" \
+./cortex-agent swarm "Analyze AI market trends 2024-2025" \
   --strategy research \
   --background \
   --distributed \
@@ -77,7 +77,7 @@ Advanced multi-agent coordination system with timeout-free execution, distribute
 
 ### Performance Optimization Swarm
 ```bash
-./claude-flow swarm "Optimize database queries and API performance" \
+./cortex-agent swarm "Optimize database queries and API performance" \
   --strategy optimization \
   --testing \
   --parallel \
@@ -86,7 +86,7 @@ Advanced multi-agent coordination system with timeout-free execution, distribute
 
 ### Enterprise Development Swarm
 ```bash
-./claude-flow swarm "Implement secure payment processing system" \
+./cortex-agent swarm "Implement secure payment processing system" \
   --strategy development \
   --mode distributed \
   --max-agents 10 \
@@ -100,7 +100,7 @@ Advanced multi-agent coordination system with timeout-free execution, distribute
 
 ### Testing and QA Swarm
 ```bash
-./claude-flow swarm "Comprehensive security audit and testing" \
+./cortex-agent swarm "Comprehensive security audit and testing" \
   --strategy testing \
   --review \
   --verbose \
@@ -112,28 +112,28 @@ Advanced multi-agent coordination system with timeout-free execution, distribute
 ### Real-time monitoring:
 ```bash
 # Monitor swarm activity
-./claude-flow monitor
+./cortex-agent monitor
 
 # Monitor specific component
-./claude-flow monitor --focus swarm
+./cortex-agent monitor --focus swarm
 ```
 
 ### Check swarm status:
 ```bash
 # Overall system status
-./claude-flow status
+./cortex-agent status
 
 # Detailed swarm status
-./claude-flow status --verbose
+./cortex-agent status --verbose
 ```
 
 ### View agent activity:
 ```bash
 # List all agents
-./claude-flow agent list
+./cortex-agent agent list
 
 # Agent details
-./claude-flow agent info <agent-id>
+./cortex-agent agent info <agent-id>
 ```
 
 ## 💾 Memory Integration
@@ -142,13 +142,13 @@ Swarms automatically use distributed memory for collaboration:
 
 ```bash
 # Store swarm objectives
-./claude-flow memory store "swarm_objective" "Build scalable API" --namespace swarm
+./cortex-agent memory store "swarm_objective" "Build scalable API" --namespace swarm
 
 # Query swarm progress
-./claude-flow memory query "swarm_progress" --namespace swarm
+./cortex-agent memory query "swarm_progress" --namespace swarm
 
 # Export swarm memory
-./claude-flow memory export swarm-results.json --namespace swarm
+./cortex-agent memory export swarm-results.json --namespace swarm
 ```
 
 ## 🎯 Key Features
@@ -183,12 +183,12 @@ Swarms automatically use distributed memory for collaboration:
 
 ### Dry run to preview:
 ```bash
-./claude-flow swarm "Test task" --dry-run --strategy development
+./cortex-agent swarm "Test task" --dry-run --strategy development
 ```
 
 ### Custom quality thresholds:
 ```bash
-./claude-flow swarm "High quality API" \
+./cortex-agent swarm "High quality API" \
   --strategy development \
   --quality-threshold 0.95
 ```

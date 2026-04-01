@@ -1,6 +1,6 @@
 /**
- * @claude-flow/browser - Hooks Integration
- * pre-browse and post-browse hooks for claude-flow
+ * @cortex-agent/browser - Hooks Integration
+ * pre-browse and post-browse hooks for cortex-agent
  */
 
 import { getReasoningBank } from './reasoningbank-adapter.js';

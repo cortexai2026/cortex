@@ -1,5 +1,5 @@
 /**
- * @claude-flow/claims - Business Rules (ADR-016)
+ * @cortex-agent/claims - Business Rules (ADR-016)
  * Domain rules for claiming, stealing eligibility, and load balancing
  *
  * Pure functions that encode the business logic for the claiming system

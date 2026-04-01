@@ -1,5 +1,5 @@
 /**
- * @claude-flow/mcp - Stdio Transport
+ * @cortex-agent/mcp - Stdio Transport
  *
  * Standard I/O transport for MCP communication
  */

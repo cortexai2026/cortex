@@ -91,7 +91,7 @@ async function listSparcModes(subArgs) {
       console.log(`Looking for: ${configPath}`);
       console.log();
       console.log('✅ SPARC modes are now part of .claude/ folder structure');
-      console.log('Run `claude-flow init` to set up the .claude/ folder with SPARC modes');
+      console.log('Run `cortex-agent init` to set up the .claude/ folder with SPARC modes');
       console.log();
       console.log('Or manually ensure .claude/sparc-modes.json exists');
       return;
@@ -140,7 +140,7 @@ async function showModeInfo(subArgs) {
       console.log(`Looking for: ${configPath}`);
       console.log();
       console.log('✅ SPARC modes are now part of .claude/ folder structure');
-      console.log('Run `claude-flow init` to set up the .claude/ folder with SPARC modes');
+      console.log('Run `cortex-agent init` to set up the .claude/ folder with SPARC modes');
       return;
     }
     const config = JSON.parse(configContent);
@@ -197,7 +197,7 @@ async function runSparcMode(subArgs, flags) {
       console.log(`Looking for: ${configPath}`);
       console.log();
       console.log('✅ SPARC modes are now part of .claude/ folder structure');
-      console.log('Run `claude-flow init` to set up the .claude/ folder with SPARC modes');
+      console.log('Run `cortex-agent init` to set up the .claude/ folder with SPARC modes');
       return;
     }
     const config = JSON.parse(configContent);
@@ -474,29 +474,29 @@ function showSparcHelp() {
   console.log('  tdd <task>               Run Test-Driven Development workflow');
   console.log();
   console.log('Examples:');
-  console.log('  claude-flow sparc "orchestrate app development"    # Uses sparc orchestrator');
-  console.log('  claude-flow sparc modes --verbose');
-  console.log('  claude-flow sparc info architect');
-  console.log('  claude-flow sparc run code "implement user authentication"');
-  console.log('  claude-flow sparc run code "add login feature" --non-interactive');
-  console.log('  claude-flow sparc run tdd "create test suite" --namespace tests');
-  console.log('  claude-flow sparc tdd "payment processing system" --interactive');
+  console.log('  cortex-agent sparc "orchestrate app development"    # Uses sparc orchestrator');
+  console.log('  cortex-agent sparc modes --verbose');
+  console.log('  cortex-agent sparc info architect');
+  console.log('  cortex-agent sparc run code "implement user authentication"');
+  console.log('  cortex-agent sparc run code "add login feature" --non-interactive');
+  console.log('  cortex-agent sparc run tdd "create test suite" --namespace tests');
+  console.log('  cortex-agent sparc tdd "payment processing system" --interactive');
   console.log();
   console.log('Parallel Execution with BatchTool:');
   console.log('  # Run multiple SPARC modes concurrently');
   console.log('  batchtool run --parallel \\');
-  console.log('    "npx claude-flow sparc run code \'user service\' --non-interactive" \\');
-  console.log('    "npx claude-flow sparc run code \'auth service\' --non-interactive" \\');
-  console.log('    "npx claude-flow sparc run tdd \'test suite\' --non-interactive"');
+  console.log('    "npx cortex-agent sparc run code \'user service\' --non-interactive" \\');
+  console.log('    "npx cortex-agent sparc run code \'auth service\' --non-interactive" \\');
+  console.log('    "npx cortex-agent sparc run tdd \'test suite\' --non-interactive"');
   console.log();
   console.log('  # Boomerang orchestration pattern');
   console.log('  batchtool orchestrate --boomerang \\');
   console.log(
-    '    --research "npx claude-flow sparc run ask \'requirements\' --non-interactive" \\',
+    '    --research "npx cortex-agent sparc run ask \'requirements\' --non-interactive" \\',
   );
-  console.log('    --design "npx claude-flow sparc run architect \'system\' --non-interactive" \\');
-  console.log('    --implement "npx claude-flow sparc run code \'features\' --non-interactive" \\');
-  console.log('    --test "npx claude-flow sparc run tdd \'validation\' --non-interactive"');
+  console.log('    --design "npx cortex-agent sparc run architect \'system\' --non-interactive" \\');
+  console.log('    --implement "npx cortex-agent sparc run code \'features\' --non-interactive" \\');
+  console.log('    --test "npx cortex-agent sparc run tdd \'validation\' --non-interactive"');
   console.log();
   console.log('Flags:');
   console.log('  --dry-run, -d            Show configuration without executing');

@@ -1,5 +1,5 @@
 {
-  "name": "claude-flow-parallel-test",
+  "name": "cortex-agent-parallel-test",
   "version": "1.0.0",
   "description": "Parallel agent testing for Claude-Flow SPARC methodology",
   "main": "parallel-test.ts",
@@ -10,7 +10,7 @@
     "test:full": "npm run clean && npm run test && npm run analyze"
   },
   "dependencies": {
-    "claude-flow": "latest",
+    "cortex-agent": "latest",
     "tsx": "^4.0.0"
   },
   "devDependencies": {

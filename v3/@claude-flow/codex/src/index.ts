@@ -1,7 +1,7 @@
 /**
- * @claude-flow/codex
+ * @cortex-agent/codex
  *
- * OpenAI Codex platform adapter for Claude Flow
+ * OpenAI Codex platform adapter for Cortex Agent
  * First step in the coflow rebranding initiative
  *
  * @packageDocumentation
@@ -69,11 +69,11 @@ export const VERSION = '3.0.0-alpha.8';
  * Package metadata
  */
 export const PACKAGE_INFO = {
-  name: '@claude-flow/codex',
+  name: '@cortex-agent/codex',
   version: VERSION,
-  description: 'Codex CLI integration for Claude Flow',
+  description: 'Codex CLI integration for Cortex Agent',
   futureUmbrella: 'coflow',
-  repository: 'https://github.com/ruvnet/claude-flow',
+  repository: 'https://github.com/ruvnet/cortex-agent',
 } as const;
 
 /**

@@ -1,5 +1,5 @@
 /**
- * Timezone utilities for Claude Flow
+ * Timezone utilities for Cortex Agent
  * Provides consistent timezone handling across the application
  */
 

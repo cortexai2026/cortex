@@ -1,7 +1,7 @@
 #!/bin/bash
-# Test real execution of claude-flow commands
+# Test real execution of cortex-agent commands
 
-echo "Testing real claude-flow execution..."
+echo "Testing real cortex-agent execution..."
 echo "===================================="
 
 # Create a test directory

@@ -1,7 +1,7 @@
 #!/bin/bash
 # Run various benchmark scenarios
 
-echo "🚀 Claude Flow Benchmark Suite"
+echo "🚀 Cortex Agent Benchmark Suite"
 echo "================================"
 
 # Create output directory

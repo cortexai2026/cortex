@@ -6,7 +6,7 @@ declare global {
     interface ProcessEnv {
       NODE_ENV?: 'development' | 'production' | 'test';
       DEBUG?: string;
-      CLAUDE_FLOW_HOME?: string;
+      CORTEX_AGENT_HOME?: string;
       [key: string]: string | undefined;
     }
   }

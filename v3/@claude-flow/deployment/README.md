@@ -1,13 +1,13 @@
-# @claude-flow/deployment
+# @cortex-agent/deployment
 
-[![npm version](https://img.shields.io/npm/v/@claude-flow/deployment.svg)](https://www.npmjs.com/package/@claude-flow/deployment)
-[![npm downloads](https://img.shields.io/npm/dm/@claude-flow/deployment.svg)](https://www.npmjs.com/package/@claude-flow/deployment)
+[![npm version](https://img.shields.io/npm/v/@cortex-agent/deployment.svg)](https://www.npmjs.com/package/@cortex-agent/deployment)
+[![npm downloads](https://img.shields.io/npm/dm/@cortex-agent/deployment.svg)](https://www.npmjs.com/package/@cortex-agent/deployment)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue.svg)](https://www.typescriptlang.org/)
-[![CI/CD](https://img.shields.io/badge/CI%2FCD-Automated-green.svg)](https://github.com/ruvnet/claude-flow)
+[![CI/CD](https://img.shields.io/badge/CI%2FCD-Automated-green.svg)](https://github.com/ruvnet/cortex-agent)
 [![Semantic Release](https://img.shields.io/badge/Semantic-Release-brightgreen.svg)](https://semantic-release.gitbook.io/)
 
-> Release management, CI/CD, and versioning module for Claude Flow v3.
+> Release management, CI/CD, and versioning module for Cortex Agent v3.
 
 ## Features
 
@@ -21,7 +21,7 @@
 ## Installation
 
 ```bash
-npm install @claude-flow/deployment
+npm install @cortex-agent/deployment
 ```
 
 ## Quick Start
@@ -29,7 +29,7 @@ npm install @claude-flow/deployment
 ### Prepare a Release
 
 ```typescript
-import { prepareRelease } from '@claude-flow/deployment';
+import { prepareRelease } from '@cortex-agent/deployment';
 
 // Bump patch version and generate changelog
 const result = await prepareRelease({
@@ -45,7 +45,7 @@ console.log(`Released ${result.newVersion}`);
 ### Publish to NPM
 
 ```typescript
-import { publishToNpm } from '@claude-flow/deployment';
+import { publishToNpm } from '@cortex-agent/deployment';
 
 // Publish with 'latest' tag
 const result = await publishToNpm({
@@ -59,7 +59,7 @@ console.log(`Published ${result.packageName}@${result.version}`);
 ### Validate Package
 
 ```typescript
-import { validate } from '@claude-flow/deployment';
+import { validate } from '@cortex-agent/deployment';
 
 // Run all validation checks
 const result = await validate({
@@ -79,7 +79,7 @@ if (!result.valid) {
 ### ReleaseManager
 
 ```typescript
-import { ReleaseManager } from '@claude-flow/deployment';
+import { ReleaseManager } from '@cortex-agent/deployment';
 
 const manager = new ReleaseManager();
 
@@ -149,7 +149,7 @@ Generated changelog:
 ### Publisher
 
 ```typescript
-import { Publisher } from '@claude-flow/deployment';
+import { Publisher } from '@cortex-agent/deployment';
 
 const publisher = new Publisher();
 
@@ -180,7 +180,7 @@ const tarball = await publisher.pack('./dist');
 ### Validator
 
 ```typescript
-import { Validator } from '@claude-flow/deployment';
+import { Validator } from '@cortex-agent/deployment';
 
 const validator = new Validator();
 
@@ -205,7 +205,7 @@ console.log('Checks:', result.checks);
 ## Complete Release Workflow
 
 ```typescript
-import { Validator, ReleaseManager, Publisher } from '@claude-flow/deployment';
+import { Validator, ReleaseManager, Publisher } from '@cortex-agent/deployment';
 
 async function release(version: string, tag: string) {
   // 1. Validate package
@@ -257,13 +257,13 @@ release('2.0.0', 'latest');
 
 ```bash
 # Prepare release
-npx @claude-flow/deployment release --version 2.0.0 --changelog --tag
+npx @cortex-agent/deployment release --version 2.0.0 --changelog --tag
 
 # Publish to npm
-npx @claude-flow/deployment publish --tag latest --access public
+npx @cortex-agent/deployment publish --tag latest --access public
 
 # Validate package
-npx @claude-flow/deployment validate
+npx @cortex-agent/deployment validate
 ```
 
 ## Dry Run Mode

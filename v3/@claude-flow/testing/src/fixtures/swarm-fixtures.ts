@@ -1,5 +1,5 @@
 /**
- * @claude-flow/testing - Swarm Fixtures
+ * @cortex-agent/testing - Swarm Fixtures
  *
  * Comprehensive mock swarm configurations, topologies, and coordination fixtures.
  * Supports hierarchical-mesh, adaptive, and all consensus protocols.

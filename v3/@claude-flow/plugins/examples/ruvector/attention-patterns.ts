@@ -9,7 +9,7 @@
  *
  * Run with: npx ts-node examples/ruvector/attention-patterns.ts
  *
- * @module @claude-flow/plugins/examples/ruvector/attention-patterns
+ * @module @cortex-agent/plugins/examples/ruvector/attention-patterns
  */
 
 import {

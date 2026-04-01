@@ -1,5 +1,5 @@
 /**
- * @claude-flow/plugins - Core Type Definitions
+ * @cortex-agent/plugins - Core Type Definitions
  *
  * Unified type system for plugins, workers, hooks, and providers.
  */

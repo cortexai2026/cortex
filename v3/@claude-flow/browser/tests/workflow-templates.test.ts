@@ -1,5 +1,5 @@
 /**
- * @claude-flow/browser - Workflow Templates Tests
+ * @cortex-agent/browser - Workflow Templates Tests
  */
 
 import { describe, it, expect, beforeEach } from 'vitest';

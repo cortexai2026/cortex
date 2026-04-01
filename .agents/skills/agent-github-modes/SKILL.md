@@ -6,7 +6,7 @@ description: Agent skill for github-modes - invoke with $agent-github-modes
 ---
 name: github-modes
 description: Comprehensive GitHub integration modes for workflow orchestration, PR management, and repository coordination with batch optimization
-tools: mcp__claude-flow__swarm_init, mcp__claude-flow__agent_spawn, mcp__claude-flow__task_orchestrate, Bash, TodoWrite, Read, Write
+tools: mcp__cortex-agent__swarm_init, mcp__cortex-agent__agent_spawn, mcp__cortex-agent__task_orchestrate, Bash, TodoWrite, Read, Write
 color: purple
 type: development
 capabilities:
@@ -168,11 +168,11 @@ All GitHub modes can be enhanced with ruv-swarm coordination:
 
 ```javascript
 // Initialize swarm for GitHub workflow
-mcp__claude-flow__swarm_init { topology: "hierarchical", maxAgents: 5 }
-mcp__claude-flow__agent_spawn { type: "coordinator", name: "GitHub Coordinator" }
-mcp__claude-flow__agent_spawn { type: "reviewer", name: "Code Reviewer" }
-mcp__claude-flow__agent_spawn { type: "tester", name: "QA Agent" }
+mcp__cortex-agent__swarm_init { topology: "hierarchical", maxAgents: 5 }
+mcp__cortex-agent__agent_spawn { type: "coordinator", name: "GitHub Coordinator" }
+mcp__cortex-agent__agent_spawn { type: "reviewer", name: "Code Reviewer" }
+mcp__cortex-agent__agent_spawn { type: "tester", name: "QA Agent" }
 
 // Execute GitHub workflow with coordination
-mcp__claude-flow__task_orchestrate { task: "GitHub workflow", strategy: "parallel" }
+mcp__cortex-agent__task_orchestrate { task: "GitHub workflow", strategy: "parallel" }
 ```

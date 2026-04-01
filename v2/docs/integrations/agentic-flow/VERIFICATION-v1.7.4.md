@@ -541,7 +541,7 @@ node tests/test-agentic-flow-v174-complete.mjs
 
 ### Next Steps
 
-1. ✅ Update claude-flow documentation
+1. ✅ Update cortex-agent documentation
 2. ✅ Post verification to GitHub issue #829
 3. ✅ Update integration guides
 4. ✅ Announce v1.7.4 availability

@@ -181,7 +181,7 @@ async function copyFile(source, destination, options) {
       await fs.writeFile(destination, content);
       
       // Preserve file permissions for executable scripts
-      if (source.endsWith('.sh') || source.includes('claude-flow')) {
+      if (source.endsWith('.sh') || source.includes('cortex-agent')) {
         await fs.chmod(destination, 0o755);
       }
     }
@@ -363,30 +363,30 @@ async function copyHelperScripts(templatesDir, targetDir, options, results) {
 async function copyWrapperScripts(templatesDir, targetDir, options, results) {
   try {
     // Unix wrapper
-    const unixWrapperPath = join(targetDir, 'claude-flow');
-    const unixWrapperSource = join(templatesDir, 'claude-flow-universal');
+    const unixWrapperPath = join(targetDir, 'cortex-agent');
+    const unixWrapperSource = join(templatesDir, 'cortex-agent-universal');
     
     if (await copyFile(unixWrapperSource, unixWrapperPath, options)) {
       if (!options.dryRun) {
         await fs.chmod(unixWrapperPath, 0o755);
       }
-      results.copiedFiles.push('claude-flow');
+      results.copiedFiles.push('cortex-agent');
     }
 
     // Windows batch wrapper
-    const batchWrapperPath = join(targetDir, 'claude-flow.bat');
-    const batchWrapperSource = join(templatesDir, 'claude-flow.bat');
+    const batchWrapperPath = join(targetDir, 'cortex-agent.bat');
+    const batchWrapperSource = join(templatesDir, 'cortex-agent.bat');
     
     if (await copyFile(batchWrapperSource, batchWrapperPath, options)) {
-      results.copiedFiles.push('claude-flow.bat');
+      results.copiedFiles.push('cortex-agent.bat');
     }
 
     // PowerShell wrapper
-    const psWrapperPath = join(targetDir, 'claude-flow.ps1');
-    const psWrapperSource = join(templatesDir, 'claude-flow.ps1');
+    const psWrapperPath = join(targetDir, 'cortex-agent.ps1');
+    const psWrapperSource = join(templatesDir, 'cortex-agent.ps1');
     
     if (await copyFile(psWrapperSource, psWrapperPath, options)) {
-      results.copiedFiles.push('claude-flow.ps1');
+      results.copiedFiles.push('cortex-agent.ps1');
     }
   } catch (err) {
     results.errors.push(`Failed to copy wrapper scripts: ${err.message}`);
@@ -460,7 +460,7 @@ async function createMemoryReadmeFiles(targetDir, options, results) {
   }
 
   // Initialize persistence database
-  const dbPath = join(targetDir, 'memory', 'claude-flow-data.json');
+  const dbPath = join(targetDir, 'memory', 'cortex-agent-data.json');
   const initialData = {
     agents: [],
     tasks: [],
@@ -471,8 +471,8 @@ async function createMemoryReadmeFiles(targetDir, options, results) {
     if (!options.dryRun) {
       await fs.writeFile(dbPath, JSON.stringify(initialData, null, 2));
     }
-    console.log(`  ${options.dryRun ? '[DRY RUN] Would create' : '✓ Created'} memory/claude-flow-data.json (persistence database)`);
-    results.copiedFiles.push('memory/claude-flow-data.json');
+    console.log(`  ${options.dryRun ? '[DRY RUN] Would create' : '✓ Created'} memory/cortex-agent-data.json (persistence database)`);
+    results.copiedFiles.push('memory/cortex-agent-data.json');
   } catch (err) {
     results.errors.push(`Failed to create persistence database: ${err.message}`);
   }
@@ -545,8 +545,8 @@ async function getTemplateContent(templatePath) {
       const { createVerificationSettingsJson } = await import('./templates/verification-claude-md.js');
       return createVerificationSettingsJson();
     },
-    'claude-flow-universal': async () => {
-      return await fs.readFile(join(__dirname, 'templates', 'claude-flow-universal'), 'utf8');
+    'cortex-agent-universal': async () => {
+      return await fs.readFile(join(__dirname, 'templates', 'cortex-agent-universal'), 'utf8');
     },
     // Removed Windows wrapper templates per user request
   };
@@ -581,7 +581,7 @@ async function generateCommandTemplates(targetDir, options, results) {
         // Create category README
         const categoryReadme = `# ${category.charAt(0).toUpperCase() + category.slice(1)} Commands
 
-Commands for ${category} operations in Claude Flow.
+Commands for ${category} operations in Cortex Agent.
 
 ## Available Commands
 

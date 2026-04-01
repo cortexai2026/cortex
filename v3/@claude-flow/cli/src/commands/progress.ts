@@ -3,7 +3,7 @@
  *
  * Check and manage V3 implementation progress.
  *
- * @module @claude-flow/cli/commands/progress
+ * @module @cortex-agent/cli/commands/progress
  */
 
 import type { Command, CommandContext, CommandResult } from '../types.js';
@@ -121,7 +121,7 @@ const syncCommand: Command = {
 
       output.writeln();
       output.printSuccess(`Progress synced: ${result.progress}%`);
-      output.writeln(output.dim(`  Persisted to .claude-flow/metrics/v3-progress.json`));
+      output.writeln(output.dim(`  Persisted to .cortex-agent/metrics/v3-progress.json`));
       output.writeln(output.dim(`  Last updated: ${result.lastUpdated}`));
 
       return { success: true, data: result };
@@ -259,23 +259,23 @@ export const progressCommand: Command = {
   ],
   examples: [
     {
-      command: 'claude-flow progress',
+      command: 'cortex-agent progress',
       description: 'Check current progress',
     },
     {
-      command: 'claude-flow progress --detailed',
+      command: 'cortex-agent progress --detailed',
       description: 'Show detailed breakdown',
     },
     {
-      command: 'claude-flow progress sync',
+      command: 'cortex-agent progress sync',
       description: 'Sync and persist progress',
     },
     {
-      command: 'claude-flow progress watch',
+      command: 'cortex-agent progress watch',
       description: 'Watch for changes',
     },
     {
-      command: 'claude-flow progress --json',
+      command: 'cortex-agent progress --json',
       description: 'Output as JSON',
     },
   ],

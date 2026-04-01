@@ -12,7 +12,7 @@ All integration work for agentic-flow is complete and validated. The execution l
 
 ### Test 1: Agent Listing ✅ PASS
 ```bash
-./bin/claude-flow agent agents
+./bin/cortex-agent agent agents
 ```
 **Result:** Successfully lists 66+ available agents including:
 - coder, reviewer, tester, planner, researcher
@@ -22,13 +22,13 @@ All integration work for agentic-flow is complete and validated. The execution l
 
 ### Test 2: Agent Info ✅ PASS
 ```bash
-./bin/claude-flow agent info coder --format json
+./bin/cortex-agent agent info coder --format json
 ```
 **Result:** Successfully retrieves agent information with proper formatting
 
 ### Test 3: End-to-End Agent Execution ✅ PASS
 ```bash
-./bin/claude-flow agent execute coder "Write a simple hello world function in JavaScript" --format json --verbose
+./bin/cortex-agent agent execute coder "Write a simple hello world function in JavaScript" --format json --verbose
 ```
 
 **Execution Details:**

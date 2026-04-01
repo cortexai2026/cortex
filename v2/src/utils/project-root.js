@@ -11,18 +11,18 @@ export function findProjectRoot(startDir = process.cwd()) {
   let currentDir = path.resolve(startDir);
   const root = path.parse(currentDir).root;
   
-  // First, look for the main claude-flow project root
+  // First, look for the main cortex-agent project root
   let searchDir = currentDir;
   while (searchDir !== root) {
     const packageJsonPath = path.join(searchDir, 'package.json');
     if (fs.existsSync(packageJsonPath)) {
       try {
         const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
-        // Check if this is the main claude-flow package
-        if (packageJson.name === 'claude-flow' || 
-            packageJson.name === '@anthropic/claude-flow') {
+        // Check if this is the main cortex-agent package
+        if (packageJson.name === 'cortex-agent' || 
+            packageJson.name === '@anthropic/cortex-agent') {
           // Also verify it has the expected structure
-          if (fs.existsSync(path.join(searchDir, 'bin/claude-flow')) ||
+          if (fs.existsSync(path.join(searchDir, 'bin/cortex-agent')) ||
               fs.existsSync(path.join(searchDir, 'src/cli')) ||
               fs.existsSync(path.join(searchDir, 'src/memory'))) {
             return searchDir;
@@ -35,9 +35,9 @@ export function findProjectRoot(startDir = process.cwd()) {
     
     // Check for .git directory (strong indicator of project root)
     if (fs.existsSync(path.join(searchDir, '.git'))) {
-      // If we find .git and it has claude-flow structure, use it
-      if (fs.existsSync(path.join(searchDir, 'bin/claude-flow')) ||
-          fs.existsSync(path.join(searchDir, '.claude-flow')) ||
+      // If we find .git and it has cortex-agent structure, use it
+      if (fs.existsSync(path.join(searchDir, 'bin/cortex-agent')) ||
+          fs.existsSync(path.join(searchDir, '.cortex-agent')) ||
           fs.existsSync(path.join(searchDir, 'CLAUDE.md'))) {
         return searchDir;
       }
@@ -51,14 +51,14 @@ export function findProjectRoot(startDir = process.cwd()) {
     searchDir = parentDir;
   }
   
-  // Fallback: look for any .claude-flow or .swarm directory going up
+  // Fallback: look for any .cortex-agent or .swarm directory going up
   searchDir = currentDir;
   while (searchDir !== root) {
-    if (fs.existsSync(path.join(searchDir, '.claude-flow')) ||
+    if (fs.existsSync(path.join(searchDir, '.cortex-agent')) ||
         fs.existsSync(path.join(searchDir, '.swarm'))) {
       // Additional check for main project markers
       if (fs.existsSync(path.join(searchDir, 'CLAUDE.md')) ||
-          fs.existsSync(path.join(searchDir, 'bin/claude-flow'))) {
+          fs.existsSync(path.join(searchDir, 'bin/cortex-agent'))) {
         return searchDir;
       }
     }
@@ -75,13 +75,13 @@ export function findProjectRoot(startDir = process.cwd()) {
 }
 
 /**
- * Get the .claude-flow directory path relative to project root
+ * Get the .cortex-agent directory path relative to project root
  * @param {string} startDir - Starting directory for search
- * @returns {string} - Path to .claude-flow directory
+ * @returns {string} - Path to .cortex-agent directory
  */
-export function getClaudeFlowDir(startDir) {
+export function getCortexAgentDir(startDir) {
   const root = findProjectRoot(startDir);
-  return path.join(root, '.claude-flow');
+  return path.join(root, '.cortex-agent');
 }
 
 /**

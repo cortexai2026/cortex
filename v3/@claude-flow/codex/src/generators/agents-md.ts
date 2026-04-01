@@ -1,5 +1,5 @@
 /**
- * @claude-flow/codex - AGENTS.md Generator
+ * @cortex-agent/codex - AGENTS.md Generator
  *
  * Generates AGENTS.md files for OpenAI Codex CLI
  * Following the Agentic AI Foundation standard
@@ -33,7 +33,7 @@ export async function generateAgentsMd(options: AgentsMdOptions): Promise<string
 function generateMinimal(options: AgentsMdOptions): string {
   const {
     projectName,
-    description = 'A Claude Flow powered project',
+    description = 'A Cortex Agent powered project',
     buildCommand = 'npm run build',
     testCommand = 'npm test',
   } = options;
@@ -85,7 +85,7 @@ ${testCommand}
 
 ## Links
 
-- Documentation: https://github.com/ruvnet/claude-flow
+- Documentation: https://github.com/ruvnet/cortex-agent
 `;
 }
 
@@ -95,7 +95,7 @@ ${testCommand}
 function generateDefault(options: AgentsMdOptions): string {
   const {
     projectName,
-    description = 'A Claude Flow powered project',
+    description = 'A Cortex Agent powered project',
     techStack = 'TypeScript, Node.js',
     buildCommand = 'npm run build',
     testCommand = 'npm test',
@@ -214,7 +214,7 @@ ${skillsTable}
 
 [optional body]
 
-Co-Authored-By: claude-flow <ruv@ruv.net>
+Co-Authored-By: cortex-agent <ruv@ruv.net>
 \`\`\`
 
 Types: \`feat\`, \`fix\`, \`docs\`, \`style\`, \`refactor\`, \`perf\`, \`test\`, \`chore\`
@@ -237,7 +237,7 @@ Types: \`feat\`, \`fix\`, \`docs\`, \`style\`, \`refactor\`, \`perf\`, \`test\`,
 
 ### Storing Patterns
 \`\`\`bash
-npx @claude-flow/cli memory store \\
+npx @cortex-agent/cli memory store \\
   --key "pattern-name" \\
   --value "pattern description" \\
   --namespace patterns
@@ -245,15 +245,15 @@ npx @claude-flow/cli memory store \\
 
 ### Searching Memory
 \`\`\`bash
-npx @claude-flow/cli memory search \\
+npx @cortex-agent/cli memory search \\
   --query "search terms" \\
   --namespace patterns
 \`\`\`
 
 ## Links
 
-- Documentation: https://github.com/ruvnet/claude-flow
-- Issues: https://github.com/ruvnet/claude-flow/issues
+- Documentation: https://github.com/ruvnet/cortex-agent
+- Issues: https://github.com/ruvnet/cortex-agent/issues
 `;
 }
 
@@ -305,14 +305,14 @@ npm run test:security
 
 ## MCP Integration
 
-Claude Flow exposes tools via Model Context Protocol:
+Cortex Agent exposes tools via Model Context Protocol:
 
 \`\`\`bash
 # Start MCP server
-npx @claude-flow/cli mcp start
+npx @cortex-agent/cli mcp start
 
 # List available tools
-npx @claude-flow/cli mcp tools
+npx @cortex-agent/cli mcp tools
 \`\`\`
 
 ### Available Tools
@@ -329,7 +329,7 @@ npx @claude-flow/cli mcp tools
 
 ## Hooks System
 
-Claude Flow uses hooks for lifecycle automation:
+Cortex Agent uses hooks for lifecycle automation:
 
 ### Core Hooks
 
@@ -364,16 +364,16 @@ Claude Flow uses hooks for lifecycle automation:
 ### Example Usage
 \`\`\`bash
 # Before starting a task
-npx @claude-flow/cli hooks pre-task \\
+npx @cortex-agent/cli hooks pre-task \\
   --description "implementing authentication"
 
 # After completing a task
-npx @claude-flow/cli hooks post-task \\
+npx @cortex-agent/cli hooks post-task \\
   --task-id "task-123" \\
   --success true
 
 # Route a task to agents
-npx @claude-flow/cli hooks route \\
+npx @cortex-agent/cli hooks route \\
   --task "implement OAuth2 login flow"
 \`\`\`
 
@@ -399,13 +399,13 @@ npx @claude-flow/cli hooks route \\
 ### Managing Workers
 \`\`\`bash
 # List workers
-npx @claude-flow/cli hooks worker list
+npx @cortex-agent/cli hooks worker list
 
 # Trigger specific worker
-npx @claude-flow/cli hooks worker dispatch --trigger audit
+npx @cortex-agent/cli hooks worker dispatch --trigger audit
 
 # Check worker status
-npx @claude-flow/cli hooks worker status
+npx @cortex-agent/cli hooks worker status
 \`\`\`
 
 ## Intelligence System
@@ -430,19 +430,19 @@ The RuVector Intelligence System provides neural learning:
 ### Log Levels
 \`\`\`bash
 # Set log level
-export CLAUDE_FLOW_LOG_LEVEL=debug
+export CORTEX_AGENT_LOG_LEVEL=debug
 
 # Enable verbose mode
-npx @claude-flow/cli --verbose <command>
+npx @cortex-agent/cli --verbose <command>
 \`\`\`
 
 ### Health Checks
 \`\`\`bash
 # Run diagnostics
-npx @claude-flow/cli doctor --fix
+npx @cortex-agent/cli doctor --fix
 
 # Check system status
-npx @claude-flow/cli status
+npx @cortex-agent/cli status
 \`\`\`
 `;
 
@@ -483,10 +483,10 @@ All agent actions are logged to:
 
 \`\`\`bash
 # View recent agent actions
-npx @claude-flow/cli logs --type agent-actions --last 1h
+npx @cortex-agent/cli logs --type agent-actions --last 1h
 
 # Export audit log
-npx @claude-flow/cli logs export --format json --output audit.json
+npx @cortex-agent/cli logs export --format json --output audit.json
 \`\`\`
 
 ### Compliance
@@ -521,10 +521,10 @@ npx @claude-flow/cli logs export --format json --output audit.json
 
 \`\`\`bash
 # Check current role
-npx @claude-flow/cli claims list
+npx @cortex-agent/cli claims list
 
 # Request elevated permissions
-npx @claude-flow/cli claims request --permission deploy:production
+npx @cortex-agent/cli claims request --permission deploy:production
 \`\`\`
 
 ## Service Level Agreements (SLAs)
@@ -557,7 +557,7 @@ npx @claude-flow/cli claims request --permission deploy:production
 ### On Security Issue
 1. **Contain** - Immediately stop affected agents
    \`\`\`bash
-   npx @claude-flow/cli agent stop --all --force
+   npx @cortex-agent/cli agent stop --all --force
    \`\`\`
 2. **Isolate** - Quarantine compromised resources
 3. **Document** - Record timeline in incident log
@@ -570,10 +570,10 @@ npx @claude-flow/cli claims request --permission deploy:production
 2. **Decide** - Roll back if safe, or forward-fix
    \`\`\`bash
    # Rollback
-   npx @claude-flow/cli deployment rollback --env production
+   npx @cortex-agent/cli deployment rollback --env production
 
    # Or forward-fix
-   npx @claude-flow/cli workflow run hotfix
+   npx @cortex-agent/cli workflow run hotfix
    \`\`\`
 3. **Document** - Capture reproduction steps
 4. **Fix** - Create hotfix on dedicated branch
@@ -607,10 +607,10 @@ npx @claude-flow/cli claims request --permission deploy:production
 ### Recovery Procedures
 \`\`\`bash
 # Restore from backup
-npx @claude-flow/cli memory restore --snapshot latest
+npx @cortex-agent/cli memory restore --snapshot latest
 
 # Restore specific checkpoint
-npx @claude-flow/cli session restore --checkpoint <id>
+npx @cortex-agent/cli session restore --checkpoint <id>
 \`\`\`
 
 ### Recovery Time Objectives
@@ -654,7 +654,7 @@ alerts:
 - [ ] Read this AGENTS.md document
 - [ ] Complete security awareness training
 - [ ] Set up local development environment
-- [ ] Run \`npx @claude-flow/cli doctor\` to verify setup
+- [ ] Run \`npx @cortex-agent/cli doctor\` to verify setup
 - [ ] Complete first guided task with mentor
 - [ ] Review incident response procedures
 

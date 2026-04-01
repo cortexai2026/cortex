@@ -1,5 +1,5 @@
 {
-  "name": "@claude-flow/deployment",
+  "name": "@cortex-agent/deployment",
   "version": "3.0.0-alpha.7",
   "type": "module",
   "description": "Deployment module - Release management, CI/CD, versioning",
@@ -14,7 +14,7 @@
     "release": "semantic-release"
   },
   "dependencies": {
-    "@claude-flow/shared": "^3.0.0-alpha.1"
+    "@cortex-agent/shared": "^3.0.0-alpha.1"
   },
   "devDependencies": {
     "semantic-release": "^25.0.2",

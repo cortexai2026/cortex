@@ -1,5 +1,5 @@
 {
-  "name": "@claude-flow/integration",
+  "name": "@cortex-agent/integration",
   "version": "3.0.0",
   "type": "module",
   "description": "Integration module - agentic-flow@alpha deep integration, ADR-001 compliance, TokenOptimizer",
@@ -15,7 +15,7 @@
     "build": "tsc"
   },
   "keywords": [
-    "claude-flow",
+    "cortex-agent",
     "agentic-flow",
     "token-optimizer",
     "agent-booster",
@@ -36,7 +36,7 @@
   "optionalDependencies": {
     "agent-booster": "^0.2.2"
   },
-  "claude-flow": {
+  "cortex-agent": {
     "optionalComponents": {
       "TokenOptimizer": {
         "description": "Token reduction via agentic-flow Agent Booster integration",

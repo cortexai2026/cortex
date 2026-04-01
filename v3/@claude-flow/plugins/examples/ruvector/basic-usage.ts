@@ -13,7 +13,7 @@
  *
  * Run with: npx ts-node examples/ruvector/basic-usage.ts
  *
- * @module @claude-flow/plugins/examples/ruvector/basic-usage
+ * @module @cortex-agent/plugins/examples/ruvector/basic-usage
  */
 
 import {

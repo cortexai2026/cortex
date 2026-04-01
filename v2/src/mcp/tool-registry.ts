@@ -6,7 +6,7 @@
  */
 
 import { createInProcessServer, InProcessMCPServer } from './in-process-server.js';
-import { createClaudeFlowTools } from './claude-flow-tools.js';
+import { createCortexAgentTools } from './cortex-agent-tools.js';
 import { logger } from '../core/logger.js';
 import type { MCPTool } from '../utils/types.js';
 import type { McpSdkServerConfigWithInstance } from '@anthropic-ai/claude-code/sdk.d.ts';
@@ -25,7 +25,7 @@ export interface ToolRegistryConfig {
 /**
  * Global tool registry for managing all MCP tools
  */
-export class ClaudeFlowToolRegistry {
+export class CortexAgentToolRegistry {
   private inProcessServer?: InProcessMCPServer;
   private sdkServer?: McpSdkServerConfigWithInstance;
   private tools: Map<string, MCPTool>;
@@ -35,7 +35,7 @@ export class ClaudeFlowToolRegistry {
     this.config = config;
     this.tools = new Map();
 
-    logger.info('ClaudeFlowToolRegistry initialized', {
+    logger.info('CortexAgentToolRegistry initialized', {
       enableInProcess: config.enableInProcess,
       enableMetrics: config.enableMetrics,
     });
@@ -47,8 +47,8 @@ export class ClaudeFlowToolRegistry {
   async initialize(): Promise<void> {
     logger.info('Loading Claude-Flow tools...');
 
-    // Load all tools from claude-flow-tools.ts
-    const claudeFlowTools = await createClaudeFlowTools(logger);
+    // Load all tools from cortex-agent-tools.ts
+    const claudeFlowTools = await createCortexAgentTools(logger);
 
     // Register each tool
     for (const tool of claudeFlowTools) {
@@ -71,7 +71,7 @@ export class ClaudeFlowToolRegistry {
 
     // Create in-process server
     this.inProcessServer = createInProcessServer({
-      name: 'claude-flow',
+      name: 'cortex-agent',
       version: '2.0.0',
       enableMetrics: this.config.enableMetrics,
       enableCaching: this.config.enableCaching,
@@ -113,7 +113,7 @@ export class ClaudeFlowToolRegistry {
 
     // Create SDK MCP server
     this.sdkServer = createSdkMcpServer({
-      name: 'claude-flow',
+      name: 'cortex-agent',
       version: '2.0.0',
       tools: sdkTools,
     });
@@ -357,8 +357,8 @@ export class ClaudeFlowToolRegistry {
  */
 export async function createToolRegistry(
   config: ToolRegistryConfig
-): Promise<ClaudeFlowToolRegistry> {
-  const registry = new ClaudeFlowToolRegistry(config);
+): Promise<CortexAgentToolRegistry> {
+  const registry = new CortexAgentToolRegistry(config);
   await registry.initialize();
   return registry;
 }
@@ -366,7 +366,7 @@ export async function createToolRegistry(
 /**
  * Export SDK server creation helper
  */
-export async function createClaudeFlowSdkServer(
+export async function createCortexAgentSdkServer(
   orchestratorContext?: any
 ): Promise<McpSdkServerConfigWithInstance> {
   const registry = await createToolRegistry({

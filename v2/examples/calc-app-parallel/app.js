@@ -1,4 +1,4 @@
-// Application created by Claude Flow Swarm
+// Application created by Cortex Agent Swarm
 // Task: Create Tests
 // Description: Write tests for the implementation
 

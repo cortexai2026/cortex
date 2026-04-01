@@ -1,6 +1,6 @@
 /**
  * V3 CLI Status Command
- * System status display for Claude Flow
+ * System status display for Cortex Agent
  */
 
 import type { Command, CommandContext, CommandResult } from '../types.js';
@@ -45,7 +45,7 @@ function getProcessMemoryUsage(): number {
 
 // Check if project is initialized
 function isInitialized(cwd: string): boolean {
-  const configPath = path.join(cwd, '.claude-flow', 'config.yaml');
+  const configPath = path.join(cwd, '.cortex-agent', 'config.yaml');
   return fs.existsSync(configPath);
 }
 
@@ -222,7 +222,7 @@ function displayStatus(status: Awaited<ReturnType<typeof getSystemStatus>>): voi
   const statusIcon = status.running
     ? output.success('[RUNNING]')
     : output.warning('[STOPPED]');
-  output.writeln(`${output.bold('RuFlo V3')} ${statusIcon}`);
+  output.writeln(`${output.bold('Cortex Agent V3')} ${statusIcon}`);
   output.writeln();
 
   // Swarm section
@@ -343,8 +343,8 @@ const statusAction = async (ctx: CommandContext): Promise<CommandResult> => {
 
   // Check initialization
   if (!isInitialized(cwd)) {
-    output.printError('RuFlo is not initialized in this directory');
-    output.printInfo('Run "ruflo init" to initialize');
+    output.printError('Cortex Agent is not initialized in this directory');
+    output.printInfo('Run "cortex-agent init" to initialize');
     return { success: false, exitCode: 1 };
   }
 
@@ -727,14 +727,14 @@ export const statusCommand: Command = {
     }
   ],
   examples: [
-    { command: 'claude-flow status', description: 'Show current system status' },
-    { command: 'claude-flow status --watch', description: 'Watch mode with live updates' },
-    { command: 'claude-flow status --watch -i 5', description: 'Watch mode updating every 5 seconds' },
-    { command: 'claude-flow status --health-check', description: 'Run health checks' },
-    { command: 'claude-flow status --json', description: 'Output status as JSON' },
-    { command: 'claude-flow status agents', description: 'Show detailed agent status' },
-    { command: 'claude-flow status tasks', description: 'Show detailed task status' },
-    { command: 'claude-flow status memory', description: 'Show detailed memory status' }
+    { command: 'cortex-agent status', description: 'Show current system status' },
+    { command: 'cortex-agent status --watch', description: 'Watch mode with live updates' },
+    { command: 'cortex-agent status --watch -i 5', description: 'Watch mode updating every 5 seconds' },
+    { command: 'cortex-agent status --health-check', description: 'Run health checks' },
+    { command: 'cortex-agent status --json', description: 'Output status as JSON' },
+    { command: 'cortex-agent status agents', description: 'Show detailed agent status' },
+    { command: 'cortex-agent status tasks', description: 'Show detailed task status' },
+    { command: 'cortex-agent status memory', description: 'Show detailed memory status' }
   ],
   action: statusAction
 };

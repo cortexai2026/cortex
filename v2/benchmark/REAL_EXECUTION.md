@@ -1,7 +1,7 @@
-# Real Claude Flow Execution Configuration
+# Real Cortex Agent Execution Configuration
 
 ## Overview
-The benchmark system is configured to use real claude-flow commands without any simulations.
+The benchmark system is configured to use real cortex-agent commands without any simulations.
 
 ## Current Status
 
@@ -48,14 +48,14 @@ All commands are configured to run non-interactively by default:
 
 ### Benchmark Configuration
 ```python
-# In benchmark/src/swarm_benchmark/core/claude_flow_real_executor.py
-class RealClaudeFlowExecutor:
+# In benchmark/src/swarm_benchmark/core/cortex_agent_real_executor.py
+class RealCortexAgentExecutor:
     def __init__(self, force_non_interactive=True):
         # Always uses non-interactive mode
 ```
 
 ### Command Execution
-All commands use real claude-flow binary at `/workspaces/claude-code-flow/claude-flow`
+All commands use real cortex-agent binary at `/workspaces/claude-code-flow/cortex-agent`
 
 ## Testing Real Execution
 
@@ -77,7 +77,7 @@ cat ./my-reports/sparc_tdd_*.json
 ## No Simulations
 The system has been updated to:
 - ❌ Remove all simulation/fallback code
-- ✅ Always use real claude-flow commands
+- ✅ Always use real cortex-agent commands
 - ✅ Report actual command output
 - ✅ Track real execution metrics
 

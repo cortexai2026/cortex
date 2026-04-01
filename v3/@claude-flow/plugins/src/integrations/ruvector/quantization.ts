@@ -7,7 +7,7 @@
  * - Product Quantization (PQ): High compression with codebooks
  * - Optimized Product Quantization (OPQ): PQ with learned rotation
  *
- * @module @claude-flow/plugins/integrations/ruvector/quantization
+ * @module @cortex-agent/plugins/integrations/ruvector/quantization
  * @version 1.0.0
  */
 

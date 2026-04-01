@@ -108,7 +108,7 @@ export interface V2APIInterface {
  */
 export const V2_CLI_COMMANDS: V2CLICommand[] = [
   // Core commands
-  { name: 'init', aliases: ['i'], flags: ['--force', '--template'], description: 'Initialize claude-flow project', v3Equivalent: 'init' },
+  { name: 'init', aliases: ['i'], flags: ['--force', '--template'], description: 'Initialize cortex-agent project', v3Equivalent: 'init' },
   { name: 'start', aliases: ['s'], flags: ['--detached', '--port'], description: 'Start MCP server', v3Equivalent: 'start' },
   { name: 'stop', aliases: [], flags: ['--force'], description: 'Stop MCP server', v3Equivalent: 'stop' },
   { name: 'status', aliases: ['st'], flags: ['--json', '--verbose'], description: 'Show system status', v3Equivalent: 'status' },
@@ -702,7 +702,7 @@ export class V2CompatibilityValidator {
           : `Class "${iface.name}" has no V3 equivalent`,
         v2Behavior: `Import and use "${iface.name}"`,
         v3Behavior: isSupported
-          ? `Import "${v3Equivalent}" from @claude-flow/*`
+          ? `Import "${v3Equivalent}" from @cortex-agent/*`
           : 'Not available',
         breaking: !isSupported && !iface.deprecated,
         migrationPath: isSupported
@@ -814,7 +814,7 @@ export class V2CompatibilityValidator {
 
     if (cli.breakingChanges > 0) {
       recommendations.push('Update CLI command calls to use V3 equivalents');
-      recommendations.push('Run migration script: npx @claude-flow/cli migrate');
+      recommendations.push('Run migration script: npx @cortex-agent/cli migrate');
     }
 
     if (mcp.breakingChanges > 0) {
@@ -828,7 +828,7 @@ export class V2CompatibilityValidator {
     }
 
     if (api.breakingChanges > 0) {
-      recommendations.push('Update import statements to use @claude-flow/* packages');
+      recommendations.push('Update import statements to use @cortex-agent/* packages');
       recommendations.push('Use provided import aliases for backward compatibility');
     }
 
@@ -1033,10 +1033,10 @@ export function generateCompatibilityReport(report: FullValidationReport): strin
   lines.push('# Deprecated commands will show warnings');
   lines.push('');
   lines.push('# V2 (deprecated)');
-  lines.push('npx claude-flow hive-mind init');
+  lines.push('npx cortex-agent hive-mind init');
   lines.push('');
   lines.push('# V3 (recommended)');
-  lines.push('npx @claude-flow/cli swarm init');
+  lines.push('npx @cortex-agent/cli swarm init');
   lines.push('```');
   lines.push('');
   lines.push('### MCP Tool Migration');
@@ -1056,12 +1056,12 @@ export function generateCompatibilityReport(report: FullValidationReport): strin
   lines.push('');
   lines.push('```typescript');
   lines.push("// V2 imports");
-  lines.push("import { HiveMind } from 'claude-flow/hive-mind';");
-  lines.push("import { SwarmCoordinator } from 'claude-flow/swarm';");
+  lines.push("import { HiveMind } from 'cortex-agent/hive-mind';");
+  lines.push("import { SwarmCoordinator } from 'cortex-agent/swarm';");
   lines.push('');
   lines.push("// V3 imports (using aliases)");
-  lines.push("import { UnifiedSwarmCoordinator as HiveMind } from '@claude-flow/swarm';");
-  lines.push("import { UnifiedSwarmCoordinator as SwarmCoordinator } from '@claude-flow/swarm';");
+  lines.push("import { UnifiedSwarmCoordinator as HiveMind } from '@cortex-agent/swarm';");
+  lines.push("import { UnifiedSwarmCoordinator as SwarmCoordinator } from '@cortex-agent/swarm';");
   lines.push('```');
   lines.push('');
   lines.push('---');

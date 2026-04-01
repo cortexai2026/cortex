@@ -9,7 +9,7 @@
  *
  * Run with: npx ts-node examples/ruvector/self-learning.ts
  *
- * @module @claude-flow/plugins/examples/ruvector/self-learning
+ * @module @cortex-agent/plugins/examples/ruvector/self-learning
  */
 
 import {

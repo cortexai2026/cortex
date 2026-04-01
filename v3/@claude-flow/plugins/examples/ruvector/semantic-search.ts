@@ -9,7 +9,7 @@
  *
  * Run with: npx ts-node examples/ruvector/semantic-search.ts
  *
- * @module @claude-flow/plugins/examples/ruvector/semantic-search
+ * @module @cortex-agent/plugins/examples/ruvector/semantic-search
  */
 
 import {

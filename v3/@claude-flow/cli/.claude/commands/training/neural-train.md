@@ -4,7 +4,7 @@ Train neural patterns with SONA (Self-Optimizing Neural Architecture) for adapti
 
 ## Usage
 ```bash
-npx claude-flow neural train [options]
+npx cortex-agent neural train [options]
 ```
 
 ## Options
@@ -18,8 +18,8 @@ npx claude-flow neural train [options]
 ## Pattern Persistence
 
 Trained patterns are **automatically persisted** to disk:
-- **Location**: `.claude-flow/neural/patterns.json`
-- **Stats**: `.claude-flow/neural/stats.json`
+- **Location**: `.cortex-agent/neural/patterns.json`
+- **Stats**: `.cortex-agent/neural/stats.json`
 
 Patterns survive process restarts and are loaded automatically on next session.
 
@@ -27,16 +27,16 @@ Patterns survive process restarts and are loaded automatically on next session.
 
 ```bash
 # Train coordination patterns (50 epochs)
-npx claude-flow neural train -p coordination -e 50
+npx cortex-agent neural train -p coordination -e 50
 
 # Train with custom learning rate
-npx claude-flow neural train -p optimization -l 0.005
+npx cortex-agent neural train -p optimization -l 0.005
 
 # Train from file
-npx claude-flow neural train -d ./training-data.json
+npx cortex-agent neural train -d ./training-data.json
 
 # Quick training (10 epochs)
-npx claude-flow neural train -e 10
+npx cortex-agent neural train -e 10
 ```
 
 ## Output
@@ -51,13 +51,13 @@ Training produces:
 
 ```bash
 # List all persisted patterns
-npx claude-flow neural patterns --action list
+npx cortex-agent neural patterns --action list
 
 # Search patterns by query
-npx claude-flow neural patterns --action list -q "error handling"
+npx cortex-agent neural patterns --action list -q "error handling"
 
 # Analyze patterns
-npx claude-flow neural patterns --action analyze -q "coordination"
+npx cortex-agent neural patterns --action analyze -q "coordination"
 ```
 
 ## Performance Targets

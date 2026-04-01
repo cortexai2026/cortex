@@ -1,5 +1,5 @@
 {
-  "name": "@claude-flow/performance",
+  "name": "@cortex-agent/performance",
   "version": "3.0.0-alpha.6",
   "type": "module",
   "description": "Performance module - benchmarking, Flash Attention validation, optimization",

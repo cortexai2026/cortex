@@ -1,6 +1,6 @@
 /**
  * V3 Types - Public API
- * Modernized type system for claude-flow v3
+ * Modernized type system for cortex-agent v3
  */
 
 // Agent types

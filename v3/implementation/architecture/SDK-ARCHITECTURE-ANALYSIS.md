@@ -472,19 +472,19 @@ const result = await integration.completeTrajectory(trajectoryId, results);
 
 **Tier 1: Core (~2MB)**
 ```bash
-npm install claude-flow@3 agentic-flow@alpha
+npm install cortex-agent@3 agentic-flow@alpha
 # Includes: hooks, routing, basic learning
 ```
 
 **Tier 2: Learning (~8MB)**
 ```bash
-npx claude-flow enable-learning
+npx cortex-agent enable-learning
 # Adds: SONA, AgentDB, ReasoningBank
 ```
 
 **Tier 3: Full (~15MB)**
 ```bash
-npx claude-flow enable-swarm
+npx cortex-agent enable-swarm
 # Adds: QUIC, attention coordination, GNN
 ```
 
@@ -531,19 +531,19 @@ export async function initSwarmCoordination(config) {
 
 ```bash
 # Learning
-npx claude-flow learn status          # Show learning stats
-npx claude-flow learn force           # Force learning cycle
-npx claude-flow learn export <path>   # Export learned patterns
+npx cortex-agent learn status          # Show learning stats
+npx cortex-agent learn force           # Force learning cycle
+npx cortex-agent learn export <path>   # Export learned patterns
 
 # Hooks
-npx claude-flow hooks list            # List available hooks
-npx claude-flow hooks enable <hook>   # Enable specific hook
-npx claude-flow hooks metrics         # Show hook performance
+npx cortex-agent hooks list            # List available hooks
+npx cortex-agent hooks enable <hook>   # Enable specific hook
+npx cortex-agent hooks metrics         # Show hook performance
 
 # Swarm
-npx claude-flow swarm init <topology> # Initialize swarm
-npx claude-flow swarm status          # Show swarm status
-npx claude-flow swarm optimize        # Get optimization recommendations
+npx cortex-agent swarm init <topology> # Initialize swarm
+npx cortex-agent swarm status          # Show swarm status
+npx cortex-agent swarm optimize        # Get optimization recommendations
 ```
 
 ---
@@ -606,7 +606,7 @@ Claude-Flow v3 will be architected as a **modular constellation of npm packages*
 
 ```
                         ┌─────────────────────────┐
-                        │    @claude-flow/core    │
+                        │    @cortex-agent/core    │
                         │   (Central Connector)   │
                         │       ~50KB base        │
                         └───────────┬─────────────┘
@@ -630,23 +630,23 @@ Claude-Flow v3 will be architected as a **modular constellation of npm packages*
 
 ### 11.2 Package Specifications
 
-#### @claude-flow/core (Central Connector)
+#### @cortex-agent/core (Central Connector)
 
 **Purpose:** Minimal core that connects all packages, provides unified configuration, and manages inter-package communication.
 
 ```typescript
-// Package: @claude-flow/core
-// Size: ~50KB (no dependencies on other @claude-flow/* packages)
+// Package: @cortex-agent/core
+// Size: ~50KB (no dependencies on other @cortex-agent/* packages)
 
-export interface ClaudeFlowConfig {
+export interface CortexAgentConfig {
   enabledModules: string[];
   sharedConfig: SharedConfig;
   eventBus: EventBus;
 }
 
-export class ClaudeFlowCore {
+export class CortexAgentCore {
   // Module registry
-  register(module: ClaudeFlowModule): void;
+  register(module: CortexAgentModule): void;
   unregister(moduleId: string): void;
 
   // Cross-module communication
@@ -654,7 +654,7 @@ export class ClaudeFlowCore {
   on(event: string, handler: EventHandler): void;
 
   // Unified configuration
-  configure(config: Partial<ClaudeFlowConfig>): void;
+  configure(config: Partial<CortexAgentConfig>): void;
 
   // Module discovery
   getModule<T>(id: string): T | undefined;
@@ -662,42 +662,42 @@ export class ClaudeFlowCore {
 }
 
 // Usage:
-import { ClaudeFlowCore } from '@claude-flow/core';
-const core = new ClaudeFlowCore();
+import { CortexAgentCore } from '@cortex-agent/core';
+const core = new CortexAgentCore();
 ```
 
 **Key Features:**
 - Event bus for inter-module communication
 - Shared configuration management
 - Module lifecycle management
-- Zero dependencies on other @claude-flow/* packages
+- Zero dependencies on other @cortex-agent/* packages
 - Can run standalone for minimal setups
 
 ---
 
-#### @claude-flow/hooks
+#### @cortex-agent/hooks
 
 **Purpose:** Claude Code event hooks for pre/post operations with intelligent routing.
 
 ```typescript
-// Package: @claude-flow/hooks
-// Dependencies: @claude-flow/core (optional peer)
+// Package: @cortex-agent/hooks
+// Dependencies: @cortex-agent/core (optional peer)
 // SDK: agentic-flow/hooks
 
 export interface HookConfig {
   enabled: boolean;
   events: ClaudeCodeEvent[];
-  learning?: boolean;  // Requires @claude-flow/learning
+  learning?: boolean;  // Requires @cortex-agent/learning
 }
 
 // Standalone usage
-import { createHookDispatcher } from '@claude-flow/hooks';
+import { createHookDispatcher } from '@cortex-agent/hooks';
 const dispatcher = createHookDispatcher();
 dispatcher.register('PreToolUse', preEditHook);
 
 // With core integration
-import { ClaudeFlowCore } from '@claude-flow/core';
-import { HooksModule } from '@claude-flow/hooks';
+import { CortexAgentCore } from '@cortex-agent/core';
+import { HooksModule } from '@cortex-agent/hooks';
 core.register(new HooksModule());
 ```
 
@@ -717,13 +717,13 @@ core.register(new HooksModule());
 
 ---
 
-#### @claude-flow/learning
+#### @cortex-agent/learning
 
 **Purpose:** Self-optimizing learning system with multiple RL algorithms.
 
 ```typescript
-// Package: @claude-flow/learning
-// Dependencies: @claude-flow/core (optional peer)
+// Package: @cortex-agent/learning
+// Dependencies: @cortex-agent/core (optional peer)
 // SDK: agentic-flow (SONA + AgentDB)
 
 export interface LearningConfig {
@@ -734,13 +734,13 @@ export interface LearningConfig {
 }
 
 // Standalone usage
-import { createLearningEngine } from '@claude-flow/learning';
+import { createLearningEngine } from '@cortex-agent/learning';
 const engine = createLearningEngine({ algorithm: 'PPO' });
 await engine.train(pattern);
 const similar = await engine.query(embedding);
 
 // With core integration
-import { LearningModule } from '@claude-flow/learning';
+import { LearningModule } from '@cortex-agent/learning';
 core.register(new LearningModule({ profile: 'balanced' }));
 ```
 
@@ -768,13 +768,13 @@ type RLAlgorithm =
 
 ---
 
-#### @claude-flow/swarm
+#### @cortex-agent/swarm
 
 **Purpose:** Multi-agent swarm coordination with topology support.
 
 ```typescript
-// Package: @claude-flow/swarm
-// Dependencies: @claude-flow/core (optional peer)
+// Package: @cortex-agent/swarm
+// Dependencies: @cortex-agent/core (optional peer)
 // SDK: agentic-flow/swarm
 
 export interface SwarmConfig {
@@ -785,7 +785,7 @@ export interface SwarmConfig {
 }
 
 // Standalone usage
-import { createSwarm } from '@claude-flow/swarm';
+import { createSwarm } from '@cortex-agent/swarm';
 const swarm = await createSwarm({
   topology: 'hierarchical',
   maxAgents: 10
@@ -793,7 +793,7 @@ const swarm = await createSwarm({
 await swarm.spawnAgent({ type: 'researcher' });
 
 // With core integration
-import { SwarmModule } from '@claude-flow/swarm';
+import { SwarmModule } from '@cortex-agent/swarm';
 core.register(new SwarmModule({ topology: 'mesh' }));
 ```
 
@@ -808,13 +808,13 @@ core.register(new SwarmModule({ topology: 'mesh' }));
 
 ---
 
-#### @claude-flow/memory
+#### @cortex-agent/memory
 
 **Purpose:** Persistent memory and pattern storage.
 
 ```typescript
-// Package: @claude-flow/memory
-// Dependencies: @claude-flow/core (optional peer)
+// Package: @cortex-agent/memory
+// Dependencies: @cortex-agent/core (optional peer)
 // SDK: agentic-flow/reasoningbank
 
 export interface MemoryConfig {
@@ -825,13 +825,13 @@ export interface MemoryConfig {
 }
 
 // Standalone usage
-import { createMemoryStore } from '@claude-flow/memory';
+import { createMemoryStore } from '@cortex-agent/memory';
 const memory = createMemoryStore({ backend: 'hybrid' });
 await memory.store('task/123', pattern);
 const similar = await memory.retrieve('code review', { k: 5 });
 
 // With core integration
-import { MemoryModule } from '@claude-flow/memory';
+import { MemoryModule } from '@cortex-agent/memory';
 core.register(new MemoryModule());
 ```
 
@@ -844,13 +844,13 @@ core.register(new MemoryModule());
 
 ---
 
-#### @claude-flow/agents
+#### @cortex-agent/agents
 
 **Purpose:** Agent definitions and dynamic agent generation.
 
 ```typescript
-// Package: @claude-flow/agents
-// Dependencies: @claude-flow/core (optional peer)
+// Package: @cortex-agent/agents
+// Dependencies: @cortex-agent/core (optional peer)
 
 export interface AgentDefinition {
   id: string;
@@ -861,14 +861,14 @@ export interface AgentDefinition {
 }
 
 // Standalone usage
-import { defineAgent, loadAgents } from '@claude-flow/agents';
+import { defineAgent, loadAgents } from '@cortex-agent/agents';
 const researcher = defineAgent({
   type: 'researcher',
   capabilities: ['web-search', 'code-analysis']
 });
 
 // With core integration
-import { AgentsModule } from '@claude-flow/agents';
+import { AgentsModule } from '@cortex-agent/agents';
 core.register(new AgentsModule());
 ```
 
@@ -881,13 +881,13 @@ core.register(new AgentsModule());
 
 ---
 
-#### @claude-flow/mcp
+#### @cortex-agent/mcp
 
 **Purpose:** MCP server and tool definitions.
 
 ```typescript
-// Package: @claude-flow/mcp
-// Dependencies: @claude-flow/core (optional peer)
+// Package: @cortex-agent/mcp
+// Dependencies: @cortex-agent/core (optional peer)
 
 export interface MCPConfig {
   servers: MCPServerConfig[];
@@ -896,13 +896,13 @@ export interface MCPConfig {
 }
 
 // Standalone usage
-import { startMCPServer } from '@claude-flow/mcp';
+import { startMCPServer } from '@cortex-agent/mcp';
 const server = await startMCPServer({
   tools: ['swarm_init', 'agent_spawn', 'task_orchestrate']
 });
 
 // With core integration
-import { MCPModule } from '@claude-flow/mcp';
+import { MCPModule } from '@cortex-agent/mcp';
 core.register(new MCPModule());
 ```
 
@@ -915,13 +915,13 @@ core.register(new MCPModule());
 
 ---
 
-#### @claude-flow/neural
+#### @cortex-agent/neural
 
 **Purpose:** Neural network operations and attention mechanisms.
 
 ```typescript
-// Package: @claude-flow/neural
-// Dependencies: @claude-flow/core (optional peer)
+// Package: @cortex-agent/neural
+// Dependencies: @cortex-agent/core (optional peer)
 // SDK: @ruvector/attention, @ruvector/gnn
 
 export interface NeuralConfig {
@@ -931,12 +931,12 @@ export interface NeuralConfig {
 }
 
 // Standalone usage
-import { createAttentionService } from '@claude-flow/neural';
+import { createAttentionService } from '@cortex-agent/neural';
 const attention = createAttentionService({ mechanism: 'flash' });
 const result = await attention.compute(Q, K, V);
 
 // With core integration
-import { NeuralModule } from '@claude-flow/neural';
+import { NeuralModule } from '@cortex-agent/neural';
 core.register(new NeuralModule());
 ```
 
@@ -952,13 +952,13 @@ core.register(new NeuralModule());
 
 ---
 
-#### @claude-flow/attention
+#### @cortex-agent/attention
 
 **Purpose:** Attention-based agent coordination and consensus.
 
 ```typescript
-// Package: @claude-flow/attention
-// Dependencies: @claude-flow/core, @claude-flow/neural (optional peers)
+// Package: @cortex-agent/attention
+// Dependencies: @cortex-agent/core, @cortex-agent/neural (optional peers)
 
 export interface AttentionCoordinatorConfig {
   mechanism: AttentionMechanism;
@@ -966,24 +966,24 @@ export interface AttentionCoordinatorConfig {
 }
 
 // Standalone usage
-import { createAttentionCoordinator } from '@claude-flow/attention';
+import { createAttentionCoordinator } from '@cortex-agent/attention';
 const coordinator = createAttentionCoordinator({ mechanism: 'flash' });
 const consensus = await coordinator.coordinateAgents(outputs);
 
 // With core integration
-import { AttentionModule } from '@claude-flow/attention';
+import { AttentionModule } from '@cortex-agent/attention';
 core.register(new AttentionModule());
 ```
 
 ---
 
-#### @claude-flow/vector
+#### @cortex-agent/vector
 
 **Purpose:** Vector database operations with HNSW indexing.
 
 ```typescript
-// Package: @claude-flow/vector
-// Dependencies: @claude-flow/core (optional peer)
+// Package: @cortex-agent/vector
+// Dependencies: @cortex-agent/core (optional peer)
 // SDK: @ruvector/core, agentdb
 
 export interface VectorConfig {
@@ -994,13 +994,13 @@ export interface VectorConfig {
 }
 
 // Standalone usage
-import { createVectorStore } from '@claude-flow/vector';
+import { createVectorStore } from '@cortex-agent/vector';
 const vectors = createVectorStore({ dimensions: 384 });
 await vectors.add('id', embedding, metadata);
 const results = await vectors.search(query, { k: 5 });
 
 // With core integration
-import { VectorModule } from '@claude-flow/vector';
+import { VectorModule } from '@cortex-agent/vector';
 core.register(new VectorModule());
 ```
 
@@ -1011,13 +1011,13 @@ core.register(new VectorModule());
 
 ---
 
-#### @claude-flow/cli
+#### @cortex-agent/cli
 
 **Purpose:** Command-line interface for all modules.
 
 ```typescript
-// Package: @claude-flow/cli
-// Dependencies: All @claude-flow/* packages (optional peers)
+// Package: @cortex-agent/cli
+// Dependencies: All @cortex-agent/* packages (optional peers)
 
 // Commands auto-detect installed modules
 ```
@@ -1025,31 +1025,31 @@ core.register(new VectorModule());
 **Commands:**
 ```bash
 # Core
-npx @claude-flow/cli init           # Initialize project
-npx @claude-flow/cli status         # Show module status
-npx @claude-flow/cli config         # Configure modules
+npx @cortex-agent/cli init           # Initialize project
+npx @cortex-agent/cli status         # Show module status
+npx @cortex-agent/cli config         # Configure modules
 
-# Hooks (if @claude-flow/hooks installed)
-npx @claude-flow/cli hooks list
-npx @claude-flow/cli hooks enable <hook>
+# Hooks (if @cortex-agent/hooks installed)
+npx @cortex-agent/cli hooks list
+npx @cortex-agent/cli hooks enable <hook>
 
-# Learning (if @claude-flow/learning installed)
-npx @claude-flow/cli learn status
-npx @claude-flow/cli learn train <patterns>
-npx @claude-flow/cli learn export
+# Learning (if @cortex-agent/learning installed)
+npx @cortex-agent/cli learn status
+npx @cortex-agent/cli learn train <patterns>
+npx @cortex-agent/cli learn export
 
-# Swarm (if @claude-flow/swarm installed)
-npx @claude-flow/cli swarm init <topology>
-npx @claude-flow/cli swarm spawn <type>
-npx @claude-flow/cli swarm status
+# Swarm (if @cortex-agent/swarm installed)
+npx @cortex-agent/cli swarm init <topology>
+npx @cortex-agent/cli swarm spawn <type>
+npx @cortex-agent/cli swarm status
 
-# Memory (if @claude-flow/memory installed)
-npx @claude-flow/cli memory stats
-npx @claude-flow/cli memory consolidate
+# Memory (if @cortex-agent/memory installed)
+npx @cortex-agent/cli memory stats
+npx @cortex-agent/cli memory consolidate
 
-# MCP (if @claude-flow/mcp installed)
-npx @claude-flow/cli mcp start
-npx @claude-flow/cli mcp list-tools
+# MCP (if @cortex-agent/mcp installed)
+npx @cortex-agent/cli mcp start
+npx @cortex-agent/cli mcp list-tools
 ```
 
 ---
@@ -1058,7 +1058,7 @@ npx @claude-flow/cli mcp list-tools
 
 ```
                  core  hooks  learn  swarm  memory  agents  mcp  neural  attn  vector  cli
-@claude-flow/
+@cortex-agent/
   core            -     -      -      -      -       -      -     -       -     -      -
   hooks           P     -      P      -      P       -      -     -       -     -      -
   learning        P     -      -      -      P       -      -     P       -     P      -
@@ -1079,49 +1079,49 @@ P = Optional peer dependency (enhances features when present)
 
 #### Minimal (Core Only)
 ```bash
-npm install @claude-flow/core
+npm install @cortex-agent/core
 # 50KB, event bus and configuration only
 ```
 
 #### Hooks Only
 ```bash
-npm install @claude-flow/hooks
+npm install @cortex-agent/hooks
 # Works standalone, no core required
 # 200KB, Claude Code hook integration
 ```
 
 #### Learning Stack
 ```bash
-npm install @claude-flow/core @claude-flow/learning @claude-flow/memory @claude-flow/vector
+npm install @cortex-agent/core @cortex-agent/learning @cortex-agent/memory @cortex-agent/vector
 # 3MB, full learning system
 ```
 
 #### Swarm Stack
 ```bash
-npm install @claude-flow/core @claude-flow/swarm @claude-flow/agents @claude-flow/attention
+npm install @cortex-agent/core @cortex-agent/swarm @cortex-agent/agents @cortex-agent/attention
 # 4MB, multi-agent coordination
 ```
 
 #### Full Installation
 ```bash
-npm install claude-flow
-# Meta-package that includes all @claude-flow/* packages
+npm install cortex-agent
+# Meta-package that includes all @cortex-agent/* packages
 # 15MB, everything included
 ```
 
 #### Mix and Match Examples
 ```bash
 # Hooks + Learning (self-optimizing hooks)
-npm install @claude-flow/hooks @claude-flow/learning
+npm install @cortex-agent/hooks @cortex-agent/learning
 
 # Swarm + Memory (persistent swarm state)
-npm install @claude-flow/swarm @claude-flow/memory
+npm install @cortex-agent/swarm @cortex-agent/memory
 
 # Neural + Vector (embeddings + search)
-npm install @claude-flow/neural @claude-flow/vector
+npm install @cortex-agent/neural @cortex-agent/vector
 
 # CLI with specific modules
-npm install @claude-flow/cli @claude-flow/hooks @claude-flow/swarm
+npm install @cortex-agent/cli @cortex-agent/hooks @cortex-agent/swarm
 ```
 
 ### 11.5 Module Communication Protocol
@@ -1155,7 +1155,7 @@ interface ModuleEvents {
 }
 
 // Cross-module communication example
-// @claude-flow/hooks emits, @claude-flow/learning listens
+// @cortex-agent/hooks emits, @cortex-agent/learning listens
 core.on('hook:completed', async (data) => {
   if (data.hookId === 'postEdit') {
     await learningModule.train({
@@ -1169,9 +1169,9 @@ core.on('hook:completed', async (data) => {
 
 ### 11.6 SDK Mapping to Packages
 
-Each @claude-flow/* package maps to specific agentic-flow SDK components:
+Each @cortex-agent/* package maps to specific agentic-flow SDK components:
 
-| @claude-flow/* | agentic-flow SDK |
+| @cortex-agent/* | agentic-flow SDK |
 |----------------|------------------|
 | hooks | `agentic-flow/hooks`, `agentic-flow/mcp/fastmcp/tools/hooks` |
 | learning | `agentic-flow/services/sona-agentdb-integration`, `agentic-flow/hooks/swarm-learning-optimizer` |
@@ -1187,7 +1187,7 @@ Each @claude-flow/* package maps to specific agentic-flow SDK components:
 ### 11.7 Version Compatibility Matrix
 
 ```
-@claude-flow/*  | agentic-flow | @ruvector/* | Node.js
+@cortex-agent/*  | agentic-flow | @ruvector/* | Node.js
 ----------------|--------------|-------------|--------
 3.0.x           | 2.0.x-alpha  | 0.1.x       | ≥18.x
 3.1.x           | 2.1.x-alpha  | 0.2.x       | ≥18.x
@@ -1198,9 +1198,9 @@ Each @claude-flow/* package maps to specific agentic-flow SDK components:
 **Standalone (No Core):**
 ```typescript
 // Each package works independently
-import { createHookDispatcher } from '@claude-flow/hooks';
-import { createLearningEngine } from '@claude-flow/learning';
-import { createSwarm } from '@claude-flow/swarm';
+import { createHookDispatcher } from '@cortex-agent/hooks';
+import { createLearningEngine } from '@cortex-agent/learning';
+import { createSwarm } from '@cortex-agent/swarm';
 
 // Manual coordination required
 const dispatcher = createHookDispatcher();
@@ -1215,12 +1215,12 @@ dispatcher.on('postEdit', async (data) => {
 **Integrated (With Core):**
 ```typescript
 // Automatic cross-module communication
-import { ClaudeFlowCore } from '@claude-flow/core';
-import { HooksModule } from '@claude-flow/hooks';
-import { LearningModule } from '@claude-flow/learning';
-import { SwarmModule } from '@claude-flow/swarm';
+import { CortexAgentCore } from '@cortex-agent/core';
+import { HooksModule } from '@cortex-agent/hooks';
+import { LearningModule } from '@cortex-agent/learning';
+import { SwarmModule } from '@cortex-agent/swarm';
 
-const core = new ClaudeFlowCore();
+const core = new CortexAgentCore();
 core.register(new HooksModule());
 core.register(new LearningModule());
 core.register(new SwarmModule());
@@ -1233,20 +1233,20 @@ core.register(new SwarmModule());
 
 ### 11.9 Shared Types Package
 
-#### @claude-flow/types
+#### @cortex-agent/types
 
 **Purpose:** Zero-runtime TypeScript definitions shared across all packages.
 
 ```typescript
-// Package: @claude-flow/types
+// Package: @cortex-agent/types
 // Size: ~20KB (types only, no runtime)
 // Dependencies: None
 
 // Core interfaces
-export interface ClaudeFlowModule {
+export interface CortexAgentModule {
   id: string;
   version: string;
-  initialize(core?: ClaudeFlowCore): Promise<void>;
+  initialize(core?: CortexAgentCore): Promise<void>;
   shutdown(): Promise<void>;
 }
 
@@ -1323,7 +1323,7 @@ export interface HookResult {
 #### Tool Selection: pnpm Workspaces + Turborepo
 
 ```
-claude-flow/
+cortex-agent/
 ├── package.json              # Root workspace config
 ├── pnpm-workspace.yaml       # pnpm workspace definition
 ├── turbo.json                # Turborepo pipeline config
@@ -1422,15 +1422,15 @@ describe('HookDispatcher', () => {
 
 ```typescript
 // packages/integration-tests/core-hooks.test.ts
-import { ClaudeFlowCore } from '@claude-flow/core';
-import { HooksModule } from '@claude-flow/hooks';
-import { LearningModule } from '@claude-flow/learning';
+import { CortexAgentCore } from '@cortex-agent/core';
+import { HooksModule } from '@cortex-agent/hooks';
+import { LearningModule } from '@cortex-agent/learning';
 
 describe('Core + Hooks + Learning Integration', () => {
-  let core: ClaudeFlowCore;
+  let core: CortexAgentCore;
 
   beforeEach(async () => {
-    core = new ClaudeFlowCore();
+    core = new CortexAgentCore();
     core.register(new HooksModule());
     core.register(new LearningModule({ profile: 'realtime' }));
     await core.initialize();
@@ -1494,8 +1494,8 @@ export const createMockLearningEngine = () => ({
 #### Cross-Module Error Propagation
 
 ```typescript
-// @claude-flow/core error types
-export class ClaudeFlowError extends Error {
+// @cortex-agent/core error types
+export class CortexAgentError extends Error {
   constructor(
     message: string,
     public code: ErrorCode,
@@ -1504,7 +1504,7 @@ export class ClaudeFlowError extends Error {
     public cause?: Error
   ) {
     super(message);
-    this.name = 'ClaudeFlowError';
+    this.name = 'CortexAgentError';
   }
 }
 
@@ -1537,8 +1537,8 @@ export enum ErrorCode {
 #### Graceful Degradation
 
 ```typescript
-// @claude-flow/core graceful degradation
-class ClaudeFlowCore {
+// @cortex-agent/core graceful degradation
+class CortexAgentCore {
   async safeGetModule<T>(id: string): Promise<T | null> {
     try {
       return this.getModule<T>(id) ?? null;
@@ -1562,7 +1562,7 @@ class ClaudeFlowCore {
     try {
       return await primary();
     } catch (error) {
-      if (error instanceof ClaudeFlowError && errorCodes.includes(error.code)) {
+      if (error instanceof CortexAgentError && errorCodes.includes(error.code)) {
         this.emit('error:fallback', { error, using: 'fallback' });
         return await fallback();
       }
@@ -1575,7 +1575,7 @@ class ClaudeFlowCore {
 #### Circuit Breaker Pattern
 
 ```typescript
-// @claude-flow/core circuit breaker
+// @cortex-agent/core circuit breaker
 interface CircuitBreakerConfig {
   failureThreshold: number;  // Failures before opening
   resetTimeout: number;      // Ms before half-open
@@ -1592,7 +1592,7 @@ class CircuitBreaker {
       if (Date.now() - this.lastFailure > this.config.resetTimeout) {
         this.state = 'half-open';
       } else {
-        throw new ClaudeFlowError('Circuit open', ErrorCode.MODULE_INIT_FAILED, 'circuit', true);
+        throw new CortexAgentError('Circuit open', ErrorCode.MODULE_INIT_FAILED, 'circuit', true);
       }
     }
 
@@ -1615,7 +1615,7 @@ class CircuitBreaker {
 #### API Key Management
 
 ```typescript
-// @claude-flow/core secrets
+// @cortex-agent/core secrets
 interface SecretsConfig {
   provider: 'env' | 'keychain' | 'vault';
   keyPrefix?: string;
@@ -1638,7 +1638,7 @@ class SecretsManager {
   async validate(required: string[]): Promise<boolean> {
     for (const key of required) {
       if (!(await this.get(key))) {
-        throw new ClaudeFlowError(
+        throw new CortexAgentError(
           `Missing required secret: ${key}`,
           ErrorCode.MODULE_INIT_FAILED,
           'secrets',
@@ -1654,7 +1654,7 @@ class SecretsManager {
 #### Agent Sandboxing
 
 ```typescript
-// @claude-flow/agents sandboxing
+// @cortex-agent/agents sandboxing
 interface SandboxConfig {
   maxMemoryMB: number;
   maxCpuPercent: number;
@@ -1675,7 +1675,7 @@ const DEFAULT_SANDBOX: SandboxConfig = {
 #### PII Handling
 
 ```typescript
-// @claude-flow/memory PII scrubbing (from agentic-flow)
+// @cortex-agent/memory PII scrubbing (from agentic-flow)
 import { scrubPII, containsPII } from 'agentic-flow/reasoningbank';
 
 class SecureMemoryStore {
@@ -1695,7 +1695,7 @@ class SecureMemoryStore {
 #### Audit Logging
 
 ```typescript
-// @claude-flow/core audit
+// @cortex-agent/core audit
 interface AuditEvent {
   timestamp: number;
   module: string;
@@ -1725,20 +1725,20 @@ class AuditLogger {
 #### OpenTelemetry Integration
 
 ```typescript
-// @claude-flow/core telemetry
+// @cortex-agent/core telemetry
 import { trace, metrics, context } from '@opentelemetry/api';
 
 class Telemetry {
-  private tracer = trace.getTracer('@claude-flow/core');
-  private meter = metrics.getMeter('@claude-flow/core');
+  private tracer = trace.getTracer('@cortex-agent/core');
+  private meter = metrics.getMeter('@cortex-agent/core');
 
   // Counters
-  private hookCounter = this.meter.createCounter('claude_flow.hooks.total');
-  private learningCounter = this.meter.createCounter('claude_flow.learning.patterns');
-  private swarmGauge = this.meter.createUpDownCounter('claude_flow.swarm.agents');
+  private hookCounter = this.meter.createCounter('cortex_agent.hooks.total');
+  private learningCounter = this.meter.createCounter('cortex_agent.learning.patterns');
+  private swarmGauge = this.meter.createUpDownCounter('cortex_agent.swarm.agents');
 
   // Histograms
-  private latencyHistogram = this.meter.createHistogram('claude_flow.operation.latency', {
+  private latencyHistogram = this.meter.createHistogram('cortex_agent.operation.latency', {
     unit: 'ms',
     description: 'Operation latency'
   });
@@ -1828,9 +1828,9 @@ class SwarmTracer {
 
 | v2 API | v3 API | Migration |
 |--------|--------|-----------|
-| `require('claude-flow')` | `import { ClaudeFlowCore } from '@claude-flow/core'` | ESM only |
-| `claudeFlow.init()` | `new ClaudeFlowCore()` | Constructor-based |
-| `claudeFlow.swarm.create()` | `import { createSwarm } from '@claude-flow/swarm'` | Modular import |
+| `require('cortex-agent')` | `import { CortexAgentCore } from '@cortex-agent/core'` | ESM only |
+| `claudeFlow.init()` | `new CortexAgentCore()` | Constructor-based |
+| `claudeFlow.swarm.create()` | `import { createSwarm } from '@cortex-agent/swarm'` | Modular import |
 | `claudeFlow.memory.store()` | `memoryModule.store()` | Module instance |
 | Callbacks | Promises/async-await | All async |
 
@@ -1838,14 +1838,14 @@ class SwarmTracer {
 
 ```bash
 # Install migration tool
-npx @claude-flow/migrate
+npx @cortex-agent/migrate
 
 # Analyze codebase
-npx @claude-flow/migrate analyze ./src
+npx @cortex-agent/migrate analyze ./src
 
 # Apply migrations
-npx @claude-flow/migrate run ./src --dry-run
-npx @claude-flow/migrate run ./src
+npx @cortex-agent/migrate run ./src --dry-run
+npx @cortex-agent/migrate run ./src
 ```
 
 #### Codemod Transforms
@@ -1856,14 +1856,14 @@ export default function transformer(file, api) {
   const j = api.jscodeshift;
   const root = j(file.source);
 
-  // Transform: require('claude-flow') → import
+  // Transform: require('cortex-agent') → import
   root.find(j.CallExpression, {
     callee: { name: 'require' },
-    arguments: [{ value: 'claude-flow' }]
+    arguments: [{ value: 'cortex-agent' }]
   }).replaceWith(() =>
     j.importDeclaration(
-      [j.importSpecifier(j.identifier('ClaudeFlowCore'))],
-      j.literal('@claude-flow/core')
+      [j.importSpecifier(j.identifier('CortexAgentCore'))],
+      j.literal('@cortex-agent/core')
     )
   );
 
@@ -1874,17 +1874,17 @@ export default function transformer(file, api) {
 #### Compatibility Shim (Temporary)
 
 ```typescript
-// @claude-flow/compat - Temporary v2 compatibility
-import { ClaudeFlowCore } from '@claude-flow/core';
-import { HooksModule } from '@claude-flow/hooks';
-import { SwarmModule } from '@claude-flow/swarm';
-import { MemoryModule } from '@claude-flow/memory';
+// @cortex-agent/compat - Temporary v2 compatibility
+import { CortexAgentCore } from '@cortex-agent/core';
+import { HooksModule } from '@cortex-agent/hooks';
+import { SwarmModule } from '@cortex-agent/swarm';
+import { MemoryModule } from '@cortex-agent/memory';
 
 // v2-style API
-export function createClaudeFlow(config?: any) {
-  console.warn('[@claude-flow/compat] Deprecated: Migrate to v3 modular imports');
+export function createCortexAgent(config?: any) {
+  console.warn('[@cortex-agent/compat] Deprecated: Migrate to v3 modular imports');
 
-  const core = new ClaudeFlowCore();
+  const core = new CortexAgentCore();
 
   return {
     init: async () => {
@@ -1919,14 +1919,14 @@ export function createClaudeFlow(config?: any) {
 #### Plugin Interface
 
 ```typescript
-// @claude-flow/core plugin system
-interface ClaudeFlowPlugin {
+// @cortex-agent/core plugin system
+interface CortexAgentPlugin {
   name: string;
   version: string;
 
   // Lifecycle hooks
-  onCoreInit?(core: ClaudeFlowCore): Promise<void>;
-  onModuleRegister?(module: ClaudeFlowModule): void;
+  onCoreInit?(core: CortexAgentCore): Promise<void>;
+  onModuleRegister?(module: CortexAgentModule): void;
   onEvent?(event: string, data: any): void;
   onShutdown?(): Promise<void>;
 
@@ -1944,7 +1944,7 @@ core.use(myPlugin);
 
 ```typescript
 // Third-party hook example
-const securityPlugin: ClaudeFlowPlugin = {
+const securityPlugin: CortexAgentPlugin = {
   name: 'security-scanner',
   version: '1.0.0',
 
@@ -1978,7 +1978,7 @@ const customAgent: AgentDefinition = {
 };
 
 // Register via plugin
-const analyzerPlugin: ClaudeFlowPlugin = {
+const analyzerPlugin: CortexAgentPlugin = {
   name: 'custom-analyzer',
   version: '1.0.0',
   agents: [customAgent]
@@ -1991,10 +1991,10 @@ core.use(analyzerPlugin);
 
 ```bash
 # Install community extension
-npm install @community/claude-flow-security
+npm install @community/cortex-agent-security
 
 # Auto-discovered via naming convention
-# @*/claude-flow-* or claude-flow-plugin-*
+# @*/cortex-agent-* or cortex-agent-plugin-*
 ```
 
 ---
@@ -2005,17 +2005,17 @@ npm install @community/claude-flow-security
 
 1. **Programmatic** (highest) - `core.configure({ ... })`
 2. **CLI flags** - `--swarm-topology=mesh`
-3. **Environment variables** - `CLAUDE_FLOW_SWARM_TOPOLOGY=mesh`
-4. **Project config** - `.claude-flow.json` or `claude-flow.config.js`
-5. **User config** - `~/.claude-flow/config.json`
+3. **Environment variables** - `CORTEX_AGENT_SWARM_TOPOLOGY=mesh`
+4. **Project config** - `.cortex-agent.json` or `cortex-agent.config.js`
+5. **User config** - `~/.cortex-agent/config.json`
 6. **Defaults** (lowest) - Built-in defaults
 
 #### Configuration File
 
 ```json
-// .claude-flow.json
+// .cortex-agent.json
 {
-  "$schema": "https://claude-flow.dev/schema.json",
+  "$schema": "https://cortex-agent.dev/schema.json",
   "version": "3.0",
 
   "core": {
@@ -2042,7 +2042,7 @@ npm install @community/claude-flow-security
 
   "memory": {
     "backend": "hybrid",
-    "path": ".claude-flow/memory",
+    "path": ".cortex-agent/memory",
     "consolidationInterval": 3600000
   }
 }
@@ -2051,17 +2051,17 @@ npm install @community/claude-flow-security
 #### Environment Variable Mapping
 
 ```bash
-# Pattern: CLAUDE_FLOW_<MODULE>_<OPTION>
-CLAUDE_FLOW_LEARNING_ALGORITHM=PPO
-CLAUDE_FLOW_SWARM_TOPOLOGY=mesh
-CLAUDE_FLOW_MEMORY_BACKEND=sqlite
-CLAUDE_FLOW_HOOKS_TIMEOUT=10000
+# Pattern: CORTEX_AGENT_<MODULE>_<OPTION>
+CORTEX_AGENT_LEARNING_ALGORITHM=PPO
+CORTEX_AGENT_SWARM_TOPOLOGY=mesh
+CORTEX_AGENT_MEMORY_BACKEND=sqlite
+CORTEX_AGENT_HOOKS_TIMEOUT=10000
 ```
 
 #### Configuration API
 
 ```typescript
-// @claude-flow/core configuration
+// @cortex-agent/core configuration
 class ConfigManager {
   // Load from all sources
   async load(): Promise<ResolvedConfig> {
@@ -2196,7 +2196,7 @@ jobs:
 #### Feature Detection
 
 ```typescript
-// @claude-flow/core feature detection
+// @cortex-agent/core feature detection
 class FeatureDetector {
   async detect(): Promise<AvailableFeatures> {
     return {
@@ -2238,7 +2238,7 @@ class FeatureDetector {
 #### Degraded Mode Configuration
 
 ```typescript
-// @claude-flow/core degraded mode
+// @cortex-agent/core degraded mode
 interface DegradedModeConfig {
   // What to do when network unavailable
   offline: {
@@ -2299,17 +2299,17 @@ const DEFAULT_DEGRADED: DegradedModeConfig = {
 
 | Package | Purpose | Size | Standalone |
 |---------|---------|------|------------|
-| `@claude-flow/core` | Central connector | ~50KB | ✅ |
-| `@claude-flow/hooks` | Claude Code events | ~200KB | ✅ |
-| `@claude-flow/learning` | Self-optimization | ~2MB | ✅ |
-| `@claude-flow/swarm` | Multi-agent coordination | ~1MB | ✅ |
-| `@claude-flow/memory` | Persistent storage | ~500KB | ✅ |
-| `@claude-flow/agents` | Agent definitions | ~300KB | ✅ |
-| `@claude-flow/mcp` | MCP server/tools | ~400KB | ✅ |
-| `@claude-flow/neural` | Neural operations | ~1MB | ✅ |
-| `@claude-flow/attention` | Agent consensus | ~200KB | ✅ |
-| `@claude-flow/vector` | HNSW search | ~800KB | ✅ |
-| `@claude-flow/cli` | CLI interface | ~100KB | ❌ |
+| `@cortex-agent/core` | Central connector | ~50KB | ✅ |
+| `@cortex-agent/hooks` | Claude Code events | ~200KB | ✅ |
+| `@cortex-agent/learning` | Self-optimization | ~2MB | ✅ |
+| `@cortex-agent/swarm` | Multi-agent coordination | ~1MB | ✅ |
+| `@cortex-agent/memory` | Persistent storage | ~500KB | ✅ |
+| `@cortex-agent/agents` | Agent definitions | ~300KB | ✅ |
+| `@cortex-agent/mcp` | MCP server/tools | ~400KB | ✅ |
+| `@cortex-agent/neural` | Neural operations | ~1MB | ✅ |
+| `@cortex-agent/attention` | Agent consensus | ~200KB | ✅ |
+| `@cortex-agent/vector` | HNSW search | ~800KB | ✅ |
+| `@cortex-agent/cli` | CLI interface | ~100KB | ❌ |
 
 ### 12.3 Key Architectural Decisions
 
@@ -2322,32 +2322,32 @@ const DEFAULT_DEGRADED: DegradedModeConfig = {
 ### 12.4 Implementation Roadmap
 
 **Phase 1: Core Packages**
-- `@claude-flow/core` - Event bus, configuration, module registry
-- `@claude-flow/hooks` - Claude Code event mapping
-- `@claude-flow/cli` - Basic CLI with init/status
+- `@cortex-agent/core` - Event bus, configuration, module registry
+- `@cortex-agent/hooks` - Claude Code event mapping
+- `@cortex-agent/cli` - Basic CLI with init/status
 
 **Phase 2: Learning Stack**
-- `@claude-flow/learning` - SONA + AgentDB integration
-- `@claude-flow/memory` - ReasoningBank wrapper
-- `@claude-flow/vector` - HNSW indexing
+- `@cortex-agent/learning` - SONA + AgentDB integration
+- `@cortex-agent/memory` - ReasoningBank wrapper
+- `@cortex-agent/vector` - HNSW indexing
 
 **Phase 3: Swarm Stack**
-- `@claude-flow/swarm` - QUIC coordination
-- `@claude-flow/agents` - Agent definitions
-- `@claude-flow/attention` - Consensus mechanisms
+- `@cortex-agent/swarm` - QUIC coordination
+- `@cortex-agent/agents` - Agent definitions
+- `@cortex-agent/attention` - Consensus mechanisms
 
 **Phase 4: Neural Stack**
-- `@claude-flow/neural` - Attention mechanisms
-- `@claude-flow/mcp` - Full MCP server
+- `@cortex-agent/neural` - Attention mechanisms
+- `@cortex-agent/mcp` - Full MCP server
 
 ### 12.5 Final Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
-│                         claude-flow (meta-package)                       │
-│                      npm install claude-flow@3                           │
+│                         cortex-agent (meta-package)                       │
+│                      npm install cortex-agent@3                           │
 ├─────────────────────────────────────────────────────────────────────────┤
-│  @claude-flow/*                                                          │
+│  @cortex-agent/*                                                          │
 │  ┌───────┬─────────┬───────┬────────┬────────┬──────┬──────┬─────────┐ │
 │  │ core  │  hooks  │ learn │ swarm  │ memory │agents│ mcp  │ neural  │ │
 │  └───────┴─────────┴───────┴────────┴────────┴──────┴──────┴─────────┘ │
@@ -2705,13 +2705,13 @@ const learningResult = await ruvector.completeTrajectory(
 const patterns = await ruvector.findPatterns(topic, 5);
 ```
 
-### 13.7 @claude-flow/workers Package
+### 13.7 @cortex-agent/workers Package
 
 Claude-Flow v3 workers package specification:
 
 ```typescript
-// @claude-flow/workers
-// Dependencies: @claude-flow/core (optional peer)
+// @cortex-agent/workers
+// Dependencies: @cortex-agent/core (optional peer)
 // SDK: agentic-flow/workers
 
 export interface WorkersConfig {
@@ -2773,10 +2773,10 @@ export {
 Workers can be triggered from Claude Code hooks:
 
 ```typescript
-import { HooksModule } from '@claude-flow/hooks';
-import { WorkersModule } from '@claude-flow/workers';
+import { HooksModule } from '@cortex-agent/hooks';
+import { WorkersModule } from '@cortex-agent/workers';
 
-const core = new ClaudeFlowCore();
+const core = new CortexAgentCore();
 core.register(new HooksModule());
 core.register(new WorkersModule());
 

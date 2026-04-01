@@ -21,11 +21,11 @@ export const helpCommand = new Command()
 
 function showMainHelp(): void {
   const mainHelp: CommandInfo = {
-    name: 'claude-flow',
+    name: 'cortex-agent',
     description: 'Advanced AI agent orchestration system',
-    usage: `claude-flow <command> [<args>] [options]
-    claude-flow <command> --help
-    claude-flow --version`,
+    usage: `cortex-agent <command> [<args>] [options]
+    cortex-agent <command> --help
+    cortex-agent --version`,
     commands: [
       {
         name: 'hive-mind',
@@ -33,7 +33,7 @@ function showMainHelp(): void {
       },
       {
         name: 'init',
-        description: 'Initialize Claude Flow configuration',
+        description: 'Initialize Cortex Agent configuration',
       },
       {
         name: 'start',
@@ -104,10 +104,10 @@ function showMainHelp(): void {
       },
     ],
     examples: [
-      'claude-flow init --sparc',
-      'claude-flow hive-mind wizard',
-      'claude-flow swarm "Build REST API"',
-      'claude-flow status --json',
+      'cortex-agent init --sparc',
+      'cortex-agent hive-mind wizard',
+      'cortex-agent swarm "Build REST API"',
+      'cortex-agent status --json',
     ],
   };
 
@@ -122,8 +122,8 @@ function showCommandHelp(command: string): void {
     console.error(
       HelpFormatter.formatError(
         `Unknown command: ${command}`,
-        'claude-flow help',
-        'claude-flow help [command]',
+        'cortex-agent help',
+        'cortex-agent help [command]',
       ),
     );
   }
@@ -132,9 +132,9 @@ function showCommandHelp(command: string): void {
 function getCommandHelp(command: string): CommandInfo | null {
   const commandHelpMap: Record<string, CommandInfo> = {
     'hive-mind': {
-      name: 'claude-flow hive-mind',
+      name: 'cortex-agent hive-mind',
       description: 'Manage hive mind swarm intelligence',
-      usage: 'claude-flow hive-mind <subcommand> [options]',
+      usage: 'cortex-agent hive-mind <subcommand> [options]',
       commands: [
         { name: 'init', description: 'Initialize hive mind system' },
         { name: 'spawn', description: 'Create intelligent swarm with objective' },
@@ -171,15 +171,15 @@ function getCommandHelp(command: string): CommandInfo | null {
         },
       ],
       examples: [
-        'claude-flow hive-mind spawn "Build REST API" --queen-type strategic',
-        'claude-flow hive-mind status --json',
-        'claude-flow hive-mind stop swarm-123',
+        'cortex-agent hive-mind spawn "Build REST API" --queen-type strategic',
+        'cortex-agent hive-mind status --json',
+        'cortex-agent hive-mind stop swarm-123',
       ],
     },
     agent: {
-      name: 'claude-flow agent',
+      name: 'cortex-agent agent',
       description: 'Manage individual agents',
-      usage: 'claude-flow agent <action> [options]',
+      usage: 'cortex-agent agent <action> [options]',
       commands: [
         { name: 'spawn', description: 'Create a new agent' },
         { name: 'list', description: 'List all active agents' },
@@ -206,15 +206,15 @@ function getCommandHelp(command: string): CommandInfo | null {
         },
       ],
       examples: [
-        'claude-flow agent spawn researcher --name "Research Bot"',
-        'claude-flow agent list --json',
-        'claude-flow agent terminate agent-123',
+        'cortex-agent agent spawn researcher --name "Research Bot"',
+        'cortex-agent agent list --json',
+        'cortex-agent agent terminate agent-123',
       ],
     },
     init: {
-      name: 'claude-flow init',
-      description: 'Initialize Claude Flow configuration',
-      usage: 'claude-flow init [options]',
+      name: 'cortex-agent init',
+      description: 'Initialize Cortex Agent configuration',
+      usage: 'cortex-agent init [options]',
       options: [
         {
           flags: '--sparc',
@@ -235,9 +235,9 @@ function getCommandHelp(command: string): CommandInfo | null {
         },
       ],
       examples: [
-        'claude-flow init',
-        'claude-flow init --sparc',
-        'claude-flow init --template production',
+        'cortex-agent init',
+        'cortex-agent init --sparc',
+        'cortex-agent init --template production',
       ],
     },
   };

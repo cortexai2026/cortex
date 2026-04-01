@@ -1,5 +1,5 @@
 /**
- * @claude-flow/mcp - WebSocket Transport
+ * @cortex-agent/mcp - WebSocket Transport
  *
  * Standalone WebSocket transport with heartbeat
  */

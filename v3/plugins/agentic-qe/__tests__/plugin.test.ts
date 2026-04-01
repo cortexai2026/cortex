@@ -68,14 +68,14 @@ class MockAQEPlugin {
     this.metadata = Object.freeze({
       name: 'agentic-qe',
       version: '3.2.3',
-      description: 'Quality Engineering plugin for Claude Flow V3',
+      description: 'Quality Engineering plugin for Cortex Agent V3',
       author: 'rUv',
       license: 'MIT',
       dependencies: [
-        '@claude-flow/plugins',
-        '@claude-flow/memory',
-        '@claude-flow/security',
-        '@claude-flow/embeddings',
+        '@cortex-agent/plugins',
+        '@cortex-agent/memory',
+        '@cortex-agent/security',
+        '@cortex-agent/embeddings',
       ],
       tags: ['testing', 'quality', 'coverage', 'security', 'tdd'],
       minCoreVersion: '3.0.0-alpha.50',
@@ -321,9 +321,9 @@ describe('AQEPlugin', () => {
     });
 
     it('should have required dependencies', () => {
-      expect(plugin.metadata.dependencies).toContain('@claude-flow/plugins');
-      expect(plugin.metadata.dependencies).toContain('@claude-flow/memory');
-      expect(plugin.metadata.dependencies).toContain('@claude-flow/security');
+      expect(plugin.metadata.dependencies).toContain('@cortex-agent/plugins');
+      expect(plugin.metadata.dependencies).toContain('@cortex-agent/memory');
+      expect(plugin.metadata.dependencies).toContain('@cortex-agent/security');
     });
 
     it('should have expected tags', () => {

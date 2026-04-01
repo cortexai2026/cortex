@@ -4,20 +4,20 @@
 
 set -e
 
-echo "🐳 Testing claude-flow@2.7.8 MCP stdio mode in Docker..."
+echo "🐳 Testing cortex-agent@2.7.8 MCP stdio mode in Docker..."
 echo ""
 
 # Create a temporary Dockerfile
-cat > /tmp/Dockerfile.claude-flow-test <<'EOF'
+cat > /tmp/Dockerfile.cortex-agent-test <<'EOF'
 FROM node:20-alpine
 
-# Install claude-flow@2.7.8
-RUN npm install -g claude-flow@2.7.8
+# Install cortex-agent@2.7.8
+RUN npm install -g cortex-agent@2.7.8
 
 # Create test script
 RUN echo '#!/bin/sh' > /test-stdio.sh && \
     echo 'echo "Testing MCP stdio mode..."' >> /test-stdio.sh && \
-    echo 'timeout 2s claude-flow mcp start > stdout.txt 2> stderr.txt || true' >> /test-stdio.sh && \
+    echo 'timeout 2s cortex-agent mcp start > stdout.txt 2> stderr.txt || true' >> /test-stdio.sh && \
     echo 'echo ""' >> /test-stdio.sh && \
     echo "echo '=== STDOUT (should be clean JSON-RPC) ==='" >> /test-stdio.sh && \
     echo 'cat stdout.txt' >> /test-stdio.sh && \
@@ -41,11 +41,11 @@ CMD ["/test-stdio.sh"]
 EOF
 
 # Build and run the test
-docker build -t claude-flow-stdio-test -f /tmp/Dockerfile.claude-flow-test /tmp
+docker build -t cortex-agent-stdio-test -f /tmp/Dockerfile.cortex-agent-test /tmp
 
 echo ""
 echo "Running test in container..."
-docker run --rm claude-flow-stdio-test
+docker run --rm cortex-agent-stdio-test
 
 echo ""
 echo "✅ Docker test completed successfully!"

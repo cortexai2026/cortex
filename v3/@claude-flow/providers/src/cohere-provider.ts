@@ -3,7 +3,7 @@
  *
  * Supports Command R+, Command R, and Command Light models.
  *
- * @module @claude-flow/providers/cohere-provider
+ * @module @cortex-agent/providers/cohere-provider
  */
 
 import { BaseProvider, BaseProviderOptions } from './base-provider.js';

@@ -36,11 +36,11 @@ export type PluginEvent = 'initialized' | 'shutdown' | 'error';
 export type PluginEventHandler = (event: PluginEvent, data?: unknown) => void;
 
 /**
- * Claude Flow Plugin Interface
+ * Cortex Agent Plugin Interface
  *
  * All plugins must implement this interface.
  */
-export interface ClaudeFlowPlugin {
+export interface CortexAgentPlugin {
   /** Unique plugin identifier */
   readonly id: string;
 
@@ -91,10 +91,10 @@ export interface PluginMetadata {
  * Plugin registry
  */
 export interface IPluginRegistry {
-  register(plugin: ClaudeFlowPlugin): void;
+  register(plugin: CortexAgentPlugin): void;
   unregister(pluginId: string): void;
-  get(pluginId: string): ClaudeFlowPlugin | undefined;
-  getAll(): ClaudeFlowPlugin[];
+  get(pluginId: string): CortexAgentPlugin | undefined;
+  getAll(): CortexAgentPlugin[];
   isRegistered(pluginId: string): boolean;
 }
 
@@ -102,7 +102,7 @@ export interface IPluginRegistry {
  * Plugin loader interface
  */
 export interface IPluginLoader {
-  loadFromPath(path: string): Promise<ClaudeFlowPlugin>;
-  loadFromPackage(packageName: string): Promise<ClaudeFlowPlugin>;
-  loadBuiltin(pluginId: string): Promise<ClaudeFlowPlugin>;
+  loadFromPath(path: string): Promise<CortexAgentPlugin>;
+  loadFromPackage(packageName: string): Promise<CortexAgentPlugin>;
+  loadBuiltin(pluginId: string): Promise<CortexAgentPlugin>;
 }

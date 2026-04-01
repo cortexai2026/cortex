@@ -149,10 +149,10 @@ export function formatSessionStartOutput(result: SessionHookResult): string {
  * Generate a shell hook script for integration with .claude/settings.json
  */
 export function generateShellHook(projectRoot: string): string {
-  const hookPath = path.join(projectRoot, 'v3', '@claude-flow', 'hooks');
+  const hookPath = path.join(projectRoot, 'v3', '@cortex-agent', 'hooks');
 
   return `#!/bin/bash
-# Claude Flow V3 Workers - Session Start Hook
+# Cortex Agent V3 Workers - Session Start Hook
 # Auto-generated - do not edit manually
 
 set -euo pipefail

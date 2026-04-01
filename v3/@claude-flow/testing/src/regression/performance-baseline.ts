@@ -182,8 +182,8 @@ export class PerformanceBaseline {
    */
   private async simulateStartup(): Promise<void> {
     // Import key modules to simulate startup
-    await import('@claude-flow/shared');
-    await import('@claude-flow/memory');
+    await import('@cortex-agent/shared');
+    await import('@cortex-agent/memory');
   }
 
   /**
@@ -250,7 +250,7 @@ export class PerformanceBaseline {
    * Benchmark event bus operations
    */
   private async benchmarkEventBus(): Promise<number> {
-    const { EventBus, createAgentSpawnedEvent } = await import('@claude-flow/shared');
+    const { EventBus, createAgentSpawnedEvent } = await import('@cortex-agent/shared');
     const eventBus = new EventBus();
 
     const iterations = 1000;
@@ -290,13 +290,13 @@ export class PerformanceBaseline {
    * Benchmark event throughput
    */
   private async benchmarkEventThroughput(): Promise<number> {
-    const { EventBus } = await import('@claude-flow/shared');
+    const { EventBus } = await import('@cortex-agent/shared');
     const eventBus = new EventBus();
 
     let count = 0;
     eventBus.subscribe('agent:spawned', () => { count++; });
 
-    const { createAgentSpawnedEvent } = await import('@claude-flow/shared');
+    const { createAgentSpawnedEvent } = await import('@cortex-agent/shared');
     const duration = 1000; // 1 second
     const start = Date.now();
 

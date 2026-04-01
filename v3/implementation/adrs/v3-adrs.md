@@ -51,7 +51,7 @@ Claude-Flow v2.x implements its own agent orchestration, coordination, and execu
 ```
 Functionality Overlap:
 ┌─────────────────────────────────────┐
-│  claude-flow   │   agentic-flow     │
+│  cortex-agent   │   agentic-flow     │
 ├─────────────────────────────────────┤
 │ SwarmCoordinator │ Swarm System    │ 80% overlap
 │ AgentManager     │ Agent Lifecycle │ 70% overlap
@@ -62,7 +62,7 @@ Functionality Overlap:
 
 ### Decision
 
-**We will adopt agentic-flow as the core foundation for v3, building claude-flow as a specialized extension rather than a parallel implementation.**
+**We will adopt agentic-flow as the core foundation for v3, building cortex-agent as a specialized extension rather than a parallel implementation.**
 
 Specifically:
 1. Use agentic-flow's Agent base class for all agents
@@ -110,9 +110,9 @@ Specifically:
 // Create agentic-flow adapter layer
 import { Agent as AgenticFlowAgent } from 'agentic-flow';
 
-export class ClaudeFlowAgent extends AgenticFlowAgent {
-  // Add claude-flow specific capabilities
-  async handleClaudeFlowTask(task: ClaudeTask): Promise<TaskResult> {
+export class CortexAgentAgent extends AgenticFlowAgent {
+  // Add cortex-agent specific capabilities
+  async handleCortexAgentTask(task: ClaudeTask): Promise<TaskResult> {
     // Claude-specific logic
   }
 }
@@ -131,7 +131,7 @@ export class ClaudeFlowAgent extends AgenticFlowAgent {
 
 ### Success Metrics
 
-- [ ] <5,000 lines of orchestration code in claude-flow (vs 15,000+ currently)
+- [ ] <5,000 lines of orchestration code in cortex-agent (vs 15,000+ currently)
 - [ ] 100% feature parity with v2
 - [ ] <10% performance regression (ideally improvement)
 - [ ] All tests passing
@@ -365,7 +365,7 @@ interface ITopologyStrategy {
 }
 
 // Specialized behaviors as plugins
-class HiveMindPlugin implements ClaudeFlowPlugin {
+class HiveMindPlugin implements CortexAgentPlugin {
   enhance(engine: CoordinationEngine): void {
     engine.addConsensusProtocol(new ByzantineConsensus());
     engine.addStrategy('queen-led', new QueenLedStrategy());
@@ -466,7 +466,7 @@ v2 bundles all features (Hive Mind, Maestro, Neural, Verification) into core, ma
 ### Plugin Interface
 
 ```typescript
-interface ClaudeFlowPlugin {
+interface CortexAgentPlugin {
   name: string;
   version: string;
   dependencies?: string[];
@@ -483,7 +483,7 @@ interface ClaudeFlowPlugin {
 }
 
 // Plugin loading
-const core = new ClaudeFlowCore();
+const core = new CortexAgentCore();
 await core.loadPlugin(new HiveMindPlugin());
 await core.initialize();
 ```
@@ -519,7 +519,7 @@ await core.initialize();
 
 ### Context
 
-v2 CLI commands contain business logic, making it hard to use claude-flow programmatically or via other interfaces.
+v2 CLI commands contain business logic, making it hard to use cortex-agent programmatically or via other interfaces.
 
 ### Decision
 
@@ -775,7 +775,7 @@ Need to choose default memory backend for v3.
   memory: {
     backend: 'hybrid',
     sqlite: {
-      path: './claude-flow.db'
+      path: './cortex-agent.db'
     },
     agentdb: {
       dimensions: 1536, // OpenAI embeddings

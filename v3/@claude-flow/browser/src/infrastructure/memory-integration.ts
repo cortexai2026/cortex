@@ -1,5 +1,5 @@
 /**
- * @claude-flow/browser - Memory Integration
+ * @cortex-agent/browser - Memory Integration
  * Persistent memory storage with HNSW semantic search for browser patterns
  */
 
@@ -69,13 +69,13 @@ export interface MemoryFilter {
 }
 
 // ============================================================================
-// Claude Flow Memory Adapter
+// Cortex Agent Memory Adapter
 // ============================================================================
 
 /**
- * Adapter for claude-flow memory system with HNSW indexing
+ * Adapter for cortex-agent memory system with HNSW indexing
  */
-export class ClaudeFlowMemoryAdapter implements IMemoryAdapter {
+export class CortexAgentMemoryAdapter implements IMemoryAdapter {
   private namespace: string;
   private cache: Map<string, BrowserMemoryEntry> = new Map();
   private embeddingCache: Map<string, number[]> = new Map();
@@ -95,7 +95,7 @@ export class ClaudeFlowMemoryAdapter implements IMemoryAdapter {
 
     // Store in memory via MCP (when available)
     try {
-      // This would call claude-flow memory_store MCP tool
+      // This would call cortex-agent memory_store MCP tool
       // For now, store in local cache
       this.cache.set(key, {
         ...entry,
@@ -261,7 +261,7 @@ export class BrowserMemoryManager {
 
   constructor(sessionId: string, adapter?: IMemoryAdapter) {
     this.sessionId = sessionId;
-    this.adapter = adapter || new ClaudeFlowMemoryAdapter();
+    this.adapter = adapter || new CortexAgentMemoryAdapter();
   }
 
   /**
@@ -439,7 +439,7 @@ let defaultAdapter: IMemoryAdapter | null = null;
 
 export function getMemoryAdapter(): IMemoryAdapter {
   if (!defaultAdapter) {
-    defaultAdapter = new ClaudeFlowMemoryAdapter();
+    defaultAdapter = new CortexAgentMemoryAdapter();
   }
   return defaultAdapter;
 }

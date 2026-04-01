@@ -21,26 +21,26 @@ hooks:
     echo "Security Auditor initiating scan: $TASK"
 
     # 1. Learn from past security audits (ReasoningBank)
-    SIMILAR_VULNS=$(npx claude-flow@v3alpha memory search-patterns "$TASK" --k=10 --min-reward=0.8 --namespace=security)
+    SIMILAR_VULNS=$(npx cortex-agent@v3alpha memory search-patterns "$TASK" --k=10 --min-reward=0.8 --namespace=security)
     if [ -n "$SIMILAR_VULNS" ]; then
       echo "Found similar vulnerability patterns from past audits"
-      npx claude-flow@v3alpha memory get-pattern-stats "$TASK" --k=10 --namespace=security
+      npx cortex-agent@v3alpha memory get-pattern-stats "$TASK" --k=10 --namespace=security
     fi
 
     # 2. Search for known CVEs using HNSW-indexed database
-    CVE_MATCHES=$(npx claude-flow@v3alpha security cve --search "$TASK" --hnsw-enabled)
+    CVE_MATCHES=$(npx cortex-agent@v3alpha security cve --search "$TASK" --hnsw-enabled)
     if [ -n "$CVE_MATCHES" ]; then
       echo "Found potentially related CVEs in database"
     fi
 
     # 3. Load OWASP Top 10 patterns
-    npx claude-flow@v3alpha memory retrieve --key "owasp_top_10_2024" --namespace=security-patterns
+    npx cortex-agent@v3alpha memory retrieve --key "owasp_top_10_2024" --namespace=security-patterns
 
     # 4. Initialize audit session
-    npx claude-flow@v3alpha hooks session-start --session-id "audit-$(date +%s)"
+    npx cortex-agent@v3alpha hooks session-start --session-id "audit-$(date +%s)"
 
     # 5. Store audit start in memory
-    npx claude-flow@v3alpha memory store-pattern \
+    npx cortex-agent@v3alpha memory store-pattern \
       --session-id "audit-$(date +%s)" \
       --task "$TASK" \
       --status "started" \
@@ -63,7 +63,7 @@ hooks:
     fi
 
     # 2. Store learning pattern for future improvement
-    npx claude-flow@v3alpha memory store-pattern \
+    npx cortex-agent@v3alpha memory store-pattern \
       --session-id "audit-$(date +%s)" \
       --task "$TASK" \
       --output "Vulnerabilities found: $VULNS_FOUND, Critical: $CRITICAL_VULNS" \
@@ -75,24 +75,24 @@ hooks:
     # 3. Train neural patterns on successful high-accuracy audits
     if [ "$SUCCESS" = "true" ] && [ "$VULNS_FOUND" -gt 0 ]; then
       echo "Training neural pattern from successful audit"
-      npx claude-flow@v3alpha neural train \
+      npx cortex-agent@v3alpha neural train \
         --pattern-type "prediction" \
         --training-data "security-audit" \
         --epochs 50
     fi
 
     # 4. Generate security report
-    npx claude-flow@v3alpha security report --format detailed --output /tmp/security_report_$(date +%s).json
+    npx cortex-agent@v3alpha security report --format detailed --output /tmp/security_report_$(date +%s).json
 
     # 5. End audit session with metrics
-    npx claude-flow@v3alpha hooks session-end --export-metrics true
+    npx cortex-agent@v3alpha hooks session-end --export-metrics true
 ---
 
 # Security Auditor Agent (V3)
 
 You are an advanced security auditor specialized in comprehensive vulnerability detection, compliance auditing, and threat assessment. You leverage V3's ReasoningBank for pattern learning, HNSW-indexed CVE database for rapid lookup (150x-12,500x faster), and Flash Attention for efficient code scanning.
 
-**Enhanced with Claude Flow V3**: Self-learning vulnerability detection powered by ReasoningBank, HNSW-indexed CVE/vulnerability database search, Flash Attention for rapid code scanning (2.49x-7.47x speedup), and continuous improvement through neural pattern training.
+**Enhanced with Cortex Agent V3**: Self-learning vulnerability detection powered by ReasoningBank, HNSW-indexed CVE/vulnerability database search, Flash Attention for rapid code scanning (2.49x-7.47x speedup), and continuous improvement through neural pattern training.
 
 ## Core Responsibilities
 
@@ -725,7 +725,7 @@ async function enhanceDetection(code: string): Promise<Enhancement[]> {
 
 ```javascript
 // Store security audit results in memory
-await mcp__claude_flow__memory_usage({
+await mcp__cortex_agent__memory_usage({
   action: 'store',
   key: `security_audit_${Date.now()}`,
   value: JSON.stringify({
@@ -739,21 +739,21 @@ await mcp__claude_flow__memory_usage({
 });
 
 // Search for related past vulnerabilities
-const relatedVulns = await mcp__claude_flow__memory_search({
+const relatedVulns = await mcp__cortex_agent__memory_search({
   pattern: 'CVE-2024',
   namespace: 'security_audits',
   limit: 20
 });
 
 // Train neural patterns on audit results
-await mcp__claude_flow__neural_train({
+await mcp__cortex_agent__neural_train({
   pattern_type: 'prediction',
   training_data: JSON.stringify(auditResults),
   epochs: 50
 });
 
 // Run HNSW-indexed CVE search
-await mcp__claude_flow__security_scan({
+await mcp__cortex_agent__security_scan({
   target: './src',
   depth: 'full'
 });

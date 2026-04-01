@@ -8,7 +8,7 @@
  * - SIMD inference optimization
  * - Local model execution (free)
  *
- * @module @claude-flow/providers/ruvector-provider
+ * @module @cortex-agent/providers/ruvector-provider
  */
 
 import { BaseProvider, BaseProviderOptions } from './base-provider.js';

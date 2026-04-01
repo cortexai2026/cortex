@@ -611,7 +611,7 @@ node -e "import('agentdb').then(db => db.init())"
 
 2. **Add hooks support:**
    ```bash
-   npx claude-flow@alpha hooks pre-edit \
+   npx cortex-agent@alpha hooks pre-edit \
      --file "src/api.js" \
      --sign-with-ed25519 \
      --key-id "agent-123"
@@ -619,7 +619,7 @@ node -e "import('agentdb').then(db => db.init())"
 
 3. **MCP tool enhancement:**
    ```javascript
-   mcp__claude-flow__memory_usage({
+   mcp__cortex-agent__memory_usage({
      action: "store",
      key: "api-pattern",
      value: "REST endpoint design",
@@ -809,7 +809,7 @@ if (!verification.valid) {
 3. **Test Integration** ✅
    ```bash
    npm run test:integration
-   npm run validate:claude-flow
+   npm run validate:cortex-agent
    ```
    **Benefit:** Ensure compatibility
    **Risk:** None

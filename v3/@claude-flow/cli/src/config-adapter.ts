@@ -3,7 +3,7 @@
  * Converts between SystemConfig and V3Config types
  */
 
-import type { SystemConfig } from '@claude-flow/shared';
+import type { SystemConfig } from '@cortex-agent/shared';
 import type { V3Config } from './types.js';
 
 /**
@@ -132,7 +132,7 @@ export function v3ConfigToSystemConfig(v3Config: V3Config): Partial<SystemConfig
     },
 
     mcp: {
-      name: 'claude-flow',
+      name: 'cortex-agent',
       version: '3.0.0',
       transport: {
         type: v3Config.mcp.transportType as 'stdio' | 'http' | 'websocket',

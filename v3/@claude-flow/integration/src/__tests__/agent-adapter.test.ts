@@ -191,7 +191,7 @@ describe('AgentAdapter', () => {
   });
 
   describe('Agent Conversion to agentic-flow', () => {
-    it('should convert Claude Flow agent to agentic-flow format', async () => {
+    it('should convert Cortex Agent agent to agentic-flow format', async () => {
       const agent = await adapter.createWithDelegation({
         id: 'convert-agent',
         name: 'Convert Test',

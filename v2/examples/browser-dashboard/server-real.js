@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 /**
- * Claude Flow WebSocket Bridge Server - REAL MCP Integration
- * Connects browser dashboard to actual claude-flow MCP tools
+ * Cortex Agent WebSocket Bridge Server - REAL MCP Integration
+ * Connects browser dashboard to actual cortex-agent MCP tools
  */
 
 import { WebSocketServer } from 'ws';
@@ -15,7 +15,7 @@ import { spawn } from 'child_process';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-class ClaudeFlowBridgeReal {
+class CortexAgentBridgeReal {
     constructor(port = 8080) {
         this.port = port;
         this.clients = new Set();
@@ -23,17 +23,17 @@ class ClaudeFlowBridgeReal {
         this.messageQueue = [];
 
         this.setupServer();
-        this.startClaudeFlowMCP();
+        this.startCortexAgentMCP();
     }
 
     /**
-     * Start Claude Flow MCP Server Process
+     * Start Cortex Agent MCP Server Process
      */
-    startClaudeFlowMCP() {
-        console.log('🚀 Starting Claude Flow MCP server...');
+    startCortexAgentMCP() {
+        console.log('🚀 Starting Cortex Agent MCP server...');
 
-        // Start the actual claude-flow MCP server
-        this.mcpProcess = spawn('npx', ['claude-flow@alpha', 'mcp', 'start'], {
+        // Start the actual cortex-agent MCP server
+        this.mcpProcess = spawn('npx', ['cortex-agent@alpha', 'mcp', 'start'], {
             stdio: ['pipe', 'pipe', 'pipe'],
             cwd: path.join(__dirname, '../..')
         });
@@ -60,7 +60,7 @@ class ClaudeFlowBridgeReal {
 
         // Wait for MCP to initialize
         setTimeout(() => {
-            console.log('✅ Claude Flow MCP ready');
+            console.log('✅ Cortex Agent MCP ready');
             this.sendMCPCommand({
                 jsonrpc: '2.0',
                 method: 'initialize',
@@ -170,7 +170,7 @@ class ClaudeFlowBridgeReal {
             this.sendToClient(ws, {
                 type: 'connection',
                 status: 'connected',
-                message: 'Connected to real Claude Flow MCP server'
+                message: 'Connected to real Cortex Agent MCP server'
             });
 
             ws.on('message', (message) => {
@@ -194,7 +194,7 @@ class ClaudeFlowBridgeReal {
         });
 
         this.httpServer.listen(this.port, () => {
-            console.log(`\n🌐 Claude Flow Dashboard Server (REAL MCP)`);
+            console.log(`\n🌐 Cortex Agent Dashboard Server (REAL MCP)`);
             console.log(`━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`);
             console.log(`📊 Dashboard: http://localhost:${this.port}`);
             console.log(`🔌 WebSocket: ws://localhost:${this.port}`);
@@ -209,7 +209,7 @@ class ClaudeFlowBridgeReal {
         console.log(`📨 Client Request: ${method}`);
 
         // Handle code execution directly
-        if (method === 'mcp__claude-flow__execute_code') {
+        if (method === 'mcp__cortex-agent__execute_code') {
             this.handleCodeExecution(ws, params, id);
             return;
         }
@@ -217,7 +217,7 @@ class ClaudeFlowBridgeReal {
         // Forward to real MCP server with proper format
         const mcpCommand = {
             jsonrpc: '2.0',
-            method: method.replace('mcp__claude-flow__', ''),
+            method: method.replace('mcp__cortex-agent__', ''),
             params: params || {},
             id: id || Date.now()
         };
@@ -345,7 +345,7 @@ class ClaudeFlowBridgeReal {
 }
 
 // Start server
-const server = new ClaudeFlowBridgeReal(process.env.PORT || 8080);
+const server = new CortexAgentBridgeReal(process.env.PORT || 8080);
 
 // Graceful shutdown
 process.on('SIGINT', () => server.shutdown());

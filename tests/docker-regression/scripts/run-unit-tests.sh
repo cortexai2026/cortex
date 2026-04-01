@@ -56,21 +56,21 @@ run_package_tests() {
 # ============================================================================
 echo "── V3 Package Unit Tests ──"
 
-run_package_tests "@claude-flow/hooks" "/app/v3/@claude-flow/hooks"
-run_package_tests "@claude-flow/plugins" "/app/v3/@claude-flow/plugins"
-run_package_tests "@claude-flow/security" "/app/v3/@claude-flow/security"
-run_package_tests "@claude-flow/swarm" "/app/v3/@claude-flow/swarm"
-run_package_tests "@claude-flow/cli" "/app/v3/@claude-flow/cli"
-run_package_tests "@claude-flow/memory" "/app/v3/@claude-flow/memory"
-run_package_tests "@claude-flow/mcp" "/app/v3/@claude-flow/mcp"
-run_package_tests "@claude-flow/neural" "/app/v3/@claude-flow/neural"
-run_package_tests "@claude-flow/testing" "/app/v3/@claude-flow/testing"
-run_package_tests "@claude-flow/embeddings" "/app/v3/@claude-flow/embeddings"
-run_package_tests "@claude-flow/providers" "/app/v3/@claude-flow/providers"
-run_package_tests "@claude-flow/integration" "/app/v3/@claude-flow/integration"
-run_package_tests "@claude-flow/performance" "/app/v3/@claude-flow/performance"
-run_package_tests "@claude-flow/deployment" "/app/v3/@claude-flow/deployment"
-run_package_tests "@claude-flow/shared" "/app/v3/@claude-flow/shared"
+run_package_tests "@cortex-agent/hooks" "/app/v3/@cortex-agent/hooks"
+run_package_tests "@cortex-agent/plugins" "/app/v3/@cortex-agent/plugins"
+run_package_tests "@cortex-agent/security" "/app/v3/@cortex-agent/security"
+run_package_tests "@cortex-agent/swarm" "/app/v3/@cortex-agent/swarm"
+run_package_tests "@cortex-agent/cli" "/app/v3/@cortex-agent/cli"
+run_package_tests "@cortex-agent/memory" "/app/v3/@cortex-agent/memory"
+run_package_tests "@cortex-agent/mcp" "/app/v3/@cortex-agent/mcp"
+run_package_tests "@cortex-agent/neural" "/app/v3/@cortex-agent/neural"
+run_package_tests "@cortex-agent/testing" "/app/v3/@cortex-agent/testing"
+run_package_tests "@cortex-agent/embeddings" "/app/v3/@cortex-agent/embeddings"
+run_package_tests "@cortex-agent/providers" "/app/v3/@cortex-agent/providers"
+run_package_tests "@cortex-agent/integration" "/app/v3/@cortex-agent/integration"
+run_package_tests "@cortex-agent/performance" "/app/v3/@cortex-agent/performance"
+run_package_tests "@cortex-agent/deployment" "/app/v3/@cortex-agent/deployment"
+run_package_tests "@cortex-agent/shared" "/app/v3/@cortex-agent/shared"
 
 # ============================================================================
 # SPECIFIC TEST SUITES
@@ -80,8 +80,8 @@ echo "── Specific Test Suites ──"
 
 # ReasoningBank tests
 echo -n "  Testing: ReasoningBank... "
-if [ -f "/app/v3/@claude-flow/hooks/src/__tests__/reasoningbank.test.ts" ]; then
-    cd /app/v3/@claude-flow/hooks
+if [ -f "/app/v3/@cortex-agent/hooks/src/__tests__/reasoningbank.test.ts" ]; then
+    cd /app/v3/@cortex-agent/hooks
     set +e
     npm test -- --run src/__tests__/reasoningbank.test.ts 2>/dev/null && echo "✓ PASSED" || echo "✓ PASSED (via npm test)"
     set -e
@@ -92,8 +92,8 @@ fi
 
 # GuidanceProvider tests
 echo -n "  Testing: GuidanceProvider... "
-if [ -f "/app/v3/@claude-flow/hooks/src/__tests__/guidance-provider.test.ts" ]; then
-    cd /app/v3/@claude-flow/hooks
+if [ -f "/app/v3/@cortex-agent/hooks/src/__tests__/guidance-provider.test.ts" ]; then
+    cd /app/v3/@cortex-agent/hooks
     set +e
     npm test -- --run src/__tests__/guidance-provider.test.ts 2>/dev/null && echo "✓ PASSED" || echo "✓ PASSED (via npm test)"
     set -e
@@ -104,8 +104,8 @@ fi
 
 # Plugin tests
 echo -n "  Testing: RuVector Plugins... "
-if [ -f "/app/v3/@claude-flow/plugins/examples/ruvector-plugins/ruvector-plugins.test.ts" ]; then
-    cd /app/v3/@claude-flow/plugins
+if [ -f "/app/v3/@cortex-agent/plugins/examples/ruvector-plugins/ruvector-plugins.test.ts" ]; then
+    cd /app/v3/@cortex-agent/plugins
     set +e
     npm test -- --run examples/ruvector-plugins/ruvector-plugins.test.ts 2>/dev/null && echo "✓ PASSED" || echo "✓ PASSED (via npm test)"
     set -e
@@ -120,11 +120,11 @@ fi
 echo ""
 echo "── Test Coverage Summary ──"
 
-echo "  @claude-flow/hooks:    112 tests"
-echo "  @claude-flow/plugins:  142 tests"
-echo "  @claude-flow/security: 47 tests"
-echo "  @claude-flow/swarm:    89 tests"
-echo "  @claude-flow/cli:      34 tests"
+echo "  @cortex-agent/hooks:    112 tests"
+echo "  @cortex-agent/plugins:  142 tests"
+echo "  @cortex-agent/security: 47 tests"
+echo "  @cortex-agent/swarm:    89 tests"
+echo "  @cortex-agent/cli:      34 tests"
 echo "  Total:                 424+ tests"
 
 # ============================================================================

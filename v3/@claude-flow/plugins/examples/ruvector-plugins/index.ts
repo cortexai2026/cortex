@@ -1,7 +1,7 @@
 /**
  * RuVector Plugin Collection
  *
- * High-value plugins using @ruvector WASM packages for Claude Flow.
+ * High-value plugins using @ruvector WASM packages for Cortex Agent.
  *
  * @packageDocumentation
  */

@@ -2,7 +2,7 @@
  * Verification CLI Integration
  * 
  * Provides command-line interface integration for the verification system.
- * Ensures compatibility with claude-flow CLI and provides verification commands.
+ * Ensures compatibility with cortex-agent CLI and provides verification commands.
  */
 
 import { Logger } from '../core/logger.js';
@@ -456,13 +456,13 @@ export function createVerificationCommand(commandName: string): VerificationComm
 }
 
 /**
- * Hook integration for claude-flow CLI
+ * Hook integration for cortex-agent CLI
  */
-export function integrateWithClaudeFlowCLI(): void {
+export function integrateWithCortexAgentCLI(): void {
   // Integration with existing CLI command structure
   // This will be called by the main CLI system
   
-  logger.info('Integrating verification commands with claude-flow CLI...');
+  logger.info('Integrating verification commands with cortex-agent CLI...');
   
   const hookCommands = {
     'pre-task': async (args: any) => {
@@ -559,4 +559,4 @@ export async function executeVerificationFromCLI(
 }
 
 // Initialize CLI integration when module is loaded
-integrateWithClaudeFlowCLI();
+integrateWithCortexAgentCLI();

@@ -4,7 +4,7 @@
  * Handles database migrations for the RuVector PostgreSQL integration.
  * Supports up/down migrations, rollback, and migration tracking.
  *
- * @module @claude-flow/plugins/integrations/ruvector/migrations
+ * @module @cortex-agent/plugins/integrations/ruvector/migrations
  * @version 1.0.0
  */
 
@@ -173,7 +173,7 @@ export class MigrationManager {
   constructor(client: DatabaseClient, options: MigrationManagerOptions = {}) {
     this.client = client;
     this.migrationsDir = options.migrationsDir ?? join(__dirname, '.');
-    this.schema = options.schema ?? 'claude_flow';
+    this.schema = options.schema ?? 'cortex_agent';
     this.tableName = options.tableName ?? 'migrations';
     this.verbose = options.verbose ?? false;
     this.logger = options.logger ?? defaultLogger;

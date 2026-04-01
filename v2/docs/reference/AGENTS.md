@@ -39,8 +39,8 @@ Claude-Flow provides a comprehensive ecosystem of specialized AI agents designed
 
 **Usage Examples**:
 ```bash
-npx claude-flow@alpha agent spawn coder --name "API-Builder"
-npx claude-flow@alpha task assign coder "implement REST API endpoints"
+npx cortex-agent@alpha agent spawn coder --name "API-Builder"
+npx cortex-agent@alpha task assign coder "implement REST API endpoints"
 ```
 
 ### `planner`
@@ -55,8 +55,8 @@ npx claude-flow@alpha task assign coder "implement REST API endpoints"
 
 **Usage Examples**:
 ```bash
-npx claude-flow@alpha agent spawn planner --name "Project-Strategist"
-npx claude-flow@alpha sparc run planner "create microservices architecture plan"
+npx cortex-agent@alpha agent spawn planner --name "Project-Strategist"
+npx cortex-agent@alpha sparc run planner "create microservices architecture plan"
 ```
 
 ### `researcher`
@@ -71,8 +71,8 @@ npx claude-flow@alpha sparc run planner "create microservices architecture plan"
 
 **Usage Examples**:
 ```bash
-npx claude-flow@alpha agent spawn researcher --name "Tech-Scout"
-npx claude-flow@alpha task assign researcher "research GraphQL best practices"
+npx cortex-agent@alpha agent spawn researcher --name "Tech-Scout"
+npx cortex-agent@alpha task assign researcher "research GraphQL best practices"
 ```
 
 ### `reviewer`
@@ -87,8 +87,8 @@ npx claude-flow@alpha task assign researcher "research GraphQL best practices"
 
 **Usage Examples**:
 ```bash
-npx claude-flow@alpha agent spawn reviewer --name "Quality-Guardian"
-npx claude-flow@alpha task assign reviewer "review authentication implementation"
+npx cortex-agent@alpha agent spawn reviewer --name "Quality-Guardian"
+npx cortex-agent@alpha task assign reviewer "review authentication implementation"
 ```
 
 ### `tester`
@@ -103,8 +103,8 @@ npx claude-flow@alpha task assign reviewer "review authentication implementation
 
 **Usage Examples**:
 ```bash
-npx claude-flow@alpha agent spawn tester --name "Test-Master"
-npx claude-flow@alpha sparc tdd "user authentication system"
+npx cortex-agent@alpha agent spawn tester --name "Test-Master"
+npx cortex-agent@alpha sparc tdd "user authentication system"
 ```
 
 ---
@@ -123,8 +123,8 @@ npx claude-flow@alpha sparc tdd "user authentication system"
 
 **Usage Examples**:
 ```bash
-npx claude-flow@alpha swarm init --topology hierarchical --coordinator queen-coordinator
-npx claude-flow@alpha agent spawn hierarchical-coordinator --name "Queen-Genesis"
+npx cortex-agent@alpha swarm init --topology hierarchical --coordinator queen-coordinator
+npx cortex-agent@alpha agent spawn hierarchical-coordinator --name "Queen-Genesis"
 ```
 
 ### `mesh-coordinator`
@@ -139,8 +139,8 @@ npx claude-flow@alpha agent spawn hierarchical-coordinator --name "Queen-Genesis
 
 **Usage Examples**:
 ```bash
-npx claude-flow@alpha swarm init --topology mesh --max-agents 8
-npx claude-flow@alpha agent spawn mesh-coordinator --name "Mesh-Alpha"
+npx cortex-agent@alpha swarm init --topology mesh --max-agents 8
+npx cortex-agent@alpha agent spawn mesh-coordinator --name "Mesh-Alpha"
 ```
 
 ### `adaptive-coordinator`
@@ -155,8 +155,8 @@ npx claude-flow@alpha agent spawn mesh-coordinator --name "Mesh-Alpha"
 
 **Usage Examples**:
 ```bash
-npx claude-flow@alpha swarm init --topology adaptive --auto-scale
-npx claude-flow@alpha agent spawn adaptive-coordinator --name "Adaptive-Prime"
+npx cortex-agent@alpha swarm init --topology adaptive --auto-scale
+npx cortex-agent@alpha agent spawn adaptive-coordinator --name "Adaptive-Prime"
 ```
 
 ### `collective-intelligence-coordinator`
@@ -171,8 +171,8 @@ npx claude-flow@alpha agent spawn adaptive-coordinator --name "Adaptive-Prime"
 
 **Usage Examples**:
 ```bash
-npx claude-flow@alpha hive-mind spawn --collective-intelligence
-npx claude-flow@alpha agent spawn collective-intelligence-coordinator --name "Hive-Mind"
+npx cortex-agent@alpha hive-mind spawn --collective-intelligence
+npx cortex-agent@alpha agent spawn collective-intelligence-coordinator --name "Hive-Mind"
 ```
 
 ### `swarm-memory-manager`
@@ -187,8 +187,8 @@ npx claude-flow@alpha agent spawn collective-intelligence-coordinator --name "Hi
 
 **Usage Examples**:
 ```bash
-npx claude-flow@alpha agent spawn swarm-memory-manager --name "Memory-Keeper"
-npx claude-flow@alpha memory distributed init --coordinator swarm-memory-manager
+npx cortex-agent@alpha agent spawn swarm-memory-manager --name "Memory-Keeper"
+npx cortex-agent@alpha memory distributed init --coordinator swarm-memory-manager
 ```
 
 ---
@@ -780,23 +780,23 @@ npx claude-flow@alpha memory distributed init --coordinator swarm-memory-manager
 ### Single Agent Usage
 ```bash
 # Spawn individual agents
-npx claude-flow@alpha agent spawn coder --name "API-Builder"
-npx claude-flow@alpha agent spawn reviewer --name "Code-Guardian"
+npx cortex-agent@alpha agent spawn coder --name "API-Builder"
+npx cortex-agent@alpha agent spawn reviewer --name "Code-Guardian"
 
 # Assign tasks to specific agents
-npx claude-flow@alpha task assign coder "implement user authentication"
-npx claude-flow@alpha task assign tester "create unit tests for auth module"
+npx cortex-agent@alpha task assign coder "implement user authentication"
+npx cortex-agent@alpha task assign tester "create unit tests for auth module"
 ```
 
 ### Swarm Coordination
 ```bash
 # Initialize different swarm topologies
-npx claude-flow@alpha swarm init --topology hierarchical --max-agents 8
-npx claude-flow@alpha swarm init --topology mesh --agents researcher,coder,tester
-npx claude-flow@alpha swarm init --topology adaptive --auto-scale
+npx cortex-agent@alpha swarm init --topology hierarchical --max-agents 8
+npx cortex-agent@alpha swarm init --topology mesh --agents researcher,coder,tester
+npx cortex-agent@alpha swarm init --topology adaptive --auto-scale
 
 # Batch agent spawning for complex projects
-npx claude-flow@alpha swarm spawn \
+npx cortex-agent@alpha swarm spawn \
   --agents system-architect,backend-dev,frontend-dev,tester,reviewer \
   --task "build e-commerce platform"
 ```
@@ -804,18 +804,18 @@ npx claude-flow@alpha swarm spawn \
 ### SPARC Development Workflow
 ```bash
 # Full SPARC methodology execution
-npx claude-flow@alpha sparc pipeline "user authentication system"
-npx claude-flow@alpha sparc run specification "define user management requirements"
-npx claude-flow@alpha sparc run architecture "design auth system architecture"
-npx claude-flow@alpha sparc run code "implement authentication module"
+npx cortex-agent@alpha sparc pipeline "user authentication system"
+npx cortex-agent@alpha sparc run specification "define user management requirements"
+npx cortex-agent@alpha sparc run architecture "design auth system architecture"
+npx cortex-agent@alpha sparc run code "implement authentication module"
 ```
 
 ### GitHub Integration
 ```bash
 # GitHub workflow automation
-npx claude-flow@alpha github pr-manager "review and merge feature branch"
-npx claude-flow@alpha github issue-tracker "manage project issues"
-npx claude-flow@alpha github release-manager "prepare v2.0.0 release"
+npx cortex-agent@alpha github pr-manager "review and merge feature branch"
+npx cortex-agent@alpha github issue-tracker "manage project issues"
+npx cortex-agent@alpha github release-manager "prepare v2.0.0 release"
 ```
 
 ---
@@ -923,16 +923,16 @@ priority: high
 ### Agent Performance Metrics
 ```bash
 # View agent performance
-npx claude-flow@alpha metrics agents --detailed
-npx claude-flow@alpha performance analyze --agent-type coder
-npx claude-flow@alpha swarm status --topology hierarchical
+npx cortex-agent@alpha metrics agents --detailed
+npx cortex-agent@alpha performance analyze --agent-type coder
+npx cortex-agent@alpha swarm status --topology hierarchical
 ```
 
 ### Real-time Monitoring
 ```bash
 # Monitor swarm coordination
-npx claude-flow@alpha monitor swarm --real-time
-npx claude-flow@alpha dashboard --agents --performance
+npx cortex-agent@alpha monitor swarm --real-time
+npx cortex-agent@alpha dashboard --agents --performance
 ```
 
 ---
@@ -991,14 +991,14 @@ npx claude-flow@alpha dashboard --agents --performance
 - [Architecture Overview](/docs/ARCHITECTURE.md)
 
 ### Community
-- [GitHub Repository](https://github.com/ruvnet/claude-flow)
-- [Discord Community](https://discord.gg/claude-flow)
-- [Issue Tracker](https://github.com/ruvnet/claude-flow/issues)
+- [GitHub Repository](https://github.com/ruvnet/cortex-agent)
+- [Discord Community](https://discord.gg/cortex-agent)
+- [Issue Tracker](https://github.com/ruvnet/cortex-agent/issues)
 
 ### Contact
-- **Email**: support@claude-flow.ai
-- **Documentation**: https://claude-flow.ai/docs
-- **Blog**: https://blog.claude-flow.ai
+- **Email**: support@cortex-agent.ai
+- **Documentation**: https://cortex-agent.ai/docs
+- **Blog**: https://blog.cortex-agent.ai
 
 ---
 
@@ -1006,6 +1006,6 @@ npx claude-flow@alpha dashboard --agents --performance
 
 **🤖 65+ Specialized Agents • 🐝 Intelligent Swarm Coordination • 🚀 Enterprise-Ready**
 
-[⬆ Back to Top](#-claude-flow-agent-reference)
+[⬆ Back to Top](#-cortex-agent-agent-reference)
 
 </div>

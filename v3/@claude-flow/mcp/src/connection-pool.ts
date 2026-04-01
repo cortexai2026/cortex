@@ -1,5 +1,5 @@
 /**
- * @claude-flow/mcp - Connection Pool
+ * @cortex-agent/mcp - Connection Pool
  *
  * High-performance connection pooling
  */

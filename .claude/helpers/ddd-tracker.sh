@@ -1,12 +1,12 @@
 #!/bin/bash
-# RuFlo V3 - DDD Progress Tracker Worker
+# Cortex Agent V3 - DDD Progress Tracker Worker
 # Tracks Domain-Driven Design implementation progress
 
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
-METRICS_DIR="$PROJECT_ROOT/.claude-flow/metrics"
+METRICS_DIR="$PROJECT_ROOT/.cortex-agent/metrics"
 DDD_FILE="$METRICS_DIR/ddd-progress.json"
 V3_PROGRESS="$METRICS_DIR/v3-progress.json"
 LAST_RUN_FILE="$METRICS_DIR/.ddd-last-run"
@@ -25,7 +25,7 @@ should_run() {
 
 check_domain() {
   local domain="$1"
-  local domain_path="$PROJECT_ROOT/v3/@claude-flow/$domain"
+  local domain_path="$PROJECT_ROOT/v3/@cortex-agent/$domain"
   local alt_path="$PROJECT_ROOT/src/domains/$domain"
 
   local score=0

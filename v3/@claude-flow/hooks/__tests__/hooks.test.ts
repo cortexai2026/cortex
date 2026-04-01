@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 
-describe('@claude-flow/hooks', () => {
+describe('@cortex-agent/hooks', () => {
   it('should export hook types', () => {
     // Placeholder test - hooks module exports types and utilities
     expect(true).toBe(true);

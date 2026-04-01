@@ -1,5 +1,5 @@
 /**
- * @claude-flow/codex - SKILL.md Generator
+ * @cortex-agent/codex - SKILL.md Generator
  *
  * Generates SKILL.md files for OpenAI Codex CLI skills
  * Uses YAML frontmatter for metadata
@@ -167,36 +167,36 @@ export async function generateBuiltInSkill(
         {
           name: 'Initialize Swarm',
           description: 'Start a new swarm with hierarchical topology (anti-drift)',
-          command: 'npx @claude-flow/cli swarm init --topology hierarchical --max-agents 8 --strategy specialized',
-          example: 'npx @claude-flow/cli swarm init --topology hierarchical --max-agents 6 --strategy specialized',
+          command: 'npx @cortex-agent/cli swarm init --topology hierarchical --max-agents 8 --strategy specialized',
+          example: 'npx @cortex-agent/cli swarm init --topology hierarchical --max-agents 6 --strategy specialized',
         },
         {
           name: 'Route Task',
           description: 'Route a task to the appropriate agents based on task type',
-          command: 'npx @claude-flow/cli hooks route --task "[task description]"',
-          example: 'npx @claude-flow/cli hooks route --task "implement OAuth2 authentication flow"',
+          command: 'npx @cortex-agent/cli hooks route --task "[task description]"',
+          example: 'npx @cortex-agent/cli hooks route --task "implement OAuth2 authentication flow"',
         },
         {
           name: 'Spawn Agent',
           description: 'Spawn a specific agent type',
-          command: 'npx @claude-flow/cli agent spawn --type [type] --name [name]',
-          example: 'npx @claude-flow/cli agent spawn --type coder --name impl-auth',
+          command: 'npx @cortex-agent/cli agent spawn --type [type] --name [name]',
+          example: 'npx @cortex-agent/cli agent spawn --type coder --name impl-auth',
         },
         {
           name: 'Monitor Status',
           description: 'Check the current swarm status',
-          command: 'npx @claude-flow/cli swarm status --verbose',
+          command: 'npx @cortex-agent/cli swarm status --verbose',
         },
         {
           name: 'Orchestrate Task',
           description: 'Orchestrate a task across multiple agents',
-          command: 'npx @claude-flow/cli task orchestrate --task "[task]" --strategy adaptive',
-          example: 'npx @claude-flow/cli task orchestrate --task "refactor auth module" --strategy parallel --max-agents 4',
+          command: 'npx @cortex-agent/cli task orchestrate --task "[task]" --strategy adaptive',
+          example: 'npx @cortex-agent/cli task orchestrate --task "refactor auth module" --strategy parallel --max-agents 4',
         },
         {
           name: 'List Agents',
           description: 'List all active agents',
-          command: 'npx @claude-flow/cli agent list --filter active',
+          command: 'npx @cortex-agent/cli agent list --filter active',
         },
       ],
       scripts: [
@@ -245,46 +245,46 @@ export async function generateBuiltInSkill(
         {
           name: 'Store Pattern',
           description: 'Store a pattern or knowledge item in memory',
-          command: 'npx @claude-flow/cli memory store --key "[key]" --value "[value]" --namespace patterns',
-          example: 'npx @claude-flow/cli memory store --key "auth-jwt-pattern" --value "JWT validation with refresh tokens" --namespace patterns',
+          command: 'npx @cortex-agent/cli memory store --key "[key]" --value "[value]" --namespace patterns',
+          example: 'npx @cortex-agent/cli memory store --key "auth-jwt-pattern" --value "JWT validation with refresh tokens" --namespace patterns',
         },
         {
           name: 'Semantic Search',
           description: 'Search memory using semantic similarity',
-          command: 'npx @claude-flow/cli memory search --query "[search terms]" --limit 10',
-          example: 'npx @claude-flow/cli memory search --query "authentication best practices" --limit 5',
+          command: 'npx @cortex-agent/cli memory search --query "[search terms]" --limit 10',
+          example: 'npx @cortex-agent/cli memory search --query "authentication best practices" --limit 5',
         },
         {
           name: 'Retrieve Entry',
           description: 'Retrieve a specific memory entry by key',
-          command: 'npx @claude-flow/cli memory get --key "[key]" --namespace [namespace]',
-          example: 'npx @claude-flow/cli memory get --key "auth-jwt-pattern" --namespace patterns',
+          command: 'npx @cortex-agent/cli memory get --key "[key]" --namespace [namespace]',
+          example: 'npx @cortex-agent/cli memory get --key "auth-jwt-pattern" --namespace patterns',
         },
         {
           name: 'List Entries',
           description: 'List all entries in a namespace',
-          command: 'npx @claude-flow/cli memory list --namespace [namespace]',
-          example: 'npx @claude-flow/cli memory list --namespace patterns --limit 20',
+          command: 'npx @cortex-agent/cli memory list --namespace [namespace]',
+          example: 'npx @cortex-agent/cli memory list --namespace patterns --limit 20',
         },
         {
           name: 'Delete Entry',
           description: 'Delete a memory entry',
-          command: 'npx @claude-flow/cli memory delete --key "[key]" --namespace [namespace]',
+          command: 'npx @cortex-agent/cli memory delete --key "[key]" --namespace [namespace]',
         },
         {
           name: 'Initialize HNSW Index',
           description: 'Initialize HNSW vector search index',
-          command: 'npx @claude-flow/cli memory init --enable-hnsw',
+          command: 'npx @cortex-agent/cli memory init --enable-hnsw',
         },
         {
           name: 'Memory Stats',
           description: 'Show memory usage statistics',
-          command: 'npx @claude-flow/cli memory stats',
+          command: 'npx @cortex-agent/cli memory stats',
         },
         {
           name: 'Export Memory',
           description: 'Export memory to JSON',
-          command: 'npx @claude-flow/cli memory export --output memory-backup.json',
+          command: 'npx @cortex-agent/cli memory export --output memory-backup.json',
         },
       ],
       scripts: [
@@ -334,37 +334,37 @@ export async function generateBuiltInSkill(
         {
           name: 'Specification Phase',
           description: 'Define requirements, acceptance criteria, and constraints',
-          command: 'npx @claude-flow/cli hooks route --task "specification: [requirements]"',
-          example: 'npx @claude-flow/cli hooks route --task "specification: user authentication with OAuth2, MFA, and session management"',
+          command: 'npx @cortex-agent/cli hooks route --task "specification: [requirements]"',
+          example: 'npx @cortex-agent/cli hooks route --task "specification: user authentication with OAuth2, MFA, and session management"',
         },
         {
           name: 'Pseudocode Phase',
           description: 'Write high-level pseudocode for the implementation',
-          command: 'npx @claude-flow/cli hooks route --task "pseudocode: [feature]"',
-          example: 'npx @claude-flow/cli hooks route --task "pseudocode: OAuth2 login flow with token refresh"',
+          command: 'npx @cortex-agent/cli hooks route --task "pseudocode: [feature]"',
+          example: 'npx @cortex-agent/cli hooks route --task "pseudocode: OAuth2 login flow with token refresh"',
         },
         {
           name: 'Architecture Phase',
           description: 'Design system structure, interfaces, and dependencies',
-          command: 'npx @claude-flow/cli hooks route --task "architecture: [design]"',
-          example: 'npx @claude-flow/cli hooks route --task "architecture: auth module with service layer, repository, and API endpoints"',
+          command: 'npx @cortex-agent/cli hooks route --task "architecture: [design]"',
+          example: 'npx @cortex-agent/cli hooks route --task "architecture: auth module with service layer, repository, and API endpoints"',
         },
         {
           name: 'Refinement Phase',
           description: 'Iterate on the design based on feedback',
-          command: 'npx @claude-flow/cli hooks route --task "refinement: [feedback]"',
-          example: 'npx @claude-flow/cli hooks route --task "refinement: add rate limiting and brute force protection"',
+          command: 'npx @cortex-agent/cli hooks route --task "refinement: [feedback]"',
+          example: 'npx @cortex-agent/cli hooks route --task "refinement: add rate limiting and brute force protection"',
         },
         {
           name: 'Completion Phase',
           description: 'Finalize implementation with tests and documentation',
-          command: 'npx @claude-flow/cli hooks route --task "completion: [final checks]"',
-          example: 'npx @claude-flow/cli hooks route --task "completion: verify all tests pass, update API docs, security review"',
+          command: 'npx @cortex-agent/cli hooks route --task "completion: [final checks]"',
+          example: 'npx @cortex-agent/cli hooks route --task "completion: verify all tests pass, update API docs, security review"',
         },
         {
           name: 'SPARC Coordinator',
           description: 'Spawn SPARC coordinator agent',
-          command: 'npx @claude-flow/cli agent spawn --type sparc-coord --name sparc-lead',
+          command: 'npx @cortex-agent/cli agent spawn --type sparc-coord --name sparc-lead',
         },
       ],
       scripts: [
@@ -415,51 +415,51 @@ export async function generateBuiltInSkill(
         {
           name: 'Full Security Scan',
           description: 'Run comprehensive security analysis on the codebase',
-          command: 'npx @claude-flow/cli security scan --depth full',
-          example: 'npx @claude-flow/cli security scan --depth full --output security-report.json',
+          command: 'npx @cortex-agent/cli security scan --depth full',
+          example: 'npx @cortex-agent/cli security scan --depth full --output security-report.json',
         },
         {
           name: 'Input Validation Check',
           description: 'Check for input validation issues',
-          command: 'npx @claude-flow/cli security scan --check input-validation',
-          example: 'npx @claude-flow/cli security scan --check input-validation --path ./src/api',
+          command: 'npx @cortex-agent/cli security scan --check input-validation',
+          example: 'npx @cortex-agent/cli security scan --check input-validation --path ./src/api',
         },
         {
           name: 'Path Traversal Check',
           description: 'Check for path traversal vulnerabilities',
-          command: 'npx @claude-flow/cli security scan --check path-traversal',
+          command: 'npx @cortex-agent/cli security scan --check path-traversal',
         },
         {
           name: 'SQL Injection Check',
           description: 'Check for SQL injection vulnerabilities',
-          command: 'npx @claude-flow/cli security scan --check sql-injection',
+          command: 'npx @cortex-agent/cli security scan --check sql-injection',
         },
         {
           name: 'XSS Check',
           description: 'Check for cross-site scripting vulnerabilities',
-          command: 'npx @claude-flow/cli security scan --check xss',
+          command: 'npx @cortex-agent/cli security scan --check xss',
         },
         {
           name: 'CVE Scan',
           description: 'Scan dependencies for known CVEs',
-          command: 'npx @claude-flow/cli security cve --scan',
-          example: 'npx @claude-flow/cli security cve --scan --severity high',
+          command: 'npx @cortex-agent/cli security cve --scan',
+          example: 'npx @cortex-agent/cli security cve --scan --severity high',
         },
         {
           name: 'Security Audit Report',
           description: 'Generate full security audit report',
-          command: 'npx @claude-flow/cli security audit --report',
-          example: 'npx @claude-flow/cli security audit --report --format markdown --output SECURITY.md',
+          command: 'npx @cortex-agent/cli security audit --report',
+          example: 'npx @cortex-agent/cli security audit --report --format markdown --output SECURITY.md',
         },
         {
           name: 'Threat Modeling',
           description: 'Run threat modeling analysis',
-          command: 'npx @claude-flow/cli security threats --analyze',
+          command: 'npx @cortex-agent/cli security threats --analyze',
         },
         {
           name: 'Validate Secrets',
           description: 'Check for hardcoded secrets',
-          command: 'npx @claude-flow/cli security validate --check secrets',
+          command: 'npx @cortex-agent/cli security validate --check secrets',
         },
       ],
       scripts: [
@@ -509,47 +509,47 @@ export async function generateBuiltInSkill(
         {
           name: 'Run Benchmark Suite',
           description: 'Execute all performance benchmarks',
-          command: 'npx @claude-flow/cli performance benchmark --suite all',
-          example: 'npx @claude-flow/cli performance benchmark --suite all --iterations 100 --output bench-results.json',
+          command: 'npx @cortex-agent/cli performance benchmark --suite all',
+          example: 'npx @cortex-agent/cli performance benchmark --suite all --iterations 100 --output bench-results.json',
         },
         {
           name: 'Profile Code',
           description: 'Profile code execution for CPU and memory',
-          command: 'npx @claude-flow/cli performance profile --target ./src',
-          example: 'npx @claude-flow/cli performance profile --target ./src/api --duration 60s',
+          command: 'npx @cortex-agent/cli performance profile --target ./src',
+          example: 'npx @cortex-agent/cli performance profile --target ./src/api --duration 60s',
         },
         {
           name: 'Memory Analysis',
           description: 'Analyze memory usage patterns',
-          command: 'npx @claude-flow/cli performance metrics --metric memory',
-          example: 'npx @claude-flow/cli performance metrics --metric memory --threshold 100MB',
+          command: 'npx @cortex-agent/cli performance metrics --metric memory',
+          example: 'npx @cortex-agent/cli performance metrics --metric memory --threshold 100MB',
         },
         {
           name: 'Latency Analysis',
           description: 'Measure and analyze latency',
-          command: 'npx @claude-flow/cli performance metrics --metric latency',
+          command: 'npx @cortex-agent/cli performance metrics --metric latency',
         },
         {
           name: 'Optimize Suggestions',
           description: 'Get automated optimization suggestions',
-          command: 'npx @claude-flow/cli performance optimize --analyze',
-          example: 'npx @claude-flow/cli performance optimize --analyze --apply-safe',
+          command: 'npx @cortex-agent/cli performance optimize --analyze',
+          example: 'npx @cortex-agent/cli performance optimize --analyze --apply-safe',
         },
         {
           name: 'Performance Report',
           description: 'Generate performance report',
-          command: 'npx @claude-flow/cli performance report',
-          example: 'npx @claude-flow/cli performance report --format html --output perf-report.html',
+          command: 'npx @cortex-agent/cli performance report',
+          example: 'npx @cortex-agent/cli performance report --format html --output perf-report.html',
         },
         {
           name: 'Compare Benchmarks',
           description: 'Compare benchmark results',
-          command: 'npx @claude-flow/cli performance benchmark --compare baseline.json current.json',
+          command: 'npx @cortex-agent/cli performance benchmark --compare baseline.json current.json',
         },
         {
           name: 'WASM Benchmark',
           description: 'Run WASM-specific benchmarks',
-          command: 'npx @claude-flow/cli performance benchmark --suite wasm',
+          command: 'npx @cortex-agent/cli performance benchmark --suite wasm',
         },
       ],
       scripts: [
@@ -719,13 +719,13 @@ function generateHelperScript(skillName: string, scriptName: string): string {
 set -e
 
 echo "Initializing hierarchical swarm..."
-npx @claude-flow/cli swarm init \\
+npx @cortex-agent/cli swarm init \\
   --topology hierarchical \\
   --max-agents 8 \\
   --strategy specialized
 
 echo "Swarm initialized successfully"
-npx @claude-flow/cli swarm status
+npx @cortex-agent/cli swarm status
 `,
       'swarm-monitor': `#!/bin/bash
 # Swarm Orchestration - Monitor Script
@@ -734,7 +734,7 @@ npx @claude-flow/cli swarm status
 set -e
 
 echo "Starting swarm monitor..."
-npx @claude-flow/cli swarm status --watch --interval 5
+npx @cortex-agent/cli swarm status --watch --interval 5
 `,
     },
     'memory-management': {
@@ -751,7 +751,7 @@ BACKUP_FILE="\${BACKUP_DIR}/memory_\${TIMESTAMP}.json"
 mkdir -p "$BACKUP_DIR"
 
 echo "Backing up memory to $BACKUP_FILE..."
-npx @claude-flow/cli memory export --output "$BACKUP_FILE"
+npx @cortex-agent/cli memory export --output "$BACKUP_FILE"
 
 echo "Backup complete: $BACKUP_FILE"
 `,
@@ -762,10 +762,10 @@ echo "Backup complete: $BACKUP_FILE"
 set -e
 
 echo "Running memory consolidation..."
-npx @claude-flow/cli hooks worker dispatch --trigger consolidate
+npx @cortex-agent/cli hooks worker dispatch --trigger consolidate
 
 echo "Memory consolidation complete"
-npx @claude-flow/cli memory stats
+npx @cortex-agent/cli memory stats
 `,
     },
     'sparc-methodology': {
@@ -822,27 +822,27 @@ echo "Running full security scan..."
 
 # Input validation
 echo "Checking input validation..."
-npx @claude-flow/cli security scan --check input-validation
+npx @cortex-agent/cli security scan --check input-validation
 
 # Path traversal
 echo "Checking path traversal..."
-npx @claude-flow/cli security scan --check path-traversal
+npx @cortex-agent/cli security scan --check path-traversal
 
 # SQL injection
 echo "Checking SQL injection..."
-npx @claude-flow/cli security scan --check sql-injection
+npx @cortex-agent/cli security scan --check sql-injection
 
 # XSS
 echo "Checking XSS..."
-npx @claude-flow/cli security scan --check xss
+npx @cortex-agent/cli security scan --check xss
 
 # Secrets
 echo "Checking for hardcoded secrets..."
-npx @claude-flow/cli security validate --check secrets
+npx @cortex-agent/cli security validate --check secrets
 
 # CVE scan
 echo "Scanning dependencies for CVEs..."
-npx @claude-flow/cli security cve --scan
+npx @cortex-agent/cli security cve --scan
 
 echo "Security scan complete"
 `,
@@ -853,13 +853,13 @@ echo "Security scan complete"
 set -e
 
 echo "Scanning for CVEs..."
-npx @claude-flow/cli security cve --scan --severity high
+npx @cortex-agent/cli security cve --scan --severity high
 
 echo "Attempting auto-remediation..."
 npm audit fix
 
 echo "Re-scanning after remediation..."
-npx @claude-flow/cli security cve --scan
+npx @cortex-agent/cli security cve --scan
 
 echo "CVE remediation complete"
 `,
@@ -874,7 +874,7 @@ set -e
 BASELINE_FILE="\${1:-baseline.json}"
 
 echo "Capturing performance baseline..."
-npx @claude-flow/cli performance benchmark \\
+npx @cortex-agent/cli performance benchmark \\
   --suite all \\
   --iterations 100 \\
   --output "$BASELINE_FILE"
@@ -892,13 +892,13 @@ CURRENT_FILE="current.json"
 THRESHOLD="\${2:-10}"
 
 echo "Running current benchmarks..."
-npx @claude-flow/cli performance benchmark \\
+npx @cortex-agent/cli performance benchmark \\
   --suite all \\
   --iterations 100 \\
   --output "$CURRENT_FILE"
 
 echo "Comparing against baseline..."
-npx @claude-flow/cli performance benchmark \\
+npx @cortex-agent/cli performance benchmark \\
   --compare "$BASELINE_FILE" "$CURRENT_FILE" \\
   --threshold "$THRESHOLD"
 
@@ -933,7 +933,7 @@ gh pr create \\
 - [ ] Documentation updated
 - [ ] No breaking changes
 
-Generated with claude-flow
+Generated with cortex-agent
 EOF
 )"
 
@@ -971,7 +971,7 @@ echo "Draft release v$NEW_VERSION created"
 
   return `#!/bin/bash
 # ${skillName} - ${scriptName}
-# Generated by @claude-flow/codex
+# Generated by @cortex-agent/codex
 
 set -e
 

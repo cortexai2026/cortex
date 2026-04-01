@@ -4,7 +4,7 @@
  * Enables agent-to-agent communication, pattern broadcasting,
  * consensus building, and task handoff coordination.
  *
- * @module @claude-flow/hooks/swarm
+ * @module @cortex-agent/hooks/swarm
  */
 
 import { EventEmitter } from 'node:events';

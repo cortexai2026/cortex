@@ -11,7 +11,7 @@
 
 import { describe, it, expect } from 'vitest';
 import { systemConfigToV3Config, v3ConfigToSystemConfig } from '../src/config-adapter.js';
-import type { SystemConfig } from '@claude-flow/shared';
+import type { SystemConfig } from '@cortex-agent/shared';
 import type { V3Config } from '../src/types.js';
 
 // ---------------------------------------------------------------------------

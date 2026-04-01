@@ -7,7 +7,7 @@
  * - Test database helpers
  * - Performance measurement utilities
  *
- * @module @claude-flow/plugins/__tests__/utils/ruvector-test-utils
+ * @module @cortex-agent/plugins/__tests__/utils/ruvector-test-utils
  */
 
 import { vi, type Mock } from 'vitest';

@@ -128,7 +128,7 @@ export class IntegrationRegressionSuite {
       critical: true,
       timeout: 5000,
       run: async () => {
-        const { UnifiedMemoryService, HybridBackend } = await import('@claude-flow/memory');
+        const { UnifiedMemoryService, HybridBackend } = await import('@cortex-agent/memory');
 
         // Create in-memory backend
         const backend = new HybridBackend({
@@ -165,7 +165,7 @@ export class IntegrationRegressionSuite {
       critical: true,
       timeout: 10000,
       run: async () => {
-        const { HybridBackend, UnifiedMemoryService } = await import('@claude-flow/memory');
+        const { HybridBackend, UnifiedMemoryService } = await import('@cortex-agent/memory');
 
         const backend = new HybridBackend({
           sqlite: { databasePath: ':memory:', walMode: false, optimize: true, defaultNamespace: 'test', maxEntries: 1000 },
@@ -210,7 +210,7 @@ export class IntegrationRegressionSuite {
       critical: true,
       timeout: 5000,
       run: async () => {
-        const { EventBus, createAgentSpawnedEvent } = await import('@claude-flow/shared');
+        const { EventBus, createAgentSpawnedEvent } = await import('@cortex-agent/shared');
 
         const eventBus = new EventBus();
         let received = false;
@@ -240,7 +240,7 @@ export class IntegrationRegressionSuite {
       critical: false,
       timeout: 5000,
       run: async () => {
-        const { EventBus, createAgentSpawnedEvent } = await import('@claude-flow/shared');
+        const { EventBus, createAgentSpawnedEvent } = await import('@cortex-agent/shared');
 
         const eventBus = new EventBus();
         let count = 0;
@@ -267,7 +267,7 @@ export class IntegrationRegressionSuite {
       timeout: 10000,
       run: async () => {
         try {
-          const { UnifiedSwarmCoordinator } = await import('@claude-flow/swarm');
+          const { UnifiedSwarmCoordinator } = await import('@cortex-agent/swarm');
 
           const coordinator = new UnifiedSwarmCoordinator({
             topology: { type: 'hierarchical', maxAgents: 10 },
@@ -297,7 +297,7 @@ export class IntegrationRegressionSuite {
       timeout: 5000,
       run: async () => {
         try {
-          const { HookRegistry, HookPriority } = await import('@claude-flow/shared');
+          const { HookRegistry, HookPriority } = await import('@cortex-agent/shared');
 
           const registry = new HookRegistry();
 
@@ -329,7 +329,7 @@ export class IntegrationRegressionSuite {
       run: async () => {
         try {
           // MCP types and utilities should be available from shared
-          const shared = await import('@claude-flow/shared');
+          const shared = await import('@cortex-agent/shared');
 
           // Verify key exports exist
           return (
@@ -353,7 +353,7 @@ export class IntegrationRegressionSuite {
       timeout: 5000,
       run: async () => {
         try {
-          const shared = await import('@claude-flow/shared');
+          const shared = await import('@cortex-agent/shared');
           return (
             typeof shared.EventBus === 'function' &&
             typeof shared.generateSecureId === 'function'
@@ -372,7 +372,7 @@ export class IntegrationRegressionSuite {
       timeout: 5000,
       run: async () => {
         try {
-          const memory = await import('@claude-flow/memory');
+          const memory = await import('@cortex-agent/memory');
           return (
             typeof memory.UnifiedMemoryService === 'function' ||
             typeof memory.HybridBackend === 'function'
@@ -391,7 +391,7 @@ export class IntegrationRegressionSuite {
       timeout: 5000,
       run: async () => {
         try {
-          const swarm = await import('@claude-flow/swarm');
+          const swarm = await import('@cortex-agent/swarm');
           return typeof swarm.UnifiedSwarmCoordinator === 'function';
         } catch {
           return false;

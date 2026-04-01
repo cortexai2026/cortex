@@ -90,9 +90,9 @@ claudeCommand
         env: {
           ...process.env,
           CLAUDE_INSTANCE_ID: instanceId,
-          CLAUDE_FLOW_MODE: options.mode,
-          CLAUDE_FLOW_COVERAGE: parseInt(options.coverage).toString(),
-          CLAUDE_FLOW_COMMIT: options.commit,
+          CORTEX_AGENT_MODE: options.mode,
+          CORTEX_AGENT_COVERAGE: parseInt(options.coverage).toString(),
+          CORTEX_AGENT_COMMIT: options.commit,
         },
       });
 

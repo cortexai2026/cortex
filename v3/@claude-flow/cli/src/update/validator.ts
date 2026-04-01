@@ -18,32 +18,32 @@ interface PackageCompatibility {
   peerDependencies?: Record<string, string>;
 }
 
-// Known compatibility matrix between @claude-flow packages
+// Known compatibility matrix between @cortex-agent packages
 const COMPATIBILITY_MATRIX: Record<string, Record<string, PackageCompatibility>> = {
-  '@claude-flow/cli': {
-    '@claude-flow/embeddings': { minVersion: '3.0.0-alpha.1' },
-    '@claude-flow/security': { minVersion: '3.0.0-alpha.1' },
-    '@claude-flow/integration': { minVersion: '3.0.0-alpha.1' },
+  '@cortex-agent/cli': {
+    '@cortex-agent/embeddings': { minVersion: '3.0.0-alpha.1' },
+    '@cortex-agent/security': { minVersion: '3.0.0-alpha.1' },
+    '@cortex-agent/integration': { minVersion: '3.0.0-alpha.1' },
   },
-  '@claude-flow/embeddings': {
-    '@claude-flow/cli': { minVersion: '3.0.0-alpha.50' },
+  '@cortex-agent/embeddings': {
+    '@cortex-agent/cli': { minVersion: '3.0.0-alpha.50' },
   },
-  '@claude-flow/integration': {
-    '@claude-flow/cli': { minVersion: '3.0.0-alpha.70' },
+  '@cortex-agent/integration': {
+    '@cortex-agent/cli': { minVersion: '3.0.0-alpha.70' },
     'agentic-flow': { minVersion: '3.0.0-alpha.1' },
   },
 };
 
 // Known breaking changes by version
 const BREAKING_CHANGES: Record<string, Record<string, string[]>> = {
-  '@claude-flow/cli': {
+  '@cortex-agent/cli': {
     '3.0.0': [
       'Memory API changed from key-value to vector-based',
       'Hooks system completely redesigned',
       'Agent spawning now requires type parameter',
     ],
   },
-  '@claude-flow/embeddings': {
+  '@cortex-agent/embeddings': {
     '3.0.0': [
       'Switched from better-sqlite3 to sql.js',
       'New initialization required with initEmbeddings()',

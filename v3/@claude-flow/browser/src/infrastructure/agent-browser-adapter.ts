@@ -1,5 +1,5 @@
 /**
- * @claude-flow/browser - Agent Browser Adapter
+ * @cortex-agent/browser - Agent Browser Adapter
  * Wraps agent-browser CLI for programmatic access
  */
 

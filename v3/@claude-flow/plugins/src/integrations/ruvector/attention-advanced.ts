@@ -3,7 +3,7 @@
  *
  * Part 3: Graph, Temporal, Multimodal, Retrieval, and Specialized attention.
  *
- * @module @claude-flow/plugins/integrations/ruvector/attention-advanced
+ * @module @cortex-agent/plugins/integrations/ruvector/attention-advanced
  */
 
 import type {

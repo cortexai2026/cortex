@@ -32,7 +32,7 @@ importers:
         specifier: ^4.0.16
         version: 4.0.16(@opentelemetry/api@1.9.0)(@types/node@20.19.27)
 
-  '@claude-flow/aidefence':
+  '@cortex-agent/aidefence':
     dependencies:
       agentdb:
         specifier: '>=2.0.0-alpha.1'
@@ -48,9 +48,9 @@ importers:
         specifier: ^1.1.0
         version: 1.6.1(@types/node@20.19.27)
 
-  '@claude-flow/browser':
+  '@cortex-agent/browser':
     dependencies:
-      '@claude-flow/cli':
+      '@cortex-agent/cli':
         specifier: ^3.0.0-alpha.140
         version: link:../cli
       agent-browser:
@@ -73,9 +73,9 @@ importers:
         specifier: ^2.0.0
         version: 2.1.9(@types/node@20.19.27)
 
-  '@claude-flow/claims':
+  '@cortex-agent/claims':
     dependencies:
-      '@claude-flow/shared':
+      '@cortex-agent/shared':
         specifier: ^3.0.0-alpha.1
         version: link:../shared
       zod:
@@ -98,12 +98,12 @@ importers:
         specifier: ^4.0.16
         version: 4.0.16(@opentelemetry/api@1.9.0)(@types/node@20.19.27)
 
-  '@claude-flow/cli':
+  '@cortex-agent/cli':
     dependencies:
-      '@claude-flow/mcp':
+      '@cortex-agent/mcp':
         specifier: ^3.0.0-alpha.8
         version: link:../mcp
-      '@claude-flow/shared':
+      '@cortex-agent/shared':
         specifier: ^3.0.0-alpha.7
         version: link:../shared
       '@noble/ed25519':
@@ -113,24 +113,24 @@ importers:
         specifier: ^7.6.0
         version: 7.7.3
     optionalDependencies:
-      '@claude-flow/aidefence':
+      '@cortex-agent/aidefence':
         specifier: ^3.0.2
         version: link:../aidefence
-      '@claude-flow/codex':
+      '@cortex-agent/codex':
         specifier: ^3.0.0-alpha.8
         version: link:../codex
-      '@claude-flow/embeddings':
+      '@cortex-agent/embeddings':
         specifier: ^3.0.0-alpha.12
         version: link:../embeddings
-      '@claude-flow/guidance':
+      '@cortex-agent/guidance':
         specifier: ^3.0.0-alpha.1
         version: link:../guidance
-      '@claude-flow/memory':
+      '@cortex-agent/memory':
         specifier: ^3.0.0-alpha.11
         version: link:../memory
-      '@claude-flow/plugin-gastown-bridge':
+      '@cortex-agent/plugin-gastown-bridge':
         specifier: ^0.1.3
-        version: 0.1.3(@claude-flow/memory@@claude-flow+memory)
+        version: 0.1.3(@cortex-agent/memory@@cortex-agent+memory)
       '@ruvector/attention':
         specifier: ^0.1.4
         version: 0.1.31
@@ -154,9 +154,9 @@ importers:
         specifier: ^4.0.16
         version: 4.0.16(@opentelemetry/api@1.9.0)(@types/node@20.19.27)
 
-  '@claude-flow/codex':
+  '@cortex-agent/codex':
     dependencies:
-      '@claude-flow/cli':
+      '@cortex-agent/cli':
         specifier: ^3.0.0-alpha.1
         version: link:../cli
       '@iarna/toml':
@@ -197,9 +197,9 @@ importers:
         specifier: ^1.4.0
         version: 1.6.1(@types/node@20.19.27)
 
-  '@claude-flow/deployment':
+  '@cortex-agent/deployment':
     dependencies:
-      '@claude-flow/shared':
+      '@cortex-agent/shared':
         specifier: ^3.0.0-alpha.1
         version: link:../shared
     devDependencies:
@@ -210,9 +210,9 @@ importers:
         specifier: ^4.0.16
         version: 4.0.16(@opentelemetry/api@1.9.0)(@types/node@20.19.27)
 
-  '@claude-flow/embeddings':
+  '@cortex-agent/embeddings':
     dependencies:
-      '@claude-flow/shared':
+      '@cortex-agent/shared':
         specifier: ^3.0.0-alpha.1
         version: link:../shared
       '@xenova/transformers':
@@ -235,15 +235,15 @@ importers:
         specifier: ^4.0.16
         version: 4.0.16(@opentelemetry/api@1.9.0)(@types/node@20.19.27)
 
-  '@claude-flow/guidance':
+  '@cortex-agent/guidance':
     dependencies:
-      '@claude-flow/hooks':
+      '@cortex-agent/hooks':
         specifier: ^3.0.0-alpha.7
         version: link:../hooks
-      '@claude-flow/memory':
+      '@cortex-agent/memory':
         specifier: ^3.0.0-alpha.2
         version: link:../memory
-      '@claude-flow/shared':
+      '@cortex-agent/shared':
         specifier: ^3.0.0-alpha.1
         version: link:../shared
     devDependencies:
@@ -257,15 +257,15 @@ importers:
         specifier: ^4.0.16
         version: 4.0.16(@opentelemetry/api@1.9.0)(@types/node@20.19.27)
 
-  '@claude-flow/hooks':
+  '@cortex-agent/hooks':
     dependencies:
-      '@claude-flow/memory':
+      '@cortex-agent/memory':
         specifier: ^3.0.0-alpha.2
         version: link:../memory
-      '@claude-flow/neural':
+      '@cortex-agent/neural':
         specifier: ^3.0.0-alpha.2
         version: link:../neural
-      '@claude-flow/shared':
+      '@cortex-agent/shared':
         specifier: ^3.0.0-alpha.1
         version: link:../shared
       zod:
@@ -289,7 +289,7 @@ importers:
         specifier: ^4.0.16
         version: 4.0.16(@opentelemetry/api@1.9.0)(@types/node@20.19.27)
 
-  '@claude-flow/integration':
+  '@cortex-agent/integration':
     dependencies:
       agentic-flow:
         specifier: ^2.0.0-alpha
@@ -303,7 +303,7 @@ importers:
         specifier: ^4.0.16
         version: 4.0.16(@opentelemetry/api@1.9.0)(@types/node@20.19.27)
 
-  '@claude-flow/mcp':
+  '@cortex-agent/mcp':
     dependencies:
       ajv:
         specifier: ^8.12.0
@@ -334,7 +334,7 @@ importers:
         specifier: ^4.0.16
         version: 4.0.16(@opentelemetry/api@1.9.0)(@types/node@20.19.27)
 
-  '@claude-flow/memory':
+  '@cortex-agent/memory':
     dependencies:
       agentdb:
         specifier: ^3.0.0-alpha.10
@@ -357,9 +357,9 @@ importers:
         specifier: ^4.0.16
         version: 4.0.16(@opentelemetry/api@1.9.0)(@types/node@20.19.27)
 
-  '@claude-flow/neural':
+  '@cortex-agent/neural':
     dependencies:
-      '@claude-flow/memory':
+      '@cortex-agent/memory':
         specifier: ^3.0.0-alpha.2
         version: link:../memory
       '@ruvector/sona':
@@ -370,7 +370,7 @@ importers:
         specifier: ^2.0.0 || ^3.0.0-alpha.1
         version: 3.0.0-alpha.10(@types/node@20.19.27)(better-sqlite3@11.10.0)(marked@11.2.0)
 
-  '@claude-flow/performance':
+  '@cortex-agent/performance':
     dependencies:
       '@ruvector/attention':
         specifier: latest
@@ -383,12 +383,12 @@ importers:
         specifier: ^4.0.16
         version: 4.0.16(@opentelemetry/api@1.9.0)(@types/node@20.19.27)
 
-  '@claude-flow/plugins':
+  '@cortex-agent/plugins':
     dependencies:
-      '@claude-flow/hooks':
+      '@cortex-agent/hooks':
         specifier: ^3.0.0-alpha.2
         version: link:../hooks
-      '@claude-flow/memory':
+      '@cortex-agent/memory':
         specifier: ^3.0.0-alpha.2
         version: link:../memory
       '@ruvector/learning-wasm':
@@ -411,7 +411,7 @@ importers:
         specifier: ^4.0.16
         version: 4.0.16(@opentelemetry/api@1.9.0)(@types/node@20.19.27)
 
-  '@claude-flow/providers':
+  '@cortex-agent/providers':
     dependencies:
       '@ruvector/ruvllm':
         specifier: ^0.2.3
@@ -436,7 +436,7 @@ importers:
         specifier: ^4.0.16
         version: 4.0.16(@types/node@20.19.27)(tsx@4.21.0)
 
-  '@claude-flow/security':
+  '@cortex-agent/security':
     dependencies:
       bcrypt:
         specifier: ^5.1.1
@@ -452,7 +452,7 @@ importers:
         specifier: ^4.0.16
         version: 4.0.16(@opentelemetry/api@1.9.0)(@types/node@20.19.27)
 
-  '@claude-flow/shared':
+  '@cortex-agent/shared':
     dependencies:
       sql.js:
         specifier: ^1.10.3
@@ -492,21 +492,21 @@ importers:
         specifier: ^3.22.4
         version: 3.25.76
 
-  '@claude-flow/swarm':
+  '@cortex-agent/swarm':
     devDependencies:
       vitest:
         specifier: ^4.0.16
         version: 4.0.16(@opentelemetry/api@1.9.0)(@types/node@20.19.27)
 
-  '@claude-flow/testing':
+  '@cortex-agent/testing':
     devDependencies:
-      '@claude-flow/memory':
+      '@cortex-agent/memory':
         specifier: ^3.0.0-alpha.2
         version: link:../memory
-      '@claude-flow/shared':
+      '@cortex-agent/shared':
         specifier: ^3.0.0-alpha.1
         version: link:../shared
-      '@claude-flow/swarm':
+      '@cortex-agent/swarm':
         specifier: ^3.0.0-alpha.1
         version: link:../swarm
       typescript:
@@ -667,17 +667,17 @@ packages:
     resolution: {integrity: sha512-k7vvKPbf7J2fZ5klGRD9AeKfUvojuZIQ3BT5u7Jfv+puwXkUBUT5PVyMDfJZpy30CBDXGMgw7fguK/lpOMBvgw==}
     dev: false
 
-  /@claude-flow/plugin-gastown-bridge@0.1.3(@claude-flow/memory@@claude-flow+memory):
+  /@cortex-agent/plugin-gastown-bridge@0.1.3(@cortex-agent/memory@@cortex-agent+memory):
     resolution: {integrity: sha512-ZHqtgiZOIa0lHelPZ8AWeiW99a84t5PmMY2U90Jp5Iqd/m/P2VIAY0CmHAWEPo1oomTu0NulJFtoblto8K9U9w==}
     engines: {node: '>=20.0.0'}
     requiresBuild: true
     peerDependencies:
-      '@claude-flow/memory': '>=3.0.0-alpha.1'
+      '@cortex-agent/memory': '>=3.0.0-alpha.1'
     peerDependenciesMeta:
-      '@claude-flow/memory':
+      '@cortex-agent/memory':
         optional: true
     dependencies:
-      '@claude-flow/memory': link:@claude-flow/memory
+      '@cortex-agent/memory': link:@cortex-agent/memory
       '@iarna/toml': 2.2.5
       uuid: 9.0.1
       zod: 3.25.76
@@ -5267,10 +5267,10 @@ packages:
     hasBin: true
     requiresBuild: true
     peerDependencies:
-      claude-flow: ^2.7.0
+      cortex-agent: ^2.7.0
       flow-nexus: ^1.0.0
     peerDependenciesMeta:
-      claude-flow:
+      cortex-agent:
         optional: true
       flow-nexus:
         optional: true

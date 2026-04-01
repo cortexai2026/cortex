@@ -17,7 +17,7 @@ function getConnectionConfig(ctx: CommandContext) {
     user: (ctx.flags.user as string) || process.env.PGUSER || 'postgres',
     password: (ctx.flags.password as string) || process.env.PGPASSWORD || '',
     ssl: (ctx.flags.ssl as boolean) || process.env.PGSSLMODE === 'require',
-    schema: (ctx.flags.schema as string) || 'claude_flow',
+    schema: (ctx.flags.schema as string) || 'cortex_agent',
   };
 }
 
@@ -94,13 +94,13 @@ export const statusCommand: Command = {
       short: 's',
       description: 'Schema name',
       type: 'string',
-      default: 'claude_flow',
+      default: 'cortex_agent',
     },
   ],
   examples: [
-    { command: 'claude-flow ruvector status', description: 'Check basic status' },
-    { command: 'claude-flow ruvector status --verbose', description: 'Show detailed info' },
-    { command: 'claude-flow ruvector status --json', description: 'Output as JSON' },
+    { command: 'cortex-agent ruvector status', description: 'Check basic status' },
+    { command: 'cortex-agent ruvector status --verbose', description: 'Show detailed info' },
+    { command: 'cortex-agent ruvector status --json', description: 'Output as JSON' },
   ],
   action: async (ctx: CommandContext): Promise<CommandResult> => {
     const config = getConnectionConfig(ctx);
@@ -213,7 +213,7 @@ export const statusCommand: Command = {
         statusData.ruvector = { initialized: false };
         if (!jsonOutput) {
           spinner.succeed(output.warning(`Schema "${config.schema}" not found`));
-          output.printInfo('Run `claude-flow ruvector init` to initialize');
+          output.printInfo('Run `cortex-agent ruvector init` to initialize');
         }
 
         if (jsonOutput) {

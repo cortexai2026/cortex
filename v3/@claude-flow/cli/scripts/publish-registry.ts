@@ -46,7 +46,7 @@ interface PluginEntry {
   downloads: number;
   rating: number;
   lastUpdated: string;
-  minClaudeFlowVersion: string;
+  minCortexAgentVersion: string;
   type: string;
   hooks: string[];
   commands: string[];
@@ -190,15 +190,15 @@ async function generateRegistry(): Promise<PluginRegistry> {
   console.log('📦 Fetching npm stats for plugins...');
 
   const officialPackages = [
-    '@claude-flow/plugin-agentic-qe',
-    '@claude-flow/plugin-prime-radiant',
-    '@claude-flow/plugin-gastown-bridge',
-    '@claude-flow/security',
-    '@claude-flow/claims',
-    '@claude-flow/embeddings',
-    '@claude-flow/neural',
-    '@claude-flow/performance',
-    '@claude-flow/plugins',
+    '@cortex-agent/plugin-agentic-qe',
+    '@cortex-agent/plugin-prime-radiant',
+    '@cortex-agent/plugin-gastown-bridge',
+    '@cortex-agent/security',
+    '@cortex-agent/claims',
+    '@cortex-agent/embeddings',
+    '@cortex-agent/neural',
+    '@cortex-agent/performance',
+    '@cortex-agent/plugins',
   ];
 
   const plugins: PluginEntry[] = [];
@@ -211,14 +211,14 @@ async function generateRegistry(): Promise<PluginRegistry> {
     plugins.push({
       id: pkg,
       name: pkg,
-      displayName: pkg.replace('@claude-flow/plugin-', '').replace('@claude-flow/', ''),
-      description: `Official Claude Flow plugin: ${pkg}`,
+      displayName: pkg.replace('@cortex-agent/plugin-', '').replace('@cortex-agent/', ''),
+      description: `Official Cortex Agent plugin: ${pkg}`,
       version: stats?.version || '0.0.0',
       size: 100000,
       checksum: `sha256:${crypto.randomBytes(32).toString('hex')}`,
       author: {
-        id: 'claude-flow-team',
-        displayName: 'Claude Flow Team',
+        id: 'cortex-agent-team',
+        displayName: 'Cortex Agent Team',
         verified: true,
       },
       license: 'MIT',
@@ -227,7 +227,7 @@ async function generateRegistry(): Promise<PluginRegistry> {
       downloads: stats?.downloads || 0,
       rating: 0,
       lastUpdated: now,
-      minClaudeFlowVersion: '3.0.0',
+      minCortexAgentVersion: '3.0.0',
       type: 'integration',
       hooks: [],
       commands: [],
@@ -247,7 +247,7 @@ async function generateRegistry(): Promise<PluginRegistry> {
     ipnsName: '', // Will be set after publishing
     plugins,
     categories: [
-      { id: 'official', name: 'Official', description: 'Official Claude Flow plugins', pluginCount: plugins.length },
+      { id: 'official', name: 'Official', description: 'Official Cortex Agent plugins', pluginCount: plugins.length },
     ],
     totalPlugins: plugins.length,
     totalDownloads,
@@ -314,7 +314,7 @@ async function main() {
   // Pin to IPFS
   console.log('\n📌 Pinning to IPFS via Pinata...');
   try {
-    const result = await pinToIPFS(registry, 'claude-flow-plugin-registry', jwt);
+    const result = await pinToIPFS(registry, 'cortex-agent-plugin-registry', jwt);
 
     console.log('\n✅ Published successfully!');
     console.log(`   CID: ${result.IpfsHash}`);
@@ -334,7 +334,7 @@ async function main() {
     console.log('\n📝 Next steps:');
     console.log('   1. Update DEFAULT_PLUGIN_STORE_CONFIG in discovery.ts with the new CID');
     console.log('   2. If using IPNS, update the IPNS pointer via Pinata dashboard');
-    console.log('   3. Test with: npx claude-flow@latest plugins list');
+    console.log('   3. Test with: npx cortex-agent@latest plugins list');
   } catch (error) {
     console.error('\n❌ Publish failed:', error);
     process.exit(1);

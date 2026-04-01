@@ -8,7 +8,7 @@
  * Published API (v0.1.0): WasmAgent, WasmGallery, WasmMcpServer,
  * WasmRvfBuilder, JsModelProvider, initSync.
  *
- * @module @claude-flow/cli/ruvector/agent-wasm
+ * @module @cortex-agent/cli/ruvector/agent-wasm
  */
 
 import { readFileSync } from 'node:fs';

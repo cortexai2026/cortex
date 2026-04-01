@@ -1,12 +1,12 @@
 # Claude-Flow Integration Guide
 
-This guide explains how to use the claude-flow integration layer for benchmark testing and automation.
+This guide explains how to use the cortex-agent integration layer for benchmark testing and automation.
 
 ## Overview
 
-The integration layer provides a robust Python interface to execute claude-flow commands with:
+The integration layer provides a robust Python interface to execute cortex-agent commands with:
 
-- **Command Construction**: Build valid claude-flow commands with proper validation
+- **Command Construction**: Build valid cortex-agent commands with proper validation
 - **Subprocess Execution**: Execute commands with timeout and error handling
 - **Output Capture**: Comprehensive capture and parsing of command output
 - **Performance Monitoring**: Track CPU, memory, disk, and network usage
@@ -19,7 +19,7 @@ The integration layer is part of the benchmark suite. Ensure you have:
 
 ```bash
 # Claude-flow installed and accessible
-claude-flow --version
+cortex-agent --version
 
 # Python dependencies
 pip install psutil
@@ -27,19 +27,19 @@ pip install psutil
 
 ## Core Components
 
-### 1. ClaudeFlowExecutor
+### 1. CortexAgentExecutor
 
-The main executor class for running claude-flow commands:
+The main executor class for running cortex-agent commands:
 
 ```python
-from swarm_benchmark.core.claude_flow_executor import (
-    ClaudeFlowExecutor, SwarmConfig, SparcConfig,
+from swarm_benchmark.core.cortex_agent_executor import (
+    CortexAgentExecutor, SwarmConfig, SparcConfig,
     ExecutionStrategy, CoordinationMode, SparcMode
 )
 
 # Initialize executor
-executor = ClaudeFlowExecutor(
-    claude_flow_path=None,  # Auto-detect
+executor = CortexAgentExecutor(
+    cortex_agent_path=None,  # Auto-detect
     working_dir=None,       # Use current directory
     retry_attempts=3,       # Retry failed commands
     retry_delay=2.0        # Seconds between retries
@@ -313,7 +313,7 @@ The integration layer provides automatic error recovery:
 
 ```python
 # Configure with retry
-executor = ClaudeFlowExecutor(
+executor = CortexAgentExecutor(
     retry_attempts=5,
     retry_delay=3.0
 )
@@ -345,8 +345,8 @@ for attempt in range(max_attempts):
 
 ```python
 # Specify explicit path
-executor = ClaudeFlowExecutor(
-    claude_flow_path="/path/to/claude-flow"
+executor = CortexAgentExecutor(
+    cortex_agent_path="/path/to/cortex-agent"
 )
 ```
 
@@ -387,12 +387,12 @@ The integration layer is designed to work seamlessly with the benchmark system:
 
 ```python
 from swarm_benchmark.core.benchmark_runner import BenchmarkRunner
-from swarm_benchmark.core.claude_flow_executor import ClaudeFlowExecutor
+from swarm_benchmark.core.cortex_agent_executor import CortexAgentExecutor
 
 # Use executor within benchmarks
 class MyBenchmark:
     def __init__(self):
-        self.executor = ClaudeFlowExecutor()
+        self.executor = CortexAgentExecutor()
         
     def run_test(self):
         config = SwarmConfig(...)

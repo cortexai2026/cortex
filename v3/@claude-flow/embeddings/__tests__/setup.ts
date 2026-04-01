@@ -1,5 +1,5 @@
 /**
- * @claude-flow/embeddings Test Setup
+ * @cortex-agent/embeddings Test Setup
  * Local test configuration for Vitest
  */
 

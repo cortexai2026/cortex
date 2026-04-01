@@ -1,5 +1,5 @@
 /**
- * @claude-flow/mcp - Rate Limiter
+ * @cortex-agent/mcp - Rate Limiter
  *
  * Token bucket rate limiting for DoS protection
  */

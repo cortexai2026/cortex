@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Claude Flow Performance Optimization Script
+ * Cortex Agent Performance Optimization Script
  * Implements caching, parallel processing, and resource pooling
  */
 
@@ -64,9 +64,9 @@ class PerformanceOptimizer {
             "parallel": true,
             "cache": true,
             "commands": [
-              "npx claude-flow@alpha hooks pre-command --batch true",
-              "npx claude-flow@alpha memory store --batch true",
-              "npx claude-flow@alpha neural predict --cache true"
+              "npx cortex-agent@alpha hooks pre-command --batch true",
+              "npx cortex-agent@alpha memory store --batch true",
+              "npx cortex-agent@alpha neural predict --cache true"
             ]
           }]
         }
@@ -314,7 +314,7 @@ class PerformanceOptimizer {
   }
 
   formatReport(report) {
-    return `# Claude Flow Performance Optimization Report
+    return `# Cortex Agent Performance Optimization Report
 
 Generated: ${report.timestamp}
 
@@ -389,7 +389,7 @@ All optimization configurations have been saved to:
 
 To apply these optimizations, run:
 \`\`\`bash
-npx claude-flow@alpha apply-optimizations
+npx cortex-agent@alpha apply-optimizations
 \`\`\`
 `;
   }

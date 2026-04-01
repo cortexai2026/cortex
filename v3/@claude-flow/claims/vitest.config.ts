@@ -1,5 +1,5 @@
 /**
- * @claude-flow/claims - Vitest Configuration
+ * @cortex-agent/claims - Vitest Configuration
  * Test configuration for the claims module
  */
 import { defineConfig } from 'vitest/config';

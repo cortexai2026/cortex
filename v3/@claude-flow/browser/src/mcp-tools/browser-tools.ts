@@ -1,6 +1,6 @@
 /**
- * @claude-flow/browser - MCP Tools
- * 50+ browser automation tools for claude-flow MCP server
+ * @cortex-agent/browser - MCP Tools
+ * 50+ browser automation tools for cortex-agent MCP server
  */
 
 import { AgentBrowserAdapter } from '../infrastructure/agent-browser-adapter.js';

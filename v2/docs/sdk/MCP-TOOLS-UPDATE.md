@@ -40,11 +40,11 @@ Successfully added **7 new MCP tools** for SDK integration, bringing the total M
 
 ### MCP Tool Registry
 
-**File**: `src/mcp/claude-flow-tools.ts`
+**File**: `src/mcp/cortex-agent-tools.ts`
 
 **Changes**:
 1. Added 7 new tool creator functions
-2. Registered tools in `createClaudeFlowTools()` array
+2. Registered tools in `createCortexAgentTools()` array
 3. All tools import SDK managers dynamically
 
 **Example Tool**:
@@ -96,23 +96,23 @@ if (command === 'checkpoint') {
 
 ### Via MCP Server (Recommended)
 
-When the MCP server is running (`claude-flow mcp start`), all 7 tools are available:
+When the MCP server is running (`cortex-agent mcp start`), all 7 tools are available:
 
 ```typescript
 // Example: Create checkpoint via MCP
-mcp__claude-flow__checkpoint_create({
+mcp__cortex-agent__checkpoint_create({
   sessionId: "my-session",
   description: "Before deployment"
 })
 
 // Example: Fork session via MCP
-mcp__claude-flow__session_fork({
+mcp__cortex-agent__session_fork({
   sessionId: "base-session",
   forkOptions: {}
 })
 
 // Example: Pause query via MCP
-mcp__claude-flow__query_pause({
+mcp__cortex-agent__query_pause({
   sessionId: "active-query"
 })
 ```
@@ -194,7 +194,7 @@ const cpId = await checkpointManager.createCheckpoint('session-id', 'desc');
 
 ```typescript
 // Via MCP tool
-const result = await mcp__claude-flow__checkpoint_create({
+const result = await mcp__cortex-agent__checkpoint_create({
   sessionId: "prod-deployment",
   description: "Before database migration"
 });
@@ -206,7 +206,7 @@ console.log(`Checkpoint created: ${result.checkpointId}`);
 
 ```typescript
 // Via MCP tool
-const fork = await mcp__claude-flow__session_fork({
+const fork = await mcp__cortex-agent__session_fork({
   sessionId: "main-session",
   forkOptions: {}
 });
@@ -219,12 +219,12 @@ console.log(`Forked session: ${fork.fork.sessionId}`);
 
 ```typescript
 // Via MCP tool
-await mcp__claude-flow__query_pause({
+await mcp__cortex-agent__query_pause({
   sessionId: "long-running-analysis"
 });
 
 // Later, resume from exact point
-await mcp__claude-flow__query_resume({
+await mcp__cortex-agent__query_resume({
   sessionId: "long-running-analysis"
 });
 ```
@@ -237,7 +237,7 @@ To verify MCP tools are available:
 
 ```bash
 # 1. Start MCP server
-./bin/claude-flow mcp start
+./bin/cortex-agent mcp start
 
 # 2. In Claude Code with MCP connected, list tools:
 # Tools will show: checkpoint/create, checkpoint/list, checkpoint/rollback,
@@ -260,7 +260,7 @@ npx tsx scripts/validate-sdk-integration.ts
 - ✅ Full backward compatibility
 - ✅ Production ready
 
-**The claude-flow MCP server now provides complete access to all SDK features through standardized MCP tool interfaces.**
+**The cortex-agent MCP server now provides complete access to all SDK features through standardized MCP tool interfaces.**
 
 ---
 

@@ -1,6 +1,6 @@
 /**
  * V3 CLI Main Entry Point
- * Modernized CLI for RuFlo V3
+ * Modernized CLI for Cortex Agent V3
  *
  * Created with ❤️ by ruv.io
  */
@@ -50,8 +50,8 @@ export class CLI {
   private interactive: boolean;
 
   constructor(options: CLIOptions = {}) {
-    this.name = options.name || 'ruflo';
-    this.description = options.description || 'RuFlo V3 - AI Agent Orchestration Platform';
+    this.name = options.name || 'cortex-agent';
+    this.description = options.description || 'Cortex Agent V3 - AI Agent Orchestration Platform';
     this.version = options.version || VERSION;
     this.parser = commandParser;
     this.output = output;
@@ -444,7 +444,7 @@ export class CLI {
   private async loadConfig(configPath?: string): Promise<V3Config | undefined> {
     try {
       // Import config utilities
-      const { loadConfig: loadSystemConfig } = await import('@claude-flow/shared');
+      const { loadConfig: loadSystemConfig } = await import('@cortex-agent/shared');
       const { systemConfigToV3Config } = await import('./config-adapter.js');
 
       // Load configuration

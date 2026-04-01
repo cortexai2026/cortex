@@ -1,5 +1,5 @@
 /**
- * @claude-flow/mcp - Test Suite
+ * @cortex-agent/mcp - Test Suite
  */
 
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
@@ -31,14 +31,14 @@ const createMockLogger = (): ILogger => ({
   error: vi.fn(),
 });
 
-describe('@claude-flow/mcp', () => {
+describe('@cortex-agent/mcp', () => {
   describe('Module exports', () => {
     it('should export VERSION', () => {
       expect(VERSION).toBe('3.0.0');
     });
 
     it('should export MODULE_NAME', () => {
-      expect(MODULE_NAME).toBe('@claude-flow/mcp');
+      expect(MODULE_NAME).toBe('@cortex-agent/mcp');
     });
 
     it('should export ErrorCodes', () => {

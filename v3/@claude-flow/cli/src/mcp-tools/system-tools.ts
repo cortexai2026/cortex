@@ -30,7 +30,7 @@ function getPackageVersion(): string {
 const PKG_VERSION = getPackageVersion();
 
 // Storage paths
-const STORAGE_DIR = '.claude-flow';
+const STORAGE_DIR = '.cortex-agent';
 const SYSTEM_DIR = 'system';
 const METRICS_FILE = 'metrics.json';
 
@@ -381,8 +381,8 @@ export const systemTools: MCPTool[] = [
       // When Claude Code launches us via `claude mcp add`, stdin is piped (not a TTY)
       // and the process IS the MCP server, so it is running.
       const isStdio = !process.stdin.isTTY;
-      const transport = process.env.CLAUDE_FLOW_MCP_TRANSPORT || (isStdio ? 'stdio' : 'http');
-      const port = parseInt(process.env.CLAUDE_FLOW_MCP_PORT || '3000', 10);
+      const transport = process.env.CORTEX_AGENT_MCP_TRANSPORT || (isStdio ? 'stdio' : 'http');
+      const port = parseInt(process.env.CORTEX_AGENT_MCP_PORT || '3000', 10);
 
       if (transport === 'stdio' || isStdio) {
         // In stdio mode the MCP server is this process itself
@@ -396,7 +396,7 @@ export const systemTools: MCPTool[] = [
       }
 
       // For HTTP/WebSocket, try to check if the server is listening
-      const host = process.env.CLAUDE_FLOW_MCP_HOST || 'localhost';
+      const host = process.env.CORTEX_AGENT_MCP_HOST || 'localhost';
       try {
         const { createConnection } = await import('node:net');
         const connected = await new Promise<boolean>((resolve) => {
@@ -437,7 +437,7 @@ export const systemTools: MCPTool[] = [
     },
     handler: async () => {
       // Read from the task store file
-      const storePath = join(process.cwd(), '.claude-flow', 'tasks', 'store.json');
+      const storePath = join(process.cwd(), '.cortex-agent', 'tasks', 'store.json');
       let tasks: Array<{ status: string }> = [];
       try {
         if (existsSync(storePath)) {

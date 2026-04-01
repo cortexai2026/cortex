@@ -10,7 +10,7 @@ import { join } from 'node:path';
 import type { MCPTool } from './types.js';
 
 // Swarm state persistence
-const SWARM_DIR = '.claude-flow/swarm';
+const SWARM_DIR = '.cortex-agent/swarm';
 const SWARM_STATE_FILE = 'swarm-state.json';
 
 interface SwarmState {

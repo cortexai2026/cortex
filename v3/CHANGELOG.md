@@ -1,4 +1,4 @@
-# Changelog - Claude Flow v3
+# Changelog - Cortex Agent v3
 
 All notable changes to this project will be documented in this file.
 
@@ -24,7 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **ADR-010**: Removed Deno support, focused on Node.js 20+ LTS
 
 #### Module Constellation
-Complete restructure into 10 independent @claude-flow modules:
+Complete restructure into 10 independent @cortex-agent modules:
 - Code reduced from 15,000+ lines to <5,000 lines
 - Each module independently versioned and publishable
 - Cross-platform Windows/macOS/Linux support
@@ -56,9 +56,9 @@ Complete restructure into 10 independent @claude-flow modules:
 - **Memory reduction**: 83.1% achieved
 - **Task orchestration**: 2.8-4.4x parallel speedup
 
-### 🔧 New @claude-flow Modules
+### 🔧 New @cortex-agent Modules
 
-#### 1. `@claude-flow/security` - Security Module
+#### 1. `@cortex-agent/security` - Security Module
 - CVE-1, CVE-2, CVE-3 remediation
 - Input validation and sanitization
 - Secure credential management
@@ -66,7 +66,7 @@ Complete restructure into 10 independent @claude-flow modules:
 - Command injection prevention
 - Cross-platform ACL/keychain integration
 
-#### 2. `@claude-flow/memory` - Memory Unification
+#### 2. `@cortex-agent/memory` - Memory Unification
 - AgentDB as primary backend
 - HNSW vector indexing (150x faster)
 - Hybrid SQLite + vector storage
@@ -74,7 +74,7 @@ Complete restructure into 10 independent @claude-flow modules:
 - GNN-enhanced retrieval
 - 4-32x quantization support
 
-#### 3. `@claude-flow/integration` - Agentic Flow Integration
+#### 3. `@cortex-agent/integration` - Agentic Flow Integration
 - Deep integration with agentic-flow@alpha
 - Eliminates 10,000+ duplicate lines
 - Extends rather than reimplements
@@ -82,7 +82,7 @@ Complete restructure into 10 independent @claude-flow modules:
 - Unified task orchestration
 - Plugin architecture compliance
 
-#### 4. `@claude-flow/performance` - Performance & Benchmarking
+#### 4. `@cortex-agent/performance` - Performance & Benchmarking
 - Flash Attention integration
 - SONA learning optimization
 - Real-time performance monitoring
@@ -90,7 +90,7 @@ Complete restructure into 10 independent @claude-flow modules:
 - Memory profiling tools
 - Benchmark suite with 2.49x-7.47x targets
 
-#### 5. `@claude-flow/swarm` - Swarm Coordination
+#### 5. `@cortex-agent/swarm` - Swarm Coordination
 - Unified SwarmCoordinator (single implementation)
 - 15-agent hierarchical mesh topology
 - Attention-based consensus mechanisms
@@ -98,7 +98,7 @@ Complete restructure into 10 independent @claude-flow modules:
 - Self-healing workflows
 - Smart auto-spawning
 
-#### 6. `@claude-flow/cli` - CLI Modernization
+#### 6. `@cortex-agent/cli` - CLI Modernization
 - Interactive prompts with validation
 - Command decomposition engine
 - Enhanced hooks integration
@@ -106,7 +106,7 @@ Complete restructure into 10 independent @claude-flow modules:
 - Cross-platform compatibility
 - 20ms cold start performance
 
-#### 7. `@claude-flow/neural` - Neural Features
+#### 7. `@cortex-agent/neural` - Neural Features
 - SONA learning integration
 - ReasoningBank adaptive learning
 - Pattern recognition and optimization
@@ -114,7 +114,7 @@ Complete restructure into 10 independent @claude-flow modules:
 - Continuous improvement tracking
 - Neural training pipelines
 
-#### 8. `@claude-flow/testing` - TDD Framework
+#### 8. `@cortex-agent/testing` - TDD Framework
 - London School TDD methodology
 - Mock-first approach
 - Vitest test runner (10x faster)
@@ -122,7 +122,7 @@ Complete restructure into 10 independent @claude-flow modules:
 - Security-focused test patterns
 - Comprehensive coverage reporting
 
-#### 9. `@claude-flow/deployment` - Release Management
+#### 9. `@cortex-agent/deployment` - Release Management
 - Automated versioning
 - CI/CD pipeline integration
 - Multi-platform builds
@@ -130,7 +130,7 @@ Complete restructure into 10 independent @claude-flow modules:
 - Rollback mechanisms
 - Health check monitoring
 
-#### 10. `@claude-flow/shared` - Shared Utilities
+#### 10. `@cortex-agent/shared` - Shared Utilities
 - Common types and interfaces
 - Platform detection and adaptation
 - Configuration management
@@ -271,9 +271,9 @@ See [MIGRATION.md](./MIGRATION.md) for detailed upgrade instructions from v2 to 
 npm install agentic-flow@3.0.0-alpha.1
 
 # Or specific modules
-npm install @claude-flow/security@latest
-npm install @claude-flow/memory@latest
-npm install @claude-flow/integration@latest
+npm install @cortex-agent/security@latest
+npm install @cortex-agent/memory@latest
+npm install @cortex-agent/integration@latest
 ```
 
 ### Getting Started
@@ -282,13 +282,13 @@ npm install @claude-flow/integration@latest
 npx agentic-flow@3.0.0-alpha.1 init --v3
 
 # Run security audit
-npx @claude-flow/security audit
+npx @cortex-agent/security audit
 
 # Start with unified memory
-npx @claude-flow/memory unify --backend agentdb
+npx @cortex-agent/memory unify --backend agentdb
 
 # Spawn v3 swarm
-npx @claude-flow/swarm coordinate --agents 15
+npx @cortex-agent/swarm coordinate --agents 15
 ```
 
 ### Support & Feedback

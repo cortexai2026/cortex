@@ -1,6 +1,6 @@
-# 🚀 Claude Flow Documentation Hub
+# 🚀 Cortex Agent Documentation Hub
 
-## Welcome to Claude Flow v2.0.0-alpha.88
+## Welcome to Cortex Agent v2.0.0-alpha.88
 
 The ultimate AI agent orchestration platform with **54+ specialized agents**, **112 MCP tools**, and **swarm intelligence**. Build, deploy, and scale AI-powered applications with unprecedented speed and reliability.
 
@@ -11,34 +11,34 @@ The ultimate AI agent orchestration platform with **54+ specialized agents**, **
 ### 1. Installation (30 seconds)
 ```bash
 # Install and initialize
-npx claude-flow@alpha init --force
+npx cortex-agent@alpha init --force
 
 # Verify installation
-npx claude-flow@alpha --version
+npx cortex-agent@alpha --version
 ```
 
 ### 2. First Swarm (1 minute)
 ```bash
 # Create your first AI swarm
-npx claude-flow@alpha swarm "build a REST API for user management"
+npx cortex-agent@alpha swarm "build a REST API for user management"
 
 # Use SPARC development methodology
-npx claude-flow@alpha sparc tdd "user authentication system"
+npx cortex-agent@alpha sparc tdd "user authentication system"
 
 # Spawn specialized agent teams
-npx claude-flow@alpha hive-mind spawn "full-stack web app"
+npx cortex-agent@alpha hive-mind spawn "full-stack web app"
 ```
 
 ### 3. Advanced Features
 ```bash
 # Batch processing with multiple modes
-npx claude-flow@alpha sparc batch research,architecture,code "microservices platform"
+npx cortex-agent@alpha sparc batch research,architecture,code "microservices platform"
 
 # Complete development pipeline
-npx claude-flow@alpha sparc pipeline "e-commerce platform with payments"
+npx cortex-agent@alpha sparc pipeline "e-commerce platform with payments"
 
 # GitHub integration
-npx claude-flow@alpha github pr-manager "review and merge pending PRs"
+npx cortex-agent@alpha github pr-manager "review and merge pending PRs"
 ```
 
 ---
@@ -97,31 +97,31 @@ Complete automation toolkit covering file operations, system management, GitHub 
 ### 🚀 Full-Stack Development
 ```bash
 # Complete web application with 8-agent swarm
-npx claude-flow@alpha swarm --agents 8 "build full-stack e-commerce platform"
+npx cortex-agent@alpha swarm --agents 8 "build full-stack e-commerce platform"
 ```
 
 ### 🧪 Test-Driven Development  
 ```bash
 # SPARC TDD workflow
-npx claude-flow@alpha sparc tdd "payment processing system"
+npx cortex-agent@alpha sparc tdd "payment processing system"
 ```
 
 ### 🔄 Code Review & Quality
 ```bash
 # Multi-agent code review
-npx claude-flow@alpha github code-review-swarm --pr 123
+npx cortex-agent@alpha github code-review-swarm --pr 123
 ```
 
 ### 📊 Performance Analysis
 ```bash
 # Performance optimization swarm  
-npx claude-flow@alpha swarm "optimize API performance" --agents perf-analyzer,coder,tester
+npx cortex-agent@alpha swarm "optimize API performance" --agents perf-analyzer,coder,tester
 ```
 
 ### 🤖 AI/ML Development
 ```bash
 # Machine learning pipeline
-npx claude-flow@alpha swarm "build ML model training pipeline" --agents ml-developer,backend-dev,tester
+npx cortex-agent@alpha swarm "build ML model training pipeline" --agents ml-developer,backend-dev,tester
 ```
 
 ---
@@ -131,44 +131,44 @@ npx claude-flow@alpha swarm "build ML model training pipeline" --agents ml-devel
 ### Core Commands
 ```bash
 # List all available modes and agents
-npx claude-flow@alpha sparc modes
-npx claude-flow@alpha agents list
+npx cortex-agent@alpha sparc modes
+npx cortex-agent@alpha agents list
 
 # Initialize MCP integration
-npx claude-flow@alpha mcp start
+npx cortex-agent@alpha mcp start
 
 # Monitor swarm status
-npx claude-flow@alpha swarm status
+npx cortex-agent@alpha swarm status
 
 # Export session data
-npx claude-flow@alpha hooks session-end --export-metrics true
+npx cortex-agent@alpha hooks session-end --export-metrics true
 ```
 
 ### Development Workflow
 ```bash
 # Pre-task setup
-npx claude-flow@alpha hooks pre-task --description "task description"
+npx cortex-agent@alpha hooks pre-task --description "task description"
 
 # Post-edit notifications  
-npx claude-flow@alpha hooks post-edit --file "path/to/file"
+npx cortex-agent@alpha hooks post-edit --file "path/to/file"
 
 # Performance analysis
-npx claude-flow@alpha hooks post-task --analyze-performance true
+npx cortex-agent@alpha hooks post-task --analyze-performance true
 ```
 
 ### GitHub Integration
 ```bash
 # Initialize GitHub integration
-npx claude-flow@alpha github init
+npx cortex-agent@alpha github init
 
 # Manage pull requests
-npx claude-flow@alpha github pr-manager
+npx cortex-agent@alpha github pr-manager
 
 # Track issues
-npx claude-flow@alpha github issue-tracker
+npx cortex-agent@alpha github issue-tracker
 
 # Release management
-npx claude-flow@alpha github release-manager
+npx cortex-agent@alpha github release-manager
 ```
 
 ---
@@ -181,38 +181,38 @@ npx claude-flow@alpha github release-manager
 ```bash
 # Clear npm cache and reinstall
 npm cache clean --force
-npx claude-flow@alpha init --force --reset
+npx cortex-agent@alpha init --force --reset
 ```
 
 #### ❌ Agent Connection Issues  
 ```bash
 # Check MCP server status
-npx claude-flow@alpha mcp status
+npx cortex-agent@alpha mcp status
 
 # Restart MCP server
-npx claude-flow@alpha mcp restart
+npx cortex-agent@alpha mcp restart
 ```
 
 #### ❌ Memory Issues
 ```bash
 # Clear agent memory
-npx claude-flow@alpha memory clear
+npx cortex-agent@alpha memory clear
 
 # Reset session state
-npx claude-flow@alpha hooks session-restore --reset
+npx cortex-agent@alpha hooks session-restore --reset
 ```
 
 #### ❌ Performance Issues
 ```bash
 # Enable performance monitoring
-npx claude-flow@alpha hooks post-task --analyze-performance true
+npx cortex-agent@alpha hooks post-task --analyze-performance true
 
 # Reduce agent count for resource-constrained environments
-npx claude-flow@alpha --agents 3 swarm "task description"
+npx cortex-agent@alpha --agents 3 swarm "task description"
 ```
 
 ### Getting Help
-- **GitHub Issues**: [Report bugs and feature requests](https://github.com/ruvnet/claude-flow/issues)
+- **GitHub Issues**: [Report bugs and feature requests](https://github.com/ruvnet/cortex-agent/issues)
 - **Documentation**: Check specific documentation files for detailed guidance
 - **Community**: Join our Discord community for real-time support
 - **Performance**: SWE-Bench Score: 84.8%, Task Completion: 96.3%
@@ -290,7 +290,7 @@ docs/
 │   └── DOCKER_VERIFICATION_REPORT.md          # Docker testing results
 │
 ├── 📚 guides/                                 # User Guides & Tutorials
-│   └── skills-tutorial.md                     # 25 Claude Flow skills
+│   └── skills-tutorial.md                     # 25 Cortex Agent skills
 │
 ├── 🔌 integrations/                           # Platform Integrations
 │   ├── reasoningbank/                         # ReasoningBank AI integration (16 docs)
@@ -352,37 +352,37 @@ docs/
 #### 🧠 **Agent Coordination Patterns**
 ```bash
 # Hierarchical coordination for complex projects
-npx claude-flow@alpha swarm --topology hierarchical "enterprise application"
+npx cortex-agent@alpha swarm --topology hierarchical "enterprise application"
 
 # Mesh coordination for peer collaboration  
-npx claude-flow@alpha swarm --topology mesh "code review and optimization"
+npx cortex-agent@alpha swarm --topology mesh "code review and optimization"
 
 # Adaptive coordination for dynamic requirements
-npx claude-flow@alpha swarm --topology adaptive "evolving microservices architecture"
+npx cortex-agent@alpha swarm --topology adaptive "evolving microservices architecture"
 ```
 
 #### 🔄 **Memory & State Management**
 ```bash
 # Persistent memory across sessions
-npx claude-flow@alpha hooks session-restore --session-id "project-alpha"
+npx cortex-agent@alpha hooks session-restore --session-id "project-alpha"
 
 # Cross-agent memory sharing
-npx claude-flow@alpha hooks post-edit --memory-key "swarm/shared/architecture"
+npx cortex-agent@alpha hooks post-edit --memory-key "swarm/shared/architecture"
 
 # Memory cleanup and optimization
-npx claude-flow@alpha memory optimize --threshold 0.8
+npx cortex-agent@alpha memory optimize --threshold 0.8
 ```
 
 #### ⚡ **Performance Optimization**
 ```bash
 # Enable concurrent execution (CRITICAL)
-npx claude-flow@alpha swarm --parallel --max-concurrent 5
+npx cortex-agent@alpha swarm --parallel --max-concurrent 5
 
 # Performance monitoring and analysis  
-npx claude-flow@alpha hooks post-task --analyze-performance true
+npx cortex-agent@alpha hooks post-task --analyze-performance true
 
 # Resource usage optimization
-npx claude-flow@alpha --agents 3 --memory-limit 4GB swarm "task"
+npx cortex-agent@alpha --agents 3 --memory-limit 4GB swarm "task"
 ```
 
 ### 🎯 **Workflow Integration**
@@ -390,25 +390,25 @@ npx claude-flow@alpha --agents 3 --memory-limit 4GB swarm "task"
 #### Git Integration
 ```bash
 # Automated commit with agent coordination
-npx claude-flow@alpha hooks pre-task --git-integration
+npx cortex-agent@alpha hooks pre-task --git-integration
 
 # Pull request management with swarm review
-npx claude-flow@alpha github pr-manager --auto-review
+npx cortex-agent@alpha github pr-manager --auto-review
 
 # Release coordination across agents
-npx claude-flow@alpha github release-manager --version 2.1.0
+npx cortex-agent@alpha github release-manager --version 2.1.0
 ```
 
 #### CI/CD Integration  
 ```bash
 # Pre-commit hooks with agent validation
-npx claude-flow@alpha hooks pre-commit --validate
+npx cortex-agent@alpha hooks pre-commit --validate
 
 # Post-deployment testing swarm
-npx claude-flow@alpha swarm "validate production deployment" --agents tester,production-validator
+npx cortex-agent@alpha swarm "validate production deployment" --agents tester,production-validator
 
 # Performance regression testing
-npx claude-flow@alpha swarm "performance regression analysis" --agents performance-benchmarker,perf-analyzer
+npx cortex-agent@alpha swarm "performance regression analysis" --agents performance-benchmarker,perf-analyzer
 ```
 
 ---
@@ -418,25 +418,25 @@ npx claude-flow@alpha swarm "performance regression analysis" --agents performan
 ### Enterprise Scale Deployment
 ```bash
 # Production cluster initialization
-npx claude-flow@alpha init --production --cluster-size 10
+npx cortex-agent@alpha init --production --cluster-size 10
 
 # Load balancing configuration  
-npx claude-flow@alpha configure --load-balancer --replicas 5
+npx cortex-agent@alpha configure --load-balancer --replicas 5
 
 # High availability setup
-npx claude-flow@alpha deploy --ha --backup-strategy distributed
+npx cortex-agent@alpha deploy --ha --backup-strategy distributed
 ```
 
 ### Monitoring & Observability
 ```bash
 # Real-time metrics dashboard
-npx claude-flow@alpha monitor --dashboard --port 3000
+npx cortex-agent@alpha monitor --dashboard --port 3000
 
 # Health check automation
-npx claude-flow@alpha health-check --interval 30s --alerts
+npx cortex-agent@alpha health-check --interval 30s --alerts
 
 # Performance analytics
-npx claude-flow@alpha analytics --export-metrics --format prometheus
+npx cortex-agent@alpha analytics --export-metrics --format prometheus
 ```
 
 ---
@@ -446,7 +446,7 @@ npx claude-flow@alpha analytics --export-metrics --format prometheus
 ### 🎓 **Training Path for New Users**
 
 #### **Week 1: Fundamentals**
-1. **[Installation & Setup](DEPLOYMENT.md#installation-methods)** - Get Claude Flow running
+1. **[Installation & Setup](DEPLOYMENT.md#installation-methods)** - Get Cortex Agent running
 2. **[First Swarm Creation](../README.md#-quick-start)** - Build your first AI team  
 3. **[SPARC Methodology](../README.md#-sparc-development-environment)** - Learn structured development
 4. **[Basic Commands](../README.md#-essential-commands)** - Master core CLI operations
@@ -465,10 +465,10 @@ npx claude-flow@alpha analytics --export-metrics --format prometheus
 
 ### 📊 **Success Metrics**
 Track your progress with these benchmarks:
-- **Task Completion Rate**: Target 95%+ (Claude Flow achieves 96.3%)
-- **Development Speed**: Aim for 3x improvement (Claude Flow delivers 2.8-4.4x)
+- **Task Completion Rate**: Target 95%+ (Cortex Agent achieves 96.3%)
+- **Development Speed**: Aim for 3x improvement (Cortex Agent delivers 2.8-4.4x)
 - **Code Quality**: Maintain high review scores with multi-agent validation
-- **Memory Efficiency**: Optimize for 85%+ efficiency (Claude Flow: 87%)
+- **Memory Efficiency**: Optimize for 85%+ efficiency (Cortex Agent: 87%)
 
 ---
 
@@ -476,9 +476,9 @@ Track your progress with these benchmarks:
 
 ### REST API Usage
 ```javascript
-// Initialize Claude Flow client
-const claudeFlow = new ClaudeFlowClient({
-  apiKey: process.env.CLAUDE_FLOW_API_KEY,
+// Initialize Cortex Agent client
+const claudeFlow = new CortexAgentClient({
+  apiKey: process.env.CORTEX_AGENT_API_KEY,
   version: '2.0.0-alpha.88'
 });
 
@@ -498,7 +498,7 @@ swarm.on('progress', (update) => {
 ### WebSocket Real-time Updates
 ```javascript
 // Connect to real-time updates
-const ws = new WebSocket('wss://api.claude-flow.ai/v2/ws');
+const ws = new WebSocket('wss://api.cortex-agent.ai/v2/ws');
 
 ws.on('swarm:update', (data) => {
   console.log('Swarm Progress:', data);
@@ -517,37 +517,37 @@ ws.on('agent:complete', (data) => {
 ```bash
 # ALWAYS batch operations in single messages
 # ✅ CORRECT: Everything in ONE command
-npx claude-flow@alpha swarm --agents coder,tester,reviewer --parallel "full-stack app"
+npx cortex-agent@alpha swarm --agents coder,tester,reviewer --parallel "full-stack app"
 
 # ❌ WRONG: Sequential commands (6x slower)
-# npx claude-flow@alpha agent spawn coder
-# npx claude-flow@alpha agent spawn tester  
-# npx claude-flow@alpha agent spawn reviewer
+# npx cortex-agent@alpha agent spawn coder
+# npx cortex-agent@alpha agent spawn tester  
+# npx cortex-agent@alpha agent spawn reviewer
 ```
 
 ### 🧠 **Memory Optimization**
 ```bash
 # Efficient memory usage patterns
-npx claude-flow@alpha hooks post-edit --memory-key "swarm/shared/patterns" --compress
+npx cortex-agent@alpha hooks post-edit --memory-key "swarm/shared/patterns" --compress
 
 # Cross-session persistence
-npx claude-flow@alpha hooks session-restore --optimize-memory
+npx cortex-agent@alpha hooks session-restore --optimize-memory
 
 # Memory cleanup automation
-npx claude-flow@alpha memory gc --threshold 0.9
+npx cortex-agent@alpha memory gc --threshold 0.9
 ```
 
 ### 🎯 **Agent Selection Strategy**
 ```bash
 # Match agents to task complexity
 # Simple tasks (1-3 agents)
-npx claude-flow@alpha --agents 3 swarm "bug fix in authentication"
+npx cortex-agent@alpha --agents 3 swarm "bug fix in authentication"
 
 # Medium tasks (4-7 agents)  
-npx claude-flow@alpha --agents 6 swarm "new feature with tests and docs"
+npx cortex-agent@alpha --agents 6 swarm "new feature with tests and docs"
 
 # Complex tasks (8-12 agents)
-npx claude-flow@alpha --agents 10 swarm "full enterprise application"
+npx cortex-agent@alpha --agents 10 swarm "full enterprise application"
 ```
 
 ---
@@ -576,21 +576,21 @@ npx claude-flow@alpha --agents 10 swarm "full enterprise application"
 ## 📞 **Getting Support**
 
 ### 🆘 **Immediate Help**
-- **Emergency Issues**: [GitHub Issues](https://github.com/ruvnet/claude-flow/issues/new?template=bug_report.md)
-- **Feature Requests**: [Enhancement Template](https://github.com/ruvnet/claude-flow/issues/new?template=feature_request.md)
+- **Emergency Issues**: [GitHub Issues](https://github.com/ruvnet/cortex-agent/issues/new?template=bug_report.md)
+- **Feature Requests**: [Enhancement Template](https://github.com/ruvnet/cortex-agent/issues/new?template=feature_request.md)
 - **Documentation**: Browse this comprehensive guide
 - **Community**: Discord community for real-time support
 
 ### 📧 **Contact Information**
-- **Technical Support**: support@claude-flow.ai
-- **Documentation**: docs@claude-flow.ai  
-- **Enterprise Sales**: enterprise@claude-flow.ai
-- **General Inquiries**: info@claude-flow.ai
+- **Technical Support**: support@cortex-agent.ai
+- **Documentation**: docs@cortex-agent.ai  
+- **Enterprise Sales**: enterprise@cortex-agent.ai
+- **General Inquiries**: info@cortex-agent.ai
 
 ### 🔗 **Community Links**
-- **GitHub**: [ruvnet/claude-flow](https://github.com/ruvnet/claude-flow)
-- **Discord**: [Join Community](https://discord.gg/claude-flow)
-- **Stack Overflow**: [claude-flow tag](https://stackoverflow.com/questions/tagged/claude-flow)
+- **GitHub**: [ruvnet/cortex-agent](https://github.com/ruvnet/cortex-agent)
+- **Discord**: [Join Community](https://discord.gg/cortex-agent)
+- **Stack Overflow**: [cortex-agent tag](https://stackoverflow.com/questions/tagged/cortex-agent)
 - **Reddit**: [r/claudeflow](https://reddit.com/r/claudeflow)
 
 ---
@@ -599,21 +599,21 @@ npx claude-flow@alpha --agents 10 swarm "full enterprise application"
 
 # 🚀 **Ready to Build the Future with AI?**
 
-## **Claude Flow v2.0.0-alpha.88**
+## **Cortex Agent v2.0.0-alpha.88**
 ### *The Ultimate AI Agent Orchestration Platform*
 
 **54+ Specialized Agents • 112 MCP Tools • Swarm Intelligence • Enterprise Ready**
 
 ### **Get Started in 30 Seconds**
 ```bash
-npx claude-flow@alpha init --force
+npx cortex-agent@alpha init --force
 ```
 
 ---
 
-### **🌟 Join Thousands of Developers Building with Claude Flow**
+### **🌟 Join Thousands of Developers Building with Cortex Agent**
 
-[**🚀 Quick Start**](../README.md#-quick-start) • [**📚 Documentation**](../README.md) • [**💬 Community**](https://discord.gg/claude-flow) • [**🐛 Issues**](https://github.com/ruvnet/claude-flow/issues)
+[**🚀 Quick Start**](../README.md#-quick-start) • [**📚 Documentation**](../README.md) • [**💬 Community**](https://discord.gg/cortex-agent) • [**🐛 Issues**](https://github.com/ruvnet/cortex-agent/issues)
 
 ---
 

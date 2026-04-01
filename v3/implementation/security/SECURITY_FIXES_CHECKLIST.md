@@ -88,7 +88,7 @@ npm run test -- auth-service.test
 private initializeDefaultUsers(): void {
   const adminUser: User = {
     id: 'admin_default',
-    email: 'admin@claude-flow.local',
+    email: 'admin@cortex-agent.local',
     passwordHash: createHash('sha256').update('admin123' + 'salt').digest('hex'),
     // ...
   };
@@ -108,7 +108,7 @@ private async initializeDefaultUsers(): Promise<void> {
     console.log('IMPORTANT: SAVE THESE CREDENTIALS NOW');
     console.log('═══════════════════════════════════════════');
     console.log('Default Admin Credentials:');
-    console.log(`Email: admin@claude-flow.local`);
+    console.log(`Email: admin@cortex-agent.local`);
     console.log(`Password: ${randomPassword}`);
     console.log('═══════════════════════════════════════════');
     console.log('You will NOT see this password again!');
@@ -117,7 +117,7 @@ private async initializeDefaultUsers(): Promise<void> {
 
     const adminUser: User = {
       id: 'admin_default',
-      email: 'admin@claude-flow.local',
+      email: 'admin@cortex-agent.local',
       passwordHash: await this.hashPassword(randomPassword),
       role: 'admin',
       permissions: ROLE_PERMISSIONS.admin,
@@ -231,11 +231,11 @@ async function executeHook(hookType: string, options: Record<string, any>): Prom
 **Verification:**
 ```bash
 # Should fail with error
-claude-flow hook pre-task --description "test; whoami"
-claude-flow hook pre-task --description "test && ls"
+cortex-agent hook pre-task --description "test; whoami"
+cortex-agent hook pre-task --description "test && ls"
 
 # Should succeed
-claude-flow hook pre-task --description "legitimate task description"
+cortex-agent hook pre-task --description "legitimate task description"
 ```
 
 ---
@@ -311,7 +311,7 @@ export class PathValidator {
 
 export const defaultPathValidator = new PathValidator([
   process.cwd(),
-  join(process.cwd(), '.claude-flow'),
+  join(process.cwd(), '.cortex-agent'),
   join(process.cwd(), 'workflows'),
 ]);
 ```
@@ -339,13 +339,13 @@ import { defaultPathValidator } from '../../utils/path-validator.js';
 **Verification:**
 ```bash
 # Should fail
-claude-flow task workflow ../../../etc/passwd
-claude-flow task workflow ~/.ssh/id_rsa
-claude-flow task workflow /etc/hosts
+cortex-agent task workflow ../../../etc/passwd
+cortex-agent task workflow ~/.ssh/id_rsa
+cortex-agent task workflow /etc/hosts
 
 # Should succeed
-claude-flow task workflow ./workflows/my-workflow.json
-claude-flow task workflow workflows/test.json
+cortex-agent task workflow ./workflows/my-workflow.json
+cortex-agent task workflow workflows/test.json
 ```
 
 ---
@@ -436,13 +436,13 @@ const PROTECTED_KEYS = [
 **Verification:**
 ```bash
 # Should fail
-claude-flow config set "authConfig.jwtSecret" "hacked"
-claude-flow config set "__proto__.isAdmin" "true"
-claude-flow config set "timeout" "999999999"
+cortex-agent config set "authConfig.jwtSecret" "hacked"
+cortex-agent config set "__proto__.isAdmin" "true"
+cortex-agent config set "timeout" "999999999"
 
 # Should succeed
-claude-flow config set "theme" "dark"
-claude-flow config set "timeout" "30000"
+cortex-agent config set "theme" "dark"
+cortex-agent config set "timeout" "30000"
 ```
 
 ---

@@ -1,5 +1,5 @@
 /**
- * @claude-flow/integration - V3 Integration Module
+ * @cortex-agent/integration - V3 Integration Module
  *
  * Main entry point for the agentic-flow@alpha integration module.
  * Provides deep integration with SONA learning, Flash Attention,
@@ -16,7 +16,7 @@
  *
  * Usage:
  * ```typescript
- * import { createAgenticFlowBridge } from '@claude-flow/integration';
+ * import { createAgenticFlowBridge } from '@cortex-agent/integration';
  *
  * const bridge = await createAgenticFlowBridge({
  *   features: {
@@ -35,7 +35,7 @@
  * const result = await attention.compute({ query, key, value });
  * ```
  *
- * @module @claude-flow/integration
+ * @module @cortex-agent/integration
  * @version 3.0.0-alpha.1
  */
 
@@ -431,9 +431,9 @@ export const VERSION = '3.0.0-alpha.1';
  * Module metadata
  */
 export const METADATA = {
-  name: '@claude-flow/integration',
+  name: '@cortex-agent/integration',
   version: VERSION,
-  description: 'Deep agentic-flow@alpha integration for claude-flow v3',
+  description: 'Deep agentic-flow@alpha integration for cortex-agent v3',
   implements: ['ADR-001'],
   features: [
     'SONA Learning (5 modes)',

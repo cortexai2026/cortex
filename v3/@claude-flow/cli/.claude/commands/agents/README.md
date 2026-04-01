@@ -1,6 +1,6 @@
 # Agents Commands
 
-Complete agent management commands for Claude Flow V3.
+Complete agent management commands for Cortex Agent V3.
 
 ## Available Commands
 
@@ -28,16 +28,16 @@ Complete agent management commands for Claude Flow V3.
 
 ```bash
 # Spawn a coder agent
-npx claude-flow agent spawn -t coder --name my-coder
+npx cortex-agent agent spawn -t coder --name my-coder
 
 # List all active agents
-npx claude-flow agent list
+npx cortex-agent agent list
 
 # Check agent health
-npx claude-flow agent health
+npx cortex-agent agent health
 
 # View metrics
-npx claude-flow agent metrics --period 24h
+npx cortex-agent agent metrics --period 24h
 ```
 
 ## V3 Agent Categories

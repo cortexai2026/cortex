@@ -1,5 +1,5 @@
-# Non-Interactive Default Configuration for Claude Flow Benchmark
-# This configuration ensures all claude-flow commands run in non-interactive mode
+# Non-Interactive Default Configuration for Cortex Agent Benchmark
+# This configuration ensures all cortex-agent commands run in non-interactive mode
 
 # Global defaults for all commands
 defaults:

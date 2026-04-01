@@ -1,7 +1,7 @@
 /**
- * @claude-flow/performance
+ * @cortex-agent/performance
  *
- * Performance module for claude-flow v3.
+ * Performance module for cortex-agent v3.
  * Provides benchmarking, Flash Attention validation, and optimization utilities.
  *
  * Target Performance Metrics:

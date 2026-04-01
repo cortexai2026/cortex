@@ -17,11 +17,11 @@ const execAsync = promisify(exec);
  */
 export class TrainingPipeline {
   constructor() {
-    this.pipelineConfig = '.claude-flow/pipeline-config.json';
-    this.trainingLog = '.claude-flow/training/pipeline-log.jsonl';
-    this.improvementMetrics = '.claude-flow/metrics/improvements.json';
-    this.agentProfiles = '.claude-flow/agents/profiles.json';
-    this.realTasksDir = '.claude-flow/training/real-tasks';
+    this.pipelineConfig = '.cortex-agent/pipeline-config.json';
+    this.trainingLog = '.cortex-agent/training/pipeline-log.jsonl';
+    this.improvementMetrics = '.cortex-agent/metrics/improvements.json';
+    this.agentProfiles = '.cortex-agent/agents/profiles.json';
+    this.realTasksDir = '.cortex-agent/training/real-tasks';
     this.initialized = false;
   }
 
@@ -31,13 +31,13 @@ export class TrainingPipeline {
   async initialize() {
     // Create necessary directories
     const dirs = [
-      '.claude-flow/pipeline',
-      '.claude-flow/training',
-      '.claude-flow/training/real-tasks',
-      '.claude-flow/metrics',
-      '.claude-flow/agents',
-      '.claude-flow/validation',
-      '.claude-flow/benchmarks'
+      '.cortex-agent/pipeline',
+      '.cortex-agent/training',
+      '.cortex-agent/training/real-tasks',
+      '.cortex-agent/metrics',
+      '.cortex-agent/agents',
+      '.cortex-agent/validation',
+      '.cortex-agent/benchmarks'
     ];
 
     for (const dir of dirs) {
@@ -289,7 +289,7 @@ describe('Sorting Algorithms', () => {
     }
 
     // Save real results
-    const resultsFile = `.claude-flow/training/real-results-${Date.now()}.json`;
+    const resultsFile = `.cortex-agent/training/real-results-${Date.now()}.json`;
     await fs.writeFile(resultsFile, JSON.stringify(results, null, 2));
 
     return results;

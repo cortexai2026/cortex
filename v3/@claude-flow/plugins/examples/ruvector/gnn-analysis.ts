@@ -9,7 +9,7 @@
  *
  * Run with: npx ts-node examples/ruvector/gnn-analysis.ts
  *
- * @module @claude-flow/plugins/examples/ruvector/gnn-analysis
+ * @module @cortex-agent/plugins/examples/ruvector/gnn-analysis
  */
 
 import {

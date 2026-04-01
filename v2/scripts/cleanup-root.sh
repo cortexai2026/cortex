@@ -51,7 +51,7 @@ echo "- CLAUDE.md (Claude Code integration)"
 echo "- LICENSE"
 echo "- package.json & package-lock.json"
 echo "- Configuration files (.gitignore, .npmignore, etc.)"
-echo "- Main entry points (cli.js, claude-flow)"
+echo "- Main entry points (cli.js, cortex-agent)"
 
 echo ""
 echo "📊 Cleanup Summary:"

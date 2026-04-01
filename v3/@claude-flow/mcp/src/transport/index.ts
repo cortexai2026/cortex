@@ -1,5 +1,5 @@
 /**
- * @claude-flow/mcp - Transport Factory
+ * @cortex-agent/mcp - Transport Factory
  *
  * Central factory for creating transport instances
  */

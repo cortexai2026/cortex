@@ -5,7 +5,7 @@
  * Tests all available providers using .env credentials
  *
  * Usage:
- *   cd v3/@claude-flow/providers
+ *   cd v3/@cortex-agent/providers
  *   npm run test:quick
  *
  * Or directly:
@@ -32,7 +32,7 @@ import {
 } from '../index.js';
 import { consoleLogger } from '../base-provider.js';
 
-const TEST_PROMPT = 'Say "Hello from Claude Flow V3!" Be brief.';
+const TEST_PROMPT = 'Say "Hello from Cortex Agent V3!" Be brief.';
 
 const createTestRequest = (model?: string): LLMRequest => ({
   messages: [{ role: 'user', content: TEST_PROMPT }],
@@ -132,8 +132,8 @@ async function testOpenRouter() {
       maxTokens: 100,
       providerOptions: {
         headers: {
-          'HTTP-Referer': 'https://claude-flow.dev',
-          'X-Title': 'Claude Flow V3 Test',
+          'HTTP-Referer': 'https://cortex-agent.dev',
+          'X-Title': 'Cortex Agent V3 Test',
         },
       },
     },
@@ -311,7 +311,7 @@ async function testProviderManager() {
 
 async function main() {
   console.log('╔════════════════════════════════════════════════╗');
-  console.log('║     Claude Flow V3 - Provider Test Suite       ║');
+  console.log('║     Cortex Agent V3 - Provider Test Suite       ║');
   console.log('╚════════════════════════════════════════════════╝');
 
   console.log('\n📋 Loaded .env from:', resolve(__dirname, '../../../../../.env'));

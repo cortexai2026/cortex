@@ -1,17 +1,17 @@
 /**
- * Claude Flow V3 - Modular AI Agent Coordination System
+ * Cortex Agent V3 - Modular AI Agent Coordination System
  *
- * This is the main entry point that re-exports all @claude-flow modules.
+ * This is the main entry point that re-exports all @cortex-agent modules.
  * Each module can also be imported directly for tree-shaking.
  *
  * @example
  * // Import everything
- * import * as claudeFlow from '@claude-flow/v3';
+ * import * as claudeFlow from '@cortex-agent/v3';
  *
  * // Or import specific modules
- * import { UnifiedSwarmCoordinator } from '@claude-flow/swarm';
- * import { PasswordHasher } from '@claude-flow/security';
- * import { HNSWIndex } from '@claude-flow/memory';
+ * import { UnifiedSwarmCoordinator } from '@cortex-agent/swarm';
+ * import { PasswordHasher } from '@cortex-agent/security';
+ * import { HNSWIndex } from '@cortex-agent/memory';
  *
  * Complete reimagining based on 10 ADRs:
  * - ADR-001: Adopt agentic-flow as core foundation
@@ -32,89 +32,89 @@
  * - Code Reduction: <5,000 lines (vs 15,000+)
  * - Startup Time: <500ms
  *
- * @module @claude-flow/v3
+ * @module @cortex-agent/v3
  * @version 3.0.0-alpha.1
  */
 
 // =============================================================================
-// @claude-flow Module Exports (New Modular Architecture)
+// @cortex-agent Module Exports (New Modular Architecture)
 // =============================================================================
 
 /**
  * Security module - CVE fixes, input validation, credential management
- * @see {@link @claude-flow/security}
+ * @see {@link @cortex-agent/security}
  */
-export * as security from './@claude-flow/security/src/index.js';
+export * as security from './@cortex-agent/security/src/index.js';
 
 /**
  * Memory module - AgentDB, HNSW indexing, vector search
- * @see {@link @claude-flow/memory}
+ * @see {@link @cortex-agent/memory}
  */
-export * as memory from './@claude-flow/memory/src/index.js';
+export * as memory from './@cortex-agent/memory/src/index.js';
 
 /**
  * Swarm module - 15-agent coordination, hierarchical mesh, consensus
- * @see {@link @claude-flow/swarm}
+ * @see {@link @cortex-agent/swarm}
  */
-export * as swarm from './@claude-flow/swarm/src/index.js';
+export * as swarm from './@cortex-agent/swarm/src/index.js';
 
 /**
  * Integration module - agentic-flow@alpha integration, ADR-001 compliance
- * @see {@link @claude-flow/integration}
+ * @see {@link @cortex-agent/integration}
  */
-export * as integration from './@claude-flow/integration/src/index.js';
+export * as integration from './@cortex-agent/integration/src/index.js';
 
 /**
  * Shared module - common types, events, utilities, core interfaces
- * @see {@link @claude-flow/shared}
+ * @see {@link @cortex-agent/shared}
  */
-export * as shared from './@claude-flow/shared/src/index.js';
+export * as shared from './@cortex-agent/shared/src/index.js';
 
 /**
  * CLI module - Command parsing, prompts, output formatting
- * @see {@link @claude-flow/cli}
+ * @see {@link @cortex-agent/cli}
  */
-export * as cli from './@claude-flow/cli/src/index.js';
+export * as cli from './@cortex-agent/cli/src/index.js';
 
 /**
  * Neural module - SONA learning, neural modes
- * @see {@link @claude-flow/neural}
+ * @see {@link @cortex-agent/neural}
  */
-export * as neural from './@claude-flow/neural/src/index.js';
+export * as neural from './@cortex-agent/neural/src/index.js';
 
 /**
  * Performance module - Benchmarking, Flash Attention validation
- * @see {@link @claude-flow/performance}
+ * @see {@link @cortex-agent/performance}
  */
-export * as performance from './@claude-flow/performance/src/index.js';
+export * as performance from './@cortex-agent/performance/src/index.js';
 
 /**
  * Testing module - TDD London School framework, test utilities
- * @see {@link @claude-flow/testing}
+ * @see {@link @cortex-agent/testing}
  */
-export * as testing from './@claude-flow/testing/src/index.js';
+export * as testing from './@cortex-agent/testing/src/index.js';
 
 /**
  * Deployment module - Release management, CI/CD
- * @see {@link @claude-flow/deployment}
+ * @see {@link @cortex-agent/deployment}
  */
-export * as deployment from './@claude-flow/deployment/src/index.js';
+export * as deployment from './@cortex-agent/deployment/src/index.js';
 
 // =============================================================================
 // Module List for Dynamic Loading
 // =============================================================================
 
 export const MODULES = [
-  '@claude-flow/shared',
-  '@claude-flow/security',
-  '@claude-flow/memory',
-  '@claude-flow/swarm',
-  '@claude-flow/integration',
-  '@claude-flow/cli',
-  '@claude-flow/neural',
-  '@claude-flow/performance',
-  '@claude-flow/testing',
-  '@claude-flow/deployment',
+  '@cortex-agent/shared',
+  '@cortex-agent/security',
+  '@cortex-agent/memory',
+  '@cortex-agent/swarm',
+  '@cortex-agent/integration',
+  '@cortex-agent/cli',
+  '@cortex-agent/neural',
+  '@cortex-agent/performance',
+  '@cortex-agent/testing',
+  '@cortex-agent/deployment',
 ] as const;
 
 export type ModuleName = (typeof MODULES)[number];
@@ -534,10 +534,10 @@ export const V3_VERSION = {
 };
 
 export const V3_INFO = {
-  name: 'claude-flow',
+  name: 'cortex-agent',
   version: V3_VERSION.full,
   description: 'Complete reimagining of Claude-Flow with 15-agent hierarchical mesh swarm',
-  repository: 'https://github.com/ruvnet/claude-flow',
+  repository: 'https://github.com/ruvnet/cortex-agent',
   license: 'MIT',
   engines: {
     node: '>=20.0.0'

@@ -1,8 +1,8 @@
-# @claude-flow/plugin-cognitive-kernel
+# @cortex-agent/plugin-cognitive-kernel
 
-[![npm version](https://img.shields.io/npm/v/@claude-flow/plugin-cognitive-kernel.svg)](https://www.npmjs.com/package/@claude-flow/plugin-cognitive-kernel)
-[![license](https://img.shields.io/npm/l/@claude-flow/plugin-cognitive-kernel.svg)](https://github.com/ruvnet/claude-flow/blob/main/LICENSE)
-[![downloads](https://img.shields.io/npm/dm/@claude-flow/plugin-cognitive-kernel.svg)](https://www.npmjs.com/package/@claude-flow/plugin-cognitive-kernel)
+[![npm version](https://img.shields.io/npm/v/@cortex-agent/plugin-cognitive-kernel.svg)](https://www.npmjs.com/package/@cortex-agent/plugin-cognitive-kernel)
+[![license](https://img.shields.io/npm/l/@cortex-agent/plugin-cognitive-kernel.svg)](https://github.com/ruvnet/cortex-agent/blob/main/LICENSE)
+[![downloads](https://img.shields.io/npm/dm/@cortex-agent/plugin-cognitive-kernel.svg)](https://www.npmjs.com/package/@cortex-agent/plugin-cognitive-kernel)
 
 A cutting-edge cognitive augmentation plugin combining the Cognitum Gate Kernel with SONA self-optimizing architecture to provide LLMs with enhanced cognitive capabilities. The plugin enables dynamic working memory, attention control mechanisms, meta-cognitive self-monitoring, and cognitive scaffolding while maintaining low latency through WASM acceleration.
 
@@ -11,19 +11,19 @@ A cutting-edge cognitive augmentation plugin combining the Cognitum Gate Kernel 
 ### npm
 
 ```bash
-npm install @claude-flow/plugin-cognitive-kernel
+npm install @cortex-agent/plugin-cognitive-kernel
 ```
 
 ### CLI
 
 ```bash
-npx claude-flow plugins install --name @claude-flow/plugin-cognitive-kernel
+npx cortex-agent plugins install --name @cortex-agent/plugin-cognitive-kernel
 ```
 
 ## Quick Start
 
 ```typescript
-import { CognitiveKernelPlugin } from '@claude-flow/plugin-cognitive-kernel';
+import { CognitiveKernelPlugin } from '@cortex-agent/plugin-cognitive-kernel';
 
 // Initialize the plugin
 const plugin = new CognitiveKernelPlugin();
@@ -283,9 +283,9 @@ interface CognitiveKernelConfig {
 
 | Plugin | Description | Synergy |
 |--------|-------------|---------|
-| [@claude-flow/plugin-neural-coordination](https://www.npmjs.com/package/@claude-flow/plugin-neural-coordination) | Multi-agent coordination | Cognitive kernel provides enhanced reasoning for coordinated agents |
-| [@claude-flow/plugin-hyperbolic-reasoning](https://www.npmjs.com/package/@claude-flow/plugin-hyperbolic-reasoning) | Hierarchical reasoning | Combines hierarchical structure with cognitive scaffolding |
-| [@claude-flow/plugin-quantum-optimizer](https://www.npmjs.com/package/@claude-flow/plugin-quantum-optimizer) | Quantum-inspired optimization | Optimizes cognitive resource allocation and attention scheduling |
+| [@cortex-agent/plugin-neural-coordination](https://www.npmjs.com/package/@cortex-agent/plugin-neural-coordination) | Multi-agent coordination | Cognitive kernel provides enhanced reasoning for coordinated agents |
+| [@cortex-agent/plugin-hyperbolic-reasoning](https://www.npmjs.com/package/@cortex-agent/plugin-hyperbolic-reasoning) | Hierarchical reasoning | Combines hierarchical structure with cognitive scaffolding |
+| [@cortex-agent/plugin-quantum-optimizer](https://www.npmjs.com/package/@cortex-agent/plugin-quantum-optimizer) | Quantum-inspired optimization | Optimizes cognitive resource allocation and attention scheduling |
 
 ## Architecture
 

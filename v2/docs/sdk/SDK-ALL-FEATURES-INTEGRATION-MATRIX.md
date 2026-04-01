@@ -37,12 +37,12 @@ Replace stdio-based MCP transport with in-process SDK server for **zero IPC over
 ### 🔧 Implementation
 
 ```typescript
-// src/mcp/claude-flow-swarm-server.ts
+// src/mcp/cortex-agent-swarm-server.ts
 import { createSdkMcpServer, tool } from '@anthropic-ai/claude-code/sdk';
 import { z } from 'zod';
 
 export const claudeFlowSwarmServer = createSdkMcpServer({
-  name: 'claude-flow-swarm',
+  name: 'cortex-agent-swarm',
   version: '2.5.0-alpha.130',
   tools: [
     // Swarm initialization
@@ -117,9 +117,9 @@ export class SwarmCoordinator {
       prompt: 'Initialize swarm with mesh topology',
       options: {
         mcpServers: {
-          'claude-flow-swarm': {
+          'cortex-agent-swarm': {
             type: 'sdk',
-            name: 'claude-flow-swarm',
+            name: 'cortex-agent-swarm',
             instance: claudeFlowSwarmServer.instance
           }
         }
@@ -168,7 +168,7 @@ export class ParallelSwarmExecutor {
             resume: baseSession.id,
             forkSession: true,  // Key: fork instead of resume
             mcpServers: {
-              'claude-flow-swarm': claudeFlowSwarmServer
+              'cortex-agent-swarm': claudeFlowSwarmServer
             }
           }
         });
@@ -186,7 +186,7 @@ export class ParallelSwarmExecutor {
       prompt: this.getTaskContext(task),
       options: {
         mcpServers: {
-          'claude-flow-swarm': claudeFlowSwarmServer
+          'cortex-agent-swarm': claudeFlowSwarmServer
         }
       }
     });
@@ -531,7 +531,7 @@ export class BrowserSwarmOrchestrator {
       options: {
         executable: 'wasm',  // Use WASM runtime
         mcpServers: {
-          'claude-flow-swarm': claudeFlowSwarmServer
+          'cortex-agent-swarm': claudeFlowSwarmServer
         }
       }
     });

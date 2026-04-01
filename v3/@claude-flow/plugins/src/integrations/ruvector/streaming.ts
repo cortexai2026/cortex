@@ -5,7 +5,7 @@
  * enhanced transaction handling with savepoints and isolation levels,
  * and efficient batch processing with backpressure handling.
  *
- * @module @claude-flow/plugins/integrations/ruvector/streaming
+ * @module @cortex-agent/plugins/integrations/ruvector/streaming
  * @version 1.0.0
  */
 

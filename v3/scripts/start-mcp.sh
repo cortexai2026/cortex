@@ -34,8 +34,8 @@ LOG_LEVEL="info"
 DAEMON=false
 
 # PID file location
-PID_FILE="${TMPDIR:-/tmp}/claude-flow-mcp.pid"
-LOG_FILE="${TMPDIR:-/tmp}/claude-flow-mcp.log"
+PID_FILE="${TMPDIR:-/tmp}/cortex-agent-mcp.pid"
+LOG_FILE="${TMPDIR:-/tmp}/cortex-agent-mcp.log"
 
 # Colors for output
 RED='\033[0;31m'

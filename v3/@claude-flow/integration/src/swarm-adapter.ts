@@ -2,7 +2,7 @@
  * SwarmAdapter - Bridge between V3 Swarm and agentic-flow@alpha Patterns
  *
  * Provides bidirectional conversion and delegation patterns between:
- * - Claude Flow v3 UnifiedSwarmCoordinator
+ * - Cortex Agent v3 UnifiedSwarmCoordinator
  * - agentic-flow's AttentionCoordinator, SwarmTopology, and Expert routing
  *
  * This implements ADR-001: Adopt agentic-flow as Core Foundation
@@ -127,21 +127,21 @@ export interface GraphRoPEContext {
 }
 
 // ============================================================================
-// V3 Swarm Types (Source Interface from @claude-flow/swarm)
+// V3 Swarm Types (Source Interface from @cortex-agent/swarm)
 // ============================================================================
 
 /**
- * V3 Topology types (from @claude-flow/swarm)
+ * V3 Topology types (from @cortex-agent/swarm)
  */
 export type V3TopologyType = 'mesh' | 'hierarchical' | 'centralized' | 'hybrid';
 
 /**
- * V3 Agent Domain types (from @claude-flow/swarm)
+ * V3 Agent Domain types (from @cortex-agent/swarm)
  */
 export type V3AgentDomain = 'queen' | 'security' | 'core' | 'integration' | 'support';
 
 /**
- * V3 Agent State interface (simplified from @claude-flow/swarm)
+ * V3 Agent State interface (simplified from @cortex-agent/swarm)
  */
 export interface V3AgentState {
   id: { id: string; swarmId: string; type: string; instance: number };
@@ -179,7 +179,7 @@ export interface V3AgentState {
 }
 
 /**
- * V3 Task Definition interface (simplified from @claude-flow/swarm)
+ * V3 Task Definition interface (simplified from @cortex-agent/swarm)
  */
 export interface V3TaskDefinition {
   id: { id: string; swarmId: string; sequence: number; priority: string };
@@ -252,7 +252,7 @@ const DEFAULT_CONFIG: SwarmAdapterConfig = {
  *
  * Usage:
  * ```typescript
- * import { SwarmAdapter, createSwarmAdapter } from '@claude-flow/integration';
+ * import { SwarmAdapter, createSwarmAdapter } from '@cortex-agent/integration';
  *
  * const adapter = await createSwarmAdapter({
  *   enableAttentionCoordination: true,

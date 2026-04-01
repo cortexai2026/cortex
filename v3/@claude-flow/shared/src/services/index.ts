@@ -1,7 +1,7 @@
 /**
  * Shared Services
  *
- * @module @claude-flow/shared/services
+ * @module @cortex-agent/shared/services
  */
 
 export {

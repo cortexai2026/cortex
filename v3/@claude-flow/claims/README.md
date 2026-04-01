@@ -1,4 +1,4 @@
-# @claude-flow/claims
+# @cortex-agent/claims
 
 **Issue claiming and work coordination for human-agent collaboration.**
 
@@ -14,13 +14,13 @@ This package provides a complete system for coordinating work between humans and
 ## Installation
 
 ```bash
-npm install @claude-flow/claims
+npm install @cortex-agent/claims
 ```
 
-Or install via Claude Flow CLI:
+Or install via Cortex Agent CLI:
 
 ```bash
-npx claude-flow plugins install @claude-flow/claims
+npx cortex-agent plugins install @cortex-agent/claims
 ```
 
 ---
@@ -30,7 +30,7 @@ npx claude-flow plugins install @claude-flow/claims
 ### Claim an Issue
 
 ```typescript
-import { ClaimsService } from '@claude-flow/claims';
+import { ClaimsService } from '@cortex-agent/claims';
 
 const claims = new ClaimsService();
 
@@ -220,19 +220,19 @@ All claim operations are event-sourced (ADR-007):
 
 ```bash
 # Claim an issue
-npx claude-flow claims claim --issue ISSUE-123 --claimant "human:alice"
+npx cortex-agent claims claim --issue ISSUE-123 --claimant "human:alice"
 
 # Release a claim
-npx claude-flow claims release --issue ISSUE-123
+npx cortex-agent claims release --issue ISSUE-123
 
 # View claims board
-npx claude-flow claims board
+npx cortex-agent claims board
 
 # List stealable issues
-npx claude-flow claims stealable
+npx cortex-agent claims stealable
 
 # Rebalance workload
-npx claude-flow claims rebalance --dry-run
+npx cortex-agent claims rebalance --dry-run
 ```
 
 ---
@@ -240,7 +240,7 @@ npx claude-flow claims rebalance --dry-run
 ## Configuration
 
 ```yaml
-# claude-flow.config.yaml
+# cortex-agent.config.yaml
 claims:
   autoExpiration:
     enabled: true

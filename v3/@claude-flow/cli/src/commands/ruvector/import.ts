@@ -3,9 +3,9 @@
  * Import data from sql.js/JSON memory to RuVector PostgreSQL
  *
  * Usage:
- *   npx claude-flow ruvector import --input memory-export.json
- *   npx claude-flow ruvector import --from-memory
- *   npx claude-flow ruvector import --input data.json --batch-size 100
+ *   npx cortex-agent ruvector import --input memory-export.json
+ *   npx cortex-agent ruvector import --from-memory
+ *   npx cortex-agent ruvector import --input data.json --batch-size 100
  *
  * Created with care by ruv.io
  */
@@ -78,7 +78,7 @@ function generateInsertSQL(entry: MemoryEntry): string {
     embeddingClause = formatEmbedding(entry.embedding);
   }
 
-  return `INSERT INTO claude_flow.memory_entries (key, value, embedding, namespace, metadata, created_at, updated_at)
+  return `INSERT INTO cortex_agent.memory_entries (key, value, embedding, namespace, metadata, created_at, updated_at)
 VALUES (
   '${key}',
   '${value}',
@@ -90,7 +90,7 @@ VALUES (
 )
 ON CONFLICT (key, namespace) DO UPDATE SET
   value = EXCLUDED.value,
-  embedding = COALESCE(EXCLUDED.embedding, claude_flow.memory_entries.embedding),
+  embedding = COALESCE(EXCLUDED.embedding, cortex_agent.memory_entries.embedding),
   metadata = EXCLUDED.metadata,
   updated_at = NOW();`;
 }
@@ -147,7 +147,7 @@ export const importCommand: Command = {
       short: 'd',
       description: 'Database name',
       type: 'string',
-      default: 'claude_flow',
+      default: 'cortex_agent',
     },
     {
       name: 'user',
@@ -177,10 +177,10 @@ export const importCommand: Command = {
     },
   ],
   examples: [
-    { command: 'claude-flow ruvector import --input memory-export.json', description: 'Import from JSON file' },
-    { command: 'claude-flow ruvector import --input data.json --output import.sql', description: 'Generate SQL file (dry-run)' },
-    { command: 'claude-flow ruvector import --from-memory', description: 'Export current memory and import' },
-    { command: 'claude-flow ruvector import --input data.json --container my-postgres', description: 'Import using custom container' },
+    { command: 'cortex-agent ruvector import --input memory-export.json', description: 'Import from JSON file' },
+    { command: 'cortex-agent ruvector import --input data.json --output import.sql', description: 'Generate SQL file (dry-run)' },
+    { command: 'cortex-agent ruvector import --from-memory', description: 'Export current memory and import' },
+    { command: 'cortex-agent ruvector import --input data.json --container my-postgres', description: 'Import using custom container' },
   ],
   action: async (ctx: CommandContext): Promise<CommandResult> => {
     const inputFile = ctx.flags.input as string | undefined;
@@ -200,8 +200,8 @@ export const importCommand: Command = {
       output.printError('Either --input <file> or --from-memory is required');
       output.writeln();
       output.printInfo('Examples:');
-      output.writeln('  claude-flow ruvector import --input memory-export.json');
-      output.writeln('  claude-flow ruvector import --from-memory');
+      output.writeln('  cortex-agent ruvector import --input memory-export.json');
+      output.writeln('  cortex-agent ruvector import --from-memory');
       return { success: false, message: 'Missing input source' };
     }
 
@@ -245,8 +245,8 @@ export const importCommand: Command = {
     // Export from current memory
     if (fromMemory) {
       output.printInfo('Exporting from current Claude-Flow memory...');
-      output.printWarning('Note: Run "npx claude-flow memory list --format json > memory-export.json" first');
-      output.printInfo('Then use: npx claude-flow ruvector import --input memory-export.json');
+      output.printWarning('Note: Run "npx cortex-agent memory list --format json > memory-export.json" first');
+      output.printInfo('Then use: npx cortex-agent ruvector import --input memory-export.json');
       return { success: false, message: 'Use explicit JSON export first' };
     }
 
@@ -315,7 +315,7 @@ export const importCommand: Command = {
 
         output.writeln();
         output.printInfo('To execute the import:');
-        output.writeln(`  docker exec -i ${containerName} psql -U claude -d claude_flow < ${outputFile}`);
+        output.writeln(`  docker exec -i ${containerName} psql -U claude -d cortex_agent < ${outputFile}`);
       } catch (error) {
         const errorMessage = error instanceof Error ? error.message : String(error);
         output.printError(`Failed to write SQL file: ${errorMessage}`);
@@ -334,13 +334,13 @@ export const importCommand: Command = {
         output.printInfo('Executing import...');
         output.writeln();
         output.writeln(output.dim('Command:'));
-        output.writeln(output.dim(`  docker exec -i ${containerName} psql -U claude -d claude_flow < ${tempFile}`));
+        output.writeln(output.dim(`  docker exec -i ${containerName} psql -U claude -d cortex_agent < ${tempFile}`));
         output.writeln();
 
         // Execute via child_process
         const { execSync } = await import('child_process');
         try {
-          const result = execSync(`docker exec -i ${containerName} psql -U claude -d claude_flow < ${tempFile}`, {
+          const result = execSync(`docker exec -i ${containerName} psql -U claude -d cortex_agent < ${tempFile}`, {
             encoding: 'utf-8',
             timeout: 60000,
           });
@@ -355,7 +355,7 @@ export const importCommand: Command = {
           output.printError(`Import failed: ${execErrorMessage}`);
           output.writeln();
           output.printInfo('You can manually run the import with:');
-          output.writeln(`  docker exec -i ${containerName} psql -U claude -d claude_flow < ${tempFile}`);
+          output.writeln(`  docker exec -i ${containerName} psql -U claude -d cortex_agent < ${tempFile}`);
           return { success: false, message: execErrorMessage };
         } finally {
           // Clean up temp file
@@ -390,7 +390,7 @@ export const importCommand: Command = {
 
     // Show verification command
     output.printInfo('To verify the import:');
-    output.writeln(`  docker exec ${containerName} psql -U claude -d claude_flow -c "SELECT COUNT(*) FROM claude_flow.memory_entries;"`);
+    output.writeln(`  docker exec ${containerName} psql -U claude -d cortex_agent -c "SELECT COUNT(*) FROM cortex_agent.memory_entries;"`);
     output.writeln();
 
     return { success: true };

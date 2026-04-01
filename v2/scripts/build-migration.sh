@@ -51,7 +51,7 @@ chmod +x dist/migration/index.js
 # Create symlink for global usage
 echo "🔗 Creating symlinks..."
 mkdir -p bin
-ln -sf ../dist/migration/index.js bin/claude-flow-migrate
+ln -sf ../dist/migration/index.js bin/cortex-agent-migrate
 
 # Run tests
 echo "🧪 Running tests..."
@@ -71,20 +71,20 @@ cat > dist/migration/INSTALL.md << 'EOF'
 npm install -g ./dist/migration
 
 # Or use directly
-./bin/claude-flow-migrate --help
+./bin/cortex-agent-migrate --help
 ```
 
 ## Usage
 
 ```bash
 # Analyze project
-claude-flow-migrate analyze
+cortex-agent-migrate analyze
 
 # Migrate with selective strategy
-claude-flow-migrate --strategy selective --preserve-custom
+cortex-agent-migrate --strategy selective --preserve-custom
 
 # Rollback if needed
-claude-flow-migrate rollback
+cortex-agent-migrate rollback
 ```
 
 ## Documentation
@@ -95,11 +95,11 @@ EOF
 echo "✅ Build completed successfully!"
 echo ""
 echo "📋 Next steps:"
-echo "   1. Test installation: ./bin/claude-flow-migrate --help"
-echo "   2. Run on test project: ./bin/claude-flow-migrate analyze /path/to/project"
+echo "   1. Test installation: ./bin/cortex-agent-migrate --help"
+echo "   2. Run on test project: ./bin/cortex-agent-migrate analyze /path/to/project"
 echo "   3. Create distribution: npm pack dist/migration"
 echo ""
 echo "📦 Built files:"
 echo "   - dist/migration/ - Complete migration system"
-echo "   - bin/claude-flow-migrate - Executable symlink"
+echo "   - bin/cortex-agent-migrate - Executable symlink"
 echo ""

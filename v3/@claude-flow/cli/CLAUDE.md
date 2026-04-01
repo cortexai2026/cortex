@@ -1,4 +1,4 @@
-# Claude Code Configuration - Claude Flow V3
+# Claude Code Configuration - Cortex Agent V3
 
 ## 🚨 AUTOMATIC SWARM ORCHESTRATION
 
@@ -29,7 +29,7 @@
 
 **Before spawning agents, get routing recommendation:**
 ```bash
-npx @claude-flow/cli@latest hooks pre-task --description "[task description]"
+npx @cortex-agent/cli@latest hooks pre-task --description "[task description]"
 ```
 
 **When you see these recommendations:**
@@ -55,10 +55,10 @@ Task({
 **Use this to prevent agent drift:**
 ```bash
 # Small teams (6-8 agents) - use hierarchical for tight control
-npx @claude-flow/cli@latest swarm init --topology hierarchical --max-agents 8 --strategy specialized
+npx @cortex-agent/cli@latest swarm init --topology hierarchical --max-agents 8 --strategy specialized
 
 # Large teams (10-15 agents) - use hierarchical-mesh for V3 queen + peer communication
-npx @claude-flow/cli@latest swarm init --topology hierarchical-mesh --max-agents 15 --strategy specialized
+npx @cortex-agent/cli@latest swarm init --topology hierarchical-mesh --max-agents 15 --strategy specialized
 ```
 
 **Valid Topologies:**
@@ -83,7 +83,7 @@ When the user requests a complex task, **spawn agents in background and WAIT for
 
 ```javascript
 // STEP 1: Initialize swarm coordination (anti-drift config)
-Bash("npx @claude-flow/cli@latest swarm init --topology hierarchical --max-agents 8 --strategy specialized")
+Bash("npx @cortex-agent/cli@latest swarm init --topology hierarchical --max-agents 8 --strategy specialized")
 
 // STEP 2: Spawn ALL agents IN BACKGROUND in a SINGLE message
 // Use run_in_background: true so agents work concurrently
@@ -161,28 +161,28 @@ They're working in parallel. I'll synthesize their results when they complete.
 ### Before Starting Any Task
 ```bash
 # 1. Search memory for relevant patterns from past successes
-Bash("npx @claude-flow/cli@latest memory search --query '[task keywords]' --namespace patterns")
+Bash("npx @cortex-agent/cli@latest memory search --query '[task keywords]' --namespace patterns")
 
 # 2. Check if similar task was done before
-Bash("npx @claude-flow/cli@latest memory search --query '[task type]' --namespace tasks")
+Bash("npx @cortex-agent/cli@latest memory search --query '[task type]' --namespace tasks")
 
 # 3. Load learned optimizations
-Bash("npx @claude-flow/cli@latest hooks route --task '[task description]'")
+Bash("npx @cortex-agent/cli@latest hooks route --task '[task description]'")
 ```
 
 ### After Completing Any Task Successfully
 ```bash
 # 1. Store successful pattern for future reference
-Bash("npx @claude-flow/cli@latest memory store --namespace patterns --key '[pattern-name]' --value '[what worked]'")
+Bash("npx @cortex-agent/cli@latest memory store --namespace patterns --key '[pattern-name]' --value '[what worked]'")
 
 # 2. Train neural patterns on the successful approach
-Bash("npx @claude-flow/cli@latest hooks post-edit --file '[main-file]' --train-neural true")
+Bash("npx @cortex-agent/cli@latest hooks post-edit --file '[main-file]' --train-neural true")
 
 # 3. Record task completion with metrics
-Bash("npx @claude-flow/cli@latest hooks post-task --task-id '[id]' --success true --store-results true")
+Bash("npx @cortex-agent/cli@latest hooks post-task --task-id '[id]' --success true --store-results true")
 
 # 4. Trigger optimization worker if performance-related
-Bash("npx @claude-flow/cli@latest hooks worker dispatch --trigger optimize")
+Bash("npx @cortex-agent/cli@latest hooks worker dispatch --trigger optimize")
 ```
 
 ### Continuous Improvement Triggers
@@ -318,28 +318,28 @@ Bash("npx @claude-flow/cli@latest hooks worker dispatch --trigger optimize")
 
 ```bash
 # Initialize project
-npx @claude-flow/cli@latest init --wizard
+npx @cortex-agent/cli@latest init --wizard
 
 # Start daemon with background workers
-npx @claude-flow/cli@latest daemon start
+npx @cortex-agent/cli@latest daemon start
 
 # Spawn an agent
-npx @claude-flow/cli@latest agent spawn -t coder --name my-coder
+npx @cortex-agent/cli@latest agent spawn -t coder --name my-coder
 
 # Initialize swarm
-npx @claude-flow/cli@latest swarm init --v3-mode
+npx @cortex-agent/cli@latest swarm init --v3-mode
 
 # Search memory (HNSW-indexed)
-npx @claude-flow/cli@latest memory search --query "authentication patterns"
+npx @cortex-agent/cli@latest memory search --query "authentication patterns"
 
 # System diagnostics
-npx @claude-flow/cli@latest doctor --fix
+npx @cortex-agent/cli@latest doctor --fix
 
 # Security scan
-npx @claude-flow/cli@latest security scan --depth full
+npx @cortex-agent/cli@latest security scan --depth full
 
 # Performance benchmark
-npx @claude-flow/cli@latest performance benchmark --suite all
+npx @cortex-agent/cli@latest performance benchmark --suite all
 ```
 
 ## 🚀 Available Agents (60+ Types)
@@ -350,7 +350,7 @@ npx @claude-flow/cli@latest performance benchmark --suite all
 ### V3 Specialized Agents
 `security-architect`, `security-auditor`, `memory-specialist`, `performance-engineer`
 
-### 🔐 @claude-flow/security
+### 🔐 @cortex-agent/security
 CVE remediation, input validation, path security:
 - `InputValidator` - Zod validation
 - `PathValidator` - Traversal prevention
@@ -431,51 +431,51 @@ CVE remediation, input validation, path security:
 
 ```bash
 # Core hooks
-npx @claude-flow/cli@latest hooks pre-task --description "[task]"
-npx @claude-flow/cli@latest hooks post-task --task-id "[id]" --success true
-npx @claude-flow/cli@latest hooks post-edit --file "[file]" --train-neural true
+npx @cortex-agent/cli@latest hooks pre-task --description "[task]"
+npx @cortex-agent/cli@latest hooks post-task --task-id "[id]" --success true
+npx @cortex-agent/cli@latest hooks post-edit --file "[file]" --train-neural true
 
 # Session management
-npx @claude-flow/cli@latest hooks session-start --session-id "[id]"
-npx @claude-flow/cli@latest hooks session-end --export-metrics true
-npx @claude-flow/cli@latest hooks session-restore --session-id "[id]"
+npx @cortex-agent/cli@latest hooks session-start --session-id "[id]"
+npx @cortex-agent/cli@latest hooks session-end --export-metrics true
+npx @cortex-agent/cli@latest hooks session-restore --session-id "[id]"
 
 # Intelligence routing
-npx @claude-flow/cli@latest hooks route --task "[task]"
-npx @claude-flow/cli@latest hooks explain --topic "[topic]"
+npx @cortex-agent/cli@latest hooks route --task "[task]"
+npx @cortex-agent/cli@latest hooks explain --topic "[topic]"
 
 # Neural learning
-npx @claude-flow/cli@latest hooks pretrain --model-type moe --epochs 10
-npx @claude-flow/cli@latest hooks build-agents --agent-types coder,tester
+npx @cortex-agent/cli@latest hooks pretrain --model-type moe --epochs 10
+npx @cortex-agent/cli@latest hooks build-agents --agent-types coder,tester
 
 # Background workers
-npx @claude-flow/cli@latest hooks worker list
-npx @claude-flow/cli@latest hooks worker dispatch --trigger audit
-npx @claude-flow/cli@latest hooks worker status
+npx @cortex-agent/cli@latest hooks worker list
+npx @cortex-agent/cli@latest hooks worker dispatch --trigger audit
+npx @cortex-agent/cli@latest hooks worker status
 
 # Coverage-aware routing
-npx @claude-flow/cli@latest hooks coverage-gaps --format table
-npx @claude-flow/cli@latest hooks coverage-route --task "[task]"
+npx @cortex-agent/cli@latest hooks coverage-gaps --format table
+npx @cortex-agent/cli@latest hooks coverage-route --task "[task]"
 
 # Statusline (for Claude Code integration)
-npx @claude-flow/cli@latest hooks statusline
-npx @claude-flow/cli@latest hooks statusline --json
+npx @cortex-agent/cli@latest hooks statusline
+npx @cortex-agent/cli@latest hooks statusline --json
 ```
 
 ## 🔄 Migration (V2 to V3)
 
 ```bash
 # Check migration status
-npx @claude-flow/cli@latest migrate status
+npx @cortex-agent/cli@latest migrate status
 
 # Run migration with backup
-npx @claude-flow/cli@latest migrate run --backup
+npx @cortex-agent/cli@latest migrate run --backup
 
 # Rollback if needed
-npx @claude-flow/cli@latest migrate rollback
+npx @cortex-agent/cli@latest migrate rollback
 
 # Validate migration
-npx @claude-flow/cli@latest migrate validate
+npx @cortex-agent/cli@latest migrate validate
 ```
 
 ## 🧠 Intelligence System (RuVector)
@@ -534,42 +534,42 @@ Features:
 ### Automatic Performance Tracking
 ```bash
 # After any significant operation, track metrics
-Bash("npx @claude-flow/cli@latest hooks post-command --command '[operation]' --track-metrics true")
+Bash("npx @cortex-agent/cli@latest hooks post-command --command '[operation]' --track-metrics true")
 
 # Periodically run benchmarks (every major feature)
-Bash("npx @claude-flow/cli@latest performance benchmark --suite all")
+Bash("npx @cortex-agent/cli@latest performance benchmark --suite all")
 
 # Analyze bottlenecks when performance degrades
-Bash("npx @claude-flow/cli@latest performance profile --target '[component]'")
+Bash("npx @cortex-agent/cli@latest performance profile --target '[component]'")
 ```
 
 ### Session Persistence (Cross-Conversation Learning)
 ```bash
 # At session start - restore previous context
-Bash("npx @claude-flow/cli@latest session restore --latest")
+Bash("npx @cortex-agent/cli@latest session restore --latest")
 
 # At session end - persist learned patterns
-Bash("npx @claude-flow/cli@latest hooks session-end --generate-summary true --persist-state true --export-metrics true")
+Bash("npx @cortex-agent/cli@latest hooks session-end --generate-summary true --persist-state true --export-metrics true")
 ```
 
 ### Neural Pattern Training
 ```bash
 # Train on successful code patterns
-Bash("npx @claude-flow/cli@latest neural train --pattern-type coordination --epochs 10")
+Bash("npx @cortex-agent/cli@latest neural train --pattern-type coordination --epochs 10")
 
 # Predict optimal approach for new tasks
-Bash("npx @claude-flow/cli@latest neural predict --input '[task description]'")
+Bash("npx @cortex-agent/cli@latest neural predict --input '[task description]'")
 
 # View learned patterns
-Bash("npx @claude-flow/cli@latest neural patterns --list")
+Bash("npx @cortex-agent/cli@latest neural patterns --list")
 ```
 
 ## 🔧 Environment Variables
 
 ```bash
 # Configuration
-CLAUDE_FLOW_CONFIG=./claude-flow.config.json
-CLAUDE_FLOW_LOG_LEVEL=info
+CORTEX_AGENT_CONFIG=./cortex-agent.config.json
+CORTEX_AGENT_LOG_LEVEL=info
 
 # Provider API Keys
 ANTHROPIC_API_KEY=sk-ant-...
@@ -577,18 +577,18 @@ OPENAI_API_KEY=sk-...
 GOOGLE_API_KEY=...
 
 # MCP Server
-CLAUDE_FLOW_MCP_PORT=3000
-CLAUDE_FLOW_MCP_HOST=localhost
-CLAUDE_FLOW_MCP_TRANSPORT=stdio
+CORTEX_AGENT_MCP_PORT=3000
+CORTEX_AGENT_MCP_HOST=localhost
+CORTEX_AGENT_MCP_TRANSPORT=stdio
 
 # Memory
-CLAUDE_FLOW_MEMORY_BACKEND=hybrid
-CLAUDE_FLOW_MEMORY_PATH=./data/memory
+CORTEX_AGENT_MEMORY_BACKEND=hybrid
+CORTEX_AGENT_MEMORY_PATH=./data/memory
 ```
 
 ## 🔍 Doctor Health Checks
 
-Run `npx @claude-flow/cli@latest doctor` to check:
+Run `npx @cortex-agent/cli@latest doctor` to check:
 - Node.js version (20+)
 - npm version (9+)
 - Git installation
@@ -604,15 +604,15 @@ Run `npx @claude-flow/cli@latest doctor` to check:
 
 ```bash
 # Add MCP servers (auto-detects MCP mode when stdin is piped)
-claude mcp add claude-flow -- npx -y @claude-flow/cli@latest
+claude mcp add cortex-agent -- npx -y @cortex-agent/cli@latest
 claude mcp add ruv-swarm -- npx -y ruv-swarm mcp start  # Optional
 claude mcp add flow-nexus -- npx -y flow-nexus@latest mcp start  # Optional
 
 # Start daemon
-npx @claude-flow/cli@latest daemon start
+npx @cortex-agent/cli@latest daemon start
 
 # Run doctor
-npx @claude-flow/cli@latest doctor --fix
+npx @cortex-agent/cli@latest doctor --fix
 ```
 
 ## 🎯 Claude Code vs CLI Tools
@@ -626,14 +626,14 @@ npx @claude-flow/cli@latest doctor --fix
 - Git operations
 
 ### CLI Tools Handle Coordination (via Bash):
-- **Swarm init**: `npx @claude-flow/cli@latest swarm init --topology <type>`
-- **Swarm status**: `npx @claude-flow/cli@latest swarm status`
-- **Agent spawn**: `npx @claude-flow/cli@latest agent spawn -t <type> --name <name>`
-- **Memory store**: `npx @claude-flow/cli@latest memory store --key "mykey" --value "myvalue" --namespace patterns`
-- **Memory search**: `npx @claude-flow/cli@latest memory search --query "search terms"`
-- **Memory list**: `npx @claude-flow/cli@latest memory list --namespace patterns`
-- **Memory retrieve**: `npx @claude-flow/cli@latest memory retrieve --key "mykey" --namespace patterns`
-- **Hooks**: `npx @claude-flow/cli@latest hooks <hook-name> [options]`
+- **Swarm init**: `npx @cortex-agent/cli@latest swarm init --topology <type>`
+- **Swarm status**: `npx @cortex-agent/cli@latest swarm status`
+- **Agent spawn**: `npx @cortex-agent/cli@latest agent spawn -t <type> --name <name>`
+- **Memory store**: `npx @cortex-agent/cli@latest memory store --key "mykey" --value "myvalue" --namespace patterns`
+- **Memory search**: `npx @cortex-agent/cli@latest memory search --query "search terms"`
+- **Memory list**: `npx @cortex-agent/cli@latest memory list --namespace patterns`
+- **Memory retrieve**: `npx @cortex-agent/cli@latest memory retrieve --key "mykey" --namespace patterns`
+- **Hooks**: `npx @cortex-agent/cli@latest hooks <hook-name> [options]`
 
 ## 📝 Memory Commands Reference (IMPORTANT)
 
@@ -641,45 +641,45 @@ npx @claude-flow/cli@latest doctor --fix
 ```bash
 # REQUIRED: --key and --value
 # OPTIONAL: --namespace (default: "default"), --ttl, --tags
-npx @claude-flow/cli@latest memory store --key "pattern-auth" --value "JWT with refresh tokens" --namespace patterns
-npx @claude-flow/cli@latest memory store --key "bug-fix-123" --value "Fixed null check" --namespace solutions --tags "bugfix,auth"
+npx @cortex-agent/cli@latest memory store --key "pattern-auth" --value "JWT with refresh tokens" --namespace patterns
+npx @cortex-agent/cli@latest memory store --key "bug-fix-123" --value "Fixed null check" --namespace solutions --tags "bugfix,auth"
 ```
 
 ### Search Data (semantic vector search)
 ```bash
 # REQUIRED: --query (full flag, not -q)
 # OPTIONAL: --namespace, --limit, --threshold
-npx @claude-flow/cli@latest memory search --query "authentication patterns"
-npx @claude-flow/cli@latest memory search --query "error handling" --namespace patterns --limit 5
+npx @cortex-agent/cli@latest memory search --query "authentication patterns"
+npx @cortex-agent/cli@latest memory search --query "error handling" --namespace patterns --limit 5
 ```
 
 ### List Entries
 ```bash
 # OPTIONAL: --namespace, --limit
-npx @claude-flow/cli@latest memory list
-npx @claude-flow/cli@latest memory list --namespace patterns --limit 10
+npx @cortex-agent/cli@latest memory list
+npx @cortex-agent/cli@latest memory list --namespace patterns --limit 10
 ```
 
 ### Retrieve Specific Entry
 ```bash
 # REQUIRED: --key
 # OPTIONAL: --namespace (default: "default")
-npx @claude-flow/cli@latest memory retrieve --key "pattern-auth"
-npx @claude-flow/cli@latest memory retrieve --key "pattern-auth" --namespace patterns
+npx @cortex-agent/cli@latest memory retrieve --key "pattern-auth"
+npx @cortex-agent/cli@latest memory retrieve --key "pattern-auth" --namespace patterns
 ```
 
 ### Initialize Memory Database
 ```bash
-npx @claude-flow/cli@latest memory init --force --verbose
+npx @cortex-agent/cli@latest memory init --force --verbose
 ```
 
 **KEY**: CLI coordinates the strategy via Bash, Claude Code's Task tool executes with real agents.
 
 ## 📚 Full Capabilities Reference
 
-For a comprehensive overview of all Claude Flow V3 features, agents, commands, and integrations, see:
+For a comprehensive overview of all Cortex Agent V3 features, agents, commands, and integrations, see:
 
-**`.claude-flow/CAPABILITIES.md`** - Complete reference generated during init
+**`.cortex-agent/CAPABILITIES.md`** - Complete reference generated during init
 
 This includes:
 - All 60+ agent types with routing recommendations
@@ -692,12 +692,12 @@ This includes:
 
 ## Support
 
-- Documentation: https://github.com/ruvnet/claude-flow
-- Issues: https://github.com/ruvnet/claude-flow/issues
+- Documentation: https://github.com/ruvnet/cortex-agent
+- Issues: https://github.com/ruvnet/cortex-agent/issues
 
 ---
 
-Remember: **Claude Flow CLI coordinates, Claude Code Task tool creates!**
+Remember: **Cortex Agent CLI coordinates, Claude Code Task tool creates!**
 
 # important-instruction-reminders
 Do what has been asked; nothing more, nothing less.

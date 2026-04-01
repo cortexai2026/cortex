@@ -1,4 +1,4 @@
-# Ruflo v3.5 — Docker Compose Profiles
+# Cortex Agent v3.5 — Docker Compose Profiles
 #
 # Profiles:
 #   lite     — MCP server only (stdio), minimal footprint
@@ -6,9 +6,9 @@
 #   workers  — Scalable worker pool (extends docker-compose.workers.yml)
 #
 # Usage:
-#   docker compose -f v3/@claude-flow/cli/docker/docker-compose.yml --profile lite up
-#   docker compose -f v3/@claude-flow/cli/docker/docker-compose.yml --profile full up -d
-#   docker compose -f v3/@claude-flow/cli/docker/docker-compose.yml --profile workers up -d --scale worker=5
+#   docker compose -f v3/@cortex-agent/cli/docker/docker-compose.yml --profile lite up
+#   docker compose -f v3/@cortex-agent/cli/docker/docker-compose.yml --profile full up -d
+#   docker compose -f v3/@cortex-agent/cli/docker/docker-compose.yml --profile workers up -d --scale worker=5
 #
 # Environment (required for full/workers):
 #   ANTHROPIC_API_KEY — Your Anthropic API key
@@ -19,12 +19,12 @@ services:
     profiles: ["lite"]
     build:
       context: ../../../..
-      dockerfile: v3/@claude-flow/cli/docker/Dockerfile
-    image: ruflo:lite
+      dockerfile: v3/@cortex-agent/cli/docker/Dockerfile
+    image: cortex-agent:lite
     stdin_open: true
     environment:
       - NODE_ENV=production
-      - CLAUDE_FLOW_MCP_TRANSPORT=stdio
+      - CORTEX_AGENT_MCP_TRANSPORT=stdio
     deploy:
       resources:
         limits:
@@ -34,29 +34,29 @@ services:
           cpus: "0.25"
           memory: 128M
     healthcheck:
-      test: ["CMD", "ruflo", "doctor", "--quiet"]
+      test: ["CMD", "cortex-agent", "doctor", "--quiet"]
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 10s
 
   # ── full: CLI + daemon + optional deps (~800MB) ────────────────
-  ruflo-full:
+  cortex-agent-full:
     profiles: ["full"]
     build:
       context: ../../../..
-      dockerfile: v3/@claude-flow/cli/docker/Dockerfile.full
-    image: ruflo:full
+      dockerfile: v3/@cortex-agent/cli/docker/Dockerfile.full
+    image: cortex-agent:full
     environment:
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
       - NODE_ENV=production
-      - CLAUDE_FLOW_LOG_LEVEL=${CLAUDE_FLOW_LOG_LEVEL:-info}
-      - CLAUDE_FLOW_MEMORY_BACKEND=hybrid
+      - CORTEX_AGENT_LOG_LEVEL=${CORTEX_AGENT_LOG_LEVEL:-info}
+      - CORTEX_AGENT_MEMORY_BACKEND=hybrid
     volumes:
-      - ruflo-state:/home/ruflo/.claude-flow
-      - ruflo-logs:/var/log/ruflo
+      - cortex-agent-state:/home/cortex-agent/.cortex-agent
+      - cortex-agent-logs:/var/log/cortex-agent
     ports:
-      - "${RUFLO_MCP_PORT:-3000}:3000"
+      - "${CORTEX_AGENT_MCP_PORT:-3000}:3000"
     deploy:
       resources:
         limits:
@@ -65,9 +65,9 @@ services:
         reservations:
           cpus: "1"
           memory: 2G
-    command: ["ruflo", "daemon", "start", "--foreground"]
+    command: ["cortex-agent", "daemon", "start", "--foreground"]
     healthcheck:
-      test: ["CMD", "ruflo", "doctor", "--quiet"]
+      test: ["CMD", "cortex-agent", "doctor", "--quiet"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -78,19 +78,19 @@ services:
     profiles: ["workers"]
     build:
       context: ../../../..
-      dockerfile: v3/@claude-flow/cli/docker/Dockerfile
-    image: ruflo:lite
+      dockerfile: v3/@cortex-agent/cli/docker/Dockerfile
+    image: cortex-agent:lite
     environment:
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
       - CLAUDE_CODE_HEADLESS=true
-      - CLAUDE_CODE_SANDBOX_MODE=${CLAUDE_FLOW_SANDBOX:-strict}
-      - CLAUDE_FLOW_WORKERS=${CLAUDE_FLOW_WORKERS:-audit,optimize,testgaps}
+      - CLAUDE_CODE_SANDBOX_MODE=${CORTEX_AGENT_SANDBOX:-strict}
+      - CORTEX_AGENT_WORKERS=${CORTEX_AGENT_WORKERS:-audit,optimize,testgaps}
       - NODE_ENV=production
     volumes:
-      - worker-state:/home/ruflo/.claude-flow
-      - worker-logs:/var/log/ruflo
+      - worker-state:/home/cortex-agent/.cortex-agent
+      - worker-logs:/var/log/cortex-agent
     deploy:
-      replicas: ${RUFLO_WORKER_REPLICAS:-3}
+      replicas: ${CORTEX_AGENT_WORKER_REPLICAS:-3}
       resources:
         limits:
           cpus: "2"
@@ -102,16 +102,16 @@ services:
         condition: on-failure
         delay: 5s
         max_attempts: 3
-    command: ["ruflo", "daemon", "start", "--foreground", "--headless"]
+    command: ["cortex-agent", "daemon", "start", "--foreground", "--headless"]
     healthcheck:
-      test: ["CMD", "ruflo", "doctor", "--quiet"]
+      test: ["CMD", "cortex-agent", "doctor", "--quiet"]
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 30s
 
 volumes:
-  ruflo-state:
-  ruflo-logs:
+  cortex-agent-state:
+  cortex-agent-logs:
   worker-state:
   worker-logs:

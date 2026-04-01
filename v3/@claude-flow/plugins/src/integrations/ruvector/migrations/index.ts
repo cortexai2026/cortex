@@ -3,7 +3,7 @@
  *
  * Exports migration manager and utilities for database schema management.
  *
- * @module @claude-flow/plugins/integrations/ruvector/migrations
+ * @module @cortex-agent/plugins/integrations/ruvector/migrations
  */
 
 export {

@@ -18,7 +18,7 @@ function getConnectionConfig(ctx: CommandContext) {
     user: (ctx.flags.user as string) || process.env.PGUSER || 'postgres',
     password: (ctx.flags.password as string) || process.env.PGPASSWORD || '',
     ssl: (ctx.flags.ssl as boolean) || process.env.PGSSLMODE === 'require',
-    schema: (ctx.flags.schema as string) || 'claude_flow',
+    schema: (ctx.flags.schema as string) || 'cortex_agent',
   };
 }
 
@@ -116,13 +116,13 @@ const backupSubcommand: Command = {
       short: 's',
       description: 'Schema name',
       type: 'string',
-      default: 'claude_flow',
+      default: 'cortex_agent',
     },
   ],
   examples: [
-    { command: 'claude-flow ruvector backup create -o backup.sql', description: 'Create SQL backup' },
-    { command: 'claude-flow ruvector backup create -o backup.json --format json', description: 'Create JSON backup' },
-    { command: 'claude-flow ruvector backup create -o backup.sql.gz --compress', description: 'Compressed backup' },
+    { command: 'cortex-agent ruvector backup create -o backup.sql', description: 'Create SQL backup' },
+    { command: 'cortex-agent ruvector backup create -o backup.json --format json', description: 'Create JSON backup' },
+    { command: 'cortex-agent ruvector backup create -o backup.sql.gz --compress', description: 'Compressed backup' },
   ],
   action: async (ctx: CommandContext): Promise<CommandResult> => {
     const config = getConnectionConfig(ctx);
@@ -458,13 +458,13 @@ const restoreSubcommand: Command = {
       short: 's',
       description: 'Schema name',
       type: 'string',
-      default: 'claude_flow',
+      default: 'cortex_agent',
     },
   ],
   examples: [
-    { command: 'claude-flow ruvector backup restore -i backup.sql', description: 'Restore from SQL backup' },
-    { command: 'claude-flow ruvector backup restore -i backup.json --clean', description: 'Clean restore' },
-    { command: 'claude-flow ruvector backup restore -i backup.sql --dry-run', description: 'Preview restore' },
+    { command: 'cortex-agent ruvector backup restore -i backup.sql', description: 'Restore from SQL backup' },
+    { command: 'cortex-agent ruvector backup restore -i backup.json --clean', description: 'Clean restore' },
+    { command: 'cortex-agent ruvector backup restore -i backup.sql --dry-run', description: 'Preview restore' },
   ],
   action: async (ctx: CommandContext): Promise<CommandResult> => {
     const config = getConnectionConfig(ctx);
@@ -764,12 +764,12 @@ export const backupCommand: Command = {
       short: 's',
       description: 'Schema name',
       type: 'string',
-      default: 'claude_flow',
+      default: 'cortex_agent',
     },
   ],
   examples: [
-    { command: 'claude-flow ruvector backup create -o backup.sql', description: 'Create backup' },
-    { command: 'claude-flow ruvector backup restore -i backup.sql', description: 'Restore backup' },
+    { command: 'cortex-agent ruvector backup create -o backup.sql', description: 'Create backup' },
+    { command: 'cortex-agent ruvector backup restore -i backup.sql', description: 'Restore backup' },
   ],
   action: async (ctx: CommandContext): Promise<CommandResult> => {
     output.writeln();
@@ -796,7 +796,7 @@ export const backupCommand: Command = {
     ].join('\n'), 'Backup Commands');
 
     output.writeln();
-    output.printInfo('Run `claude-flow ruvector backup <command> --help` for details');
+    output.printInfo('Run `cortex-agent ruvector backup <command> --help` for details');
 
     return { success: true };
   },

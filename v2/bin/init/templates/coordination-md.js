@@ -4,9 +4,9 @@ export function createMinimalCoordinationMd() {
   return `# Agent Coordination
 
 ## Quick Commands
-- \`npx claude-flow agent spawn <type>\`: Create new agent
-- \`npx claude-flow agent list\`: Show active agents
-- \`npx claude-flow task create <type> <description>\`: Create task
+- \`npx cortex-agent agent spawn <type>\`: Create new agent
+- \`npx cortex-agent agent list\`: Show active agents
+- \`npx cortex-agent task create <type> <description>\`: Create task
 
 ## Agent Types
 - researcher, coder, analyst, coordinator, general
@@ -35,27 +35,27 @@ The Claude-Flow coordination system manages multiple AI agents working together 
 ## Coordination Commands
 \`\`\`bash
 # Agent Management
-npx claude-flow agent spawn <type> --name <name> --priority <1-10>
-npx claude-flow agent list
-npx claude-flow agent info <agent-id>
-npx claude-flow agent terminate <agent-id>
+npx cortex-agent agent spawn <type> --name <name> --priority <1-10>
+npx cortex-agent agent list
+npx cortex-agent agent info <agent-id>
+npx cortex-agent agent terminate <agent-id>
 
 # Task Management  
-npx claude-flow task create <type> <description> --priority <1-10> --deps <task-ids>
-npx claude-flow task list --verbose
-npx claude-flow task status <task-id>
-npx claude-flow task cancel <task-id>
+npx cortex-agent task create <type> <description> --priority <1-10> --deps <task-ids>
+npx cortex-agent task list --verbose
+npx cortex-agent task status <task-id>
+npx cortex-agent task cancel <task-id>
 
 # System Monitoring
-npx claude-flow status --verbose
-npx claude-flow monitor --interval 5000
+npx cortex-agent status --verbose
+npx cortex-agent monitor --interval 5000
 \`\`\`
 
 ## Workflow Execution
 Workflows are defined in JSON format and can orchestrate complex multi-agent operations:
 \`\`\`bash
-npx claude-flow workflow examples/research-workflow.json
-npx claude-flow workflow examples/development-config.json --async
+npx cortex-agent workflow examples/research-workflow.json
+npx cortex-agent workflow examples/development-config.json --async
 \`\`\`
 
 ## Advanced Features
@@ -65,7 +65,7 @@ npx claude-flow workflow examples/development-config.json --async
 - **Metrics Collection**: Performance monitoring and optimization
 
 ## Configuration
-Coordination settings in \`claude-flow.config.json\`:
+Coordination settings in \`cortex-agent.config.json\`:
 \`\`\`json
 {
   "orchestrator": {
@@ -98,8 +98,8 @@ Coordination settings in \`claude-flow.config.json\`:
 - Regular cleanup of completed tasks and inactive agents
 
 ## Troubleshooting
-- Check agent health with \`npx claude-flow status\`
-- View detailed logs with \`npx claude-flow monitor\`
+- Check agent health with \`npx cortex-agent status\`
+- View detailed logs with \`npx cortex-agent monitor\`
 - Restart stuck agents with terminate/spawn cycle
 - Use \`--verbose\` flags for detailed diagnostic information
 `;
@@ -136,51 +136,51 @@ The Claude-Flow coordination system manages multiple AI agents working together 
 ### Standard Commands
 \`\`\`bash
 # Agent Management
-npx claude-flow agent spawn <type> --name <name> --priority <1-10>
-npx claude-flow agent list
-npx claude-flow agent info <agent-id>
-npx claude-flow agent terminate <agent-id>
+npx cortex-agent agent spawn <type> --name <name> --priority <1-10>
+npx cortex-agent agent list
+npx cortex-agent agent info <agent-id>
+npx cortex-agent agent terminate <agent-id>
 
 # Task Management  
-npx claude-flow task create <type> <description> --priority <1-10> --deps <task-ids>
-npx claude-flow task list --verbose
-npx claude-flow task status <task-id>
-npx claude-flow task cancel <task-id>
+npx cortex-agent task create <type> <description> --priority <1-10> --deps <task-ids>
+npx cortex-agent task list --verbose
+npx cortex-agent task status <task-id>
+npx cortex-agent task cancel <task-id>
 
 # System Monitoring
-npx claude-flow status --verbose
-npx claude-flow monitor --interval 5000
+npx cortex-agent status --verbose
+npx cortex-agent monitor --interval 5000
 \`\`\`
 
 ### Batchtools Commands
 \`\`\`bash
 # Batch Agent Management
-npx claude-flow agent batch-spawn <agents-config> --parallel
-npx claude-flow agent parallel-status --all-agents
-npx claude-flow agent concurrent-terminate <agent-ids>
+npx cortex-agent agent batch-spawn <agents-config> --parallel
+npx cortex-agent agent parallel-status --all-agents
+npx cortex-agent agent concurrent-terminate <agent-ids>
 
 # Batch Task Management
-npx claude-flow task batch-create <tasks-file> --parallel
-npx claude-flow task parallel-execute <task-ids> --concurrent
-npx claude-flow task batch-monitor --real-time --parallel
+npx cortex-agent task batch-create <tasks-file> --parallel
+npx cortex-agent task parallel-execute <task-ids> --concurrent
+npx cortex-agent task batch-monitor --real-time --parallel
 
 # Advanced Coordination
-npx claude-flow coordination batch-workflow <workflows-config> --parallel
-npx claude-flow coordination parallel-orchestrate <orchestration-config>
-npx claude-flow coordination concurrent-monitor --all-systems
+npx cortex-agent coordination batch-workflow <workflows-config> --parallel
+npx cortex-agent coordination parallel-orchestrate <orchestration-config>
+npx cortex-agent coordination concurrent-monitor --all-systems
 \`\`\`
 
 ## Workflow Execution (Batchtools Enhanced)
 Workflows support parallel execution, batch processing, and concurrent orchestration:
 \`\`\`bash
 # Standard workflow execution
-npx claude-flow workflow examples/research-workflow.json
-npx claude-flow workflow examples/development-config.json --async
+npx cortex-agent workflow examples/research-workflow.json
+npx cortex-agent workflow examples/development-config.json --async
 
 # Batchtools workflow execution
-npx claude-flow workflow batch-execute <workflow-configs> --parallel
-npx claude-flow workflow parallel-orchestrate <workflows-dir> --concurrent
-npx claude-flow workflow concurrent-monitor --all-workflows --real-time
+npx cortex-agent workflow batch-execute <workflow-configs> --parallel
+npx cortex-agent workflow parallel-orchestrate <workflows-dir> --concurrent
+npx cortex-agent workflow concurrent-monitor --all-workflows --real-time
 \`\`\`
 
 ## Advanced Features (Enhanced)
@@ -204,7 +204,7 @@ npx claude-flow workflow concurrent-monitor --all-workflows --real-time
 - **Retry Mechanisms**: Intelligent retry with exponential backoff and parallel validation
 
 ## Configuration (Batchtools Enhanced)
-Coordination settings in \`claude-flow.config.json\` with batchtools optimizations:
+Coordination settings in \`cortex-agent.config.json\` with batchtools optimizations:
 \`\`\`json
 {
   "orchestrator": {
@@ -256,25 +256,25 @@ Coordination settings in \`claude-flow.config.json\` with batchtools optimizatio
 ### Parallel Coordination Patterns
 \`\`\`bash
 # Spawn multiple specialized agents in parallel
-npx claude-flow agent batch-spawn sparc-agents.json --parallel --validate
+npx cortex-agent agent batch-spawn sparc-agents.json --parallel --validate
 
 # Execute batch of related tasks concurrently
-npx claude-flow task parallel-execute research-tasks.json --concurrent --monitor
+npx cortex-agent task parallel-execute research-tasks.json --concurrent --monitor
 
 # Orchestrate multiple workflows simultaneously
-npx claude-flow workflow concurrent-orchestrate project-workflows/ --parallel
+npx cortex-agent workflow concurrent-orchestrate project-workflows/ --parallel
 \`\`\`
 
 ### Performance Monitoring (Enhanced)
 \`\`\`bash
 # Monitor concurrent operations across all agents
-npx claude-flow monitor --concurrent --all-agents --verbose
+npx cortex-agent monitor --concurrent --all-agents --verbose
 
 # Analyze batch processing performance
-npx claude-flow coordination performance-report --batchtools --detailed
+npx cortex-agent coordination performance-report --batchtools --detailed
 
 # Real-time parallel task monitoring
-npx claude-flow task parallel-monitor --real-time --performance-metrics
+npx cortex-agent task parallel-monitor --real-time --performance-metrics
 \`\`\`
 
 ## Best Practices (Batchtools Enhanced)
@@ -317,23 +317,23 @@ npx claude-flow task parallel-monitor --real-time --performance-metrics
 ### Debug Commands (Enhanced)
 \`\`\`bash
 # Check concurrent coordination status
-npx claude-flow coordination debug --concurrent --verbose
+npx cortex-agent coordination debug --concurrent --verbose
 
 # Analyze batch operation performance
-npx claude-flow coordination analyze --batchtools --performance
+npx cortex-agent coordination analyze --batchtools --performance
 
 # Validate parallel agent integrity
-npx claude-flow agent validate --parallel --health-check
+npx cortex-agent agent validate --parallel --health-check
 
 # Monitor resource usage during concurrent operations
-npx claude-flow monitor --resources --concurrent --real-time
+npx cortex-agent monitor --resources --concurrent --real-time
 \`\`\`
 
 ### Advanced Troubleshooting
-- Check agent health with parallel monitoring: \`npx claude-flow status --concurrent\`
-- View detailed logs with concurrent analysis: \`npx claude-flow monitor --parallel --verbose\`
-- Restart stuck agents with batch operations: \`npx claude-flow agent batch-restart <agent-ids>\`
-- Use concurrent diagnostics: \`npx claude-flow debug --all-systems --parallel\`
+- Check agent health with parallel monitoring: \`npx cortex-agent status --concurrent\`
+- View detailed logs with concurrent analysis: \`npx cortex-agent monitor --parallel --verbose\`
+- Restart stuck agents with batch operations: \`npx cortex-agent agent batch-restart <agent-ids>\`
+- Use concurrent diagnostics: \`npx cortex-agent debug --all-systems --parallel\`
 
 For more information about coordination system optimization, see: https://github.com/ruvnet/claude-code-flow/docs/coordination-batchtools.md
 `;

@@ -144,16 +144,16 @@ Validated with real Claude-Flow CLI:
 
 \`\`\`bash
 # Session forking test
-./bin/claude-flow swarm init --topology mesh --max-agents 20
+./bin/cortex-agent swarm init --topology mesh --max-agents 20
 
 # Hook matcher test
-./bin/claude-flow hooks pre-task --file "src/**/*.ts"
+./bin/cortex-agent hooks pre-task --file "src/**/*.ts"
 
 # In-process MCP test
-./bin/claude-flow mcp status
+./bin/cortex-agent mcp status
 
 # Memory operations test
-./bin/claude-flow hooks notify --message "Phase 7 testing"
+./bin/cortex-agent hooks notify --message "Phase 7 testing"
 \`\`\`
 
 ## Conclusions
@@ -183,7 +183,7 @@ echo -e "${GREEN}✓ Test report generated: $REPORT_FILE${NC}"
 # Store results in memory
 print_section "Storing Results in Memory"
 
-npx claude-flow@alpha hooks notify --message "Phase 7: Comprehensive Testing Complete - $PASSED_TESTS/$TOTAL_TESTS passed"
+npx cortex-agent@alpha hooks notify --message "Phase 7: Comprehensive Testing Complete - $PASSED_TESTS/$TOTAL_TESTS passed"
 
 # Exit with appropriate code
 if [ $FAILED_TESTS -eq 0 ]; then

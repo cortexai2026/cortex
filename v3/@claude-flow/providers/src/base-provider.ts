@@ -7,7 +7,7 @@
  * - Cost tracking
  * - Request metrics
  *
- * @module @claude-flow/providers/base-provider
+ * @module @cortex-agent/providers/base-provider
  */
 
 import { EventEmitter } from 'events';

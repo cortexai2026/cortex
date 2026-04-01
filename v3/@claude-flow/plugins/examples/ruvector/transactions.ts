@@ -9,7 +9,7 @@
  *
  * Run with: npx ts-node examples/ruvector/transactions.ts
  *
- * @module @claude-flow/plugins/examples/ruvector/transactions
+ * @module @cortex-agent/plugins/examples/ruvector/transactions
  */
 
 import {

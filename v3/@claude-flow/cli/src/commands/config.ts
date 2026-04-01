@@ -68,8 +68,8 @@ const getCommand: Command = {
     }
   ],
   examples: [
-    { command: 'claude-flow config get swarm.topology', description: 'Get swarm topology' },
-    { command: 'claude-flow config get -k memory.backend', description: 'Get memory backend' }
+    { command: 'cortex-agent config get swarm.topology', description: 'Get swarm topology' },
+    { command: 'cortex-agent config get -k memory.backend', description: 'Get memory backend' }
   ],
   action: async (ctx: CommandContext): Promise<CommandResult> => {
     const key = ctx.flags.key as string || ctx.args[0];
@@ -148,8 +148,8 @@ const setCommand: Command = {
     }
   ],
   examples: [
-    { command: 'claude-flow config set swarm.maxAgents 20', description: 'Set max agents' },
-    { command: 'claude-flow config set -k memory.backend -v agentdb', description: 'Set memory backend' }
+    { command: 'cortex-agent config set swarm.maxAgents 20', description: 'Set max agents' },
+    { command: 'cortex-agent config set -k memory.backend -v agentdb', description: 'Set memory backend' }
   ],
   action: async (ctx: CommandContext): Promise<CommandResult> => {
     const key = ctx.flags.key as string || ctx.args[0];
@@ -292,7 +292,7 @@ const exportCommand: Command = {
   ],
   action: async (ctx: CommandContext): Promise<CommandResult> => {
     try {
-      const exportPath = (ctx.flags.output as string) || ctx.args[0] || 'claude-flow.config.export.json';
+      const exportPath = (ctx.flags.output as string) || ctx.args[0] || 'cortex-agent.config.export.json';
       configManager.exportTo(ctx.cwd, exportPath);
       const resolved = path.resolve(ctx.cwd, exportPath);
       output.writeln(`Configuration exported to: ${resolved}`);
@@ -351,15 +351,15 @@ export const configCommand: Command = {
   subcommands: [initCommand, getCommand, setCommand, providersCommand, resetCommand, exportCommand, importCommand],
   options: [],
   examples: [
-    { command: 'claude-flow config init --v3', description: 'Initialize V3 config' },
-    { command: 'claude-flow config get swarm.topology', description: 'Get config value' },
-    { command: 'claude-flow config set swarm.maxAgents 20', description: 'Set config value' }
+    { command: 'cortex-agent config init --v3', description: 'Initialize V3 config' },
+    { command: 'cortex-agent config get swarm.topology', description: 'Get config value' },
+    { command: 'cortex-agent config set swarm.maxAgents 20', description: 'Set config value' }
   ],
   action: async (ctx: CommandContext): Promise<CommandResult> => {
     output.writeln();
     output.writeln(output.bold('Configuration Management'));
     output.writeln();
-    output.writeln('Usage: claude-flow config <subcommand> [options]');
+    output.writeln('Usage: cortex-agent config <subcommand> [options]');
     output.writeln();
     output.writeln('Subcommands:');
     output.printList([

@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 /**
  * Fix Schema Compatibility for ReasoningBank Models
- * Adds all required claude-flow memory tables to trained models
+ * Adds all required cortex-agent memory tables to trained models
  */
 
 const Database = require('better-sqlite3');
 const fs = require('fs');
 const path = require('path');
 
-const CLAUDE_FLOW_SCHEMA = `
+const CORTEX_AGENT_SCHEMA = `
 -- Claude-Flow Memory System Tables
 
 -- Primary memory table (used by hive-mind and general memory commands)
@@ -125,10 +125,10 @@ class SchemaFixer {
 
     console.log(`\n📋 Existing tables: ${existingTables.join(', ')}`);
 
-    // Add claude-flow schema
+    // Add cortex-agent schema
     try {
-      db.exec(CLAUDE_FLOW_SCHEMA);
-      console.log(`\n✅ Added claude-flow memory tables`);
+      db.exec(CORTEX_AGENT_SCHEMA);
+      console.log(`\n✅ Added cortex-agent memory tables`);
     } catch (error) {
       console.error(`❌ Error adding schema: ${error.message}`);
       db.close();
@@ -217,9 +217,9 @@ ${afterTables.sort().map(t => `- \`${t}\``).join('\n')}
 **Status**: ${this.isFullyCompatible(afterTables) ? '✅ FULLY COMPATIBLE' : '⚠️ PARTIALLY COMPATIBLE'}
 
 This model can now be used with:
-- ✅ \`npx claude-flow@alpha memory store\` - General memory commands
-- ✅ \`npx claude-flow@alpha memory query\` - Memory queries
-- ✅ \`npx claude-flow@alpha memory query --reasoningbank\` - ReasoningBank patterns
+- ✅ \`npx cortex-agent@alpha memory store\` - General memory commands
+- ✅ \`npx cortex-agent@alpha memory query\` - Memory queries
+- ✅ \`npx cortex-agent@alpha memory query --reasoningbank\` - ReasoningBank patterns
 - ✅ Hive-mind swarm operations
 - ✅ Session tracking and metrics
 
@@ -283,10 +283,10 @@ async function fixAllModels() {
   console.log('='.repeat(70) + '\n');
 
   if (successCount === models.length) {
-    console.log('🎉 All models are now fully compatible with claude-flow!');
+    console.log('🎉 All models are now fully compatible with cortex-agent!');
     console.log('\nYou can now use:');
-    console.log('  - npx claude-flow@alpha memory store <key> <value> --reasoningbank');
-    console.log('  - npx claude-flow@alpha memory query <query> --reasoningbank');
+    console.log('  - npx cortex-agent@alpha memory store <key> <value> --reasoningbank');
+    console.log('  - npx cortex-agent@alpha memory query <query> --reasoningbank');
     console.log('  - All hive-mind operations');
     console.log('  - Session tracking and metrics\n');
   }

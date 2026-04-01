@@ -1,8 +1,8 @@
-# Claude Code Configuration - Ruflo v3.5
+# Claude Code Configuration - Cortex Agent v3.5
 
-> **Ruflo v3.5** (2026-02-27) — First major stable release. Formerly "Claude Flow".
+> **Cortex Agent v3.5** (2026-02-27) — First major stable release. Formerly "Cortex Agent".
 > 5,900+ commits, 55 alpha iterations, 259 MCP tools, 60+ agents, 8 AgentDB controllers.
-> Packages: `@claude-flow/cli@3.5.0`, `claude-flow@3.5.0`, `ruflo@3.5.0`
+> Packages: `@cortex-agent/cli@3.5.0`, `cortex-agent@3.5.0`, `cortex-agent@3.5.0`
 
 ## Behavioral Rules (Always Enforced)
 
@@ -38,12 +38,12 @@
 
 | Package | Path | Purpose |
 |---------|------|---------|
-| `@claude-flow/cli` | `v3/@claude-flow/cli/` | CLI entry point (26 commands) |
-| `@claude-flow/codex` | `v3/@claude-flow/codex/` | Dual-mode Claude + Codex collaboration |
-| `@claude-flow/guidance` | `v3/@claude-flow/guidance/` | Governance control plane |
-| `@claude-flow/hooks` | `v3/@claude-flow/hooks/` | 17 hooks + 12 workers |
-| `@claude-flow/memory` | `v3/@claude-flow/memory/` | AgentDB + HNSW search |
-| `@claude-flow/security` | `v3/@claude-flow/security/` | Input validation, CVE remediation |
+| `@cortex-agent/cli` | `v3/@cortex-agent/cli/` | CLI entry point (26 commands) |
+| `@cortex-agent/codex` | `v3/@cortex-agent/codex/` | Dual-mode Claude + Codex collaboration |
+| `@cortex-agent/guidance` | `v3/@cortex-agent/guidance/` | Governance control plane |
+| `@cortex-agent/hooks` | `v3/@cortex-agent/hooks/` | 17 hooks + 12 workers |
+| `@cortex-agent/memory` | `v3/@cortex-agent/memory/` | AgentDB + HNSW search |
+| `@cortex-agent/security` | `v3/@cortex-agent/security/` | Input validation, CVE remediation |
 
 ## Concurrency: 1 MESSAGE = ALL RELATED OPERATIONS
 
@@ -134,11 +134,11 @@ Task("Reviewer", "Review code quality and security. Store findings in 'collabora
 
 // 🟢 Codex workers (implementation, optimization)
 // Spawn via CLI for Codex platform
-Bash("npx claude-flow-codex dual run --worker 'codex:coder:Implement the solution based on architect design' --namespace collaboration")
-Bash("npx claude-flow-codex dual run --worker 'codex:optimizer:Optimize performance based on implementation' --namespace collaboration")
+Bash("npx cortex-agent-codex dual run --worker 'codex:coder:Implement the solution based on architect design' --namespace collaboration")
+Bash("npx cortex-agent-codex dual run --worker 'codex:optimizer:Optimize performance based on implementation' --namespace collaboration")
 
 // STEP 3: Coordinate via shared memory
-Bash("npx claude-flow@v3alpha memory store --namespace collaboration --key 'task-context' --value '[task description]'")
+Bash("npx cortex-agent@v3alpha memory store --namespace collaboration --key 'task-context' --value '[task description]'")
 ```
 
 ### Collaboration Templates (Pre-Built Pipelines)
@@ -154,12 +154,12 @@ Bash("npx claude-flow@v3alpha memory store --namespace collaboration --key 'task
 
 ```bash
 # Run a collaboration template
-npx claude-flow-codex dual run feature --task "Add user authentication with OAuth"
-npx claude-flow-codex dual run security --target "./src"
-npx claude-flow-codex dual run refactor --target "./src/legacy"
+npx cortex-agent-codex dual run feature --task "Add user authentication with OAuth"
+npx cortex-agent-codex dual run security --target "./src"
+npx cortex-agent-codex dual run refactor --target "./src/legacy"
 
 # Custom multi-platform swarm
-npx claude-flow-codex dual run \
+npx cortex-agent-codex dual run \
   --worker "claude:architect:Design the API structure" \
   --worker "codex:coder:Implement REST endpoints" \
   --worker "claude:tester:Write integration tests" \
@@ -167,10 +167,10 @@ npx claude-flow-codex dual run \
   --namespace "api-feature"
 
 # Check collaboration status
-npx claude-flow-codex dual status
+npx cortex-agent-codex dual status
 
 # List available templates
-npx claude-flow-codex dual templates
+npx cortex-agent-codex dual templates
 ```
 
 ### Shared Memory Coordination
@@ -179,13 +179,13 @@ All workers share state via the `collaboration` namespace:
 
 ```bash
 # Store context for cross-platform sharing
-npx claude-flow@v3alpha memory store --namespace collaboration --key "design-decisions" --value "..."
+npx cortex-agent@v3alpha memory store --namespace collaboration --key "design-decisions" --value "..."
 
 # Search for patterns across all workers
-npx claude-flow@v3alpha memory search --namespace collaboration --query "authentication patterns"
+npx cortex-agent@v3alpha memory search --namespace collaboration --query "authentication patterns"
 
 # Retrieve specific findings
-npx claude-flow@v3alpha memory retrieve --namespace collaboration --key "security-findings"
+npx cortex-agent@v3alpha memory retrieve --namespace collaboration --key "security-findings"
 ```
 
 ### Cross-Platform Learning
@@ -194,13 +194,13 @@ Both platforms learn from each other's outputs:
 
 ```bash
 # After successful collaboration, train patterns
-npx claude-flow@v3alpha hooks post-task --task-id "dual-[id]" --success true --train-neural true
+npx cortex-agent@v3alpha hooks post-task --task-id "dual-[id]" --success true --train-neural true
 
 # Store successful collaboration patterns
-npx claude-flow@v3alpha memory store --namespace patterns --key "dual-mode-[pattern]" --value "[what worked]"
+npx cortex-agent@v3alpha memory store --namespace patterns --key "dual-mode-[pattern]" --value "[what worked]"
 
 # Transfer learnings to both platforms
-npx claude-flow@v3alpha hooks transfer store --pattern "dual-collab-success"
+npx cortex-agent@v3alpha hooks transfer store --pattern "dual-collab-success"
 ```
 
 ### Worker Dependency Levels
@@ -228,7 +228,7 @@ Level 3: [🟢 Optimizer]           # Depends on Reviewer approval
 ### Programmatic API
 
 ```typescript
-import { DualModeOrchestrator, CollaborationTemplates } from '@claude-flow/codex';
+import { DualModeOrchestrator, CollaborationTemplates } from '@cortex-agent/codex';
 
 const orchestrator = new DualModeOrchestrator({
   namespace: 'my-feature',
@@ -263,7 +263,7 @@ mcp__ruv-swarm__swarm_init({
 
 // STEP 2: Spawn agents concurrently using Claude Code's Task tool
 // ALL Task calls MUST be in the SAME message for parallel execution
-Task("Coordinator", "You are the swarm coordinator. Initialize session, coordinate other agents via memory. Run: npx claude-flow@v3alpha hooks session-start", "hierarchical-coordinator")
+Task("Coordinator", "You are the swarm coordinator. Initialize session, coordinate other agents via memory. Run: npx cortex-agent@v3alpha hooks session-start", "hierarchical-coordinator")
 Task("Researcher", "Analyze requirements and existing code patterns. Store findings in memory via hooks.", "researcher")
 Task("Architect", "Design implementation approach based on research. Document decisions in memory.", "system-architect")
 Task("Coder", "Implement the solution following architect's design. Coordinate via hooks.", "coder")
@@ -281,7 +281,7 @@ TodoWrite({ todos: [
 ]})
 
 // STEP 4: Store swarm state in memory
-mcp__claude-flow__memory_usage({
+mcp__cortex-agent__memory_usage({
   action: "store",
   namespace: "swarm",
   key: "current-session",
@@ -323,7 +323,7 @@ mcp__claude-flow__memory_usage({
 
 ## Project Configuration
 
-This project is configured with Claude Flow V3 (Anti-Drift Defaults):
+This project is configured with Cortex Agent V3 (Anti-Drift Defaults):
 - **Topology**: hierarchical (prevents drift via central coordination)
 - **Max Agents**: 8 (smaller team = less drift)
 - **Strategy**: specialized (clear roles, no overlap)
@@ -374,28 +374,28 @@ This project is configured with Claude Flow V3 (Anti-Drift Defaults):
 
 ```bash
 # Initialize project
-npx claude-flow@v3alpha init --wizard
+npx cortex-agent@v3alpha init --wizard
 
 # Start daemon with background workers
-npx claude-flow@v3alpha daemon start
+npx cortex-agent@v3alpha daemon start
 
 # Spawn an agent
-npx claude-flow@v3alpha agent spawn -t coder --name my-coder
+npx cortex-agent@v3alpha agent spawn -t coder --name my-coder
 
 # Initialize swarm
-npx claude-flow@v3alpha swarm init --v3-mode
+npx cortex-agent@v3alpha swarm init --v3-mode
 
 # Search memory (HNSW-indexed)
-npx claude-flow@v3alpha memory search -q "authentication patterns"
+npx cortex-agent@v3alpha memory search -q "authentication patterns"
 
 # System diagnostics
-npx claude-flow@v3alpha doctor --fix
+npx cortex-agent@v3alpha doctor --fix
 
 # Security scan
-npx claude-flow@v3alpha security scan --depth full
+npx cortex-agent@v3alpha security scan --depth full
 
 # Performance benchmark
-npx claude-flow@v3alpha performance benchmark --suite all
+npx cortex-agent@v3alpha performance benchmark --suite all
 ```
 
 ## Headless Background Instances (claude -p)
@@ -479,7 +479,7 @@ claude -p --resume "abc-123" --fork-session "Try approach B: CQRS pattern"
 ### V3 Specialized Agents
 `security-architect`, `security-auditor`, `memory-specialist`, `performance-engineer`
 
-### @claude-flow/security Module
+### @cortex-agent/security Module
 CVE remediation, input validation, path security:
 - `InputValidator` — Zod-based validation at boundaries
 - `PathValidator` — Path traversal prevention
@@ -490,7 +490,7 @@ CVE remediation, input validation, path security:
 ### Token Optimizer (Agent Booster)
 Integrates agentic-flow optimizations for 30-50% token reduction:
 ```typescript
-import { getTokenOptimizer } from '@claude-flow/integration';
+import { getTokenOptimizer } from '@cortex-agent/integration';
 const optimizer = await getTokenOptimizer();
 
 // Compact context (32% fewer tokens)
@@ -532,11 +532,11 @@ const config = optimizer.getOptimalConfig(agentCount);
 
 ## Agent Teams (Multi-Agent Coordination)
 
-Claude Code's experimental Agent Teams feature is fully integrated with Claude Flow for advanced multi-agent coordination.
+Claude Code's experimental Agent Teams feature is fully integrated with Cortex Agent for advanced multi-agent coordination.
 
 ### Enabling Agent Teams
 
-Agent Teams is automatically enabled when you run `npx claude-flow@v3alpha init`. The following is added to `.claude/settings.json`:
+Agent Teams is automatically enabled when you run `npx cortex-agent@v3alpha init`. The following is added to `.claude/settings.json`:
 
 ```json
 {
@@ -606,10 +606,10 @@ Task({
 
 ```bash
 # Handle idle teammate (auto-assigns available tasks)
-npx claude-flow@v3alpha hooks teammate-idle --auto-assign true
+npx cortex-agent@v3alpha hooks teammate-idle --auto-assign true
 
 # Handle task completion (trains patterns, notifies lead)
-npx claude-flow@v3alpha hooks task-completed -i task-123 --train-patterns true
+npx cortex-agent@v3alpha hooks task-completed -i task-123 --train-patterns true
 
 # Check on team progress
 TaskList
@@ -680,27 +680,27 @@ SendMessage({
 
 ```bash
 # Core hooks
-npx claude-flow@v3alpha hooks pre-task --description "[task]"
-npx claude-flow@v3alpha hooks post-task --task-id "[id]" --success true
-npx claude-flow@v3alpha hooks post-edit --file "[file]" --train-patterns
+npx cortex-agent@v3alpha hooks pre-task --description "[task]"
+npx cortex-agent@v3alpha hooks post-task --task-id "[id]" --success true
+npx cortex-agent@v3alpha hooks post-edit --file "[file]" --train-patterns
 
 # Session management
-npx claude-flow@v3alpha hooks session-start --session-id "[id]"
-npx claude-flow@v3alpha hooks session-end --export-metrics true
-npx claude-flow@v3alpha hooks session-restore --session-id "[id]"
+npx cortex-agent@v3alpha hooks session-start --session-id "[id]"
+npx cortex-agent@v3alpha hooks session-end --export-metrics true
+npx cortex-agent@v3alpha hooks session-restore --session-id "[id]"
 
 # Intelligence routing
-npx claude-flow@v3alpha hooks route --task "[task]"
-npx claude-flow@v3alpha hooks explain --topic "[topic]"
+npx cortex-agent@v3alpha hooks route --task "[task]"
+npx cortex-agent@v3alpha hooks explain --topic "[topic]"
 
 # Neural learning
-npx claude-flow@v3alpha hooks pretrain --model-type moe --epochs 10
-npx claude-flow@v3alpha hooks build-agents --agent-types coder,tester
+npx cortex-agent@v3alpha hooks pretrain --model-type moe --epochs 10
+npx cortex-agent@v3alpha hooks build-agents --agent-types coder,tester
 
 # Background workers
-npx claude-flow@v3alpha hooks worker list
-npx claude-flow@v3alpha hooks worker dispatch --trigger audit
-npx claude-flow@v3alpha hooks worker status
+npx cortex-agent@v3alpha hooks worker list
+npx cortex-agent@v3alpha hooks worker dispatch --trigger audit
+npx cortex-agent@v3alpha hooks worker status
 ```
 
 ## Intelligence System (RuVector)
@@ -759,8 +759,8 @@ Features:
 
 ```bash
 # Configuration
-CLAUDE_FLOW_CONFIG=./claude-flow.config.json
-CLAUDE_FLOW_LOG_LEVEL=info
+CORTEX_AGENT_CONFIG=./cortex-agent.config.json
+CORTEX_AGENT_LOG_LEVEL=info
 
 # Provider API Keys
 ANTHROPIC_API_KEY=sk-ant-...
@@ -768,18 +768,18 @@ OPENAI_API_KEY=sk-...
 GOOGLE_API_KEY=...
 
 # MCP Server
-CLAUDE_FLOW_MCP_PORT=3000
-CLAUDE_FLOW_MCP_HOST=localhost
-CLAUDE_FLOW_MCP_TRANSPORT=stdio
+CORTEX_AGENT_MCP_PORT=3000
+CORTEX_AGENT_MCP_HOST=localhost
+CORTEX_AGENT_MCP_TRANSPORT=stdio
 
 # Memory
-CLAUDE_FLOW_MEMORY_BACKEND=hybrid
-CLAUDE_FLOW_MEMORY_PATH=./data/memory
+CORTEX_AGENT_MEMORY_BACKEND=hybrid
+CORTEX_AGENT_MEMORY_PATH=./data/memory
 ```
 
 ## Doctor Health Checks
 
-Run `npx claude-flow@v3alpha doctor` to check:
+Run `npx cortex-agent@v3alpha doctor` to check:
 - Node.js version (20+)
 - npm version (9+)
 - Git installation
@@ -795,15 +795,15 @@ Run `npx claude-flow@v3alpha doctor` to check:
 
 ```bash
 # Add MCP servers
-claude mcp add claude-flow npx claude-flow@v3alpha mcp start
+claude mcp add cortex-agent npx cortex-agent@v3alpha mcp start
 claude mcp add ruv-swarm npx ruv-swarm mcp start  # Optional
 claude mcp add flow-nexus npx flow-nexus@latest mcp start  # Optional
 
 # Start daemon
-npx claude-flow@v3alpha daemon start
+npx cortex-agent@v3alpha daemon start
 
 # Run doctor
-npx claude-flow@v3alpha doctor --fix
+npx cortex-agent@v3alpha doctor --fix
 ```
 
 ## Claude Code vs MCP Tools
@@ -830,65 +830,65 @@ npx claude-flow@v3alpha doctor --fix
 
 ### Publishing Rules
 
-- MUST publish ALL THREE packages when publishing CLI changes: `@claude-flow/cli`, `claude-flow`, AND `ruflo`
+- MUST publish ALL THREE packages when publishing CLI changes: `@cortex-agent/cli`, `cortex-agent`, AND `cortex-agent`
 - MUST update ALL dist-tags for ALL THREE packages after publishing
-- Publish order: `@claude-flow/cli` first, then `claude-flow` (umbrella), then `ruflo` (alias umbrella)
+- Publish order: `@cortex-agent/cli` first, then `cortex-agent` (umbrella), then `cortex-agent` (alias umbrella)
 - MUST run verification for ALL THREE before telling user publishing is complete
 
 ```bash
 # STEP 1: Build and publish CLI
-cd v3/@claude-flow/cli
+cd v3/@cortex-agent/cli
 npm version 3.0.0-alpha.XXX --no-git-tag-version
 npm run build
 npm publish --tag alpha
-npm dist-tag add @claude-flow/cli@3.0.0-alpha.XXX latest
+npm dist-tag add @cortex-agent/cli@3.0.0-alpha.XXX latest
 
-# STEP 2: Publish claude-flow umbrella
-cd /workspaces/claude-flow
+# STEP 2: Publish cortex-agent umbrella
+cd /workspaces/cortex-agent
 npm version 3.0.0-alpha.XXX --no-git-tag-version
 npm publish --tag v3alpha
 
-# STEP 3: Update ALL claude-flow umbrella tags (CRITICAL - DON'T SKIP!)
-npm dist-tag add claude-flow@3.0.0-alpha.XXX latest
-npm dist-tag add claude-flow@3.0.0-alpha.XXX alpha
+# STEP 3: Update ALL cortex-agent umbrella tags (CRITICAL - DON'T SKIP!)
+npm dist-tag add cortex-agent@3.0.0-alpha.XXX latest
+npm dist-tag add cortex-agent@3.0.0-alpha.XXX alpha
 
-# STEP 4: Publish ruflo umbrella (CRITICAL - DON'T FORGET!)
-cd /workspaces/claude-flow/ruflo
+# STEP 4: Publish cortex-agent umbrella (CRITICAL - DON'T FORGET!)
+cd /workspaces/cortex-agent/cortex-agent
 npm version 3.0.0-alpha.XXX --no-git-tag-version
 npm publish --tag alpha
-npm dist-tag add ruflo@3.0.0-alpha.XXX latest
+npm dist-tag add cortex-agent@3.0.0-alpha.XXX latest
 ```
 
 **Verification (run before telling user):**
 ```bash
-npm view @claude-flow/cli dist-tags --json
-npm view claude-flow dist-tags --json
-npm view ruflo dist-tags --json
+npm view @cortex-agent/cli dist-tags --json
+npm view cortex-agent dist-tags --json
+npm view cortex-agent dist-tags --json
 # ALL THREE packages need: alpha AND latest pointing to newest version
 ```
 
 ### All Tags That Must Be Updated
 | Package | Tag | Command Users Run |
 |---------|-----|-------------------|
-| `@claude-flow/cli` | `alpha` | `npx @claude-flow/cli@alpha` |
-| `@claude-flow/cli` | `latest` | `npx @claude-flow/cli@latest` |
-| `@claude-flow/cli` | `v3alpha` | `npx @claude-flow/cli@v3alpha` |
-| `claude-flow` | `alpha` | `npx claude-flow@alpha` — EASY TO FORGET |
-| `claude-flow` | `latest` | `npx claude-flow@latest` |
-| `claude-flow` | `v3alpha` | `npx claude-flow@v3alpha` |
-| `ruflo` | `alpha` | `npx ruflo@alpha` — EASY TO FORGET |
-| `ruflo` | `latest` | `npx ruflo@latest` |
+| `@cortex-agent/cli` | `alpha` | `npx @cortex-agent/cli@alpha` |
+| `@cortex-agent/cli` | `latest` | `npx @cortex-agent/cli@latest` |
+| `@cortex-agent/cli` | `v3alpha` | `npx @cortex-agent/cli@v3alpha` |
+| `cortex-agent` | `alpha` | `npx cortex-agent@alpha` — EASY TO FORGET |
+| `cortex-agent` | `latest` | `npx cortex-agent@latest` |
+| `cortex-agent` | `v3alpha` | `npx cortex-agent@v3alpha` |
+| `cortex-agent` | `alpha` | `npx cortex-agent@alpha` — EASY TO FORGET |
+| `cortex-agent` | `latest` | `npx cortex-agent@latest` |
 
-- Never forget the `ruflo` package — it's a thin wrapper users run via `npx ruflo@alpha`
-- Never forget the umbrella `alpha` tag — users run `npx claude-flow@alpha`
-- `ruflo` source is in `/ruflo/` — it depends on `@claude-flow/cli`
+- Never forget the `cortex-agent` package — it's a thin wrapper users run via `npx cortex-agent@alpha`
+- Never forget the umbrella `alpha` tag — users run `npx cortex-agent@alpha`
+- `cortex-agent` source is in `/cortex-agent/` — it depends on `@cortex-agent/cli`
 
 ## Plugin Registry Maintenance (IPFS/Pinata)
 
 The plugin registry is stored on IPFS via Pinata for decentralized, immutable distribution.
 
 ### Registry Location
-- **Current CID**: Stored in `v3/@claude-flow/cli/src/plugins/store/discovery.ts`
+- **Current CID**: Stored in `v3/@cortex-agent/cli/src/plugins/store/discovery.ts`
 - **Gateway**: `https://gateway.pinata.cloud/ipfs/{CID}`
 - **Format**: JSON with plugin metadata, categories, featured/trending lists
 
@@ -906,27 +906,27 @@ PINATA_API_JWT=your-jwt-token
 
 1. **Fetch current registry**:
 ```bash
-curl -s "https://gateway.pinata.cloud/ipfs/$(grep LIVE_REGISTRY_CID v3/@claude-flow/cli/src/plugins/store/discovery.ts | cut -d"'" -f2)" > /tmp/registry.json
+curl -s "https://gateway.pinata.cloud/ipfs/$(grep LIVE_REGISTRY_CID v3/@cortex-agent/cli/src/plugins/store/discovery.ts | cut -d"'" -f2)" > /tmp/registry.json
 ```
 
 2. **Add plugin entry** to the `plugins` array:
 ```json
 {
-  "id": "@claude-flow/your-plugin",
-  "name": "@claude-flow/your-plugin",
+  "id": "@cortex-agent/your-plugin",
+  "name": "@cortex-agent/your-plugin",
   "displayName": "Your Plugin",
   "description": "Plugin description",
   "version": "1.0.0-alpha.1",
   "size": 100000,
   "checksum": "sha256:abc123",
-  "author": {"id": "claude-flow-team", "displayName": "Claude Flow Team", "verified": true},
+  "author": {"id": "cortex-agent-team", "displayName": "Cortex Agent Team", "verified": true},
   "license": "MIT",
   "categories": ["official"],
   "tags": ["your", "tags"],
   "downloads": 0,
   "rating": 5,
   "lastUpdated": "2026-01-25T00:00:00.000Z",
-  "minClaudeFlowVersion": "3.0.0",
+  "minCortexAgentVersion": "3.0.0",
   "type": "integration",
   "hooks": [],
   "commands": [],
@@ -980,71 +980,71 @@ Plugins are distributed via IPFS and can be installed with the CLI. Browse and i
 
 ```bash
 # List all available plugins
-npx claude-flow@v3alpha plugins list
+npx cortex-agent@v3alpha plugins list
 
 # Install a plugin
-npx claude-flow@v3alpha plugins install @claude-flow/plugin-name
+npx cortex-agent@v3alpha plugins install @cortex-agent/plugin-name
 
 # Enable/disable
-npx claude-flow@v3alpha plugins enable @claude-flow/plugin-name
-npx claude-flow@v3alpha plugins disable @claude-flow/plugin-name
+npx cortex-agent@v3alpha plugins enable @cortex-agent/plugin-name
+npx cortex-agent@v3alpha plugins disable @cortex-agent/plugin-name
 ```
 
 ### Core Plugins
 
 | Plugin | Version | Description |
 |--------|---------|-------------|
-| `@claude-flow/embeddings` | 3.0.0-alpha.1 | Vector embeddings with sql.js, HNSW, hyperbolic support |
-| `@claude-flow/security` | 3.0.0-alpha.1 | Input validation, path security, CVE remediation |
-| `@claude-flow/claims` | 3.0.0-alpha.8 | Claims-based authorization (check, grant, revoke, list) |
-| `@claude-flow/neural` | 3.0.0-alpha.7 | Neural pattern training (SONA, MoE, EWC++) |
-| `@claude-flow/plugins` | 3.0.0-alpha.1 | Plugin system core (manager, discovery, store) |
-| `@claude-flow/performance` | 3.0.0-alpha.1 | Performance profiling and benchmarking |
+| `@cortex-agent/embeddings` | 3.0.0-alpha.1 | Vector embeddings with sql.js, HNSW, hyperbolic support |
+| `@cortex-agent/security` | 3.0.0-alpha.1 | Input validation, path security, CVE remediation |
+| `@cortex-agent/claims` | 3.0.0-alpha.8 | Claims-based authorization (check, grant, revoke, list) |
+| `@cortex-agent/neural` | 3.0.0-alpha.7 | Neural pattern training (SONA, MoE, EWC++) |
+| `@cortex-agent/plugins` | 3.0.0-alpha.1 | Plugin system core (manager, discovery, store) |
+| `@cortex-agent/performance` | 3.0.0-alpha.1 | Performance profiling and benchmarking |
 
 ### Integration Plugins
 
 | Plugin | Version | Description |
 |--------|---------|-------------|
-| `@claude-flow/plugin-agentic-qe` | 3.0.0-alpha.4 | Agentic quality engineering integration |
-| `@claude-flow/plugin-prime-radiant` | 0.1.5 | Prime Radiant intelligence integration |
-| `@claude-flow/plugin-gastown-bridge` | 3.0.0-alpha.1 | Gastown bridge protocol integration |
-| `@claude-flow/teammate-plugin` | 1.0.0-alpha.1 | Multi-agent teammate coordination |
-| `@claude-flow/plugin-code-intelligence` | 0.1.0 | Advanced code analysis and intelligence |
-| `@claude-flow/plugin-test-intelligence` | 0.1.0 | Intelligent test generation and gap analysis |
-| `@claude-flow/plugin-perf-optimizer` | 0.1.0 | Performance optimization automation |
-| `@claude-flow/plugin-neural-coordinator` | 0.1.0 | Neural network coordination across agents |
-| `@claude-flow/plugin-cognitive-kernel` | 0.1.0 | Core cognitive processing kernel |
-| `@claude-flow/plugin-quantum-optimizer` | 0.1.0 | Quantum-inspired optimization algorithms |
-| `@claude-flow/plugin-hyperbolic-reasoning` | 0.1.0 | Hyperbolic space reasoning for hierarchical data |
+| `@cortex-agent/plugin-agentic-qe` | 3.0.0-alpha.4 | Agentic quality engineering integration |
+| `@cortex-agent/plugin-prime-radiant` | 0.1.5 | Prime Radiant intelligence integration |
+| `@cortex-agent/plugin-gastown-bridge` | 3.0.0-alpha.1 | Gastown bridge protocol integration |
+| `@cortex-agent/teammate-plugin` | 1.0.0-alpha.1 | Multi-agent teammate coordination |
+| `@cortex-agent/plugin-code-intelligence` | 0.1.0 | Advanced code analysis and intelligence |
+| `@cortex-agent/plugin-test-intelligence` | 0.1.0 | Intelligent test generation and gap analysis |
+| `@cortex-agent/plugin-perf-optimizer` | 0.1.0 | Performance optimization automation |
+| `@cortex-agent/plugin-neural-coordinator` | 0.1.0 | Neural network coordination across agents |
+| `@cortex-agent/plugin-cognitive-kernel` | 0.1.0 | Core cognitive processing kernel |
+| `@cortex-agent/plugin-quantum-optimizer` | 0.1.0 | Quantum-inspired optimization algorithms |
+| `@cortex-agent/plugin-hyperbolic-reasoning` | 0.1.0 | Hyperbolic space reasoning for hierarchical data |
 
 ### Domain-Specific Plugins
 
 | Plugin | Version | Description |
 |--------|---------|-------------|
-| `@claude-flow/plugin-healthcare-clinical` | 0.1.0 | Healthcare clinical workflow automation |
-| `@claude-flow/plugin-financial-risk` | 0.1.0 | Financial risk assessment and modeling |
-| `@claude-flow/plugin-legal-contracts` | 0.1.0 | Legal contract analysis and generation |
+| `@cortex-agent/plugin-healthcare-clinical` | 0.1.0 | Healthcare clinical workflow automation |
+| `@cortex-agent/plugin-financial-risk` | 0.1.0 | Financial risk assessment and modeling |
+| `@cortex-agent/plugin-legal-contracts` | 0.1.0 | Legal contract analysis and generation |
 
 ### Plugin Development
 
 ```bash
 # Create a new plugin from template
-npx claude-flow@v3alpha plugins create my-plugin
+npx cortex-agent@v3alpha plugins create my-plugin
 
 # Test locally
-npx claude-flow@v3alpha plugins install ./path/to/my-plugin
+npx cortex-agent@v3alpha plugins install ./path/to/my-plugin
 
 # Publish to registry (requires Pinata credentials)
-npx claude-flow@v3alpha plugins publish
+npx cortex-agent@v3alpha plugins publish
 ```
 
 Registry source: IPFS via Pinata (`QmXbfEAaR7D2Ujm4GAkbwcGZQMHqAMpwDoje4583uNP834`)
 
 ## Support
 
-- Documentation: https://github.com/ruvnet/claude-flow
-- Issues: https://github.com/ruvnet/claude-flow/issues
+- Documentation: https://github.com/ruvnet/cortex-agent
+- Issues: https://github.com/ruvnet/cortex-agent/issues
 
 ---
 
-Remember: **Claude Flow coordinates, Claude Code creates!**
+Remember: **Cortex Agent coordinates, Claude Code creates!**

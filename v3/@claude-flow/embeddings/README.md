@@ -1,12 +1,12 @@
-# @claude-flow/embeddings
+# @cortex-agent/embeddings
 
-[![npm version](https://img.shields.io/npm/v/@claude-flow/embeddings.svg)](https://www.npmjs.com/package/@claude-flow/embeddings)
-[![npm downloads](https://img.shields.io/npm/dm/@claude-flow/embeddings.svg)](https://www.npmjs.com/package/@claude-flow/embeddings)
+[![npm version](https://img.shields.io/npm/v/@cortex-agent/embeddings.svg)](https://www.npmjs.com/package/@cortex-agent/embeddings)
+[![npm downloads](https://img.shields.io/npm/dm/@cortex-agent/embeddings.svg)](https://www.npmjs.com/package/@cortex-agent/embeddings)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue.svg)](https://www.typescriptlang.org/)
-[![Performance](https://img.shields.io/badge/Performance-<5ms-brightgreen.svg)](https://github.com/ruvnet/claude-flow)
+[![Performance](https://img.shields.io/badge/Performance-<5ms-brightgreen.svg)](https://github.com/ruvnet/cortex-agent)
 
-> High-performance embedding generation module for Claude Flow V3 - multi-provider support with persistent caching, document chunking, normalization, hyperbolic embeddings, and neural substrate integration.
+> High-performance embedding generation module for Cortex Agent V3 - multi-provider support with persistent caching, document chunking, normalization, hyperbolic embeddings, and neural substrate integration.
 
 ## Features
 
@@ -29,13 +29,13 @@
 ## Installation
 
 ```bash
-npm install @claude-flow/embeddings
+npm install @cortex-agent/embeddings
 ```
 
 ## Quick Start
 
 ```typescript
-import { createEmbeddingService, cosineSimilarity } from '@claude-flow/embeddings';
+import { createEmbeddingService, cosineSimilarity } from '@cortex-agent/embeddings';
 
 // Create embedding service
 const service = createEmbeddingService({
@@ -71,16 +71,16 @@ console.log(`Similarity: ${similarity.toFixed(4)}`);
 
 ```bash
 # Generate embedding from CLI
-claude-flow embeddings embed "Your text here"
+cortex-agent embeddings embed "Your text here"
 
 # Batch embed from file
-claude-flow embeddings batch documents.txt -o embeddings.json
+cortex-agent embeddings batch documents.txt -o embeddings.json
 
 # Similarity search
-claude-flow embeddings search "query" --index ./vectors
+cortex-agent embeddings search "query" --index ./vectors
 
 # Initialize agentic-flow model
-claude-flow embeddings init --provider agentic-flow
+cortex-agent embeddings init --provider agentic-flow
 ```
 
 ## API Reference
@@ -92,7 +92,7 @@ import {
   createEmbeddingService,
   createEmbeddingServiceAsync,
   getEmbedding
-} from '@claude-flow/embeddings';
+} from '@cortex-agent/embeddings';
 
 // Sync: Create with known provider
 const service = createEmbeddingService({
@@ -118,7 +118,7 @@ const embedding = await getEmbedding('Hello world', {
 ### OpenAI Provider
 
 ```typescript
-import { OpenAIEmbeddingService } from '@claude-flow/embeddings';
+import { OpenAIEmbeddingService } from '@cortex-agent/embeddings';
 
 const service = new OpenAIEmbeddingService({
   provider: 'openai',
@@ -138,7 +138,7 @@ console.log('Tokens used:', result.usage?.totalTokens);
 ### Agentic-Flow Provider (Fastest)
 
 ```typescript
-import { AgenticFlowEmbeddingService } from '@claude-flow/embeddings';
+import { AgenticFlowEmbeddingService } from '@cortex-agent/embeddings';
 
 const service = new AgenticFlowEmbeddingService({
   provider: 'agentic-flow',
@@ -154,7 +154,7 @@ console.log(`ONNX embedding in ${result.latencyMs}ms`);
 ### Transformers.js Provider (Local)
 
 ```typescript
-import { TransformersEmbeddingService } from '@claude-flow/embeddings';
+import { TransformersEmbeddingService } from '@cortex-agent/embeddings';
 
 const service = new TransformersEmbeddingService({
   provider: 'transformers',
@@ -170,7 +170,7 @@ console.log(`Local embedding generated in ${result.latencyMs}ms`);
 ### Mock Provider (Testing)
 
 ```typescript
-import { MockEmbeddingService } from '@claude-flow/embeddings';
+import { MockEmbeddingService } from '@cortex-agent/embeddings';
 
 const service = new MockEmbeddingService({
   provider: 'mock',
@@ -211,7 +211,7 @@ import {
   euclideanDistance,
   dotProduct,
   computeSimilarity,
-} from '@claude-flow/embeddings';
+} from '@cortex-agent/embeddings';
 
 // Cosine similarity (most common for embeddings)
 const cosine = cosineSimilarity(embedding1, embedding2);
@@ -340,7 +340,7 @@ import type {
   // Similarity types
   SimilarityMetric,
   SimilarityResult,
-} from '@claude-flow/embeddings';
+} from '@cortex-agent/embeddings';
 ```
 
 ## Environment Variables
@@ -372,8 +372,8 @@ try {
 ## Integration with Memory Module
 
 ```typescript
-import { createEmbeddingService } from '@claude-flow/embeddings';
-import { HNSWIndex } from '@claude-flow/memory';
+import { createEmbeddingService } from '@cortex-agent/embeddings';
+import { HNSWIndex } from '@cortex-agent/memory';
 
 // Create embedding service
 const embeddings = createEmbeddingService({
@@ -406,7 +406,7 @@ const results = await index.search(new Float32Array(queryResult.embedding), 5);
 Split long documents into overlapping chunks for embedding:
 
 ```typescript
-import { chunkText, estimateTokens, reconstructFromChunks } from '@claude-flow/embeddings';
+import { chunkText, estimateTokens, reconstructFromChunks } from '@cortex-agent/embeddings';
 
 // Chunk by sentence (default)
 const result = chunkText(longDocument, {
@@ -441,7 +441,7 @@ import {
   normalize,       // Generic with type option
   l2Norm,
   isNormalized,
-} from '@claude-flow/embeddings';
+} from '@cortex-agent/embeddings';
 
 const embedding = new Float32Array([3, 4, 0]);
 
@@ -470,7 +470,7 @@ import {
   isInPoincareBall,
   batchEuclideanToPoincare,
   hyperbolicCentroid,
-} from '@claude-flow/embeddings';
+} from '@cortex-agent/embeddings';
 
 // Convert Euclidean embedding to Poincaré ball
 const euclidean = new Float32Array([0.5, 0.3, 0.2]);
@@ -516,7 +516,7 @@ import {
   isNeuralAvailable,
   listEmbeddingModels,
   downloadEmbeddingModel,
-} from '@claude-flow/embeddings';
+} from '@cortex-agent/embeddings';
 
 // Check if neural features are available
 const available = await isNeuralAvailable();
@@ -565,7 +565,7 @@ const path = await downloadEmbeddingModel('all-MiniLM-L6-v2', '.models');
 SQLite-backed persistent cache for embeddings:
 
 ```typescript
-import { PersistentEmbeddingCache, isPersistentCacheAvailable } from '@claude-flow/embeddings';
+import { PersistentEmbeddingCache, isPersistentCacheAvailable } from '@cortex-agent/embeddings';
 
 // Check if SQLite is available
 const hasSQLite = await isPersistentCacheAvailable();
@@ -618,33 +618,33 @@ const service = createEmbeddingService({
 
 ```bash
 # Document chunking
-claude-flow embeddings chunk document.txt --strategy sentence --max-size 512
+cortex-agent embeddings chunk document.txt --strategy sentence --max-size 512
 
 # Normalize embedding file
-claude-flow embeddings normalize embeddings.json --type l2 -o normalized.json
+cortex-agent embeddings normalize embeddings.json --type l2 -o normalized.json
 
 # Convert to hyperbolic
-claude-flow embeddings hyperbolic embeddings.json -o poincare.json
+cortex-agent embeddings hyperbolic embeddings.json -o poincare.json
 
 # Neural operations
-claude-flow embeddings neural drift --baseline "context" --input "check this"
-claude-flow embeddings neural store --id mem-1 --content "data"
-claude-flow embeddings neural recall "query" --top-k 5
+cortex-agent embeddings neural drift --baseline "context" --input "check this"
+cortex-agent embeddings neural store --id mem-1 --content "data"
+cortex-agent embeddings neural recall "query" --top-k 5
 
 # List/download models
-claude-flow embeddings models list
-claude-flow embeddings models download all-MiniLM-L6-v2
+cortex-agent embeddings models list
+cortex-agent embeddings models download all-MiniLM-L6-v2
 
 # Cache management
-claude-flow embeddings cache stats
-claude-flow embeddings cache clear --older-than 7d
+cortex-agent embeddings cache stats
+cortex-agent embeddings cache clear --older-than 7d
 ```
 
 ## Related Packages
 
-- [@claude-flow/memory](../memory) - HNSW indexing and vector storage
-- [@claude-flow/providers](../providers) - Multi-LLM provider system
-- [@claude-flow/neural](../neural) - SONA learning integration
+- [@cortex-agent/memory](../memory) - HNSW indexing and vector storage
+- [@cortex-agent/providers](../providers) - Multi-LLM provider system
+- [@cortex-agent/neural](../neural) - SONA learning integration
 
 ## License
 

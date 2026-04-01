@@ -6,7 +6,7 @@
  * pipeline: idempotency check -> schema validation -> budget check ->
  * enforcement gates -> allow/deny.
  *
- * @module @claude-flow/guidance/gateway
+ * @module @cortex-agent/guidance/gateway
  */
 
 import { createHash } from 'node:crypto';

@@ -398,9 +398,9 @@ class SwarmAttentionCoordinator {
 ### 1. Memory Service (ADR-006)
 
 ```typescript
-// v3/@claude-flow/memory/src/attention-enhanced-memory.ts
+// v3/@cortex-agent/memory/src/attention-enhanced-memory.ts
 
-import { AttentionService } from '@claude-flow/attention';
+import { AttentionService } from '@cortex-agent/attention';
 import { UnifiedMemoryService } from './unified-memory-service.js';
 
 export class AttentionEnhancedMemoryService extends UnifiedMemoryService {
@@ -443,9 +443,9 @@ export class AttentionEnhancedMemoryService extends UnifiedMemoryService {
 ### 2. SONA Neural Architecture
 
 ```typescript
-// v3/@claude-flow/intelligence/src/sona-attention.ts
+// v3/@cortex-agent/intelligence/src/sona-attention.ts
 
-import { AttentionService, FlashAttentionConfig } from '@claude-flow/attention';
+import { AttentionService, FlashAttentionConfig } from '@cortex-agent/attention';
 
 export class SONAWithAttention {
   private flashAttention: AttentionService;
@@ -494,9 +494,9 @@ export class SONAWithAttention {
 ### 3. Plugin Hook System
 
 ```typescript
-// v3/@claude-flow/cli/src/hooks/attention-hooks.ts
+// v3/@cortex-agent/cli/src/hooks/attention-hooks.ts
 
-import { AttentionService } from '@claude-flow/attention';
+import { AttentionService } from '@cortex-agent/attention';
 
 export const attentionHooks = {
   /**
@@ -679,7 +679,7 @@ class AttentionKVCache {
 
 ### Phase 1: Core Attention Service (Week 1-2)
 
-1. Create `@claude-flow/attention` package
+1. Create `@cortex-agent/attention` package
 2. Implement base `AttentionService` interface
 3. Add 7 multi-head attention types
 4. Add 6 self-attention variants
@@ -711,7 +711,7 @@ class AttentionKVCache {
 ## File Structure
 
 ```
-v3/@claude-flow/attention/
+v3/@cortex-agent/attention/
 ├── package.json
 ├── src/
 │   ├── index.ts                    # Public API exports
@@ -797,7 +797,7 @@ v3/@claude-flow/attention/
 ## Configuration Schema
 
 ```typescript
-// claude-flow.config.json
+// cortex-agent.config.json
 {
   "attention": {
     // Default mechanism for general use
@@ -841,19 +841,19 @@ v3/@claude-flow/attention/
 
 ```bash
 # List available attention mechanisms
-npx @claude-flow/cli@latest attention list
+npx @cortex-agent/cli@latest attention list
 
 # Benchmark attention mechanism
-npx @claude-flow/cli@latest attention benchmark --mechanism longformer --sequence-length 16384
+npx @cortex-agent/cli@latest attention benchmark --mechanism longformer --sequence-length 16384
 
 # Set default attention mechanism
-npx @claude-flow/cli@latest attention set-default --mechanism flash-attention-v2
+npx @cortex-agent/cli@latest attention set-default --mechanism flash-attention-v2
 
 # Show attention statistics
-npx @claude-flow/cli@latest attention stats
+npx @cortex-agent/cli@latest attention stats
 
 # Clear attention cache
-npx @claude-flow/cli@latest attention cache clear
+npx @cortex-agent/cli@latest attention cache clear
 ```
 
 ---

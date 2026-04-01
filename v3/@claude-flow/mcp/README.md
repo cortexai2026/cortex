@@ -1,10 +1,10 @@
-# @claude-flow/mcp
+# @cortex-agent/mcp
 
-[![npm version](https://img.shields.io/npm/v/@claude-flow/mcp.svg)](https://www.npmjs.com/package/@claude-flow/mcp)
+[![npm version](https://img.shields.io/npm/v/@cortex-agent/mcp.svg)](https://www.npmjs.com/package/@cortex-agent/mcp)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue.svg)](https://www.typescriptlang.org/)
 [![MCP 2025-11-25](https://img.shields.io/badge/MCP-2025--11--25-blue.svg)](https://modelcontextprotocol.io)
-[![Standalone](https://img.shields.io/badge/Module-Standalone-green.svg)](https://github.com/ruvnet/claude-flow)
+[![Standalone](https://img.shields.io/badge/Module-Standalone-green.svg)](https://github.com/ruvnet/cortex-agent)
 
 > **MCP 2025-11-25 Compliant** - Standalone Model Context Protocol server implementation with full Resources, Prompts, and Tasks support
 
@@ -21,18 +21,18 @@
 - **Fast Tool Registry** - O(1) lookup, <10ms registration
 - **Session Management** - Timeout handling, authentication
 - **Security** - CORS, Helmet, auth tokens
-- **Zero Dependencies** - No @claude-flow/* dependencies
+- **Zero Dependencies** - No @cortex-agent/* dependencies
 
 ## Installation
 
 ```bash
-npm install @claude-flow/mcp
+npm install @cortex-agent/mcp
 ```
 
 ## Quick Start
 
 ```typescript
-import { quickStart, defineTool } from '@claude-flow/mcp';
+import { quickStart, defineTool } from '@cortex-agent/mcp';
 
 // Create and start server
 const server = await quickStart({
@@ -63,7 +63,7 @@ await server.start();
 ### Stdio (Default)
 
 ```typescript
-import { createMCPServer } from '@claude-flow/mcp';
+import { createMCPServer } from '@cortex-agent/mcp';
 
 const server = createMCPServer({
   transport: 'stdio',
@@ -112,7 +112,7 @@ await server.start();
 ## Tool Registry
 
 ```typescript
-import { createToolRegistry, defineTool } from '@claude-flow/mcp';
+import { createToolRegistry, defineTool } from '@cortex-agent/mcp';
 
 const registry = createToolRegistry(logger);
 
@@ -144,7 +144,7 @@ const stats = registry.getStats();
 ## Session Management
 
 ```typescript
-import { createSessionManager } from '@claude-flow/mcp';
+import { createSessionManager } from '@cortex-agent/mcp';
 
 const sessions = createSessionManager(logger, {
   maxSessions: 100,
@@ -169,7 +169,7 @@ const metrics = sessions.getSessionMetrics();
 ## Connection Pool
 
 ```typescript
-import { createConnectionPool } from '@claude-flow/mcp';
+import { createConnectionPool } from '@cortex-agent/mcp';
 
 const pool = createConnectionPool({
   maxConnections: 10,
@@ -253,7 +253,7 @@ The server automatically registers these system tools:
 ## Resources (MCP 2025-11-25)
 
 ```typescript
-import { createMCPServer, createTextResource } from '@claude-flow/mcp';
+import { createMCPServer, createTextResource } from '@cortex-agent/mcp';
 
 const server = createMCPServer({ transport: 'stdio' }, logger);
 const resourceRegistry = server.getResourceRegistry();
@@ -291,7 +291,7 @@ resourceRegistry.subscribe('file://readme.txt', (uri, content) => {
 ## Prompts (MCP 2025-11-25)
 
 ```typescript
-import { createMCPServer, definePrompt, textMessage, interpolate } from '@claude-flow/mcp';
+import { createMCPServer, definePrompt, textMessage, interpolate } from '@cortex-agent/mcp';
 
 const server = createMCPServer({ transport: 'stdio' }, logger);
 const promptRegistry = server.getPromptRegistry();
@@ -324,7 +324,7 @@ const result = await promptRegistry.get('code_review', {
 ## Tasks (MCP 2025-11-25)
 
 ```typescript
-import { createMCPServer } from '@claude-flow/mcp';
+import { createMCPServer } from '@cortex-agent/mcp';
 
 const server = createMCPServer({ transport: 'stdio' }, logger);
 const taskManager = server.getTaskManager();

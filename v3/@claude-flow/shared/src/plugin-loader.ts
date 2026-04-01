@@ -6,7 +6,7 @@
  */
 
 import type {
-  ClaudeFlowPlugin,
+  CortexAgentPlugin,
   PluginContext,
   PluginInfo,
   PluginLifecycleState,
@@ -67,7 +67,7 @@ const DEFAULT_CONFIG: Required<PluginLoaderConfig> = {
  * Plugin dependency graph node
  */
 interface DependencyNode {
-  plugin: ClaudeFlowPlugin;
+  plugin: CortexAgentPlugin;
   dependencies: Set<string>;
   dependents: Set<string>;
   depth: number;
@@ -90,7 +90,7 @@ export class PluginLoader {
   /**
    * Load a single plugin
    */
-  async loadPlugin(plugin: ClaudeFlowPlugin, context: PluginContext): Promise<void> {
+  async loadPlugin(plugin: CortexAgentPlugin, context: PluginContext): Promise<void> {
     // Validate plugin
     this.validatePlugin(plugin);
 
@@ -122,7 +122,7 @@ export class PluginLoader {
    * Load multiple plugins with dependency resolution
    */
   async loadPlugins(
-    plugins: ClaudeFlowPlugin[],
+    plugins: CortexAgentPlugin[],
     context: PluginContext
   ): Promise<LoadPluginsResult> {
     const results: LoadPluginsResult = {
@@ -240,7 +240,7 @@ export class PluginLoader {
   /**
    * Reload a plugin
    */
-  async reloadPlugin(pluginName: string, newPlugin: ClaudeFlowPlugin, context: PluginContext): Promise<void> {
+  async reloadPlugin(pluginName: string, newPlugin: CortexAgentPlugin, context: PluginContext): Promise<void> {
     await this.unloadPlugin(pluginName);
     await this.loadPlugin(newPlugin, context);
   }
@@ -255,7 +255,7 @@ export class PluginLoader {
   /**
    * Validate plugin interface
    */
-  private validatePlugin(plugin: ClaudeFlowPlugin): void {
+  private validatePlugin(plugin: CortexAgentPlugin): void {
     if (!plugin.name) {
       throw new PluginError(
         'Plugin must have a name',
@@ -292,7 +292,7 @@ export class PluginLoader {
   /**
    * Validate plugin dependencies
    */
-  private validateDependencies(plugin: ClaudeFlowPlugin): void {
+  private validateDependencies(plugin: CortexAgentPlugin): void {
     if (!plugin.dependencies || plugin.dependencies.length === 0) {
       return;
     }
@@ -321,7 +321,7 @@ export class PluginLoader {
   /**
    * Initialize a single plugin
    */
-  private async initializePlugin(plugin: ClaudeFlowPlugin, context: PluginContext): Promise<void> {
+  private async initializePlugin(plugin: CortexAgentPlugin, context: PluginContext): Promise<void> {
     this.registry.updatePluginState(plugin.name, 'initializing');
 
     try {
@@ -348,7 +348,7 @@ export class PluginLoader {
   /**
    * Shutdown a single plugin
    */
-  private async shutdownPlugin(plugin: ClaudeFlowPlugin): Promise<void> {
+  private async shutdownPlugin(plugin: CortexAgentPlugin): Promise<void> {
     this.registry.updatePluginState(plugin.name, 'shutting-down');
 
     try {
@@ -374,7 +374,7 @@ export class PluginLoader {
    * Initialize plugins sequentially
    */
   private async initializePluginsSequential(
-    plugins: ClaudeFlowPlugin[],
+    plugins: CortexAgentPlugin[],
     context: PluginContext,
     results: LoadPluginsResult
   ): Promise<void> {
@@ -404,7 +404,7 @@ export class PluginLoader {
    * Initialize plugins in parallel (by dependency level)
    */
   private async initializePluginsParallel(
-    plugins: ClaudeFlowPlugin[],
+    plugins: CortexAgentPlugin[],
     context: PluginContext,
     results: LoadPluginsResult
   ): Promise<void> {
@@ -441,7 +441,7 @@ export class PluginLoader {
   /**
    * Build dependency graph
    */
-  private buildDependencyGraph(plugins: ClaudeFlowPlugin[]): Map<string, DependencyNode> {
+  private buildDependencyGraph(plugins: CortexAgentPlugin[]): Map<string, DependencyNode> {
     const graph = new Map<string, DependencyNode>();
 
     // Create nodes
@@ -503,8 +503,8 @@ export class PluginLoader {
   /**
    * Topological sort (dependency order)
    */
-  private topologicalSort(graph: Map<string, DependencyNode>): ClaudeFlowPlugin[] {
-    const sorted: ClaudeFlowPlugin[] = [];
+  private topologicalSort(graph: Map<string, DependencyNode>): CortexAgentPlugin[] {
+    const sorted: CortexAgentPlugin[] = [];
     const nodes = Array.from(graph.values());
 
     // Sort by depth (dependencies first)
@@ -520,12 +520,12 @@ export class PluginLoader {
   /**
    * Group plugins by dependency depth (for parallel initialization)
    */
-  private groupByDepth(graph: Map<string, DependencyNode>): ClaudeFlowPlugin[][] {
-    const levels: ClaudeFlowPlugin[][] = [];
+  private groupByDepth(graph: Map<string, DependencyNode>): CortexAgentPlugin[][] {
+    const levels: CortexAgentPlugin[][] = [];
     const maxDepth = Math.max(...Array.from(graph.values()).map((n) => n.depth));
 
     for (let depth = 0; depth <= maxDepth; depth++) {
-      const level: ClaudeFlowPlugin[] = [];
+      const level: CortexAgentPlugin[] = [];
       for (const node of Array.from(graph.values())) {
         if (node.depth === depth) {
           level.push(node.plugin);

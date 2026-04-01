@@ -5,7 +5,7 @@
  * integration, covering connection management, vector operations,
  * attention mechanisms, GNN layers, hyperbolic embeddings, and self-learning.
  *
- * @module @claude-flow/plugins/__tests__/ruvector-bridge
+ * @module @cortex-agent/plugins/__tests__/ruvector-bridge
  */
 
 import { describe, it, expect, beforeEach, afterEach, vi, type Mock } from 'vitest';

@@ -1,18 +1,18 @@
-# 🎉 Claude Flow Plugin - Complete Summary
+# 🎉 Cortex Agent Plugin - Complete Summary
 
 ## ✅ Plugin Status: PRODUCTION READY
 
 **Version**: 2.5.0
 **License**: MIT
 **Author**: rUv
-**Repository**: https://github.com/ruvnet/claude-flow
+**Repository**: https://github.com/ruvnet/cortex-agent
 
 ---
 
 ## 📦 Plugin Structure
 
 ```
-claude-flow/
+cortex-agent/
 ├── .claude-plugin/
 │   ├── plugin.json           ✓ Official plugin metadata
 │   ├── marketplace.json      ✓ Marketplace distribution metadata
@@ -45,7 +45,7 @@ claude-flow/
 
 ```
 # Install plugin
-/plugin add ruvnet/claude-flow
+/plugin add ruvnet/cortex-agent
 
 # Restart Claude Code
 /restart
@@ -60,7 +60,7 @@ claude-flow/
 ### From Local Directory:
 
 ```
-cd claude-flow
+cd cortex-agent
 /plugin add .
 /restart
 ```
@@ -104,7 +104,7 @@ cd claude-flow
 
 ### MCP Integration: 110+ Tools
 
-1. **claude-flow** (Required)
+1. **cortex-agent** (Required)
    - 40+ orchestration tools
    - Swarm coordination
    - Agent management
@@ -208,7 +208,7 @@ All documentation follows official Claude Code plugin guidelines.
 - **Format**: JSON configuration
 - **Location**: `hooks/hooks.json`
 - **Events**: pre-task, post-task, post-edit, session-start, session-end
-- **Integration**: Claude Flow coordination
+- **Integration**: Cortex Agent coordination
 
 ### MCP Servers
 - **Protocol**: Model Context Protocol
@@ -222,23 +222,23 @@ All documentation follows official Claude Code plugin guidelines.
 
 ### Install
 ```
-/plugin add ruvnet/claude-flow
+/plugin add ruvnet/cortex-agent
 ```
 
 ### Update
 ```
-/plugin update claude-flow
+/plugin update cortex-agent
 ```
 
 Or pull latest from GitHub:
 ```
-cd /path/to/claude-flow
+cd /path/to/cortex-agent
 git pull
 ```
 
 ### Remove
 ```
-/plugin remove claude-flow
+/plugin remove cortex-agent
 ```
 
 ### List Installed
@@ -264,7 +264,7 @@ After installation, verify with:
 /plugin list
 ```
 
-Should show `claude-flow` as active.
+Should show `cortex-agent` as active.
 
 ---
 
@@ -292,9 +292,9 @@ Should show `claude-flow` as active.
 
 ## 🤝 Support & Community
 
-- **Repository**: https://github.com/ruvnet/claude-flow
-- **Issues**: https://github.com/ruvnet/claude-flow/issues
-- **Discussions**: https://github.com/ruvnet/claude-flow/discussions
+- **Repository**: https://github.com/ruvnet/cortex-agent
+- **Issues**: https://github.com/ruvnet/cortex-agent/issues
+- **Discussions**: https://github.com/ruvnet/cortex-agent/discussions
 - **Website**: https://flow-nexus.ruv.io
 
 ---
@@ -326,7 +326,7 @@ The plugin is configured via `.claude-plugin/plugin.json`:
 
 ```json
 {
-  "name": "claude-flow",
+  "name": "cortex-agent",
   "version": "2.5.0",
   "description": "Enterprise AI agent orchestration plugin...",
   "author": {
@@ -335,12 +335,12 @@ The plugin is configured via `.claude-plugin/plugin.json`:
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ruvnet/claude-flow.git"
+    "url": "https://github.com/ruvnet/cortex-agent.git"
   },
   "mcpServers": {
-    "claude-flow": {
+    "cortex-agent": {
       "command": "npx",
-      "args": ["claude-flow@alpha", "mcp", "start"]
+      "args": ["cortex-agent@alpha", "mcp", "start"]
     }
   }
 }
@@ -350,7 +350,7 @@ Commands and agents are automatically discovered from `commands/` and `agents/` 
 
 Users install with:
 ```
-/plugin add ruvnet/claude-flow
+/plugin add ruvnet/cortex-agent
 ```
 
 ---

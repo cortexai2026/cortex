@@ -56,8 +56,8 @@ export async function createDirectoryStructure(): Promise<void> {
     version: '1.0.71',
   };
 
-  await fs.writeFile('memory/claude-flow-data.json', JSON.stringify(initialData, null, 2));
-  console.log('  ✅ Created memory/claude-flow-data.json (persistence database)');
+  await fs.writeFile('memory/cortex-agent-data.json', JSON.stringify(initialData, null, 2));
+  console.log('  ✅ Created memory/cortex-agent-data.json (persistence database)');
 }
 
 function createAgentsReadme(): string {
@@ -72,9 +72,9 @@ This directory stores persistent information about AI agents created and managed
 
 ## Usage
 Agents are automatically managed by the Claude-Flow orchestration system. You can:
-- View agent status with \`claude-flow agent list\`
-- Create new agents with \`claude-flow agent spawn <type>\`
-- Configure agents with \`claude-flow agent configure <id>\`
+- View agent status with \`cortex-agent agent list\`
+- Create new agents with \`cortex-agent agent spawn <type>\`
+- Configure agents with \`cortex-agent agent configure <id>\`
 
 ## Files
 - \`agent-registry.json\`: Central agent registry
@@ -95,9 +95,9 @@ This directory stores information about Claude-Flow orchestration sessions.
 
 ## Usage
 Sessions are managed automatically during orchestration:
-- Start sessions with \`claude-flow start\`
-- Monitor sessions with \`claude-flow status\`
-- Review session history with \`claude-flow session list\`
+- Start sessions with \`cortex-agent start\`
+- Monitor sessions with \`cortex-agent status\`
+- Review session history with \`cortex-agent session list\`
 
 ## Files
 - \`session-<id>/\`: Individual session directories
@@ -139,8 +139,8 @@ This directory stores output reports from swarm operations and orchestration tas
 
 ## Usage
 Reports are generated automatically by swarm operations:
-- View recent reports with \`claude-flow swarm list\`
-- Check specific reports with \`claude-flow swarm status <id>\`
+- View recent reports with \`cortex-agent swarm list\`
+- Check specific reports with \`cortex-agent swarm status <id>\`
 - Export reports in different formats using \`--output\` flags
 
 ## File Types

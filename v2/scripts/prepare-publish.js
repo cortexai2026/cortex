@@ -30,7 +30,7 @@ const versionFiles = [
   { path: 'src/cli/simple-cli.js', pattern: /const VERSION = '[^']+';/, replacement: `const VERSION = '${version}';` },
   { path: 'src/cli/index.ts', pattern: /const VERSION = '[^']+';/, replacement: `const VERSION = '${version}';` },
   { path: 'src/cli/index-remote.ts', pattern: /const VERSION = '[^']+';/, replacement: `const VERSION = '${version}';` },
-  { path: 'bin/claude-flow', pattern: /VERSION="[^"]+"/, replacement: `VERSION="${version}"` },
+  { path: 'bin/cortex-agent', pattern: /VERSION="[^"]+"/, replacement: `VERSION="${version}"` },
   { path: 'src/cli/commands/status.ts', pattern: /version: '[^']+'/g, replacement: `version: '${version}'` },
   { path: 'src/cli/simple-commands/status.js', pattern: /version: '[^']+'/g, replacement: `version: '${version}'` },
   { path: 'src/cli/simple-commands/config.js', pattern: /version: "[^"]+"/g, replacement: `version: "${version}"` },

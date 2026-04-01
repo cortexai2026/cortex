@@ -395,25 +395,25 @@ ${pattern.processor}
 
 ## 🛡️ Hook Safety Tools
 
-Use claude-flow's built-in safety tools:
+Use cortex-agent's built-in safety tools:
 
 \`\`\`bash
 # Check your configuration for dangerous patterns
-claude-flow hook-safety validate
+cortex-agent hook-safety validate
 
 # Enable safe mode (skips all hooks)
-claude-flow hook-safety safe-mode
+cortex-agent hook-safety safe-mode
 
 # Check current safety status
-claude-flow hook-safety status
+cortex-agent hook-safety status
 
 # Reset circuit breakers if triggered
-claude-flow hook-safety reset
+cortex-agent hook-safety reset
 \`\`\`
 
 ## 📚 Additional Resources
 
-- Issue #166: https://github.com/ruvnet/claude-flow/issues/166
+- Issue #166: https://github.com/ruvnet/cortex-agent/issues/166
 - Claude Code Hooks Documentation: https://docs.anthropic.com/en/docs/claude-code/hooks
 - Reddit Discussion: https://www.reddit.com/r/ClaudeAI/comments/1ltvi6x/anyone_else_accidentally_create_an_infinite_loop/
 

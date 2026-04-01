@@ -24,76 +24,76 @@
     "incremental": true,
     "baseUrl": "./",
     "paths": {
-      "@claude-flow/security": [
-        "./@claude-flow/security/src"
+      "@cortex-agent/security": [
+        "./@cortex-agent/security/src"
       ],
-      "@claude-flow/memory": [
-        "./@claude-flow/memory/src"
+      "@cortex-agent/memory": [
+        "./@cortex-agent/memory/src"
       ],
-      "@claude-flow/integration": [
-        "./@claude-flow/integration/src"
+      "@cortex-agent/integration": [
+        "./@cortex-agent/integration/src"
       ],
-      "@claude-flow/swarm": [
-        "./@claude-flow/swarm/src"
+      "@cortex-agent/swarm": [
+        "./@cortex-agent/swarm/src"
       ],
-      "@claude-flow/performance": [
-        "./@claude-flow/performance/src"
+      "@cortex-agent/performance": [
+        "./@cortex-agent/performance/src"
       ],
-      "@claude-flow/cli": [
-        "./@claude-flow/cli/src"
+      "@cortex-agent/cli": [
+        "./@cortex-agent/cli/src"
       ],
-      "@claude-flow/neural": [
-        "./@claude-flow/neural/src"
+      "@cortex-agent/neural": [
+        "./@cortex-agent/neural/src"
       ],
-      "@claude-flow/testing": [
-        "./@claude-flow/testing/src"
+      "@cortex-agent/testing": [
+        "./@cortex-agent/testing/src"
       ],
-      "@claude-flow/deployment": [
-        "./@claude-flow/deployment/src"
+      "@cortex-agent/deployment": [
+        "./@cortex-agent/deployment/src"
       ],
-      "@claude-flow/shared": [
-        "./@claude-flow/shared/src"
+      "@cortex-agent/shared": [
+        "./@cortex-agent/shared/src"
       ],
-      "@claude-flow/hooks": [
-        "./@claude-flow/hooks/src"
+      "@cortex-agent/hooks": [
+        "./@cortex-agent/hooks/src"
       ]
     },
     "emitDeclarationOnly": false,
-    "tsBuildInfoFile": "/workspaces/claude-flow/v3/node_modules/.pnpm/vitest@1.6.1_@types+node@20.19.27/node_modules/vitest/dist/vendor/tsconfig.tmp.tsbuildinfo"
+    "tsBuildInfoFile": "/workspaces/cortex-agent/v3/node_modules/.pnpm/vitest@1.6.1_@types+node@20.19.27/node_modules/vitest/dist/vendor/tsconfig.tmp.tsbuildinfo"
   },
   "references": [
     {
-      "path": "./@claude-flow/shared"
+      "path": "./@cortex-agent/shared"
     },
     {
-      "path": "./@claude-flow/security"
+      "path": "./@cortex-agent/security"
     },
     {
-      "path": "./@claude-flow/memory"
+      "path": "./@cortex-agent/memory"
     },
     {
-      "path": "./@claude-flow/integration"
+      "path": "./@cortex-agent/integration"
     },
     {
-      "path": "./@claude-flow/swarm"
+      "path": "./@cortex-agent/swarm"
     },
     {
-      "path": "./@claude-flow/performance"
+      "path": "./@cortex-agent/performance"
     },
     {
-      "path": "./@claude-flow/cli"
+      "path": "./@cortex-agent/cli"
     },
     {
-      "path": "./@claude-flow/neural"
+      "path": "./@cortex-agent/neural"
     },
     {
-      "path": "./@claude-flow/testing"
+      "path": "./@cortex-agent/testing"
     },
     {
-      "path": "./@claude-flow/deployment"
+      "path": "./@cortex-agent/deployment"
     },
     {
-      "path": "./@claude-flow/hooks"
+      "path": "./@cortex-agent/hooks"
     }
   ],
   "include": [],

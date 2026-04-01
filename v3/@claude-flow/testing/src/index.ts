@@ -1,5 +1,5 @@
 /**
- * @claude-flow/testing - Testing Module
+ * @cortex-agent/testing - Testing Module
  * TDD London School framework and test utilities for V3 Claude-Flow
  *
  * Based on ADR-008 (Vitest over Jest)
@@ -11,7 +11,7 @@
  *   createMockApplication,
  *   agentConfigs,
  *   swarmConfigs,
- * } from '@claude-flow/testing';
+ * } from '@cortex-agent/testing';
  *
  * setupV3Tests();
  *

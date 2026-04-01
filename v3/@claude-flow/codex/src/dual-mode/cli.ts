@@ -137,19 +137,19 @@ function createTemplateCommand(): Command {
       console.log(chalk.cyan('feature') + ' - Feature Development Swarm');
       console.log('  Pipeline: architect → coder → tester → reviewer');
       console.log('  Platforms: Claude (architect, reviewer) + Codex (coder, tester)');
-      console.log('  Usage: npx claude-flow-codex dual run --template feature --task "Add user auth"');
+      console.log('  Usage: npx cortex-agent-codex dual run --template feature --task "Add user auth"');
       console.log();
 
       console.log(chalk.cyan('security') + ' - Security Audit Swarm');
       console.log('  Pipeline: scanner → analyzer → fixer');
       console.log('  Platforms: Codex (scanner, fixer) + Claude (analyzer)');
-      console.log('  Usage: npx claude-flow-codex dual run --template security --task "src/auth/"');
+      console.log('  Usage: npx cortex-agent-codex dual run --template security --task "src/auth/"');
       console.log();
 
       console.log(chalk.cyan('refactor') + ' - Refactoring Swarm');
       console.log('  Pipeline: analyzer → planner → refactorer → validator');
       console.log('  Platforms: Claude (analyzer, planner) + Codex (refactorer, validator)');
-      console.log('  Usage: npx claude-flow-codex dual run --template refactor --task "src/legacy/"');
+      console.log('  Usage: npx cortex-agent-codex dual run --template refactor --task "src/legacy/"');
       console.log();
 
       console.log(chalk.gray('Custom configurations can be provided via --config <path.json>'));
@@ -170,7 +170,7 @@ function createStatusCommand(): Command {
       const { spawn } = await import('child_process');
 
       const proc = spawn('npx', [
-        'claude-flow@alpha', 'memory', 'list',
+        'cortex-agent@alpha', 'memory', 'list',
         '--namespace', options.namespace
       ], { stdio: 'inherit' });
 
@@ -227,5 +227,5 @@ function printResults(result: CollaborationResult): void {
   }
 
   console.log();
-  console.log(chalk.gray('View shared memory: npx claude-flow@alpha memory list --namespace collaboration'));
+  console.log(chalk.gray('View shared memory: npx cortex-agent@alpha memory list --namespace collaboration'));
 }

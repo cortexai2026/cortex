@@ -1,10 +1,10 @@
 /**
- * @claude-flow/browser - Memory Integration Tests
+ * @cortex-agent/browser - Memory Integration Tests
  */
 
 import { describe, it, expect, beforeEach } from 'vitest';
 import {
-  ClaudeFlowMemoryAdapter,
+  CortexAgentMemoryAdapter,
   BrowserMemoryManager,
   createMemoryManager,
   getMemoryAdapter,
@@ -12,11 +12,11 @@ import {
 } from '../src/infrastructure/memory-integration.js';
 import type { BrowserTrajectory, Snapshot } from '../src/domain/types.js';
 
-describe('ClaudeFlowMemoryAdapter', () => {
-  let adapter: ClaudeFlowMemoryAdapter;
+describe('CortexAgentMemoryAdapter', () => {
+  let adapter: CortexAgentMemoryAdapter;
 
   beforeEach(() => {
-    adapter = new ClaudeFlowMemoryAdapter('test-browser');
+    adapter = new CortexAgentMemoryAdapter('test-browser');
   });
 
   describe('store and retrieve', () => {

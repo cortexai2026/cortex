@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * RuFlo V3.5 Statusline Generator
+ * Cortex Agent V3.5 Statusline Generator
  * Displays real-time V3 implementation progress and system status
  *
  * Usage: node statusline.cjs [options]
@@ -146,7 +146,7 @@ function getLearningStats() {
   let trend = 'STABLE';
 
   // PRIMARY: Read from intelligence loop data files
-  const dataDir = path.join(process.cwd(), '.claude-flow', 'data');
+  const dataDir = path.join(process.cwd(), '.cortex-agent', 'data');
 
   // 1. graph-state.json — authoritative node/edge counts
   const graphPath = path.join(dataDir, 'graph-state.json');
@@ -368,10 +368,10 @@ function getSystemMetrics() {
   try {
     if (isWindows) {
       // Windows: use tasklist and findstr for agent counting
-      const agents = execSync('tasklist 2>NUL | findstr /I "claude-flow" 2>NUL | find /C /V "" 2>NUL || echo 0', { encoding: 'utf-8' });
+      const agents = execSync('tasklist 2>NUL | findstr /I "cortex-agent" 2>NUL | find /C /V "" 2>NUL || echo 0', { encoding: 'utf-8' });
       subAgents = Math.max(0, parseInt(agents.trim()) || 0);
     } else {
-      const agents = execSync('ps aux 2>/dev/null | grep -c "claude-flow.*agent" || echo "0"', { encoding: 'utf-8' });
+      const agents = execSync('ps aux 2>/dev/null | grep -c "cortex-agent.*agent" || echo "0"', { encoding: 'utf-8' });
       subAgents = Math.max(0, parseInt(agents.trim()) - 1);
     }
   } catch (e) {
@@ -404,7 +404,7 @@ function generateStatusline() {
   const lines = [];
 
   // Header Line
-  let header = `${c.bold}${c.brightPurple}▊ RuFlo V3.5 ${c.reset}`;
+  let header = `${c.bold}${c.brightPurple}▊ Cortex Agent V3.5 ${c.reset}`;
   header += `${swarm.coordinationActive ? c.brightCyan : c.dim}● ${c.brightCyan}${user.name}${c.reset}`;
   if (user.gitBranch) {
     header += `  ${c.dim}│${c.reset}  ${c.brightBlue}⎇ ${user.gitBranch}${c.reset}`;
@@ -471,7 +471,7 @@ function generateJSON() {
 /**
  * Generate single-line output for Claude Code compatibility
  * This avoids the collision zone issue entirely by using one line
- * @see https://github.com/ruvnet/claude-flow/issues/985
+ * @see https://github.com/ruvnet/cortex-agent/issues/985
  */
 function generateSingleLine() {
   if (!CONFIG.enabled) return '';
@@ -486,7 +486,7 @@ function generateSingleLine() {
   const securityStatus = security.status === 'CLEAN' ? '✓' :
                          security.cvesFixed > 0 ? '~' : '✗';
 
-  return `${c.brightPurple}RuFlo${c.reset} ${c.dim}|${c.reset} ` +
+  return `${c.brightPurple}Cortex Agent${c.reset} ${c.dim}|${c.reset} ` +
     `${c.cyan}D:${progress.domainsCompleted}/${progress.totalDomains}${c.reset} ${c.dim}|${c.reset} ` +
     `${c.yellow}S:${swarmIndicator}${swarm.activeAgents}/${swarm.maxAgents}${c.reset} ${c.dim}|${c.reset} ` +
     `${security.status === 'CLEAN' ? c.green : c.red}CVE:${securityStatus}${security.cvesFixed}/${security.totalCves}${c.reset} ${c.dim}|${c.reset} ` +
@@ -497,7 +497,7 @@ function generateSingleLine() {
  * Generate safe multi-line statusline that avoids Claude Code collision zone
  * The collision zone is columns 15-25 on the second-to-last line.
  * We pad that line with spaces to push content past column 25.
- * @see https://github.com/ruvnet/claude-flow/issues/985
+ * @see https://github.com/ruvnet/cortex-agent/issues/985
  */
 function generateSafeStatusline() {
   if (!CONFIG.enabled) return '';
@@ -510,7 +510,7 @@ function generateSafeStatusline() {
   const lines = [];
 
   // Header Line
-  let header = `${c.bold}${c.brightPurple}▊ RuFlo V3.5 ${c.reset}`;
+  let header = `${c.bold}${c.brightPurple}▊ Cortex Agent V3.5 ${c.reset}`;
   header += `${swarm.coordinationActive ? c.brightCyan : c.dim}● ${c.brightCyan}${user.name}${c.reset}`;
   if (user.gitBranch) {
     header += `  ${c.dim}│${c.reset}  ${c.brightBlue}⎇ ${user.gitBranch}${c.reset}`;

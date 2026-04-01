@@ -1,5 +1,5 @@
 /**
- * Plugin SDK - Unified API for Claude Flow Plugin Development
+ * Plugin SDK - Unified API for Cortex Agent Plugin Development
  *
  * Provides a comprehensive SDK for building plugins with full access to:
  * - Plugin lifecycle management

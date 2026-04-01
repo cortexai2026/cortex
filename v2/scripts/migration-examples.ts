@@ -216,32 +216,32 @@ function printUsageScenarios() {
   const scenarios = [
     {
       title: 'New Project Setup',
-      command: 'claude-flow migrate --strategy full',
+      command: 'cortex-agent migrate --strategy full',
       description: 'Clean installation of optimized prompts'
     },
     {
       title: 'Existing Project with Custom Commands',
-      command: 'claude-flow migrate --strategy merge --preserve-custom',
+      command: 'cortex-agent migrate --strategy merge --preserve-custom',
       description: 'Preserve customizations while upgrading'
     },
     {
       title: 'Safe Migration with Preview',
-      command: 'claude-flow migrate --dry-run --verbose',
+      command: 'cortex-agent migrate --dry-run --verbose',
       description: 'See what would change before migrating'
     },
     {
       title: 'Analysis Only',
-      command: 'claude-flow migrate analyze --detailed',
+      command: 'cortex-agent migrate analyze --detailed',
       description: 'Understand project state before migration'
     },
     {
       title: 'Rollback After Issues',
-      command: 'claude-flow migrate rollback',
+      command: 'cortex-agent migrate rollback',
       description: 'Restore previous configuration'
     },
     {
       title: 'Batch Operation',
-      command: 'find . -name ".claude" -exec claude-flow migrate {} \\;',
+      command: 'find . -name ".claude" -exec cortex-agent migrate {} \\;',
       description: 'Migrate multiple projects at once'
     }
   ];

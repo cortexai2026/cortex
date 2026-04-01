@@ -4,7 +4,7 @@
   "created": "2025-06-16",
   "directories": {
     "commands": {
-      "description": "Claude Code slash commands for SPARC modes and Claude Flow integration",
+      "description": "Claude Code slash commands for SPARC modes and Cortex Agent integration",
       "path": "commands/"
     },
     "commands/sparc": {
@@ -73,21 +73,21 @@
       "category": "command"
     },
     {
-      "source": "commands/claude-flow-help.md",
-      "destination": "commands/claude-flow-help.md",
-      "description": "Claude Flow help and documentation command",
+      "source": "commands/cortex-agent-help.md",
+      "destination": "commands/cortex-agent-help.md",
+      "description": "Cortex Agent help and documentation command",
       "category": "command"
     },
     {
-      "source": "commands/claude-flow-memory.md",
-      "destination": "commands/claude-flow-memory.md",
-      "description": "Claude Flow memory system interaction command",
+      "source": "commands/cortex-agent-memory.md",
+      "destination": "commands/cortex-agent-memory.md",
+      "description": "Cortex Agent memory system interaction command",
       "category": "command"
     },
     {
-      "source": "commands/claude-flow-swarm.md",
-      "destination": "commands/claude-flow-swarm.md",
-      "description": "Claude Flow swarm coordination command",
+      "source": "commands/cortex-agent-swarm.md",
+      "destination": "commands/cortex-agent-swarm.md",
+      "description": "Cortex Agent swarm coordination command",
       "category": "command"
     },
     {

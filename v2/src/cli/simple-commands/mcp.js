@@ -94,9 +94,9 @@ async function startMcpServer(subArgs, flags) {
         stdio: 'inherit',
         env: {
           ...process.env,
-          CLAUDE_FLOW_AUTO_ORCHESTRATOR: autoOrchestrator ? 'true' : 'false',
-          CLAUDE_FLOW_NEURAL_ENABLED: 'true',
-          CLAUDE_FLOW_WASM_ENABLED: 'true',
+          CORTEX_AGENT_AUTO_ORCHESTRATOR: autoOrchestrator ? 'true' : 'false',
+          CORTEX_AGENT_NEURAL_ENABLED: 'true',
+          CORTEX_AGENT_WASM_ENABLED: 'true',
         },
       });
 
@@ -123,7 +123,7 @@ async function startMcpServer(subArgs, flags) {
     const port = getFlag(subArgs, '--port') || flags.port || 3000;
     const host = getFlag(subArgs, '--host') || flags.host || 'localhost';
 
-    success(`Starting Claude Flow MCP server on ${host}:${port}...`);
+    success(`Starting Cortex Agent MCP server on ${host}:${port}...`);
     log('🚀 HTTP mode not yet implemented, use --stdio for full functionality');
   }
 }
@@ -293,7 +293,7 @@ async function listMcpTools(subArgs, flags) {
   log('\n📡 Status: 87 tools & resources available when server is running');
   log('🎯 Categories: swarm, neural, memory, analysis, workflow, github, daa, system');
   log('🔗 Compatibility: ruv-swarm + DAA + Claude-Flow unified platform');
-  log('\n💡 Usage: claude-flow mcp tools --category=<category> --verbose');
+  log('\n💡 Usage: cortex-agent mcp tools --category=<category> --verbose');
 }
 
 async function manageMcpAuth(subArgs, flags) {
@@ -324,8 +324,8 @@ async function manageMcpAuth(subArgs, flags) {
     default:
       log('Auth commands: setup, status, rotate');
       log('Examples:');
-      log('  claude-flow mcp auth setup');
-      log('  claude-flow mcp auth status');
+      log('  cortex-agent mcp auth setup');
+      log('  cortex-agent mcp auth status');
   }
 }
 
@@ -370,7 +370,7 @@ async function showMcpConfig(subArgs, flags) {
   log('   SPARC Modes: 17 available');
 
   log('\n📁 Configuration Files:');
-  log('   Main Config: ./mcp_config/claude-flow.json');
+  log('   Main Config: ./mcp_config/cortex-agent.json');
   log('   Neural Models: ./models/');
   log('   Memory Store: ./memory/');
   log('   Logs: ./logs/mcp/');
@@ -416,12 +416,12 @@ function showMcpHelp() {
   log('  system       ⚙️ System & utilities (8 tools)');
   log();
   log('EXAMPLES:');
-  log('  claude-flow mcp status');
-  log('  claude-flow mcp start --auto-orchestrator --daemon');
-  log('  claude-flow mcp tools --category=neural --verbose');
-  log('  claude-flow mcp tools --category=swarm');
-  log('  claude-flow mcp config');
-  log('  claude-flow mcp auth setup');
+  log('  cortex-agent mcp status');
+  log('  cortex-agent mcp start --auto-orchestrator --daemon');
+  log('  cortex-agent mcp tools --category=neural --verbose');
+  log('  cortex-agent mcp tools --category=swarm');
+  log('  cortex-agent mcp config');
+  log('  cortex-agent mcp auth setup');
   log();
   log('🎯 Total: 87 tools & resources available');
   log('🔗 Full ruv-swarm + DAA + Claude-Flow integration');

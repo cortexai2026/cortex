@@ -27,14 +27,14 @@ export class MemoryConsolidator {
   constructor() {
     this.primaryLocations = {
       json: './memory/memory-store.json',
-      sqlite: './.claude-flow/memory/unified-memory.db',
-      backup: './.claude-flow/memory/backups/'
+      sqlite: './.cortex-agent/memory/unified-memory.db',
+      backup: './.cortex-agent/memory/backups/'
     };
 
     this.knownLocations = [
       // JSON stores
       './memory/memory-store.json',
-      './.claude-flow/memory/store.json',
+      './.cortex-agent/memory/store.json',
       
       // SQLite databases
       './.swarm/memory.db',
@@ -422,7 +422,7 @@ export class MemoryConsolidator {
    * Update configuration to use unified store
    */
   async updateConfiguration(config) {
-    const configPath = './.claude-flow/memory-config.json';
+    const configPath = './.cortex-agent/memory-config.json';
     
     await fs.mkdir(path.dirname(configPath), { recursive: true });
     await fs.writeFile(configPath, JSON.stringify(config, null, 2));

@@ -1,11 +1,11 @@
-# @claude-flow/swarm
+# @cortex-agent/swarm
 
-[![npm version](https://img.shields.io/npm/v/@claude-flow/swarm.svg)](https://www.npmjs.com/package/@claude-flow/swarm)
-[![npm downloads](https://img.shields.io/npm/dm/@claude-flow/swarm.svg)](https://www.npmjs.com/package/@claude-flow/swarm)
+[![npm version](https://img.shields.io/npm/v/@cortex-agent/swarm.svg)](https://www.npmjs.com/package/@cortex-agent/swarm)
+[![npm downloads](https://img.shields.io/npm/dm/@cortex-agent/swarm.svg)](https://www.npmjs.com/package/@cortex-agent/swarm)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue.svg)](https://www.typescriptlang.org/)
-[![ADR-003](https://img.shields.io/badge/ADR--003-Compliant-green.svg)](https://github.com/ruvnet/claude-flow)
-[![Agents](https://img.shields.io/badge/Agents-Up%20to%20100+-orange.svg)](https://github.com/ruvnet/claude-flow)
+[![ADR-003](https://img.shields.io/badge/ADR--003-Compliant-green.svg)](https://github.com/ruvnet/cortex-agent)
+[![Agents](https://img.shields.io/badge/Agents-Up%20to%20100+-orange.svg)](https://github.com/ruvnet/cortex-agent)
 
 > V3 Unified Swarm Coordination Module implementing ADR-003: Single Coordination Engine with Hive-Mind Intelligence
 
@@ -16,7 +16,7 @@ This module provides a **complete multi-agent coordination system** with hive-mi
 ### Key Components
 
 ```
-@claude-flow/swarm
+@cortex-agent/swarm
 ├── UnifiedSwarmCoordinator ⭐ CANONICAL ENGINE
 │   ├── Configurable agent count (default 15, max 100+)
 │   ├── Domain-based task routing
@@ -78,7 +78,7 @@ const enterpriseCoordinator = createUnifiedSwarmCoordinator({
 ## Quick Start (Recommended)
 
 ```typescript
-import { createUnifiedSwarmCoordinator } from '@claude-flow/swarm';
+import { createUnifiedSwarmCoordinator } from '@cortex-agent/swarm';
 
 // Create coordinator
 const coordinator = createUnifiedSwarmCoordinator({
@@ -297,7 +297,7 @@ console.log('Utilization:', {
 For existing code using `SwarmHub`, the compatibility layer is maintained:
 
 ```typescript
-import { createSwarmHub } from '@claude-flow/swarm';
+import { createSwarmHub } from '@cortex-agent/swarm';
 
 // ⚠️ DEPRECATED: Use createUnifiedSwarmCoordinator() instead
 const hub = createSwarmHub();
@@ -314,13 +314,13 @@ await coordinator.executeParallel(tasks);
 
 ```typescript
 // OLD (deprecated)
-import { createSwarmHub } from '@claude-flow/swarm';
+import { createSwarmHub } from '@cortex-agent/swarm';
 const hub = createSwarmHub();
 await hub.initialize();
 await hub.spawnAllAgents();
 
 // NEW (recommended)
-import { createUnifiedSwarmCoordinator } from '@claude-flow/swarm';
+import { createUnifiedSwarmCoordinator } from '@cortex-agent/swarm';
 const coordinator = createUnifiedSwarmCoordinator();
 await coordinator.initialize();
 await coordinator.spawnFullHierarchy();
@@ -331,7 +331,7 @@ await coordinator.spawnFullHierarchy();
 The Queen Coordinator provides intelligent task orchestration:
 
 ```typescript
-import { createQueenCoordinator } from '@claude-flow/swarm';
+import { createQueenCoordinator } from '@cortex-agent/swarm';
 
 const queen = createQueenCoordinator({
   swarmCoordinator: coordinator,
@@ -384,7 +384,7 @@ const decision = await queen.coordinateConsensus({
 Six attention mechanisms for intelligent agent coordination:
 
 ```typescript
-import { createAttentionCoordinator } from '@claude-flow/swarm';
+import { createAttentionCoordinator } from '@cortex-agent/swarm';
 
 const attention = createAttentionCoordinator({
   topology: coordinator.getTopology(),
@@ -418,7 +418,7 @@ const graphResult = await attention.coordinate(agents, task, { type: 'graph-rope
 Coordinate multiple swarms with ephemeral agents:
 
 ```typescript
-import { createFederationHub, getDefaultFederationHub } from '@claude-flow/swarm';
+import { createFederationHub, getDefaultFederationHub } from '@cortex-agent/swarm';
 
 // Get singleton hub or create custom
 const hub = getDefaultFederationHub();
@@ -568,8 +568,8 @@ coordinator.on('swarm.initialized', (event) => {
 This module can integrate with agentic-flow@alpha for enhanced capabilities:
 
 ```typescript
-import { createUnifiedSwarmCoordinator } from '@claude-flow/swarm';
-import { AgenticFlowBridge } from '@claude-flow/integration';
+import { createUnifiedSwarmCoordinator } from '@cortex-agent/swarm';
+import { AgenticFlowBridge } from '@cortex-agent/integration';
 
 // Connect to agentic-flow for enhanced features
 const bridge = new AgenticFlowBridge({

@@ -27,14 +27,14 @@ SPARC development workflow (Specification, Pseudocode, Architecture, Refinement,
 Define requirements and acceptance criteria
 
 ```bash
-npx @claude-flow/cli hooks route --task "specification: [requirements]"
+npx @cortex-agent/cli hooks route --task "specification: [requirements]"
 ```
 
 ### Architecture Phase
 Design system structure
 
 ```bash
-npx @claude-flow/cli hooks route --task "architecture: [design]"
+npx @cortex-agent/cli hooks route --task "architecture: [design]"
 ```
 
 

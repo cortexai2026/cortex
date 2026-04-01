@@ -1,5 +1,5 @@
 /**
- * @claude-flow/browser - MCP Tools Index
+ * @cortex-agent/browser - MCP Tools Index
  */
 
 export { browserTools, type MCPTool } from './browser-tools.js';

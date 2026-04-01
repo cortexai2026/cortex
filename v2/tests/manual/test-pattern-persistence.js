@@ -24,7 +24,7 @@ function log(message, color = 'reset') {
 function callMCP(tool, args) {
   return new Promise((resolve, reject) => {
     const proc = spawn('npx', [
-      'claude-flow@alpha',
+      'cortex-agent@alpha',
       'mcp',
       'call',
       '--tool',

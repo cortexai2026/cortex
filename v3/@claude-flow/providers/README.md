@@ -1,12 +1,12 @@
-# @claude-flow/providers
+# @cortex-agent/providers
 
-[![npm version](https://img.shields.io/npm/v/@claude-flow/providers.svg)](https://www.npmjs.com/package/@claude-flow/providers)
-[![npm downloads](https://img.shields.io/npm/dm/@claude-flow/providers.svg)](https://www.npmjs.com/package/@claude-flow/providers)
+[![npm version](https://img.shields.io/npm/v/@cortex-agent/providers.svg)](https://www.npmjs.com/package/@cortex-agent/providers)
+[![npm downloads](https://img.shields.io/npm/dm/@cortex-agent/providers.svg)](https://www.npmjs.com/package/@cortex-agent/providers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue.svg)](https://www.typescriptlang.org/)
-[![Providers](https://img.shields.io/badge/Providers-6+-orange.svg)](https://github.com/ruvnet/claude-flow)
+[![Providers](https://img.shields.io/badge/Providers-6+-orange.svg)](https://github.com/ruvnet/cortex-agent)
 
-> Multi-LLM Provider System for Claude Flow V3 - unified interface for Anthropic, OpenAI, Google, Cohere, Ollama, and RuVector with intelligent load balancing, automatic failover, and cost optimization.
+> Multi-LLM Provider System for Cortex Agent V3 - unified interface for Anthropic, OpenAI, Google, Cohere, Ollama, and RuVector with intelligent load balancing, automatic failover, and cost optimization.
 
 ## Features
 
@@ -55,13 +55,13 @@
 ## Installation
 
 ```bash
-npm install @claude-flow/providers
+npm install @cortex-agent/providers
 ```
 
 ## Quick Start
 
 ```typescript
-import { createProviderManager } from '@claude-flow/providers';
+import { createProviderManager } from '@cortex-agent/providers';
 
 // Create provider manager with multiple providers
 const manager = await createProviderManager({
@@ -110,7 +110,7 @@ console.log('Cost:', response.cost?.totalCost);
 ### ProviderManager
 
 ```typescript
-import { ProviderManager, createProviderManager } from '@claude-flow/providers';
+import { ProviderManager, createProviderManager } from '@cortex-agent/providers';
 
 // Create and initialize
 const manager = await createProviderManager(config);
@@ -178,7 +178,7 @@ import {
   CohereProvider,
   OllamaProvider,
   RuVectorProvider,
-} from '@claude-flow/providers';
+} from '@cortex-agent/providers';
 
 // Create provider directly
 const anthropic = new AnthropicProvider({
@@ -410,7 +410,7 @@ import type {
   AuthenticationError,
   ModelNotFoundError,
   ProviderUnavailableError,
-} from '@claude-flow/providers';
+} from '@cortex-agent/providers';
 ```
 
 ## Error Handling
@@ -422,7 +422,7 @@ import {
   AuthenticationError,
   isLLMProviderError,
   isRateLimitError,
-} from '@claude-flow/providers';
+} from '@cortex-agent/providers';
 
 try {
   const response = await manager.complete(request);
@@ -538,11 +538,11 @@ OPENAI_BASE_URL=https://api.openai.com/v1
 | Cache lookup | <1ms |
 | Health check | <2s |
 
-## Integration with Claude Flow
+## Integration with Cortex Agent
 
 ```typescript
-import { createProviderManager } from '@claude-flow/providers';
-import { createUnifiedSwarmCoordinator } from '@claude-flow/swarm';
+import { createProviderManager } from '@cortex-agent/providers';
+import { createUnifiedSwarmCoordinator } from '@cortex-agent/swarm';
 
 // Create provider manager
 const providers = await createProviderManager({
@@ -564,10 +564,10 @@ const coordinator = createUnifiedSwarmCoordinator({
 
 ## Related Packages
 
-- [@claude-flow/embeddings](../embeddings) - Embedding generation
-- [@claude-flow/memory](../memory) - Vector storage and retrieval
-- [@claude-flow/swarm](../swarm) - Multi-agent coordination
-- [@claude-flow/neural](../neural) - SONA learning integration
+- [@cortex-agent/embeddings](../embeddings) - Embedding generation
+- [@cortex-agent/memory](../memory) - Vector storage and retrieval
+- [@cortex-agent/swarm](../swarm) - Multi-agent coordination
+- [@cortex-agent/neural](../neural) - SONA learning integration
 
 ## License
 

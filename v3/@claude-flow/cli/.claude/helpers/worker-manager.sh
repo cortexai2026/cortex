@@ -1,12 +1,12 @@
 #!/bin/bash
-# Claude Flow V3 - Unified Worker Manager
+# Cortex Agent V3 - Unified Worker Manager
 # Orchestrates all background workers with proper scheduling
 
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
-METRICS_DIR="$PROJECT_ROOT/.claude-flow/metrics"
+METRICS_DIR="$PROJECT_ROOT/.cortex-agent/metrics"
 PID_FILE="$METRICS_DIR/worker-manager.pid"
 LOG_FILE="$METRICS_DIR/worker-manager.log"
 
@@ -65,7 +65,7 @@ run_daemon() {
 
 status_all() {
   echo "╔══════════════════════════════════════════════════════════════╗"
-  echo "║           Claude Flow V3 - Worker Status                      ║"
+  echo "║           Cortex Agent V3 - Worker Status                      ║"
   echo "╠══════════════════════════════════════════════════════════════╣"
 
   for worker_def in "${WORKERS[@]}"; do
@@ -140,7 +140,7 @@ case "${1:-help}" in
     ;;
   "help"|*)
     cat << EOF
-Claude Flow V3 - Worker Manager
+Cortex Agent V3 - Worker Manager
 
 Usage: $0 <command> [options]
 

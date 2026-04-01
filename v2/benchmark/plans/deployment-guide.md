@@ -31,12 +31,12 @@ from setuptools import setup, find_packages
 setup(
     name="swarm-benchmark",
     version="1.0.0",
-    description="Agent swarm benchmarking tool for Claude Flow",
+    description="Agent swarm benchmarking tool for Cortex Agent",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
-    author="Claude Flow Team",
-    author_email="support@claude-flow.dev",
-    url="https://github.com/claude-flow/swarm-benchmark",
+    author="Cortex Agent Team",
+    author_email="support@cortex-agent.dev",
+    url="https://github.com/cortex-agent/swarm-benchmark",
     packages=find_packages(),
     classifiers=[
         "Development Status :: 5 - Production/Stable",
@@ -102,12 +102,12 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "swarm-benchmark"
 dynamic = ["version"]
-description = "Agent swarm benchmarking tool for Claude Flow"
+description = "Agent swarm benchmarking tool for Cortex Agent"
 readme = "README.md"
 requires-python = ">=3.8"
 license = {text = "MIT"}
 authors = [
-    {name = "Claude Flow Team", email = "support@claude-flow.dev"},
+    {name = "Cortex Agent Team", email = "support@cortex-agent.dev"},
 ]
 keywords = ["benchmark", "swarm", "agents", "performance", "testing"]
 classifiers = [
@@ -149,10 +149,10 @@ swarm-benchmark = "swarm_benchmark.__main__:main"
 swarm-bench = "swarm_benchmark.__main__:main"
 
 [project.urls]
-Homepage = "https://github.com/claude-flow/swarm-benchmark"
+Homepage = "https://github.com/cortex-agent/swarm-benchmark"
 Documentation = "https://swarm-benchmark.readthedocs.io"
-Repository = "https://github.com/claude-flow/swarm-benchmark"
-Issues = "https://github.com/claude-flow/swarm-benchmark/issues"
+Repository = "https://github.com/cortex-agent/swarm-benchmark"
+Issues = "https://github.com/cortex-agent/swarm-benchmark/issues"
 ```
 
 ## 🐳 Docker Deployment
@@ -463,7 +463,7 @@ pip install swarm-benchmark
 pip install swarm-benchmark[dev,viz]
 
 # Install from source
-pip install git+https://github.com/claude-flow/swarm-benchmark.git
+pip install git+https://github.com/cortex-agent/swarm-benchmark.git
 ```
 
 ### Conda Installation
@@ -504,9 +504,9 @@ test:
 ```ruby
 # Formula/swarm-benchmark.rb
 class SwarmBenchmark < Formula
-  desc "Agent swarm benchmarking tool for Claude Flow"
-  homepage "https://github.com/claude-flow/swarm-benchmark"
-  url "https://github.com/claude-flow/swarm-benchmark/archive/v1.0.0.tar.gz"
+  desc "Agent swarm benchmarking tool for Cortex Agent"
+  homepage "https://github.com/cortex-agent/swarm-benchmark"
+  url "https://github.com/cortex-agent/swarm-benchmark/archive/v1.0.0.tar.gz"
   sha256 "<hash>"
   license "MIT"
 
@@ -562,8 +562,8 @@ export BENCHMARK_LOG_LEVEL=WARNING
     "rotate": true,
     "max_size": "100MB"
   },
-  "claude_flow": {
-    "endpoint": "https://api.claude-flow.com",
+  "cortex_agent": {
+    "endpoint": "https://api.cortex-agent.com",
     "timeout": 300,
     "max_concurrent": 10
   }
@@ -579,7 +579,7 @@ async def health_check():
     """Comprehensive health check endpoint"""
     checks = {
         "database": await check_database(),
-        "claude_flow": await check_claude_flow_connection(),
+        "cortex_agent": await check_cortex_agent_connection(),
         "filesystem": check_filesystem_access(),
         "memory": check_memory_usage(),
         "cpu": check_cpu_usage()

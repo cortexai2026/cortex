@@ -15,12 +15,12 @@ import {
   RvfaPublisher,
   type RvfpHeader,
   type CreatePatchOptions,
-} from '../../@claude-flow/cli/src/appliance/rvfa-distribution.js';
+} from '../../@cortex-agent/cli/src/appliance/rvfa-distribution.js';
 import {
   RvfaWriter,
   RvfaReader,
   createDefaultHeader,
-} from '../../@claude-flow/cli/src/appliance/rvfa-format.js';
+} from '../../@cortex-agent/cli/src/appliance/rvfa-format.js';
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -58,7 +58,7 @@ function buildTestRvfa(
   const secs = sections ?? [
     { id: 'kernel', data: 'kernel-payload-original' },
     { id: 'runtime', data: 'runtime-payload-original' },
-    { id: 'ruflo', data: 'ruflo-payload-original' },
+    { id: 'cortex-agent', data: 'cortex-agent-payload-original' },
   ];
   for (const s of secs) {
     writer.addSection(s.id, Buffer.from(s.data), { compression: 'none' });
@@ -280,8 +280,8 @@ describe('RvfaPatcher.applyPatch', () => {
     const runtime = reader.extractSection('runtime');
     assert.equal(runtime.toString('utf-8'), 'runtime-payload-original');
 
-    const ruflo = reader.extractSection('ruflo');
-    assert.equal(ruflo.toString('utf-8'), 'ruflo-payload-original');
+    const cortex-agent = reader.extractSection('cortex-agent');
+    assert.equal(cortex-agent.toString('utf-8'), 'cortex-agent-payload-original');
   });
 
   it('creates a backup file', async () => {

@@ -57,7 +57,7 @@ export class ClaudeCodeMCPWrapper {
   constructor() {
     this.server = new Server(
       {
-        name: 'claude-flow-wrapper',
+        name: 'cortex-agent-wrapper',
         version: '1.0.0',
       },
       {
@@ -826,7 +826,7 @@ Use the appropriate tools for each phase and maintain progress in TodoWrite.`;
     console.error('🚀 Claude-Flow MCP Server (Wrapper Mode)');
     console.error('📦 Using Claude Code MCP pass-through with SPARC prompt injection');
     console.error('🔧 All SPARC tools available with enhanced AI capabilities');
-    console.error('ℹ️  To use legacy mode, set CLAUDE_FLOW_LEGACY_MCP=true');
+    console.error('ℹ️  To use legacy mode, set CORTEX_AGENT_LEGACY_MCP=true');
     console.error('');
 
     await this.server.connect(transport);

@@ -1,11 +1,11 @@
 # Docker Validation Suite for Claude-Flow
 
-This directory contains Docker-based testing infrastructure to validate claude-flow functionality in a clean, isolated environment that simulates a remote deployment.
+This directory contains Docker-based testing infrastructure to validate cortex-agent functionality in a clean, isolated environment that simulates a remote deployment.
 
 ## 🎯 Purpose
 
 - **Clean Environment Testing**: Validates installation in a fresh environment without local dependencies
-- **Production Simulation**: Tests the actual user experience of installing and using claude-flow
+- **Production Simulation**: Tests the actual user experience of installing and using cortex-agent
 - **CI/CD Integration**: Can be used in automated testing pipelines
 - **Cross-Platform Validation**: Tests on Linux (Alpine) to ensure portability
 
@@ -25,10 +25,10 @@ This directory contains Docker-based testing infrastructure to validate claude-f
 cd tests/docker
 
 # Build the test container
-docker build -f Dockerfile.test -t claude-flow-test ../..
+docker build -f Dockerfile.test -t cortex-agent-test ../..
 
 # Run validation suite
-docker run --rm claude-flow-test sh -c "cd /home/testuser && tests/docker/run-validation.sh"
+docker run --rm cortex-agent-test sh -c "cd /home/testuser && tests/docker/run-validation.sh"
 ```
 
 ### Option 2: Interactive Testing
@@ -38,16 +38,16 @@ docker run --rm claude-flow-test sh -c "cd /home/testuser && tests/docker/run-va
 docker-compose -f docker-compose.test.yml up -d
 
 # Enter the container
-docker exec -it claude-flow-test sh
+docker exec -it cortex-agent-test sh
 
 # Inside container, run tests
 cd /home/testuser
 ./tests/docker/run-validation.sh
 
 # Or test individual commands
-./bin/claude-flow --help
-./bin/claude-flow memory store test "value"
-./bin/claude-flow agent agents
+./bin/cortex-agent --help
+./bin/cortex-agent memory store test "value"
+./bin/cortex-agent agent agents
 ```
 
 ### Option 3: Full Integration Test Suite
@@ -57,7 +57,7 @@ cd /home/testuser
 docker-compose -f docker-compose.test.yml up -d
 
 # Run integration tests
-docker-compose -f docker-compose.test.yml exec claude-flow-integration \
+docker-compose -f docker-compose.test.yml exec cortex-agent-integration \
   sh -c "cd /home/testuser && ./tests/docker/run-validation.sh"
 
 # Clean up
@@ -155,7 +155,7 @@ Failed: 0
 
 ```bash
 # Clean build
-docker build --no-cache -f Dockerfile.test -t claude-flow-test ../..
+docker build --no-cache -f Dockerfile.test -t cortex-agent-test ../..
 ```
 
 ### Issue: Permission errors
@@ -171,7 +171,7 @@ docker build --no-cache -f Dockerfile.test -t claude-flow-test ../..
 ```bash
 # Increase timeout in validation script
 # Or run specific test phases individually
-docker exec -it claude-flow-test ./bin/claude-flow --help
+docker exec -it cortex-agent-test ./bin/cortex-agent --help
 ```
 
 ## 🎯 CI/CD Integration
@@ -192,11 +192,11 @@ jobs:
       - name: Build test container
         run: |
           cd tests/docker
-          docker build -f Dockerfile.test -t claude-flow-test ../..
+          docker build -f Dockerfile.test -t cortex-agent-test ../..
 
       - name: Run validation suite
         run: |
-          docker run --rm claude-flow-test \
+          docker run --rm cortex-agent-test \
             sh -c "cd /home/testuser && tests/docker/run-validation.sh"
 ```
 
@@ -206,7 +206,7 @@ To add new validation tests, edit `run-validation.sh`:
 
 ```bash
 test_command "Your test description" \
-    "./bin/claude-flow your-command" \
+    "./bin/cortex-agent your-command" \
     "expected-output-pattern"
 ```
 
@@ -215,7 +215,7 @@ test_command "Your test description" \
 ```bash
 # Build for multiple platforms
 docker buildx build --platform linux/amd64,linux/arm64 \
-    -f Dockerfile.test -t claude-flow-test ../..
+    -f Dockerfile.test -t cortex-agent-test ../..
 ```
 
 ## 🔒 Security Testing
@@ -233,7 +233,7 @@ The validation suite includes security tests:
 
 ## 🤝 Contributing
 
-When adding new features to claude-flow:
+When adding new features to cortex-agent:
 1. Add corresponding tests to `run-validation.sh`
 2. Update the test coverage section in this README
 3. Run full validation suite before submitting PR
@@ -241,6 +241,6 @@ When adding new features to claude-flow:
 ## 📞 Support
 
 For issues with Docker validation:
-- Check Docker logs: `docker logs claude-flow-test`
+- Check Docker logs: `docker logs cortex-agent-test`
 - Review test output for specific failures
 - Open issue on GitHub with validation output

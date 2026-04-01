@@ -18,7 +18,7 @@ function getConnectionConfig(ctx: CommandContext) {
     user: (ctx.flags.user as string) || process.env.PGUSER || 'postgres',
     password: (ctx.flags.password as string) || process.env.PGPASSWORD || '',
     ssl: (ctx.flags.ssl as boolean) || process.env.PGSSLMODE === 'require',
-    schema: (ctx.flags.schema as string) || 'claude_flow',
+    schema: (ctx.flags.schema as string) || 'cortex_agent',
   };
 }
 
@@ -146,14 +146,14 @@ export const benchmarkCommand: Command = {
       short: 's',
       description: 'Schema name',
       type: 'string',
-      default: 'claude_flow',
+      default: 'cortex_agent',
     },
   ],
   examples: [
-    { command: 'claude-flow ruvector benchmark', description: 'Run default benchmark' },
-    { command: 'claude-flow ruvector benchmark --vectors 50000', description: 'Benchmark with 50k vectors' },
-    { command: 'claude-flow ruvector benchmark --index ivfflat', description: 'Test IVFFlat index' },
-    { command: 'claude-flow ruvector benchmark --dimensions 768 --metric l2', description: 'Custom dimensions and metric' },
+    { command: 'cortex-agent ruvector benchmark', description: 'Run default benchmark' },
+    { command: 'cortex-agent ruvector benchmark --vectors 50000', description: 'Benchmark with 50k vectors' },
+    { command: 'cortex-agent ruvector benchmark --index ivfflat', description: 'Test IVFFlat index' },
+    { command: 'cortex-agent ruvector benchmark --dimensions 768 --metric l2', description: 'Custom dimensions and metric' },
   ],
   action: async (ctx: CommandContext): Promise<CommandResult> => {
     const config = getConnectionConfig(ctx);

@@ -3,7 +3,7 @@
  *
  * Supports GPT-4o, GPT-4, o1, and other OpenAI models.
  *
- * @module @claude-flow/providers/openai-provider
+ * @module @cortex-agent/providers/openai-provider
  */
 
 import { BaseProvider, BaseProviderOptions } from './base-provider.js';

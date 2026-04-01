@@ -129,7 +129,7 @@ function showFallbackHelp() {
   console.log('');
   console.log('To install and run:');
   console.log('  1. Install tsx: npm install -g tsx');
-  console.log('  2. Run: claude-flow <command>');
+  console.log('  2. Run: cortex-agent <command>');
   console.log('');
   console.log('Or use directly:');
   console.log('  node src/cli/simple-cli.js <command>');

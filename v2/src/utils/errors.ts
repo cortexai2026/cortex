@@ -5,14 +5,14 @@
 /**
  * Base error class for all Claude-Flow errors
  */
-export class ClaudeFlowError extends Error {
+export class CortexAgentError extends Error {
   constructor(
     message: string,
     public readonly code: string,
     public readonly details?: unknown,
   ) {
     super(message);
-    this.name = 'ClaudeFlowError';
+    this.name = 'CortexAgentError';
     Error.captureStackTrace(this, this.constructor);
   }
 
@@ -30,7 +30,7 @@ export class ClaudeFlowError extends Error {
 /**
  * Terminal-related errors
  */
-export class TerminalError extends ClaudeFlowError {
+export class TerminalError extends CortexAgentError {
   constructor(message: string, details?: unknown) {
     super(message, 'TERMINAL_ERROR', details);
     this.name = 'TerminalError';
@@ -56,7 +56,7 @@ export class TerminalCommandError extends TerminalError {
 /**
  * Memory-related errors
  */
-export class MemoryError extends ClaudeFlowError {
+export class MemoryError extends CortexAgentError {
   constructor(message: string, details?: unknown) {
     super(message, 'MEMORY_ERROR', details);
     this.name = 'MemoryError';
@@ -82,7 +82,7 @@ export class MemoryConflictError extends MemoryError {
 /**
  * Coordination-related errors
  */
-export class CoordinationError extends ClaudeFlowError {
+export class CoordinationError extends CortexAgentError {
   constructor(message: string, details?: unknown) {
     super(message, 'COORDINATION_ERROR', details);
     this.name = 'CoordinationError';
@@ -112,7 +112,7 @@ export class ResourceLockError extends CoordinationError {
 /**
  * MCP-related errors
  */
-export class MCPError extends ClaudeFlowError {
+export class MCPError extends CortexAgentError {
   constructor(message: string, details?: unknown) {
     super(message, 'MCP_ERROR', details);
     this.name = 'MCPError';
@@ -138,7 +138,7 @@ export class MCPMethodNotFoundError extends MCPError {
 /**
  * Configuration errors
  */
-export class ConfigError extends ClaudeFlowError {
+export class ConfigError extends CortexAgentError {
   constructor(message: string, details?: unknown) {
     super(message, 'CONFIG_ERROR', details);
     this.name = 'ConfigError';
@@ -156,7 +156,7 @@ export class ValidationError extends ConfigError {
 /**
  * Task-related errors
  */
-export class TaskError extends ClaudeFlowError {
+export class TaskError extends CortexAgentError {
   constructor(message: string, details?: unknown) {
     super(message, 'TASK_ERROR', details);
     this.name = 'TaskError';
@@ -182,7 +182,7 @@ export class TaskDependencyError extends TaskError {
 /**
  * System errors
  */
-export class SystemError extends ClaudeFlowError {
+export class SystemError extends CortexAgentError {
   constructor(message: string, details?: unknown) {
     super(message, 'SYSTEM_ERROR', details);
     this.name = 'SystemError';
@@ -215,8 +215,8 @@ export class ShutdownError extends SystemError {
 /**
  * Error utilities
  */
-export function isClaudeFlowError(error: unknown): error is ClaudeFlowError {
-  return error instanceof ClaudeFlowError;
+export function isCortexAgentError(error: unknown): error is CortexAgentError {
+  return error instanceof CortexAgentError;
 }
 
 export function formatError(error: unknown): string {
@@ -227,7 +227,7 @@ export function formatError(error: unknown): string {
 }
 
 export function getErrorDetails(error: unknown): unknown {
-  if (isClaudeFlowError(error)) {
+  if (isCortexAgentError(error)) {
     return error.details;
   }
   return undefined;

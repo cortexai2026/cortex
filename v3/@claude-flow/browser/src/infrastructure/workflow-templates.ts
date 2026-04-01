@@ -1,5 +1,5 @@
 /**
- * @claude-flow/browser - Workflow Templates
+ * @cortex-agent/browser - Workflow Templates
  * Pre-built workflow templates for common browser automation tasks
  */
 

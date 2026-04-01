@@ -5,7 +5,7 @@ Execute predefined pipelines for common development workflows.
 ## Usage
 
 ```bash
-claude-flow stream-chain pipeline <type> [options]
+cortex-agent stream-chain pipeline <type> [options]
 ```
 
 ## Available Pipelines
@@ -14,7 +14,7 @@ claude-flow stream-chain pipeline <type> [options]
 Code analysis and improvement pipeline.
 
 ```bash
-claude-flow stream-chain pipeline analysis
+cortex-agent stream-chain pipeline analysis
 ```
 
 **Steps:**
@@ -26,7 +26,7 @@ claude-flow stream-chain pipeline analysis
 Automated refactoring workflow.
 
 ```bash
-claude-flow stream-chain pipeline refactor
+cortex-agent stream-chain pipeline refactor
 ```
 
 **Steps:**
@@ -38,7 +38,7 @@ claude-flow stream-chain pipeline refactor
 Comprehensive test generation.
 
 ```bash
-claude-flow stream-chain pipeline test
+cortex-agent stream-chain pipeline test
 ```
 
 **Steps:**
@@ -50,7 +50,7 @@ claude-flow stream-chain pipeline test
 Performance optimization pipeline.
 
 ```bash
-claude-flow stream-chain pipeline optimize
+cortex-agent stream-chain pipeline optimize
 ```
 
 **Steps:**
@@ -68,22 +68,22 @@ claude-flow stream-chain pipeline optimize
 
 ### Run Analysis Pipeline
 ```bash
-claude-flow stream-chain pipeline analysis
+cortex-agent stream-chain pipeline analysis
 ```
 
 ### Refactor with Extended Timeout
 ```bash
-claude-flow stream-chain pipeline refactor --timeout 60
+cortex-agent stream-chain pipeline refactor --timeout 60
 ```
 
 ### Verbose Test Generation
 ```bash
-claude-flow stream-chain pipeline test --verbose
+cortex-agent stream-chain pipeline test --verbose
 ```
 
 ### Performance Optimization
 ```bash
-claude-flow stream-chain pipeline optimize --debug
+cortex-agent stream-chain pipeline optimize --debug
 ```
 
 ## Output
@@ -96,7 +96,7 @@ Each pipeline generates:
 
 ## Custom Pipelines
 
-Define custom pipelines in `.claude-flow/config.json`:
+Define custom pipelines in `.cortex-agent/config.json`:
 
 ```json
 {
@@ -117,5 +117,5 @@ Define custom pipelines in `.claude-flow/config.json`:
 
 Then run:
 ```bash
-claude-flow stream-chain pipeline security
+cortex-agent stream-chain pipeline security
 ```

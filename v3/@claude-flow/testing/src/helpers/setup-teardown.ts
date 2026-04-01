@@ -1,5 +1,5 @@
 /**
- * @claude-flow/testing - Setup & Teardown Helpers
+ * @cortex-agent/testing - Setup & Teardown Helpers
  *
  * Global setup and teardown utilities for V3 module testing.
  * Provides test isolation, resource cleanup, and environment management.
@@ -632,7 +632,7 @@ export function setupV3Tests(config: V3TestConfig = {}): void {
     suppressConsole: config.suppressConsole ?? false,
     env: {
       NODE_ENV: 'test',
-      CLAUDE_FLOW_MODE: 'test',
+      CORTEX_AGENT_MODE: 'test',
       ...config.env,
     },
   });

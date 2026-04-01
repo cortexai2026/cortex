@@ -1,5 +1,5 @@
 /**
- * @claude-flow/mcp - Session Manager
+ * @cortex-agent/mcp - Session Manager
  *
  * MCP session lifecycle management
  */

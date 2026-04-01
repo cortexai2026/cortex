@@ -31,7 +31,7 @@ async function getBridge(): Promise<typeof import('./memory-bridge.js') | null> 
  * Vector embeddings enabled for semantic search
  */
 export const MEMORY_SCHEMA_V3 = `
--- RuFlo V3 Memory Database
+-- Cortex Agent V3 Memory Database
 -- Version: 3.0.0
 -- Features: Pattern learning, vector embeddings, temporal decay, migration tracking
 
@@ -1055,7 +1055,7 @@ export async function checkAndMigrateLegacy(options: {
     path.join(process.cwd(), 'memory.db'),
     path.join(process.cwd(), '.claude/memory.db'),
     path.join(process.cwd(), 'data/memory.db'),
-    path.join(process.cwd(), '.claude-flow/memory.db')
+    path.join(process.cwd(), '.cortex-agent/memory.db')
   ];
 
   for (const legacyPath of legacyPaths) {
@@ -1104,7 +1104,7 @@ export async function checkAndMigrateLegacy(options: {
  * a singleton ControllerRegistry and initializes it with the given dbPath.
  * After this call, all enabled controllers are ready for immediate use.
  *
- * Failures are isolated: if @claude-flow/memory or agentdb is not installed,
+ * Failures are isolated: if @cortex-agent/memory or agentdb is not installed,
  * this returns an empty result without throwing.
  */
 async function activateControllerRegistry(
@@ -2063,7 +2063,7 @@ export async function storeEntry(options: {
 
   try {
     if (!fs.existsSync(dbPath)) {
-      return { success: false, id: '', error: 'Database not initialized. Run: claude-flow memory init' };
+      return { success: false, id: '', error: 'Database not initialized. Run: cortex-agent memory init' };
     }
 
     // Ensure schema has all required columns (migration for older DBs)

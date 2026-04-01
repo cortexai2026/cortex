@@ -1,5 +1,5 @@
 /**
- * Core utility tests for @claude-flow/embeddings
+ * Core utility tests for @cortex-agent/embeddings
  * Tests chunking, normalization, and hyperbolic without heavy deps
  */
 

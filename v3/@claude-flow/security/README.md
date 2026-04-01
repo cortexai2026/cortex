@@ -1,12 +1,12 @@
-# @claude-flow/security
+# @cortex-agent/security
 
-[![npm version](https://img.shields.io/npm/v/@claude-flow/security.svg)](https://www.npmjs.com/package/@claude-flow/security)
-[![npm downloads](https://img.shields.io/npm/dm/@claude-flow/security.svg)](https://www.npmjs.com/package/@claude-flow/security)
+[![npm version](https://img.shields.io/npm/v/@cortex-agent/security.svg)](https://www.npmjs.com/package/@cortex-agent/security)
+[![npm downloads](https://img.shields.io/npm/dm/@cortex-agent/security.svg)](https://www.npmjs.com/package/@cortex-agent/security)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue.svg)](https://www.typescriptlang.org/)
-[![Security Audit](https://img.shields.io/badge/Security-Audited-green.svg)](https://github.com/ruvnet/claude-flow)
+[![Security Audit](https://img.shields.io/badge/Security-Audited-green.svg)](https://github.com/ruvnet/cortex-agent)
 
-> Comprehensive security module for Claude Flow V3 - CVE fixes, input validation, path security, and secure credential management.
+> Comprehensive security module for Cortex Agent V3 - CVE fixes, input validation, path security, and secure credential management.
 
 ## Features
 
@@ -21,13 +21,13 @@
 ## Installation
 
 ```bash
-npm install @claude-flow/security
+npm install @cortex-agent/security
 ```
 
 ## Quick Start
 
 ```typescript
-import { createSecurityModule } from '@claude-flow/security';
+import { createSecurityModule } from '@cortex-agent/security';
 
 // Create a complete security module
 const security = createSecurityModule({
@@ -55,7 +55,7 @@ const creds = await security.credentialGenerator.generate();
 ### Password Hashing (CVE-2 Fix)
 
 ```typescript
-import { PasswordHasher, createPasswordHasher } from '@claude-flow/security';
+import { PasswordHasher, createPasswordHasher } from '@cortex-agent/security';
 
 const hasher = createPasswordHasher({ rounds: 12 });
 
@@ -72,7 +72,7 @@ const needsRehash = hasher.needsRehash(hash);
 ### Credential Generation (CVE-3 Fix)
 
 ```typescript
-import { CredentialGenerator, generateCredentials } from '@claude-flow/security';
+import { CredentialGenerator, generateCredentials } from '@cortex-agent/security';
 
 const generator = new CredentialGenerator();
 
@@ -92,7 +92,7 @@ const creds = generateCredentials({
 ### Safe Command Execution (HIGH-1 Fix)
 
 ```typescript
-import { SafeExecutor, createDevelopmentExecutor } from '@claude-flow/security';
+import { SafeExecutor, createDevelopmentExecutor } from '@cortex-agent/security';
 
 const executor = createDevelopmentExecutor();
 
@@ -109,7 +109,7 @@ const result2 = await executor.execute('npm', ['install'], {
 ### Path Validation (HIGH-2 Fix)
 
 ```typescript
-import { PathValidator, createProjectPathValidator } from '@claude-flow/security';
+import { PathValidator, createProjectPathValidator } from '@cortex-agent/security';
 
 const validator = createProjectPathValidator('/workspaces/project');
 
@@ -131,7 +131,7 @@ import {
   EmailSchema,
   PasswordSchema,
   SpawnAgentSchema
-} from '@claude-flow/security';
+} from '@cortex-agent/security';
 
 // Validate email
 const email = EmailSchema.parse('user@example.com');
@@ -146,7 +146,7 @@ const agentRequest = SpawnAgentSchema.parse({
 });
 
 // Sanitize HTML
-import { sanitizeHtml } from '@claude-flow/security';
+import { sanitizeHtml } from '@cortex-agent/security';
 const safe = sanitizeHtml('<script>alert("xss")</script>Hello');
 // 'Hello'
 ```
@@ -154,7 +154,7 @@ const safe = sanitizeHtml('<script>alert("xss")</script>Hello');
 ### Token Generation
 
 ```typescript
-import { TokenGenerator, quickGenerate } from '@claude-flow/security';
+import { TokenGenerator, quickGenerate } from '@cortex-agent/security';
 
 const generator = new TokenGenerator({
   hmacSecret: process.env.HMAC_SECRET!
@@ -184,13 +184,13 @@ import {
   MAX_PASSWORD_LENGTH,    // 72 (bcrypt limit)
   DEFAULT_TOKEN_EXPIRATION,   // 3600 (1 hour)
   DEFAULT_SESSION_EXPIRATION  // 86400 (24 hours)
-} from '@claude-flow/security';
+} from '@cortex-agent/security';
 ```
 
 ## Security Audit
 
 ```typescript
-import { auditSecurityConfig } from '@claude-flow/security';
+import { auditSecurityConfig } from '@cortex-agent/security';
 
 const warnings = auditSecurityConfig({
   bcryptRounds: 10,
@@ -226,8 +226,8 @@ const warnings = auditSecurityConfig({
 
 ## Related Packages
 
-- [@claude-flow/shared](../shared) - Shared types and utilities
-- [@claude-flow/swarm](../swarm) - Swarm coordination (secure agent spawning)
+- [@cortex-agent/shared](../shared) - Shared types and utilities
+- [@cortex-agent/swarm](../swarm) - Swarm coordination (secure agent spawning)
 
 ## License
 

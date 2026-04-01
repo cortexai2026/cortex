@@ -25,7 +25,7 @@ async function main() {
 
   const logger = new ConsoleLogger();
 
-  logger.info('[claude-flow-mcp] Claude-Flow MCP server starting', {
+  logger.info('[cortex-agent-mcp] Claude-Flow MCP server starting', {
     version: VERSION,
     phase: 'Phase 4 - SDK Integration',
     features: ['Parallel Agent Spawning', 'Real-Time Query Control', 'Query Monitoring']
@@ -35,8 +35,8 @@ async function main() {
     // Create orchestrator for MCP tools
     const orchestrator = await createOrchestrator({
       logger,
-      enableNeural: process.env.CLAUDE_FLOW_NEURAL_ENABLED === 'true',
-      enableWasm: process.env.CLAUDE_FLOW_WASM_ENABLED === 'true',
+      enableNeural: process.env.CORTEX_AGENT_NEURAL_ENABLED === 'true',
+      enableWasm: process.env.CORTEX_AGENT_WASM_ENABLED === 'true',
     });
 
     // Create and start MCP server
@@ -50,27 +50,27 @@ async function main() {
 
     await server.start();
 
-    logger.success('[claude-flow-mcp] Server started successfully', {
+    logger.success('[cortex-agent-mcp] Server started successfully', {
       transport: 'stdio',
-      tools: 'claude-flow + swarm + ruv-swarm',
+      tools: 'cortex-agent + swarm + ruv-swarm',
       phase4Tools: ['agents_spawn_parallel', 'query_control', 'query_list']
     });
 
     // Handle graceful shutdown
     process.on('SIGINT', async () => {
-      logger.info('[claude-flow-mcp] Shutting down gracefully...');
+      logger.info('[cortex-agent-mcp] Shutting down gracefully...');
       await server.stop();
       process.exit(0);
     });
 
     process.on('SIGTERM', async () => {
-      logger.info('[claude-flow-mcp] Shutting down gracefully...');
+      logger.info('[cortex-agent-mcp] Shutting down gracefully...');
       await server.stop();
       process.exit(0);
     });
 
   } catch (error) {
-    logger.error('[claude-flow-mcp] Failed to start server', { error });
+    logger.error('[cortex-agent-mcp] Failed to start server', { error });
     process.exit(1);
   }
 }

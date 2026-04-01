@@ -129,7 +129,7 @@ async function main() {
   console.log('\n' + colors.bold('Manual Testing Instructions:'));
   console.log('1. Test with actual Claude CLI (if available):');
   console.log('   ./swarm-demo.ts "Build a simple calculator"');
-  console.log('   ./bin/claude-flow swarm "Create a REST API"');
+  console.log('   ./bin/cortex-agent swarm "Create a REST API"');
   console.log('\n2. Test various strategies:');
   console.log('   ./swarm-demo.ts "Research best practices" --strategy research');
   console.log('   ./swarm-demo.ts "Implement feature" --strategy development');

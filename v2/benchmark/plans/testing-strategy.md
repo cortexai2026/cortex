@@ -198,8 +198,8 @@ def create_test_tasks(count: int) -> List[Task]:
 Mock external dependencies for isolated testing.
 
 ```python
-# tests/mocks/claude_flow_client.py
-class MockClaudeFlowClient:
+# tests/mocks/cortex_agent_client.py
+class MockCortexAgentClient:
     def __init__(self):
         self.calls = []
     

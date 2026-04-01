@@ -105,14 +105,14 @@ describe('resolveAutoMemoryDir', () => {
 
 describe('findGitRoot', () => {
   it('should find git root for a directory inside a repo', () => {
-    // We know /workspaces/claude-flow is a git repo
-    const root = findGitRoot('/workspaces/claude-flow/v3/@claude-flow/memory');
-    expect(root).toBe('/workspaces/claude-flow');
+    // We know /workspaces/cortex-agent is a git repo
+    const root = findGitRoot('/workspaces/cortex-agent/v3/@cortex-agent/memory');
+    expect(root).toBe('/workspaces/cortex-agent');
   });
 
   it('should return the directory itself if it is the git root', () => {
-    const root = findGitRoot('/workspaces/claude-flow');
-    expect(root).toBe('/workspaces/claude-flow');
+    const root = findGitRoot('/workspaces/cortex-agent');
+    expect(root).toBe('/workspaces/cortex-agent');
   });
 
   it('should return null for root filesystem', () => {
@@ -588,7 +588,7 @@ Already in DB
       await bridge.curateIndex();
 
       const indexContent = fsSync.readFileSync(bridge.getIndexPath(), 'utf-8');
-      expect(indexContent).toContain('# Claude Flow V3 Project Memory');
+      expect(indexContent).toContain('# Cortex Agent V3 Project Memory');
       expect(indexContent).toContain('Init HNSW before search');
       expect(indexContent).toContain('Use Int8 quantization');
     });

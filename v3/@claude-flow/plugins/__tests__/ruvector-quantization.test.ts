@@ -7,7 +7,7 @@
  * - Product quantization (PQ)
  * - Recall accuracy with quantization
  *
- * @module @claude-flow/plugins/__tests__/ruvector-quantization
+ * @module @cortex-agent/plugins/__tests__/ruvector-quantization
  */
 
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';

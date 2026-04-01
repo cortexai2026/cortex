@@ -99,8 +99,8 @@ remove_file ".claude/test-reasoningbank-hooks.sh"
 
 echo ""
 echo "=== Phase 5: Remove Empty Directories ==="
-if [ -d "claude-flow-wiki" ] && [ -z "$(ls -A claude-flow-wiki 2>/dev/null)" ]; then
-    remove_dir "claude-flow-wiki"
+if [ -d "cortex-agent-wiki" ] && [ -z "$(ls -A cortex-agent-wiki 2>/dev/null)" ]; then
+    remove_dir "cortex-agent-wiki"
 fi
 
 echo ""

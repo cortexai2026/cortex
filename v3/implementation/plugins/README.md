@@ -14,9 +14,9 @@ The V3 Plugin System implements a **microkernel architecture** enabling modular 
 ## Quick Start
 
 ```typescript
-import { ClaudeFlowPlugin, PluginContext } from '@claude-flow/shared';
+import { CortexAgentPlugin, PluginContext } from '@cortex-agent/shared';
 
-class MyPlugin implements ClaudeFlowPlugin {
+class MyPlugin implements CortexAgentPlugin {
   readonly name = 'my-plugin';
   readonly version = '1.0.0';
 
@@ -57,12 +57,12 @@ class MyPlugin implements ClaudeFlowPlugin {
 
 ## Core Components
 
-### 1. ClaudeFlowPlugin Interface
+### 1. CortexAgentPlugin Interface
 
 All plugins must implement this interface:
 
 ```typescript
-interface ClaudeFlowPlugin {
+interface CortexAgentPlugin {
   // Required
   readonly name: string;
   readonly version: string;
@@ -272,7 +272,7 @@ uninitialized → initializing → initialized → shutting-down → shutdown
 Plugins can declare dependencies on other plugins:
 
 ```typescript
-class DependentPlugin implements ClaudeFlowPlugin {
+class DependentPlugin implements CortexAgentPlugin {
   readonly name = 'dependent-plugin';
   readonly version = '1.0.0';
   readonly dependencies = ['base-plugin', 'auth-plugin'];
@@ -291,7 +291,7 @@ The PluginLoader:
 
 ## Official Plugins
 
-Located in `@claude-flow/shared/src/plugins/official/`:
+Located in `@cortex-agent/shared/src/plugins/official/`:
 
 ### Maestro Plugin
 
@@ -310,7 +310,7 @@ Collective intelligence coordination:
 ## Error Handling
 
 ```typescript
-import { PluginError, PluginErrorCode } from '@claude-flow/shared';
+import { PluginError, PluginErrorCode } from '@cortex-agent/shared';
 
 // Error codes
 type PluginErrorCode =

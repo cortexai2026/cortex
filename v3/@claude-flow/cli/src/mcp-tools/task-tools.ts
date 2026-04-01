@@ -9,7 +9,7 @@ import { join } from 'node:path';
 import type { MCPTool } from './types.js';
 
 // Storage paths
-const STORAGE_DIR = '.claude-flow';
+const STORAGE_DIR = '.cortex-agent';
 const TASK_DIR = 'tasks';
 const TASK_FILE = 'store.json';
 

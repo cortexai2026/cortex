@@ -55,7 +55,7 @@ export interface SDKConfiguration {
   };
 }
 
-export class ClaudeFlowSDKAdapter {
+export class CortexAgentSDKAdapter {
   private sdk: ClaudeCodeSDK;
 
   constructor(config: SDKConfiguration) {
@@ -85,19 +85,19 @@ export class ClaudeFlowSDKAdapter {
 
 **Tests**: `src/sdk/__tests__/sdk-config.test.ts`
 ```typescript
-import { ClaudeFlowSDKAdapter } from '../sdk-config';
+import { CortexAgentSDKAdapter } from '../sdk-config';
 import { ClaudeCodeSDK } from '@anthropic-ai/claude-code';
 
 describe('SDK Configuration', () => {
   it('should initialize SDK with default configuration', () => {
-    const adapter = new ClaudeFlowSDKAdapter({
+    const adapter = new CortexAgentSDKAdapter({
       apiKey: 'test-key'
     });
     expect(adapter.getSDK()).toBeInstanceOf(ClaudeCodeSDK);
   });
 
   it('should apply custom retry policy', () => {
-    const adapter = new ClaudeFlowSDKAdapter({
+    const adapter = new CortexAgentSDKAdapter({
       apiKey: 'test-key',
       retryPolicy: {
         maxAttempts: 5,
@@ -118,7 +118,7 @@ describe('SDK Configuration', () => {
 
 **File**: `src/sdk/compatibility-layer.ts`
 ```typescript
-import { ClaudeFlowSDKAdapter } from './sdk-config';
+import { CortexAgentSDKAdapter } from './sdk-config';
 import { LegacyClaudeClient } from '../api/claude-client';
 
 /**
@@ -126,10 +126,10 @@ import { LegacyClaudeClient } from '../api/claude-client';
  * while transitioning to SDK
  */
 export class SDKCompatibilityLayer {
-  private adapter: ClaudeFlowSDKAdapter;
+  private adapter: CortexAgentSDKAdapter;
   private legacyMode: boolean = false;
 
-  constructor(adapter: ClaudeFlowSDKAdapter) {
+  constructor(adapter: CortexAgentSDKAdapter) {
     this.adapter = adapter;
   }
 
@@ -229,15 +229,15 @@ export class ClaudeClient extends EventEmitter {
 ```typescript
 // src/api/claude-client-v3.ts (AFTER)
 import { ClaudeCodeSDK } from '@anthropic-ai/claude-code';
-import { ClaudeFlowSDKAdapter } from '../sdk/sdk-config';
+import { CortexAgentSDKAdapter } from '../sdk/sdk-config';
 
 export class ClaudeClientV3 extends EventEmitter {
   private sdk: ClaudeCodeSDK;
-  private adapter: ClaudeFlowSDKAdapter;
+  private adapter: CortexAgentSDKAdapter;
 
   constructor(config: ClaudeAPIConfig) {
     super();
-    this.adapter = new ClaudeFlowSDKAdapter({
+    this.adapter = new CortexAgentSDKAdapter({
       apiKey: config.apiKey,
       retryPolicy: {
         maxAttempts: config.retryAttempts || 3,
@@ -554,7 +554,7 @@ export class CheckpointManagerSDK {
       metadata: {
         scope,
         ...swarmData,
-        createdBy: 'claude-flow',
+        createdBy: 'cortex-agent',
         version: '3.0.0'
       }
     });
@@ -965,7 +965,7 @@ await memory.store('key', value); // Persistence is automatic
 
 #### Before (v2.x)
 ```typescript
-const checkpoints = new CheckpointManager('.claude-flow/checkpoints');
+const checkpoints = new CheckpointManager('.cortex-agent/checkpoints');
 const id = await checkpoints.createCheckpoint(description, scope);
 await checkpoints.executeValidations(id);
 ```
@@ -982,7 +982,7 @@ const id = await checkpoints.createCheckpoint(description, scope);
 ### Step 1: Update Dependencies
 ```bash
 npm install @anthropic-ai/claude-code@latest
-npm update claude-flow@3.0.0-alpha.130
+npm update cortex-agent@3.0.0-alpha.130
 ```
 
 ### Step 2: Update Configuration
@@ -1036,9 +1036,9 @@ The following features are deprecated and will be removed in v4.0.0:
 ## Support
 
 For migration assistance:
-- GitHub Issues: https://github.com/ruvnet/claude-flow/issues
-- Migration Guide: https://docs.claude-flow.dev/migration/v3
-- Discord: https://discord.gg/claude-flow
+- GitHub Issues: https://github.com/ruvnet/cortex-agent/issues
+- Migration Guide: https://docs.cortex-agent.dev/migration/v3
+- Discord: https://discord.gg/cortex-agent
 ```
 
 #### Task 7.2: Create Automated Migration Script
@@ -1120,7 +1120,7 @@ async function updateImports() {
 }
 
 async function migrateConfig() {
-  const configPath = path.join(process.cwd(), 'claude-flow.config.js');
+  const configPath = path.join(process.cwd(), 'cortex-agent.config.js');
 
   if (await fileExists(configPath)) {
     let config = await fs.readFile(configPath, 'utf8');
@@ -1251,7 +1251,7 @@ export class MigrationMetrics {
 ### Rollback Plan
 ```bash
 # If issues arise, rollback to v2.x
-npm install claude-flow@2.0.0-alpha.129
+npm install cortex-agent@2.0.0-alpha.129
 npm run rollback:v2
 ```
 

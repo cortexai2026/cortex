@@ -26,7 +26,7 @@ let tokenCache = {
 
 // Get metrics directory
 function getMetricsDir() {
-  return path.join(process.cwd(), '.claude-flow', 'metrics');
+  return path.join(process.cwd(), '.cortex-agent', 'metrics');
 }
 
 // Get token file path

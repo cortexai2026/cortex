@@ -1,9 +1,9 @@
 #!/bin/bash
-# Deploy Claude Flow Registry Cloud Function
+# Deploy Cortex Agent Registry Cloud Function
 
 set -e
 
-PROJECT_ID="${GCP_PROJECT:-claude-flow}"
+PROJECT_ID="${GCP_PROJECT:-cortex-agent}"
 REGION="${GCP_REGION:-us-central1}"
 FUNCTION_NAME="publish-registry"
 
@@ -15,7 +15,7 @@ echo ""
 
 # Create bucket if not exists
 echo "Creating storage bucket..."
-gsutil mb -p $PROJECT_ID gs://claude-flow-plugin-registry 2>/dev/null || true
+gsutil mb -p $PROJECT_ID gs://cortex-agent-plugin-registry 2>/dev/null || true
 
 # Create secrets if not exist
 echo "Setting up secrets..."
@@ -48,4 +48,4 @@ echo "Test with:"
 echo "  curl '$FUNCTION_URL?action=status'"
 echo ""
 echo "Rate a plugin:"
-echo "  curl -X POST '$FUNCTION_URL?action=rate' -H 'Content-Type: application/json' -d '{\"itemId\":\"@claude-flow/embeddings\",\"rating\":5}'"
+echo "  curl -X POST '$FUNCTION_URL?action=rate' -H 'Content-Type: application/json' -d '{\"itemId\":\"@cortex-agent/embeddings\",\"rating\":5}'"

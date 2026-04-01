@@ -1,6 +1,6 @@
 /**
  * Agent Executor - Wrapper around agentic-flow execution engine
- * Integrates agentic-flow agents with claude-flow hooks and coordination
+ * Integrates agentic-flow agents with cortex-agent hooks and coordination
  */
 
 import { exec } from 'child_process';

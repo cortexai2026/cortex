@@ -7,7 +7,7 @@
  * - Structured error responses
  * - Error aggregation and reporting
  *
- * @module @claude-flow/cli/production/error-handler
+ * @module @cortex-agent/cli/production/error-handler
  */
 
 // ============================================================================

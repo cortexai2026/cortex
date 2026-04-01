@@ -2,14 +2,14 @@
  * AutoMemoryBridge - Bidirectional sync between Claude Code Auto Memory and AgentDB
  *
  * Per ADR-048: Bridges Claude Code's auto memory (markdown files at
- * ~/.claude/projects/<project>/memory/) with claude-flow's unified memory
+ * ~/.claude/projects/<project>/memory/) with cortex-agent's unified memory
  * system (AgentDB + HNSW).
  *
  * Auto memory files are human-readable markdown that Claude loads into its
  * system prompt. MEMORY.md (first 200 lines) is the entrypoint; topic files
  * store detailed notes and are read on demand.
  *
- * @module @claude-flow/memory/auto-memory-bridge
+ * @module @cortex-agent/memory/auto-memory-bridge
  */
 
 import { createHash } from 'node:crypto';
@@ -929,7 +929,7 @@ function buildIndexLines(
   topicMapping: Record<string, string>,
   sectionOrder?: string[],
 ): string[] {
-  const lines: string[] = ['# Claude Flow V3 Project Memory', ''];
+  const lines: string[] = ['# Cortex Agent V3 Project Memory', ''];
 
   // Use provided order, then append any remaining sections
   const orderedCategories = sectionOrder

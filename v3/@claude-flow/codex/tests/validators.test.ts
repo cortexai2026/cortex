@@ -1,5 +1,5 @@
 /**
- * @claude-flow/codex - Validator Tests
+ * @cortex-agent/codex - Validator Tests
  *
  * Tests for AGENTS.md, SKILL.md, and config.toml validators
  */
@@ -530,9 +530,9 @@ sandbox_mode = "workspace-write"
 [features]
 child_agents_md = true
 
-[mcp_servers.claude_flow]
+[mcp_servers.cortex_agent]
 command = "npx"
-args = ["-y", "@claude-flow/cli@latest"]
+args = ["-y", "@cortex-agent/cli@latest"]
 enabled = true
 
 [profiles.dev]
@@ -559,7 +559,7 @@ sandbox_mode = "workspace-write"
 approval_policy = "on-request"
 sandbox_mode = "workspace-write"
 
-[mcp_servers.claude_flow]
+[mcp_servers.cortex_agent]
 command = "npx"
 `;
 
@@ -858,9 +858,9 @@ sandbox_mode = "workspace-write"
 [features]
 child_agents_md = true
 
-[mcp_servers.claude_flow]
+[mcp_servers.cortex_agent]
 command = "npx"
-args = ["-y", "@claude-flow/cli@latest"]
+args = ["-y", "@cortex-agent/cli@latest"]
 enabled = true
 
 [profiles.dev]

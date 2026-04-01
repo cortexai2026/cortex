@@ -494,15 +494,15 @@ tests/
 
 ```bash
 # Pre-task
-npx claude-flow@alpha hooks pre-task \
+npx cortex-agent@alpha hooks pre-task \
   --description "AgentDB Integration Testing - Created comprehensive test suite with 180+ tests"
 
 # Notification
-npx claude-flow@alpha hooks notify \
+npx cortex-agent@alpha hooks notify \
   --message "Agent 2 (Testing): Created 180 tests across 5 suites for AgentDB integration"
 
 # Post-task (pending execution after test runs)
-npx claude-flow@alpha hooks post-task \
+npx cortex-agent@alpha hooks post-task \
   --task-id "agent2-agentdb-tests"
 ```
 

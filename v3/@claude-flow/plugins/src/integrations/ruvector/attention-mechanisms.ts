@@ -3,7 +3,7 @@
  *
  * Part 2: Sparse, Linear, Positional, Graph, Temporal, Multimodal, and Retrieval attention.
  *
- * @module @claude-flow/plugins/integrations/ruvector/attention-mechanisms
+ * @module @cortex-agent/plugins/integrations/ruvector/attention-mechanisms
  */
 
 import type {

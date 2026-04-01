@@ -9,7 +9,7 @@
  *
  * Run with: npx ts-node examples/ruvector/quantization.ts
  *
- * @module @claude-flow/plugins/examples/ruvector/quantization
+ * @module @cortex-agent/plugins/examples/ruvector/quantization
  */
 
 import {

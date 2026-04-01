@@ -1,7 +1,7 @@
 /**
- * @claude-flow/codex - Type Definitions
+ * @cortex-agent/codex - Type Definitions
  *
- * OpenAI Codex platform adapter types for Claude Flow
+ * OpenAI Codex platform adapter types for Cortex Agent
  * Part of the coflow rebranding initiative
  */
 

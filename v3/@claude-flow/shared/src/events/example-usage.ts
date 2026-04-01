@@ -1,10 +1,10 @@
 /**
  * Event Store Usage Example
  *
- * Demonstrates how to use the Event Sourcing system in V3 Claude Flow.
+ * Demonstrates how to use the Event Sourcing system in V3 Cortex Agent.
  *
  * Usage:
- *   npx tsx v3/@claude-flow/shared/src/events/example-usage.ts
+ *   npx tsx v3/@cortex-agent/shared/src/events/example-usage.ts
  */
 
 import { EventStore } from './event-store.js';
@@ -26,7 +26,7 @@ import {
 } from './domain-events.js';
 
 async function main() {
-  console.log('Event Sourcing Example - V3 Claude Flow\n');
+  console.log('Event Sourcing Example - V3 Cortex Agent\n');
 
   // =========================================================================
   // 1. Initialize Event Store

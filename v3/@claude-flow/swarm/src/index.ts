@@ -1,5 +1,5 @@
 /**
- * @claude-flow/swarm
+ * @cortex-agent/swarm
  * V3 Unified Swarm Coordination Module (ADR-003)
  *
  * ADR-003 IMPLEMENTATION:
@@ -22,7 +22,7 @@
  *
  * Recommended Usage:
  * ```typescript
- * import { createUnifiedSwarmCoordinator } from '@claude-flow/swarm';
+ * import { createUnifiedSwarmCoordinator } from '@cortex-agent/swarm';
  *
  * const coordinator = createUnifiedSwarmCoordinator({
  *   topology: { type: 'hierarchical', maxAgents: 15 },
@@ -32,7 +32,7 @@
  * await coordinator.initialize();
  * ```
  *
- * @module @claude-flow/swarm
+ * @module @cortex-agent/swarm
  * @version 3.0.0-alpha.1
  */
 
@@ -221,11 +221,11 @@ export {
  * Migration:
  * ```typescript
  * // OLD:
- * import { createSwarmHub } from '@claude-flow/swarm';
+ * import { createSwarmHub } from '@cortex-agent/swarm';
  * const hub = createSwarmHub();
  *
  * // NEW:
- * import { createUnifiedSwarmCoordinator } from '@claude-flow/swarm';
+ * import { createUnifiedSwarmCoordinator } from '@cortex-agent/swarm';
  * const coordinator = createUnifiedSwarmCoordinator();
  * ```
  */

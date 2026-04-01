@@ -1,5 +1,5 @@
 /**
- * @claude-flow/testing - Assertion Helpers
+ * @cortex-agent/testing - Assertion Helpers
  *
  * Custom Vitest matchers and assertion utilities for V3 module testing.
  * Implements London School TDD behavior verification patterns.

@@ -1,7 +1,7 @@
 /**
  * Guidance Hook Integration Layer
  *
- * Wires the EnforcementGates and ShardRetriever into the Claude Flow V3
+ * Wires the EnforcementGates and ShardRetriever into the Cortex Agent V3
  * hook lifecycle. Each guidance concern is registered as a hook that
  * participates in the standard HookRegistry event flow.
  *
@@ -12,21 +12,21 @@
  *   PreTask     -> ShardRetriever.retrieve()            (inject relevant shards)
  *   PostTask    -> RunLedger.finalizeEvent()             (record run completion)
  *
- * @module @claude-flow/guidance/hooks
+ * @module @cortex-agent/guidance/hooks
  */
 
 import type {
   HookContext,
   HookResult,
   HookRegistrationOptions,
-} from '@claude-flow/hooks';
+} from '@cortex-agent/hooks';
 
 import {
   HookEvent,
   HookPriority,
-} from '@claude-flow/hooks';
+} from '@cortex-agent/hooks';
 
-import type { HookRegistry } from '@claude-flow/hooks';
+import type { HookRegistry } from '@cortex-agent/hooks';
 
 import type { EnforcementGates } from './gates.js';
 import type { ShardRetriever } from './retriever.js';

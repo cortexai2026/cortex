@@ -7,7 +7,7 @@
 
 import { EventEmitter } from 'events';
 import Anthropic from '@anthropic-ai/sdk';
-import { ClaudeFlowSDKAdapter } from '../sdk/sdk-config.js';
+import { CortexAgentSDKAdapter } from '../sdk/sdk-config.js';
 import { SDKCompatibilityLayer } from '../sdk/compatibility-layer.js';
 import { ILogger } from '../core/logger.js';
 import {
@@ -81,7 +81,7 @@ export interface ClaudeResponse {
  * Claude Client v2.5 using Anthropic SDK
  */
 export class ClaudeClientV25 extends EventEmitter {
-  private adapter: ClaudeFlowSDKAdapter;
+  private adapter: CortexAgentSDKAdapter;
   private compatibility: SDKCompatibilityLayer;
   private sdk: Anthropic;
   private config: ClaudeAPIConfig;
@@ -93,7 +93,7 @@ export class ClaudeClientV25 extends EventEmitter {
     this.logger = logger;
 
     // Initialize SDK adapter
-    this.adapter = new ClaudeFlowSDKAdapter({
+    this.adapter = new CortexAgentSDKAdapter({
       apiKey: config.apiKey,
       maxRetries: config.retryAttempts || 3,
       timeout: config.timeout || 60000,

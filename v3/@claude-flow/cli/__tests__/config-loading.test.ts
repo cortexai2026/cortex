@@ -20,7 +20,7 @@ describe('Config Loading', () => {
   });
 
   it('should load config from file when specified', async () => {
-    const configPath = join(tempDir, 'claude-flow.config.json');
+    const configPath = join(tempDir, 'cortex-agent.config.json');
     const config = {
       orchestrator: {
         lifecycle: {
@@ -95,7 +95,7 @@ describe('Config Loading', () => {
   });
 
   it('should handle invalid config file gracefully', async () => {
-    const configPath = join(tempDir, 'claude-flow.config.json');
+    const configPath = join(tempDir, 'cortex-agent.config.json');
     await writeFile(configPath, '{ invalid json }');
 
     const cli = new CLI();

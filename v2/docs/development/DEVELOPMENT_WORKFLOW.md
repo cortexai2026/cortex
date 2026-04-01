@@ -37,8 +37,8 @@ code --version  # VS Code for development
 
 ```bash
 # Clone the repository
-git clone https://github.com/ruvnet/claude-flow.git
-cd claude-flow
+git clone https://github.com/ruvnet/cortex-agent.git
+cd cortex-agent
 
 # Install dependencies (use pnpm on Windows)
 npm install
@@ -52,8 +52,8 @@ npm run dev
 npm run build:ts
 
 # Test the CLI binary
-chmod +x ./bin/claude-flow
-./bin/claude-flow --version
+chmod +x ./bin/cortex-agent
+./bin/cortex-agent --version
 ```
 
 ### Current Development Scripts (v2.0.0-alpha.88)
@@ -66,7 +66,7 @@ chmod +x ./bin/claude-flow
     "build:esm": "tsc",
     "build:cjs": "tsc -p tsconfig.cjs.json",
     "build:ts": "npm run build:esm && npm run build:cjs",
-    "build:binary": "pkg dist/cli/main.js --targets node20-linux-x64,node20-macos-x64,node20-win-x64 --output bin/claude-flow",
+    "build:binary": "pkg dist/cli/main.js --targets node20-linux-x64,node20-macos-x64,node20-win-x64 --output bin/cortex-agent",
     "clean": "rm -rf dist dist-cjs",
     "test": "NODE_OPTIONS='--experimental-vm-modules' jest --bail --maxWorkers=1 --forceExit",
     "test:watch": "NODE_OPTIONS='--experimental-vm-modules' jest --watch",
@@ -149,7 +149,7 @@ chmod +x ./bin/claude-flow
       "sourceMaps": true,
       "env": {
         "NODE_ENV": "development",
-        "CLAUDE_FLOW_DEBUG": "true"
+        "CORTEX_AGENT_DEBUG": "true"
       }
     },
     {
@@ -172,7 +172,7 @@ chmod +x ./bin/claude-flow
 ### Directory Structure
 
 ```
-claude-flow/
+cortex-agent/
 ├── src/                    # Source code
 │   ├── cli/               # CLI commands and entry points
 │   ├── core/              # Core orchestration logic
@@ -210,9 +210,9 @@ claude-flow/
 │   ├── checkpoints/       # Session checkpoints
 │   └── metrics/           # Performance metrics
 ├── bin/                    # Binary executables
-│   ├── claude-flow        # Main CLI binary
-│   ├── claude-flow-swarm  # Swarm-specific binary
-│   └── claude-flow-ui     # UI binary
+│   ├── cortex-agent        # Main CLI binary
+│   ├── cortex-agent-swarm  # Swarm-specific binary
+│   └── cortex-agent-ui     # UI binary
 └── .github/                # GitHub workflows and templates
 ```
 
@@ -270,10 +270,10 @@ main                # Production-ready code
 git checkout -b feature/agent-improvements
 
 # Use SPARC for architecture
-npx claude-flow@alpha sparc run architect "Agent selection improvements"
+npx cortex-agent@alpha sparc run architect "Agent selection improvements"
 
 # Implement with TDD
-npx claude-flow@alpha sparc run tdd "Better agent selection algorithm"
+npx cortex-agent@alpha sparc run tdd "Better agent selection algorithm"
 
 # Start development mode
 npm run dev
@@ -283,7 +283,7 @@ npm run test:comprehensive
 npm run test:coverage
 
 # Security review
-npx claude-flow@alpha sparc run security-review "Review agent selection"
+npx cortex-agent@alpha sparc run security-review "Review agent selection"
 
 # Commit changes
 git add .
@@ -293,7 +293,7 @@ git commit -m "feat: improve agent selection algorithm"
 git push origin feature/agent-improvements
 
 # Create pull request with swarm review
-npx claude-flow@alpha swarm spawn code-review-swarm
+npx cortex-agent@alpha swarm spawn code-review-swarm
 gh pr create --title "Improve agent selection" --body "..."
 ```
 
@@ -357,7 +357,7 @@ Brief description of changes
 
 ```bash
 # List all available modes
-npx claude-flow@alpha sparc modes
+npx cortex-agent@alpha sparc modes
 
 # Available modes:
 # 🏗️ architect              - System architecture design
@@ -382,18 +382,18 @@ npx claude-flow@alpha sparc modes
 
 ```bash
 # Single mode execution
-npx claude-flow@alpha sparc run architect "Design user authentication system"
-npx claude-flow@alpha sparc run tdd "Implement user login functionality"
-npx claude-flow@alpha sparc run security-review "Review API endpoints"
+npx cortex-agent@alpha sparc run architect "Design user authentication system"
+npx cortex-agent@alpha sparc run tdd "Implement user login functionality"
+npx cortex-agent@alpha sparc run security-review "Review API endpoints"
 
 # Batch mode execution (multiple modes)
-npx claude-flow@alpha sparc batch architect,tdd,security-review "Build secure API"
+npx cortex-agent@alpha sparc batch architect,tdd,security-review "Build secure API"
 
 # Full pipeline execution
-npx claude-flow@alpha sparc pipeline "Complete user management system"
+npx cortex-agent@alpha sparc pipeline "Complete user management system"
 
 # TDD workflow
-npx claude-flow@alpha sparc tdd "User registration feature"
+npx cortex-agent@alpha sparc tdd "User registration feature"
 ```
 
 ### SPARC Development Workflow
@@ -420,18 +420,18 @@ graph TD
 
 ```bash
 # Initialize swarm with different topologies
-npx claude-flow@alpha swarm init --topology mesh --max-agents 10
-npx claude-flow@alpha swarm init --topology hierarchical --max-agents 15
-npx claude-flow@alpha swarm init --topology adaptive --max-agents 8
+npx cortex-agent@alpha swarm init --topology mesh --max-agents 10
+npx cortex-agent@alpha swarm init --topology hierarchical --max-agents 15
+npx cortex-agent@alpha swarm init --topology adaptive --max-agents 8
 
 # Spawn specialized agents
-npx claude-flow@alpha swarm spawn coder
-npx claude-flow@alpha swarm spawn reviewer
-npx claude-flow@alpha swarm spawn tester
-npx claude-flow@alpha swarm spawn system-architect
+npx cortex-agent@alpha swarm spawn coder
+npx cortex-agent@alpha swarm spawn reviewer
+npx cortex-agent@alpha swarm spawn tester
+npx cortex-agent@alpha swarm spawn system-architect
 
 # Coordinate multi-agent tasks
-npx claude-flow@alpha swarm coordinate "Build full-stack application"
+npx cortex-agent@alpha swarm coordinate "Build full-stack application"
 ```
 
 ### Available Agent Types (54 Total)
@@ -816,8 +816,8 @@ jobs:
         run: npm run build:ts
       - name: Test CLI binary
         run: |
-          chmod +x ./bin/claude-flow
-          ./bin/claude-flow --version
+          chmod +x ./bin/cortex-agent
+          ./bin/cortex-agent --version
 ```
 
 #### Test Workflow (.github/workflows/test.yml)
@@ -827,7 +827,7 @@ name: Test Suite
 
 on:
   push:
-    branches: [ main, develop, claude-flow-v2.0.0 ]
+    branches: [ main, develop, cortex-agent-v2.0.0 ]
   pull_request:
     branches: [ main, develop ]
 
@@ -897,11 +897,11 @@ npm version prerelease --preid=alpha  # 2.0.0-alpha.88 -> 2.0.0-alpha.89
 # Fork the repository on GitHub
 
 # Clone your fork
-git clone https://github.com/YOUR_USERNAME/claude-flow.git
-cd claude-flow
+git clone https://github.com/YOUR_USERNAME/cortex-agent.git
+cd cortex-agent
 
 # Add upstream remote
-git remote add upstream https://github.com/ruvnet/claude-flow.git
+git remote add upstream https://github.com/ruvnet/cortex-agent.git
 
 # Keep your fork updated
 git fetch upstream
@@ -916,10 +916,10 @@ git merge upstream/main
 git checkout -b feature/your-feature
 
 # 2. Plan with SPARC architect
-npx claude-flow@alpha sparc run architect "Your feature description"
+npx cortex-agent@alpha sparc run architect "Your feature description"
 
 # 3. Implement with TDD
-npx claude-flow@alpha sparc run tdd "Feature implementation"
+npx cortex-agent@alpha sparc run tdd "Feature implementation"
 
 # 4. Make changes and test
 npm run dev
@@ -927,7 +927,7 @@ npm run test:comprehensive
 npm run lint
 
 # 5. Security review
-npx claude-flow@alpha sparc run security-review "Review changes"
+npx cortex-agent@alpha sparc run security-review "Review changes"
 
 # 6. Commit changes
 git add .
@@ -937,8 +937,8 @@ git commit -m "feat: add amazing feature"
 git push origin feature/your-feature
 
 # 8. Create pull request with swarm review
-npx claude-flow@alpha swarm spawn code-review-swarm
-gh pr create --repo ruvnet/claude-flow
+npx cortex-agent@alpha swarm spawn code-review-swarm
+gh pr create --repo ruvnet/cortex-agent
 ```
 
 ### Code Review Guidelines
@@ -1180,10 +1180,10 @@ npm run build:binary       # Binary executables
 # - node20-win-x64
 
 # Available binaries
-./bin/claude-flow          # Main CLI
-./bin/claude-flow-swarm    # Swarm coordination
-./bin/claude-flow-ui       # UI interface
-./bin/claude-flow-dev      # Development mode
+./bin/cortex-agent          # Main CLI
+./bin/cortex-agent-swarm    # Swarm coordination
+./bin/cortex-agent-ui       # UI interface
+./bin/cortex-agent-dev      # Development mode
 ```
 
 ### Health Monitoring and Diagnostics
@@ -1215,19 +1215,19 @@ npm run test:npx
 // src/utils/debug.ts
 export const debug = {
   log: (message: string, data?: any) => {
-    if (process.env.CLAUDE_FLOW_DEBUG === 'true') {
+    if (process.env.CORTEX_AGENT_DEBUG === 'true') {
       console.log(`[DEBUG] ${message}`, data || '');
     }
   },
   
   time: (label: string) => {
-    if (process.env.CLAUDE_FLOW_DEBUG === 'true') {
+    if (process.env.CORTEX_AGENT_DEBUG === 'true') {
       console.time(label);
     }
   },
   
   timeEnd: (label: string) => {
-    if (process.env.CLAUDE_FLOW_DEBUG === 'true') {
+    if (process.env.CORTEX_AGENT_DEBUG === 'true') {
       console.timeEnd(label);
     }
   }
@@ -1318,9 +1318,9 @@ npm update
 
 ### Community
 
-- [Discord Server](https://discord.gg/claude-flow)
-- [GitHub Discussions](https://github.com/ruvnet/claude-flow/discussions)
-- [Stack Overflow](https://stackoverflow.com/questions/tagged/claude-flow)
+- [Discord Server](https://discord.gg/cortex-agent)
+- [GitHub Discussions](https://github.com/ruvnet/cortex-agent/discussions)
+- [Stack Overflow](https://stackoverflow.com/questions/tagged/cortex-agent)
 
 ---
 

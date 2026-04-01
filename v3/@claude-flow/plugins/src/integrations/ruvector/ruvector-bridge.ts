@@ -9,7 +9,7 @@
  * - MCP tool integration
  * - Event emission and metrics
  *
- * @module @claude-flow/plugins/integrations/ruvector
+ * @module @cortex-agent/plugins/integrations/ruvector
  * @version 1.0.0
  */
 
@@ -283,7 +283,7 @@ class ConnectionManager extends EventEmitter {
       max: poolSettings.max ?? this.config.poolSize ?? DEFAULT_POOL_MAX,
       idleTimeoutMillis: poolSettings.idleTimeoutMs ?? DEFAULT_IDLE_TIMEOUT_MS,
       connectionTimeoutMillis: this.config.connectionTimeoutMs ?? DEFAULT_CONNECTION_TIMEOUT_MS,
-      application_name: this.config.applicationName ?? 'claude-flow-ruvector',
+      application_name: this.config.applicationName ?? 'cortex-agent-ruvector',
     };
   }
 

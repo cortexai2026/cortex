@@ -10,7 +10,7 @@
 
 // ── Constants ─────────────────────────────────────────────────
 
-export const STATE_DIR = '.claude-flow/data';
+export const STATE_DIR = '.cortex-agent/data';
 export const STATE_FILE = `${STATE_DIR}/autopilot-state.json`;
 export const LOG_FILE = `${STATE_DIR}/autopilot-log.json`;
 
@@ -242,7 +242,7 @@ export function discoverTasks(sources: string[]): TaskInfo[] {
     }
 
     if (source === 'swarm-tasks') {
-      const swarmFile = path.resolve('.claude-flow/swarm-tasks.json');
+      const swarmFile = path.resolve('.cortex-agent/swarm-tasks.json');
       try {
         if (fs.existsSync(swarmFile)) {
           const data = safeJsonParse<Record<string, unknown> | unknown[]>(fs.readFileSync(swarmFile, 'utf-8'));
@@ -263,7 +263,7 @@ export function discoverTasks(sources: string[]): TaskInfo[] {
     }
 
     if (source === 'file-checklist') {
-      const checklistFile = path.resolve('.claude-flow/data/checklist.json');
+      const checklistFile = path.resolve('.cortex-agent/data/checklist.json');
       try {
         if (fs.existsSync(checklistFile)) {
           const data = safeJsonParse<Record<string, unknown> | unknown[]>(fs.readFileSync(checklistFile, 'utf-8'));

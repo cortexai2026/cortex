@@ -28,7 +28,7 @@ import {
 import { BaseProviderOptions, consoleLogger } from '../base-provider.js';
 
 // Test configuration
-const TEST_PROMPT = 'Say "Hello from Claude Flow V3!" in exactly 5 words.';
+const TEST_PROMPT = 'Say "Hello from Cortex Agent V3!" in exactly 5 words.';
 const TEST_MESSAGES: LLMRequest['messages'] = [
   { role: 'user', content: TEST_PROMPT }
 ];
@@ -143,8 +143,8 @@ describe('Provider Integration Tests', () => {
           maxTokens: 100,
           providerOptions: {
             headers: {
-              'HTTP-Referer': 'https://claude-flow.dev',
-              'X-Title': 'Claude Flow V3 Test',
+              'HTTP-Referer': 'https://cortex-agent.dev',
+              'X-Title': 'Cortex Agent V3 Test',
             },
           },
         },

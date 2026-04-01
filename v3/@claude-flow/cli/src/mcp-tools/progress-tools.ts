@@ -3,7 +3,7 @@
  *
  * Provides MCP tools for checking and syncing V3 implementation progress.
  *
- * @module @claude-flow/cli/mcp-tools/progress
+ * @module @cortex-agent/cli/mcp-tools/progress
  */
 
 import type { MCPTool } from './types.js';
@@ -15,10 +15,10 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 // From dist/src/mcp-tools or src/mcp-tools, navigate to v3 directory
-// CLI is at v3/@claude-flow/cli, so go up 2 levels from cli to get to v3
+// CLI is at v3/@cortex-agent/cli, so go up 2 levels from cli to get to v3
 const CLI_ROOT = join(__dirname, '../../..');
-const CLAUDE_FLOW_DIR = join(CLI_ROOT, '..'); // @claude-flow directory
-const V3_DIR = join(CLAUDE_FLOW_DIR, '..'); // v3 directory
+const CORTEX_AGENT_DIR = join(CLI_ROOT, '..'); // @cortex-agent directory
+const V3_DIR = join(CORTEX_AGENT_DIR, '..'); // v3 directory
 const PROJECT_ROOT = join(V3_DIR, '..');
 
 // Utility/service packages follow DDD differently - their services ARE the application layer
@@ -111,7 +111,7 @@ async function calculateProgress(): Promise<V3ProgressMetrics> {
   const now = new Date().toISOString();
 
   // Count V3 modules
-  const modulesDir = join(V3_DIR, '@claude-flow');
+  const modulesDir = join(V3_DIR, '@cortex-agent');
   const modules: { name: string; files: number; lines: number; progress: number }[] = [];
   let totalProgress = 0;
   let explicitDDD = 0;
@@ -142,7 +142,7 @@ async function calculateProgress(): Promise<V3ProgressMetrics> {
 
   // Count CLI commands (from commands/index.ts)
   let cliCommands = 28; // Default to known count
-  const commandsIndexPath = join(V3_DIR, '@claude-flow/cli/src/commands/index.ts');
+  const commandsIndexPath = join(V3_DIR, '@cortex-agent/cli/src/commands/index.ts');
   if (existsSync(commandsIndexPath)) {
     try {
       const content = readFileSync(commandsIndexPath, 'utf-8');
@@ -155,7 +155,7 @@ async function calculateProgress(): Promise<V3ProgressMetrics> {
 
   // Count MCP tools
   let mcpTools = 100; // Approximate
-  const toolsIndexPath = join(V3_DIR, '@claude-flow/cli/src/mcp-tools/index.ts');
+  const toolsIndexPath = join(V3_DIR, '@cortex-agent/cli/src/mcp-tools/index.ts');
   if (existsSync(toolsIndexPath)) {
     try {
       const content = readFileSync(toolsIndexPath, 'utf-8');
@@ -165,7 +165,7 @@ async function calculateProgress(): Promise<V3ProgressMetrics> {
 
   // Count hooks subcommands (count const *Command definitions)
   let hooksSubcommands = 27; // Default to documented count
-  const hooksPath = join(V3_DIR, '@claude-flow/cli/src/commands/hooks.ts');
+  const hooksPath = join(V3_DIR, '@cortex-agent/cli/src/commands/hooks.ts');
   if (existsSync(hooksPath)) {
     try {
       const content = readFileSync(hooksPath, 'utf-8');
@@ -215,7 +215,7 @@ async function syncProgress(): Promise<V3ProgressMetrics> {
   const metrics = await calculateProgress();
 
   // Persist to file
-  const metricsDir = join(PROJECT_ROOT, '.claude-flow/metrics');
+  const metricsDir = join(PROJECT_ROOT, '.cortex-agent/metrics');
   if (!existsSync(metricsDir)) {
     mkdirSync(metricsDir, { recursive: true });
   }

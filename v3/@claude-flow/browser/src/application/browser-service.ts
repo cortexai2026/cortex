@@ -1,5 +1,5 @@
 /**
- * @claude-flow/browser - Browser Service
+ * @cortex-agent/browser - Browser Service
  * Core application service integrating agent-browser with agentic-flow
  */
 

@@ -1,8 +1,8 @@
 /**
- * @claude-flow/mcp - Standalone Types
+ * @cortex-agent/mcp - Standalone Types
  *
  * Complete type definitions for MCP server implementation
- * Zero external @claude-flow dependencies
+ * Zero external @cortex-agent dependencies
  */
 
 // ============================================================================

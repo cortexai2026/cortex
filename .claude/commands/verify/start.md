@@ -12,43 +12,43 @@ The verification system provides real-time truth checking and validation for all
 Run verification checks on current code or agent outputs.
 
 ```bash
-claude-flow verify check --file src/app.js
-claude-flow verify check --task "task-123"
-claude-flow verify check --threshold 0.98
+cortex-agent verify check --file src/app.js
+cortex-agent verify check --task "task-123"
+cortex-agent verify check --threshold 0.98
 ```
 
 ### `verify rollback`
 Automatically rollback changes that fail verification.
 
 ```bash
-claude-flow verify rollback --to-commit abc123
-claude-flow verify rollback --last-good
-claude-flow verify rollback --interactive
+cortex-agent verify rollback --to-commit abc123
+cortex-agent verify rollback --last-good
+cortex-agent verify rollback --interactive
 ```
 
 ### `verify report`
 Generate verification reports and metrics.
 
 ```bash
-claude-flow verify report --format json
-claude-flow verify report --export metrics.html
-claude-flow verify report --period 7d
+cortex-agent verify report --format json
+cortex-agent verify report --export metrics.html
+cortex-agent verify report --period 7d
 ```
 
 ### `verify dashboard`
 Launch interactive verification dashboard.
 
 ```bash
-claude-flow verify dashboard
-claude-flow verify dashboard --port 3000
-claude-flow verify dashboard --export
+cortex-agent verify dashboard
+cortex-agent verify dashboard --port 3000
+cortex-agent verify dashboard --export
 ```
 
 ## Configuration
 
 Default threshold: **0.95** (95% accuracy required)
 
-Configure in `.claude-flow/config.json`:
+Configure in `.cortex-agent/config.json`:
 ```json
 {
   "verification": {
@@ -68,18 +68,18 @@ Configure in `.claude-flow/config.json`:
 
 ### With Swarm Commands
 ```bash
-claude-flow swarm --verify --threshold 0.98
-claude-flow hive-mind --verify
+cortex-agent swarm --verify --threshold 0.98
+cortex-agent hive-mind --verify
 ```
 
 ### With Training Pipeline
 ```bash
-claude-flow train --verify --rollback-on-fail
+cortex-agent train --verify --rollback-on-fail
 ```
 
 ### With Pair Programming
 ```bash
-claude-flow pair --verify --real-time
+cortex-agent pair --verify --real-time
 ```
 
 ## Metrics
@@ -94,25 +94,25 @@ claude-flow pair --verify --real-time
 ### Basic Verification
 ```bash
 # Verify current directory
-claude-flow verify check
+cortex-agent verify check
 
 # Verify with custom threshold
-claude-flow verify check --threshold 0.99
+cortex-agent verify check --threshold 0.99
 
 # Verify and auto-fix
-claude-flow verify check --auto-fix
+cortex-agent verify check --auto-fix
 ```
 
 ### Advanced Workflows
 ```bash
 # Continuous verification during development
-claude-flow verify watch --directory src/
+cortex-agent verify watch --directory src/
 
 # Batch verification
-claude-flow verify batch --files "*.js" --parallel
+cortex-agent verify batch --files "*.js" --parallel
 
 # Integration testing
-claude-flow verify integration --test-suite full
+cortex-agent verify integration --test-suite full
 ```
 
 ## Performance

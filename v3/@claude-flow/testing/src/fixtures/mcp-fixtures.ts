@@ -1,5 +1,5 @@
 /**
- * @claude-flow/testing - MCP Fixtures
+ * @cortex-agent/testing - MCP Fixtures
  *
  * Comprehensive mock MCP tools, contexts, and server configurations for testing.
  * Supports all MCP protocol operations and Claude-Flow tool integrations.
@@ -516,28 +516,28 @@ export const mcpTools: Record<string, MCPTool> = {
  */
 export const mcpResources: Record<string, MCPResource> = {
   swarmConfig: {
-    uri: 'claude-flow://config/swarm',
+    uri: 'cortex-agent://config/swarm',
     name: 'Swarm Configuration',
     description: 'Current swarm configuration',
     mimeType: 'application/json',
   },
 
   agentRegistry: {
-    uri: 'claude-flow://agents/registry',
+    uri: 'cortex-agent://agents/registry',
     name: 'Agent Registry',
     description: 'Registry of all available agent types',
     mimeType: 'application/json',
   },
 
   memoryStats: {
-    uri: 'claude-flow://memory/stats',
+    uri: 'cortex-agent://memory/stats',
     name: 'Memory Statistics',
     description: 'Memory system statistics and metrics',
     mimeType: 'application/json',
   },
 
   learningPatterns: {
-    uri: 'claude-flow://neural/patterns',
+    uri: 'cortex-agent://neural/patterns',
     name: 'Learning Patterns',
     description: 'Learned patterns from ReasoningBank',
     mimeType: 'application/json',
@@ -581,7 +581,7 @@ export const mcpPrompts: Record<string, MCPPrompt> = {
  */
 export const mcpServerConfigs: Record<string, MCPServerConfig> = {
   development: {
-    name: 'claude-flow-dev',
+    name: 'cortex-agent-dev',
     version: '3.0.0-alpha',
     transport: {
       type: 'http',
@@ -602,7 +602,7 @@ export const mcpServerConfigs: Record<string, MCPServerConfig> = {
   },
 
   production: {
-    name: 'claude-flow',
+    name: 'cortex-agent',
     version: '3.0.0',
     transport: {
       type: 'http',
@@ -619,7 +619,7 @@ export const mcpServerConfigs: Record<string, MCPServerConfig> = {
   },
 
   stdio: {
-    name: 'claude-flow-stdio',
+    name: 'cortex-agent-stdio',
     version: '3.0.0-alpha',
     transport: {
       type: 'stdio',
@@ -634,7 +634,7 @@ export const mcpServerConfigs: Record<string, MCPServerConfig> = {
   },
 
   websocket: {
-    name: 'claude-flow-ws',
+    name: 'cortex-agent-ws',
     version: '3.0.0-alpha',
     transport: {
       type: 'websocket',

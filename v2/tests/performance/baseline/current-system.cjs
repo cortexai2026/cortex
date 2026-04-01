@@ -20,7 +20,7 @@ class BaselinePerformanceBenchmark {
   constructor() {
     this.results = {
       timestamp: new Date().toISOString(),
-      system: 'claude-flow-current',
+      system: 'cortex-agent-current',
       version: this.getVersion(),
       benchmarks: {}
     };

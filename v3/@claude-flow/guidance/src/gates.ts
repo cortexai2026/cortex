@@ -1,7 +1,7 @@
 /**
  * Hook-based Enforcement Gates
  *
- * Uses Claude Flow hooks to enforce non-negotiable rules.
+ * Uses Cortex Agent hooks to enforce non-negotiable rules.
  * The model can forget. The hook does not.
  *
  * Gates:
@@ -10,7 +10,7 @@
  * 3. Diff size gate - requires plan + staged commits for large diffs
  * 4. Secrets gate - redacts and warns on secret patterns
  *
- * @module @claude-flow/guidance/gates
+ * @module @cortex-agent/guidance/gates
  */
 
 import type {

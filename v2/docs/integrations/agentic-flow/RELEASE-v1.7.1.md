@@ -332,8 +332,8 @@ npm update agentic-flow
 npm list agentic-flow
 # Should show: agentic-flow@1.7.1
 
-# For claude-flow users
-cd /path/to/claude-flow
+# For cortex-agent users
+cd /path/to/cortex-agent
 npm update agentic-flow
 ```
 

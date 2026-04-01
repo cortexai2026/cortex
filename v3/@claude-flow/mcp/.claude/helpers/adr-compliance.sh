@@ -1,12 +1,12 @@
 #!/bin/bash
-# Claude Flow V3 - ADR Compliance Checker Worker
+# Cortex Agent V3 - ADR Compliance Checker Worker
 # Checks compliance with Architecture Decision Records
 
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
-METRICS_DIR="$PROJECT_ROOT/.claude-flow/metrics"
+METRICS_DIR="$PROJECT_ROOT/.cortex-agent/metrics"
 ADR_FILE="$METRICS_DIR/adr-compliance.json"
 LAST_RUN_FILE="$METRICS_DIR/.adr-last-run"
 
@@ -84,14 +84,14 @@ check_adr_005() {
   local score=0
 
   # Check for MCP server implementation
-  [ -d "$PROJECT_ROOT/v3/@claude-flow/mcp" ] && score=$((score + 40))
+  [ -d "$PROJECT_ROOT/v3/@cortex-agent/mcp" ] && score=$((score + 40))
 
   # Check for MCP tools
   local tools=$(grep -r "tool.*name\|registerTool" "$PROJECT_ROOT/v3" 2>/dev/null | wc -l)
   [ "$tools" -gt 5 ] && score=$((score + 30))
 
   # Check for MCP schemas
-  grep -rq "schema\|jsonSchema" "$PROJECT_ROOT/v3/@claude-flow/mcp" 2>/dev/null && score=$((score + 30))
+  grep -rq "schema\|jsonSchema" "$PROJECT_ROOT/v3/@cortex-agent/mcp" 2>/dev/null && score=$((score + 30))
 
   echo "$score"
 }

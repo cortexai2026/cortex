@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Claude-Flow Schema Validator
- * Ensures memory.db contains ALL required tables for full claude-flow compatibility
+ * Ensures memory.db contains ALL required tables for full cortex-agent compatibility
  */
 
 const Database = require('better-sqlite3');
@@ -13,7 +13,7 @@ class SchemaValidator {
     this.dbPath = dbPath;
     this.db = new Database(dbPath);
 
-    // Required tables for full claude-flow compatibility
+    // Required tables for full cortex-agent compatibility
     this.requiredTables = {
       // ReasoningBank core tables
       'patterns': {

@@ -191,7 +191,7 @@ const rb = new HybridReasoningBank({
 ✅ **PASS** - Existing ReasoningBank functionality works
 
 ```bash
-npx claude-flow@alpha memory list
+npx cortex-agent@alpha memory list
 # Output: ✅ ReasoningBank memories (10 shown)
 ```
 
@@ -394,7 +394,7 @@ import * as ReasoningBank from 'agentic-flow/reasoningbank';
    - Watch for agentic-flow v1.7.2 with fixes
    - Test when proper exports are available
 
-4. **Document in claude-flow**:
+4. **Document in cortex-agent**:
    - Add workaround guide to documentation
    - Update integration examples
 

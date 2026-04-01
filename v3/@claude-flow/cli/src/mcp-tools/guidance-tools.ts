@@ -1,10 +1,10 @@
 /**
  * Guidance MCP Tools
  *
- * Helps the system navigate Ruflo's capabilities by providing structured
+ * Helps the system navigate Cortex Agent's capabilities by providing structured
  * discovery of tools, commands, agents, skills, and recommended workflows.
  *
- * @module @claude-flow/cli/mcp-tools/guidance
+ * @module @cortex-agent/cli/mcp-tools/guidance
  */
 
 import type { MCPTool } from './types.js';
@@ -27,7 +27,7 @@ function findProjectRoot(): string {
   }
 
   // Strategy 2: Walk up from CLI package location
-  // CLI is at v3/@claude-flow/cli/ — project root is 4 levels up
+  // CLI is at v3/@cortex-agent/cli/ — project root is 4 levels up
   const fromPackage = join(CLI_ROOT, '../../../..');
   if (existsSync(join(fromPackage, '.claude'))) {
     return fromPackage;
@@ -76,7 +76,7 @@ const CAPABILITY_CATALOG: Record<string, CapabilityArea> = {
     tools: ['swarm_init', 'swarm_status', 'swarm_spawn', 'swarm_terminate', 'swarm_topology', 'swarm_metrics'],
     commands: ['swarm init', 'swarm status', 'swarm spawn', 'swarm terminate'],
     agents: ['hierarchical-coordinator', 'mesh-coordinator', 'adaptive-coordinator', 'queen-coordinator', 'collective-intelligence-coordinator'],
-    skills: ['swarm-orchestration', 'swarm-advanced', 'claude-flow-swarm'],
+    skills: ['swarm-orchestration', 'swarm-advanced', 'cortex-agent-swarm'],
     whenToUse: 'When a task requires multiple agents working together (3+ files, features, refactoring).',
   },
   'memory-knowledge': {
@@ -359,7 +359,7 @@ function discoverSkills(): string[] {
 
 const guidanceCapabilities: MCPTool = {
   name: 'guidance_capabilities',
-  description: 'List all capability areas with their tools, commands, agents, and skills. Use this to discover what Ruflo can do.',
+  description: 'List all capability areas with their tools, commands, agents, and skills. Use this to discover what Cortex Agent can do.',
   inputSchema: {
     type: 'object',
     properties: {
@@ -592,39 +592,39 @@ const guidanceQuickRef: MCPTool = {
       'getting-started': {
         title: 'Getting Started',
         commands: [
-          { cmd: 'npx ruflo@latest init --wizard', desc: 'Initialize project with interactive setup' },
-          { cmd: 'npx ruflo@latest doctor --fix', desc: 'Run diagnostics and auto-fix issues' },
-          { cmd: 'npx ruflo@latest daemon start', desc: 'Start background workers' },
-          { cmd: 'npx ruflo@latest status', desc: 'Check system status' },
+          { cmd: 'npx cortex-agent@latest init --wizard', desc: 'Initialize project with interactive setup' },
+          { cmd: 'npx cortex-agent@latest doctor --fix', desc: 'Run diagnostics and auto-fix issues' },
+          { cmd: 'npx cortex-agent@latest daemon start', desc: 'Start background workers' },
+          { cmd: 'npx cortex-agent@latest status', desc: 'Check system status' },
         ],
       },
       'daily-dev': {
         title: 'Daily Development',
         commands: [
-          { cmd: 'npx ruflo@latest hooks pre-task --description "..."', desc: 'Get routing recommendation before task' },
-          { cmd: 'npx ruflo@latest hooks post-task --task-id "..." --success true', desc: 'Record task outcome for learning' },
-          { cmd: 'npx ruflo@latest hooks post-edit --file "..." --train-neural true', desc: 'Train patterns from edits' },
-          { cmd: 'npx ruflo@latest memory search --query "..."', desc: 'Search memory for relevant patterns' },
-          { cmd: 'npx ruflo@latest hooks route --task "..."', desc: 'Route task to optimal agent' },
+          { cmd: 'npx cortex-agent@latest hooks pre-task --description "..."', desc: 'Get routing recommendation before task' },
+          { cmd: 'npx cortex-agent@latest hooks post-task --task-id "..." --success true', desc: 'Record task outcome for learning' },
+          { cmd: 'npx cortex-agent@latest hooks post-edit --file "..." --train-neural true', desc: 'Train patterns from edits' },
+          { cmd: 'npx cortex-agent@latest memory search --query "..."', desc: 'Search memory for relevant patterns' },
+          { cmd: 'npx cortex-agent@latest hooks route --task "..."', desc: 'Route task to optimal agent' },
         ],
       },
       'swarm-ops': {
         title: 'Swarm Operations',
         commands: [
-          { cmd: 'npx ruflo@latest swarm init --topology hierarchical --max-agents 8', desc: 'Initialize anti-drift swarm' },
-          { cmd: 'npx ruflo@latest swarm status', desc: 'Check swarm status' },
-          { cmd: 'npx ruflo@latest agent spawn -t coder --name my-coder', desc: 'Spawn a specific agent' },
-          { cmd: 'npx ruflo@latest hive-mind init --strategy byzantine', desc: 'Start hive-mind consensus' },
+          { cmd: 'npx cortex-agent@latest swarm init --topology hierarchical --max-agents 8', desc: 'Initialize anti-drift swarm' },
+          { cmd: 'npx cortex-agent@latest swarm status', desc: 'Check swarm status' },
+          { cmd: 'npx cortex-agent@latest agent spawn -t coder --name my-coder', desc: 'Spawn a specific agent' },
+          { cmd: 'npx cortex-agent@latest hive-mind init --strategy byzantine', desc: 'Start hive-mind consensus' },
         ],
       },
       'memory-ops': {
         title: 'Memory Operations',
         commands: [
-          { cmd: 'npx ruflo@latest memory init --force', desc: 'Initialize memory database' },
-          { cmd: 'npx ruflo@latest memory store --key "k" --value "v" --namespace patterns', desc: 'Store a value' },
-          { cmd: 'npx ruflo@latest memory search --query "auth patterns"', desc: 'Semantic vector search' },
-          { cmd: 'npx ruflo@latest memory list --namespace patterns', desc: 'List entries in namespace' },
-          { cmd: 'npx ruflo@latest memory retrieve --key "k" --namespace patterns', desc: 'Get a specific entry' },
+          { cmd: 'npx cortex-agent@latest memory init --force', desc: 'Initialize memory database' },
+          { cmd: 'npx cortex-agent@latest memory store --key "k" --value "v" --namespace patterns', desc: 'Store a value' },
+          { cmd: 'npx cortex-agent@latest memory search --query "auth patterns"', desc: 'Semantic vector search' },
+          { cmd: 'npx cortex-agent@latest memory list --namespace patterns', desc: 'List entries in namespace' },
+          { cmd: 'npx cortex-agent@latest memory retrieve --key "k" --namespace patterns', desc: 'Get a specific entry' },
         ],
       },
       'github-ops': {
@@ -639,11 +639,11 @@ const guidanceQuickRef: MCPTool = {
       diagnostics: {
         title: 'Diagnostics & Troubleshooting',
         commands: [
-          { cmd: 'npx ruflo@latest doctor --fix', desc: 'Full system diagnostics with auto-fix' },
-          { cmd: 'npx ruflo@latest status --watch', desc: 'Live system monitoring' },
-          { cmd: 'npx ruflo@latest hooks worker status', desc: 'Background worker health' },
-          { cmd: 'npx ruflo@latest performance benchmark --suite all', desc: 'Run all benchmarks' },
-          { cmd: 'npx ruflo@latest hooks progress --detailed', desc: 'V3 implementation progress' },
+          { cmd: 'npx cortex-agent@latest doctor --fix', desc: 'Full system diagnostics with auto-fix' },
+          { cmd: 'npx cortex-agent@latest status --watch', desc: 'Live system monitoring' },
+          { cmd: 'npx cortex-agent@latest hooks worker status', desc: 'Background worker health' },
+          { cmd: 'npx cortex-agent@latest performance benchmark --suite all', desc: 'Run all benchmarks' },
+          { cmd: 'npx cortex-agent@latest hooks progress --detailed', desc: 'V3 implementation progress' },
         ],
       },
     };

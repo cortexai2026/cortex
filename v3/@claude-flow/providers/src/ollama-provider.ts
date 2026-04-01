@@ -4,7 +4,7 @@
  * Supports Llama, Mistral, CodeLlama, Phi, and other local models.
  * Zero cost - runs entirely locally.
  *
- * @module @claude-flow/providers/ollama-provider
+ * @module @cortex-agent/providers/ollama-provider
  */
 
 import { BaseProvider, BaseProviderOptions } from './base-provider.js';

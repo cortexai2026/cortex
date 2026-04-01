@@ -5,7 +5,7 @@ This directory contains the V3 monorepo packages. Root CLAUDE.md rules apply her
 ## Build & Test
 
 ```bash
-# From v3/@claude-flow/<package>
+# From v3/@cortex-agent/<package>
 npm install && npm run build && npm test
 ```
 
@@ -13,12 +13,12 @@ npm install && npm run build && npm test
 
 | Package | Path | Purpose |
 |---------|------|---------|
-| `@claude-flow/cli` | `@claude-flow/cli/` | CLI entry point (26 commands, 140+ subcommands) |
-| `@claude-flow/guidance` | `@claude-flow/guidance/` | Governance control plane (compile, enforce, prove, evolve) |
-| `@claude-flow/hooks` | `@claude-flow/hooks/` | 17 hooks + 12 background workers |
-| `@claude-flow/memory` | `@claude-flow/memory/` | AgentDB + HNSW vector search |
-| `@claude-flow/shared` | `@claude-flow/shared/` | Shared types and utilities |
-| `@claude-flow/security` | `@claude-flow/security/` | Input validation, path security, CVE remediation |
+| `@cortex-agent/cli` | `@cortex-agent/cli/` | CLI entry point (26 commands, 140+ subcommands) |
+| `@cortex-agent/guidance` | `@cortex-agent/guidance/` | Governance control plane (compile, enforce, prove, evolve) |
+| `@cortex-agent/hooks` | `@cortex-agent/hooks/` | 17 hooks + 12 background workers |
+| `@cortex-agent/memory` | `@cortex-agent/memory/` | AgentDB + HNSW vector search |
+| `@cortex-agent/shared` | `@cortex-agent/shared/` | Shared types and utilities |
+| `@cortex-agent/security` | `@cortex-agent/security/` | Input validation, path security, CVE remediation |
 
 ## Code Quality
 

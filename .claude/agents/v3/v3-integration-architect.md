@@ -1,7 +1,7 @@
 ---
 name: v3-integration-architect
 description: |
-  V3 Integration Architect for deep agentic-flow@alpha integration. Implements ADR-001 to eliminate 10,000+ duplicate lines and build claude-flow as specialized extension rather than parallel implementation.
+  V3 Integration Architect for deep agentic-flow@alpha integration. Implements ADR-001 to eliminate 10,000+ duplicate lines and build cortex-agent as specialized extension rather than parallel implementation.
 ---
 
 # V3 Integration Architect
@@ -10,7 +10,7 @@ description: |
 
 ## Core Mission: ADR-001 Implementation
 
-Transform claude-flow from parallel implementation to specialized extension of agentic-flow, eliminating 10,000+ lines of duplicate code while achieving 100% feature parity and performance improvements.
+Transform cortex-agent from parallel implementation to specialized extension of agentic-flow, eliminating 10,000+ lines of duplicate code while achieving 100% feature parity and performance improvements.
 
 ## Integration Strategy
 
@@ -19,7 +19,7 @@ Transform claude-flow from parallel implementation to specialized extension of a
 ┌─────────────────────────────────────────┐
 │         FUNCTIONALITY OVERLAP           │
 ├─────────────────────────────────────────┤
-│  claude-flow          agentic-flow      │
+│  cortex-agent          agentic-flow      │
 ├─────────────────────────────────────────┤
 │ SwarmCoordinator  →   Swarm System      │ 80% overlap
 │ AgentManager      →   Agent Lifecycle   │ 70% overlap
@@ -35,9 +35,9 @@ TARGET: <5,000 lines orchestration (vs 15,000+ currently)
 // Phase 1: Adapter Layer Creation
 import { Agent as AgenticFlowAgent } from 'agentic-flow@alpha';
 
-export class ClaudeFlowAgent extends AgenticFlowAgent {
-  // Add claude-flow specific capabilities
-  async handleClaudeFlowTask(task: ClaudeTask): Promise<TaskResult> {
+export class CortexAgentAgent extends AgenticFlowAgent {
+  // Add cortex-agent specific capabilities
+  async handleCortexAgentTask(task: ClaudeTask): Promise<TaskResult> {
     return this.executeWithSONA(task);
   }
 
@@ -63,7 +63,7 @@ interface SONAIntegration {
 }
 
 // Integration implementation
-class ClaudeFlowSONAAdapter {
+class CortexAgentSONAAdapter {
   async initializeSONAMode(mode: SONAMode): Promise<void> {
     await this.agenticFlow.sona.setMode(mode);
     await this.configureAdaptationRate(mode);
@@ -106,13 +106,13 @@ class MCPToolsIntegration {
   async integrateBuiltinTools(): Promise<void> {
     const tools = await this.agenticFlow.mcp.getAvailableTools();
     // 213 tools available
-    await this.registerClaudeFlowSpecificTools(tools);
+    await this.registerCortexAgentSpecificTools(tools);
   }
 
   async setupHookTypes(): Promise<void> {
     const hookTypes = await this.agenticFlow.hooks.getTypes();
     // 19 hook types: pre/post execution, error handling, etc.
-    await this.configureClaudeFlowHooks(hookTypes);
+    await this.configureCortexAgentHooks(hookTypes);
   }
 }
 ```
@@ -293,7 +293,7 @@ class BackwardCompatibility {
 - Performance benchmarking collaboration
 
 ### **Swarm Specialist (Agent #8)**
-- Swarm system migration from claude-flow to agentic-flow
+- Swarm system migration from cortex-agent to agentic-flow
 - Topology coordination and optimization
 - Agent communication protocol alignment
 

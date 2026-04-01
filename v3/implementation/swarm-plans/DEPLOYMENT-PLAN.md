@@ -57,12 +57,12 @@ v3.0.0          → Stable release
 
 ```json
 {
-  "name": "@anthropic/claude-flow",
+  "name": "@anthropic/cortex-agent",
   "version": "3.0.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": {
-    "claude-flow": "bin/claude-flow.js"
+    "cortex-agent": "bin/cortex-agent.js"
   },
   "engines": {
     "node": ">=20.0.0"
@@ -108,7 +108,7 @@ v3.0.0          → Stable release
 See [MIGRATION-GUIDE.md](./v3/implementation/migration/MIGRATION-GUIDE.md)
 
 ---
-**Full Changelog**: https://github.com/anthropic/claude-flow/compare/v2.7.47...v3.0.0
+**Full Changelog**: https://github.com/anthropic/cortex-agent/compare/v2.7.47...v3.0.0
 ```
 
 ---
@@ -251,7 +251,7 @@ jobs:
 
             ## Installation
             ```bash
-            npm install -g @anthropic/claude-flow@${{ github.ref_name }}
+            npm install -g @anthropic/cortex-agent@${{ github.ref_name }}
             ```
 
             ## Documentation
@@ -369,7 +369,7 @@ import { program } from 'commander';
 import { migrate } from '../src/migration/migrator';
 
 program
-  .name('claude-flow-migrate')
+  .name('cortex-agent-migrate')
   .description('Migrate Claude-Flow v2 to v3')
   .option('-d, --dry-run', 'Show what would be migrated')
   .option('-b, --backup', 'Create backup before migration')
@@ -471,12 +471,12 @@ jobs:
     environment: production
     steps:
       - name: Deprecate current version
-        run: npm deprecate @anthropic/claude-flow@latest "Rolling back due to: ${{ inputs.reason }}"
+        run: npm deprecate @anthropic/cortex-agent@latest "Rolling back due to: ${{ inputs.reason }}"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Promote previous version
-        run: npm dist-tag add @anthropic/claude-flow@${{ inputs.version }} latest
+        run: npm dist-tag add @anthropic/cortex-agent@${{ inputs.version }} latest
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -555,20 +555,20 @@ export async function reportReleaseMetrics(): Promise<void> {
 # Post-release health checks
 checks:
   - name: npm install
-    command: npm install -g @anthropic/claude-flow@latest
+    command: npm install -g @anthropic/cortex-agent@latest
     timeout: 60s
 
   - name: CLI startup
-    command: claude-flow --version
+    command: cortex-agent --version
     expected: "3.0.0"
     timeout: 5s
 
   - name: Basic swarm
-    command: claude-flow swarm init test --dry-run
+    command: cortex-agent swarm init test --dry-run
     timeout: 10s
 
   - name: MCP server
-    command: claude-flow mcp start --health-check
+    command: cortex-agent mcp start --health-check
     timeout: 30s
 ```
 
@@ -607,8 +607,8 @@ deep integration with the agentic-flow ecosystem.
 ## Upgrade
 
 ```bash
-npm install -g @anthropic/claude-flow@3.0.0
-claude-flow migrate --from v2
+npm install -g @anthropic/cortex-agent@3.0.0
+cortex-agent migrate --from v2
 ```
 
 ## Links

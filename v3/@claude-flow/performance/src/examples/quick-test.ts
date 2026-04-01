@@ -3,7 +3,7 @@
  * Quick Integration Test
  *
  * Verifies @ruvector/attention integration is working correctly.
- * Run with: npx tsx v3/@claude-flow/performance/src/examples/quick-test.ts
+ * Run with: npx tsx v3/@cortex-agent/performance/src/examples/quick-test.ts
  */
 
 import {

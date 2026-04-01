@@ -5,7 +5,7 @@
  * integration, supporting advanced neural search, attention mechanisms,
  * graph neural networks, and hyperbolic embeddings.
  *
- * @module @claude-flow/plugins/integrations/ruvector
+ * @module @cortex-agent/plugins/integrations/ruvector
  * @version 1.0.0
  */
 

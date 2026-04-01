@@ -1,4 +1,4 @@
-// @ts-nocheck - CLI integration requires the full @claude-flow/cli package
+// @ts-nocheck - CLI integration requires the full @cortex-agent/cli package
 /**
  * V3 CLI Claims Command
  * Issue claiming and work distribution management
@@ -314,7 +314,7 @@ const claimCommand: Command = {
 
     if (!issueId) {
       output.printError('Issue ID is required');
-      output.printInfo('Usage: claude-flow issues claim <issueId>');
+      output.printInfo('Usage: cortex-agent issues claim <issueId>');
       return { success: false, exitCode: 1 };
     }
 
@@ -402,7 +402,7 @@ const releaseCommand: Command = {
 
     if (!issueId) {
       output.printError('Issue ID is required');
-      output.printInfo('Usage: claude-flow issues release <issueId>');
+      output.printInfo('Usage: cortex-agent issues release <issueId>');
       return { success: false, exitCode: 1 };
     }
 
@@ -475,7 +475,7 @@ const handoffCommand: Command = {
 
     if (!issueId) {
       output.printError('Issue ID is required');
-      output.printInfo('Usage: claude-flow issues handoff <issueId> --to <target>');
+      output.printInfo('Usage: cortex-agent issues handoff <issueId> --to <target>');
       return { success: false, exitCode: 1 };
     }
 
@@ -585,7 +585,7 @@ const statusCommand: Command = {
 
     if (!issueId) {
       output.printError('Issue ID is required');
-      output.printInfo('Usage: claude-flow issues status <issueId> [options]');
+      output.printInfo('Usage: cortex-agent issues status <issueId> [options]');
       return { success: false, exitCode: 1 };
     }
 
@@ -872,7 +872,7 @@ const stealableCommand: Command = {
       output.writeln();
       output.printInfo(`Showing ${result.claims.length} of ${result.total} stealable issues`);
       output.writeln();
-      output.printInfo('Use "claude-flow issues steal <issueId>" to take over an issue');
+      output.printInfo('Use "cortex-agent issues steal <issueId>" to take over an issue');
 
       return { success: true, data: result };
     } catch (error) {
@@ -911,7 +911,7 @@ const stealCommand: Command = {
 
     if (!issueId) {
       output.printError('Issue ID is required');
-      output.printInfo('Usage: claude-flow issues steal <issueId>');
+      output.printInfo('Usage: cortex-agent issues steal <issueId>');
       return { success: false, exitCode: 1 };
     }
 
@@ -991,7 +991,7 @@ const markStealableCommand: Command = {
 
     if (!issueId) {
       output.printError('Issue ID is required');
-      output.printInfo('Usage: claude-flow issues mark-stealable <issueId>');
+      output.printInfo('Usage: cortex-agent issues mark-stealable <issueId>');
       return { success: false, exitCode: 1 };
     }
 
@@ -1055,7 +1055,7 @@ const contestCommand: Command = {
 
     if (!issueId) {
       output.printError('Issue ID is required');
-      output.printInfo('Usage: claude-flow issues contest <issueId> --reason "..."');
+      output.printInfo('Usage: cortex-agent issues contest <issueId> --reason "..."');
       return { success: false, exitCode: 1 };
     }
 
@@ -1382,30 +1382,30 @@ export const issuesCommand: Command = {
   ],
   options: [],
   examples: [
-    { command: 'claude-flow issues list --available', description: 'List unclaimed issues' },
-    { command: 'claude-flow issues list --mine', description: 'List my claims' },
-    { command: 'claude-flow issues claim GH-123', description: 'Claim an issue' },
-    { command: 'claude-flow issues release GH-123', description: 'Release a claim' },
-    { command: 'claude-flow issues handoff GH-123 --to agent:coder-1', description: 'Request handoff to agent' },
-    { command: 'claude-flow issues handoff GH-123 --to human:alice', description: 'Request handoff to human' },
-    { command: 'claude-flow issues status GH-123 --blocked "Waiting for API"', description: 'Mark as blocked' },
-    { command: 'claude-flow issues status GH-123 --review-requested', description: 'Request review' },
-    { command: 'claude-flow issues board', description: 'View who is working on what' },
-    { command: 'claude-flow issues stealable', description: 'List stealable issues' },
-    { command: 'claude-flow issues steal GH-123', description: 'Steal an issue' },
-    { command: 'claude-flow issues mark-stealable GH-123', description: 'Mark my claim as stealable' },
-    { command: 'claude-flow issues contest GH-123 -r "I was actively working on it"', description: 'Contest a steal' },
-    { command: 'claude-flow issues load', description: 'View agent load distribution' },
-    { command: 'claude-flow issues load --agent coder-1', description: 'View specific agent load' },
-    { command: 'claude-flow issues rebalance --dry-run', description: 'Preview rebalancing' },
-    { command: 'claude-flow issues rebalance', description: 'Trigger swarm rebalancing' }
+    { command: 'cortex-agent issues list --available', description: 'List unclaimed issues' },
+    { command: 'cortex-agent issues list --mine', description: 'List my claims' },
+    { command: 'cortex-agent issues claim GH-123', description: 'Claim an issue' },
+    { command: 'cortex-agent issues release GH-123', description: 'Release a claim' },
+    { command: 'cortex-agent issues handoff GH-123 --to agent:coder-1', description: 'Request handoff to agent' },
+    { command: 'cortex-agent issues handoff GH-123 --to human:alice', description: 'Request handoff to human' },
+    { command: 'cortex-agent issues status GH-123 --blocked "Waiting for API"', description: 'Mark as blocked' },
+    { command: 'cortex-agent issues status GH-123 --review-requested', description: 'Request review' },
+    { command: 'cortex-agent issues board', description: 'View who is working on what' },
+    { command: 'cortex-agent issues stealable', description: 'List stealable issues' },
+    { command: 'cortex-agent issues steal GH-123', description: 'Steal an issue' },
+    { command: 'cortex-agent issues mark-stealable GH-123', description: 'Mark my claim as stealable' },
+    { command: 'cortex-agent issues contest GH-123 -r "I was actively working on it"', description: 'Contest a steal' },
+    { command: 'cortex-agent issues load', description: 'View agent load distribution' },
+    { command: 'cortex-agent issues load --agent coder-1', description: 'View specific agent load' },
+    { command: 'cortex-agent issues rebalance --dry-run', description: 'Preview rebalancing' },
+    { command: 'cortex-agent issues rebalance', description: 'Trigger swarm rebalancing' }
   ],
   action: async (ctx: CommandContext): Promise<CommandResult> => {
     // Show help if no subcommand
     output.writeln();
     output.writeln(output.bold('Issue Claims Management'));
     output.writeln();
-    output.writeln('Usage: claude-flow issues <subcommand> [options]');
+    output.writeln('Usage: cortex-agent issues <subcommand> [options]');
     output.writeln();
 
     output.writeln(output.bold('Core Commands'));
@@ -1435,7 +1435,7 @@ export const issuesCommand: Command = {
     ]);
 
     output.writeln();
-    output.writeln('Run "claude-flow issues <subcommand> --help" for subcommand help');
+    output.writeln('Run "cortex-agent issues <subcommand> --help" for subcommand help');
 
     return { success: true };
   }

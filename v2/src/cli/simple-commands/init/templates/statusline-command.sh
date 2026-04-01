@@ -8,7 +8,7 @@ DIR=$(basename "$CWD")
 
 # Replace claude-code-flow with branded name
 if [ "$DIR" = "claude-code-flow" ]; then
-  DIR="🌊 Claude Flow"
+  DIR="🌊 Cortex Agent"
 fi
 
 # Get git branch
@@ -19,7 +19,7 @@ echo -ne "\033[1m$MODEL\033[0m in \033[36m$DIR\033[0m"
 [ -n "$BRANCH" ] && echo -ne " on \033[33m⎇ $BRANCH\033[0m"
 
 # Claude-Flow integration
-FLOW_DIR="$CWD/.claude-flow"
+FLOW_DIR="$CWD/.cortex-agent"
 
 if [ -d "$FLOW_DIR" ]; then
   echo -ne " │"

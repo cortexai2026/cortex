@@ -1,6 +1,6 @@
 /**
  * V3 CLI Init Command
- * Comprehensive initialization for Claude Flow with Claude Code integration
+ * Comprehensive initialization for Cortex Agent with Claude Code integration
  */
 
 import type { Command, CommandContext, CommandResult } from '../types.js';
@@ -26,7 +26,7 @@ async function initCodexAction(
   const { force, minimal, full, dualMode } = options;
 
   output.writeln();
-  output.writeln(output.bold('Initializing RuFlo V3 for OpenAI Codex'));
+  output.writeln(output.bold('Initializing Cortex Agent V3 for OpenAI Codex'));
   output.writeln();
 
   // Determine template
@@ -39,15 +39,15 @@ async function initCodexAction(
     // Dynamic import of the Codex initializer with lazy loading fallback
     let CodexInitializer: any;
 
-    // Try multiple resolution strategies for the @claude-flow/codex package
+    // Try multiple resolution strategies for the @cortex-agent/codex package
     // Use a variable to prevent TypeScript from statically resolving the optional module
-    const codexModuleId = '@claude-flow/codex';
+    const codexModuleId = '@cortex-agent/codex';
     const resolutionStrategies = [
       // Strategy 1: Direct import (works if installed as CLI dependency)
       async () => (await import(codexModuleId)).CodexInitializer,
       // Strategy 2: Project node_modules (works if installed in user's project)
       async () => {
-        const projectPath = path.join(ctx.cwd, 'node_modules', '@claude-flow', 'codex', 'dist', 'index.js');
+        const projectPath = path.join(ctx.cwd, 'node_modules', '@cortex-agent', 'codex', 'dist', 'index.js');
         if (fs.existsSync(projectPath)) {
           const mod = await import(`file://${projectPath}`);
           return mod.CodexInitializer;
@@ -58,7 +58,7 @@ async function initCodexAction(
       async () => {
         const { execSync } = await import('child_process');
         const globalPath = execSync('npm root -g', { encoding: 'utf-8' }).trim();
-        const codexPath = path.join(globalPath, '@claude-flow', 'codex', 'dist', 'index.js');
+        const codexPath = path.join(globalPath, '@cortex-agent', 'codex', 'dist', 'index.js');
         if (fs.existsSync(codexPath)) {
           const mod = await import(`file://${codexPath}`);
           return mod.CodexInitializer;
@@ -77,7 +77,7 @@ async function initCodexAction(
     }
 
     if (!CodexInitializer) {
-      throw new Error('Cannot find module @claude-flow/codex');
+      throw new Error('Cannot find module @cortex-agent/codex');
     }
 
     const initializer = new CodexInitializer();
@@ -150,9 +150,9 @@ async function initCodexAction(
     const errorMessage = error instanceof Error ? error.message : String(error);
 
     // Handle module not found error gracefully
-    if (errorMessage.includes('Cannot find module') || errorMessage.includes('@claude-flow/codex')) {
-      output.printError('The @claude-flow/codex package is not installed.');
-      output.printInfo('Install it with: npm install @claude-flow/codex');
+    if (errorMessage.includes('Cannot find module') || errorMessage.includes('@cortex-agent/codex')) {
+      output.printError('The @cortex-agent/codex package is not installed.');
+      output.printInfo('Install it with: npm install @cortex-agent/codex');
       output.writeln();
       output.printInfo('Alternatively, copy skills manually from .claude/skills/ to .agents/skills/');
     } else {
@@ -166,7 +166,7 @@ async function initCodexAction(
 // Check if project is already initialized
 function isInitialized(cwd: string): { claude: boolean; claudeFlow: boolean } {
   const claudePath = path.join(cwd, '.claude', 'settings.json');
-  const claudeFlowPath = path.join(cwd, '.claude-flow', 'config.yaml');
+  const claudeFlowPath = path.join(cwd, '.cortex-agent', 'config.yaml');
   return {
     claude: fs.existsSync(claudePath),
     claudeFlow: fs.existsSync(claudeFlowPath),
@@ -194,9 +194,9 @@ const initAction = async (ctx: CommandContext): Promise<CommandResult> => {
   const hasExisting = initialized.claude || initialized.claudeFlow;
 
   if (hasExisting && !force) {
-    output.printWarning('RuFlo appears to be already initialized');
+    output.printWarning('Cortex Agent appears to be already initialized');
     if (initialized.claude) output.printInfo('  Found: .claude/settings.json');
-    if (initialized.claudeFlow) output.printInfo('  Found: .claude-flow/config.yaml');
+    if (initialized.claudeFlow) output.printInfo('  Found: .cortex-agent/config.yaml');
     output.printInfo('Use --force to reinitialize');
 
     if (ctx.interactive) {
@@ -214,7 +214,7 @@ const initAction = async (ctx: CommandContext): Promise<CommandResult> => {
   }
 
   output.writeln();
-  output.writeln(output.bold('Initializing RuFlo V3'));
+  output.writeln(output.bold('Initializing Cortex Agent V3'));
   output.writeln();
 
   // Build init options based on flags
@@ -260,7 +260,7 @@ const initAction = async (ctx: CommandContext): Promise<CommandResult> => {
       return { success: false, exitCode: 1 };
     }
 
-    spinner.succeed('RuFlo V3 initialized successfully!');
+    spinner.succeed('Cortex Agent V3 initialized successfully!');
     output.writeln();
 
     // Display summary
@@ -301,10 +301,10 @@ const initAction = async (ctx: CommandContext): Promise<CommandResult> => {
     if (options.components.runtime) {
       output.printBox(
         [
-          `Config:      .claude-flow/config.yaml`,
-          `Data:        .claude-flow/data/`,
-          `Logs:        .claude-flow/logs/`,
-          `Sessions:    .claude-flow/sessions/`,
+          `Config:      .cortex-agent/config.yaml`,
+          `Data:        .cortex-agent/data/`,
+          `Logs:        .cortex-agent/logs/`,
+          `Sessions:    .cortex-agent/sessions/`,
         ].join('\n'),
         'V3 Runtime'
       );
@@ -331,7 +331,7 @@ const initAction = async (ctx: CommandContext): Promise<CommandResult> => {
       if (startAll) {
         try {
           output.writeln(output.dim('  Initializing memory database...'));
-          execSync('npx @claude-flow/cli@latest memory init 2>/dev/null', {
+          execSync('npx @cortex-agent/cli@latest memory init 2>/dev/null', {
             stdio: 'pipe',
             cwd: ctx.cwd,
             timeout: 30000
@@ -346,7 +346,7 @@ const initAction = async (ctx: CommandContext): Promise<CommandResult> => {
       if (startDaemon) {
         try {
           output.writeln(output.dim('  Starting daemon...'));
-          execSync('npx @claude-flow/cli@latest daemon start 2>/dev/null &', {
+          execSync('npx @cortex-agent/cli@latest daemon start 2>/dev/null &', {
             stdio: 'pipe',
             cwd: ctx.cwd,
             timeout: 10000
@@ -361,7 +361,7 @@ const initAction = async (ctx: CommandContext): Promise<CommandResult> => {
       if (startAll) {
         try {
           output.writeln(output.dim('  Initializing swarm...'));
-          execSync('npx @claude-flow/cli@latest swarm init --topology hierarchical 2>/dev/null', {
+          execSync('npx @cortex-agent/cli@latest swarm init --topology hierarchical 2>/dev/null', {
             stdio: 'pipe',
             cwd: ctx.cwd,
             timeout: 30000
@@ -389,7 +389,7 @@ const initAction = async (ctx: CommandContext): Promise<CommandResult> => {
       try {
         output.writeln(output.dim(`  Model: ${embeddingModel}`));
         output.writeln(output.dim('  Hyperbolic: Enabled (Poincaré ball)'));
-        execSync(`npx @claude-flow/cli@latest embeddings init --model ${embeddingModel} --no-download --force 2>/dev/null`, {
+        execSync(`npx @cortex-agent/cli@latest embeddings init --model ${embeddingModel} --no-download --force 2>/dev/null`, {
           stdio: 'pipe',
           cwd: ctx.cwd,
           timeout: 30000
@@ -405,10 +405,10 @@ const initAction = async (ctx: CommandContext): Promise<CommandResult> => {
       // Next steps (only if not auto-starting)
       output.writeln(output.bold('Next steps:'));
       output.printList([
-        `Run ${output.highlight('claude-flow daemon start')} to start background workers`,
-        `Run ${output.highlight('claude-flow memory init')} to initialize memory database`,
-        `Run ${output.highlight('claude-flow swarm init')} to initialize a swarm`,
-        `Or use ${output.highlight('claude-flow init --start-all')} to do all of the above`,
+        `Run ${output.highlight('cortex-agent daemon start')} to start background workers`,
+        `Run ${output.highlight('cortex-agent memory init')} to initialize memory database`,
+        `Run ${output.highlight('cortex-agent swarm init')} to initialize a swarm`,
+        `Or use ${output.highlight('cortex-agent init --start-all')} to do all of the above`,
         options.components.settings ? `Review ${output.highlight('.claude/settings.json')} for hook configurations` : '',
       ].filter(Boolean));
     }
@@ -431,7 +431,7 @@ const wizardCommand: Command = {
   description: 'Interactive setup wizard for comprehensive configuration',
   action: async (ctx: CommandContext): Promise<CommandResult> => {
     output.writeln();
-    output.writeln(output.bold('RuFlo V3 Setup Wizard'));
+    output.writeln(output.bold('Cortex Agent V3 Setup Wizard'));
     output.writeln(output.dim('Answer questions to configure your project'));
     output.writeln();
 
@@ -469,7 +469,7 @@ const wizardCommand: Command = {
             { value: 'helpers', label: 'Helpers', hint: 'Utility scripts in .claude/helpers/', selected: true },
             { value: 'statusline', label: 'Statusline', hint: 'Shell statusline integration', selected: false },
             { value: 'mcp', label: 'MCP', hint: '.mcp.json for MCP server configuration', selected: true },
-            { value: 'runtime', label: 'Runtime', hint: '.claude-flow/ directory for V3 runtime', selected: true },
+            { value: 'runtime', label: 'Runtime', hint: '.cortex-agent/ directory for V3 runtime', selected: true },
           ],
         });
 
@@ -514,7 +514,7 @@ const wizardCommand: Command = {
               { value: 'sessionStart', label: 'SessionStart', hint: 'Session initialization', selected: true },
               { value: 'stop', label: 'Stop', hint: 'Task completion evaluation', selected: true },
               { value: 'notification', label: 'Notification', hint: 'Swarm notifications', selected: true },
-              { value: 'permissionRequest', label: 'PermissionRequest', hint: 'Auto-allow claude-flow tools', selected: true },
+              { value: 'permissionRequest', label: 'PermissionRequest', hint: 'Auto-allow cortex-agent tools', selected: true },
             ],
           });
 
@@ -634,7 +634,7 @@ const wizardCommand: Command = {
         output.printInfo('Initializing ONNX embedding subsystem...');
         const { execSync } = await import('child_process');
         try {
-          execSync(`npx @claude-flow/cli@latest embeddings init --model ${embeddingModel} --no-download --force 2>/dev/null`, {
+          execSync(`npx @cortex-agent/cli@latest embeddings init --model ${embeddingModel} --no-download --force 2>/dev/null`, {
             stdio: 'pipe',
             cwd: ctx.cwd,
             timeout: 30000
@@ -684,7 +684,7 @@ const wizardCommand: Command = {
 // Check subcommand
 const checkCommand: Command = {
   name: 'check',
-  description: 'Check if RuFlo is initialized',
+  description: 'Check if Cortex Agent is initialized',
   action: async (ctx: CommandContext): Promise<CommandResult> => {
     const initialized = isInitialized(ctx.cwd);
 
@@ -694,7 +694,7 @@ const checkCommand: Command = {
       claudeFlow: initialized.claudeFlow,
       paths: {
         claudeSettings: initialized.claude ? path.join(ctx.cwd, '.claude', 'settings.json') : null,
-        claudeFlowConfig: initialized.claudeFlow ? path.join(ctx.cwd, '.claude-flow', 'config.yaml') : null,
+        claudeFlowConfig: initialized.claudeFlow ? path.join(ctx.cwd, '.cortex-agent', 'config.yaml') : null,
       },
     };
 
@@ -704,16 +704,16 @@ const checkCommand: Command = {
     }
 
     if (result.initialized) {
-      output.printSuccess('RuFlo is initialized');
+      output.printSuccess('Cortex Agent is initialized');
       if (initialized.claude) {
         output.printInfo(`  Claude Code: .claude/settings.json`);
       }
       if (initialized.claudeFlow) {
-        output.printInfo(`  V3 Runtime: .claude-flow/config.yaml`);
+        output.printInfo(`  V3 Runtime: .cortex-agent/config.yaml`);
       }
     } else {
-      output.printWarning('RuFlo is not initialized in this directory');
-      output.printInfo('Run "ruflo init" to initialize');
+      output.printWarning('Cortex Agent is not initialized in this directory');
+      output.printInfo('Run "cortex-agent init" to initialize');
     }
 
     return { success: true, data: result };
@@ -870,7 +870,7 @@ const upgradeCommand: Command = {
     const upgradeSettings = (ctx.flags.settings) as boolean;
 
     output.writeln();
-    output.writeln(output.bold('Upgrading RuFlo'));
+    output.writeln(output.bold('Upgrading Cortex Agent'));
     if (addMissing && upgradeSettings) {
       output.writeln(output.dim('Updates helpers, settings, and adds any missing skills/agents/commands'));
     } else if (addMissing) {
@@ -1002,7 +1002,7 @@ const upgradeCommand: Command = {
 // Main init command
 export const initCommand: Command = {
   name: 'init',
-  description: 'Initialize RuFlo in the current directory',
+  description: 'Initialize Cortex Agent in the current directory',
   subcommands: [wizardCommand, checkCommand, skillsCommand, hooksCommand, upgradeCommand],
   options: [
     {
@@ -1076,25 +1076,25 @@ export const initCommand: Command = {
     },
   ],
   examples: [
-    { command: 'claude-flow init', description: 'Initialize with default configuration' },
-    { command: 'claude-flow init --start-all', description: 'Initialize and start daemon, memory, swarm' },
-    { command: 'claude-flow init --start-daemon', description: 'Initialize and start daemon only' },
-    { command: 'claude-flow init --minimal', description: 'Initialize with minimal configuration' },
-    { command: 'claude-flow init --full', description: 'Initialize with all components' },
-    { command: 'claude-flow init --force', description: 'Reinitialize and overwrite existing config' },
-    { command: 'claude-flow init --only-claude', description: 'Only create Claude Code integration' },
-    { command: 'claude-flow init --skip-claude', description: 'Only create V3 runtime' },
-    { command: 'claude-flow init wizard', description: 'Interactive setup wizard' },
-    { command: 'claude-flow init --with-embeddings', description: 'Initialize with ONNX embeddings' },
-    { command: 'claude-flow init --with-embeddings --embedding-model all-mpnet-base-v2', description: 'Use larger embedding model' },
-    { command: 'claude-flow init skills --all', description: 'Install all available skills' },
-    { command: 'claude-flow init hooks --minimal', description: 'Create minimal hooks configuration' },
-    { command: 'claude-flow init upgrade', description: 'Update helpers while preserving data' },
-    { command: 'claude-flow init upgrade --settings', description: 'Update helpers and merge new settings (Agent Teams)' },
-    { command: 'claude-flow init upgrade --verbose', description: 'Show detailed upgrade info' },
-    { command: 'claude-flow init --codex', description: 'Initialize for OpenAI Codex (AGENTS.md)' },
-    { command: 'claude-flow init --codex --full', description: 'Codex init with all 137+ skills' },
-    { command: 'claude-flow init --dual', description: 'Initialize for both Claude Code and Codex' },
+    { command: 'cortex-agent init', description: 'Initialize with default configuration' },
+    { command: 'cortex-agent init --start-all', description: 'Initialize and start daemon, memory, swarm' },
+    { command: 'cortex-agent init --start-daemon', description: 'Initialize and start daemon only' },
+    { command: 'cortex-agent init --minimal', description: 'Initialize with minimal configuration' },
+    { command: 'cortex-agent init --full', description: 'Initialize with all components' },
+    { command: 'cortex-agent init --force', description: 'Reinitialize and overwrite existing config' },
+    { command: 'cortex-agent init --only-claude', description: 'Only create Claude Code integration' },
+    { command: 'cortex-agent init --skip-claude', description: 'Only create V3 runtime' },
+    { command: 'cortex-agent init wizard', description: 'Interactive setup wizard' },
+    { command: 'cortex-agent init --with-embeddings', description: 'Initialize with ONNX embeddings' },
+    { command: 'cortex-agent init --with-embeddings --embedding-model all-mpnet-base-v2', description: 'Use larger embedding model' },
+    { command: 'cortex-agent init skills --all', description: 'Install all available skills' },
+    { command: 'cortex-agent init hooks --minimal', description: 'Create minimal hooks configuration' },
+    { command: 'cortex-agent init upgrade', description: 'Update helpers while preserving data' },
+    { command: 'cortex-agent init upgrade --settings', description: 'Update helpers and merge new settings (Agent Teams)' },
+    { command: 'cortex-agent init upgrade --verbose', description: 'Show detailed upgrade info' },
+    { command: 'cortex-agent init --codex', description: 'Initialize for OpenAI Codex (AGENTS.md)' },
+    { command: 'cortex-agent init --codex --full', description: 'Codex init with all 137+ skills' },
+    { command: 'cortex-agent init --dual', description: 'Initialize for both Claude Code and Codex' },
   ],
   action: initAction,
 };

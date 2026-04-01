@@ -1,6 +1,6 @@
 /**
- * @claude-flow/browser
- * Browser automation for AI agents - integrates agent-browser with claude-flow swarms
+ * @cortex-agent/browser
+ * Browser automation for AI agents - integrates agent-browser with cortex-agent swarms
  *
  * Features:
  * - 50+ MCP tools for browser automation
@@ -11,7 +11,7 @@
  *
  * @example
  * ```typescript
- * import { createBrowserService, browserTools } from '@claude-flow/browser';
+ * import { createBrowserService, browserTools } from '@cortex-agent/browser';
  *
  * // Create a browser service
  * const browser = createBrowserService({ sessionId: 'my-session' });
@@ -59,7 +59,7 @@ export {
 
 // Memory integration (HNSW semantic search)
 export {
-  ClaudeFlowMemoryAdapter,
+  CortexAgentMemoryAdapter,
   BrowserMemoryManager,
   createMemoryManager,
   getMemoryAdapter,

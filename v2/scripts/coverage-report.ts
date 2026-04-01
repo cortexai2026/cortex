@@ -499,7 +499,7 @@ class CoverageAnalyzer {
   private async generateTextReport(report: CoverageReport): Promise<void> {
     const lines: string[] = [];
     
-    lines.push("📊 CLAUDE-FLOW COVERAGE REPORT");
+    lines.push("📊 CORTEX-AGENT COVERAGE REPORT");
     lines.push("=".repeat(50));
     lines.push(`Generated: ${report.timestamp}`);
     lines.push("");

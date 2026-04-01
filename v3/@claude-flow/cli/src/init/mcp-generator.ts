@@ -52,17 +52,17 @@ export function generateMCPConfig(options: InitOptions): object {
     npm_config_update_notifier: 'false',
   };
 
-  // Claude Flow MCP server (core)
+  // Cortex Agent MCP server (core)
   if (config.claudeFlow) {
-    mcpServers['claude-flow'] = createMCPServerEntry(
-      ['@claude-flow/cli@latest', 'mcp', 'start'],
+    mcpServers['cortex-agent'] = createMCPServerEntry(
+      ['@cortex-agent/cli@latest', 'mcp', 'start'],
       {
         ...npmEnv,
-        CLAUDE_FLOW_MODE: 'v3',
-        CLAUDE_FLOW_HOOKS_ENABLED: 'true',
-        CLAUDE_FLOW_TOPOLOGY: options.runtime.topology,
-        CLAUDE_FLOW_MAX_AGENTS: String(options.runtime.maxAgents),
-        CLAUDE_FLOW_MEMORY_BACKEND: options.runtime.memoryBackend,
+        CORTEX_AGENT_MODE: 'v3',
+        CORTEX_AGENT_HOOKS_ENABLED: 'true',
+        CORTEX_AGENT_TOPOLOGY: options.runtime.topology,
+        CORTEX_AGENT_MAX_AGENTS: String(options.runtime.maxAgents),
+        CORTEX_AGENT_MEMORY_BACKEND: options.runtime.memoryBackend,
       },
       { autoStart: config.autoStart }
     );
@@ -106,7 +106,7 @@ export function generateMCPCommands(options: InitOptions): string[] {
 
   if (isWindows()) {
     if (config.claudeFlow) {
-      commands.push('claude mcp add claude-flow -- cmd /c npx -y @claude-flow/cli@latest mcp start');
+      commands.push('claude mcp add cortex-agent -- cmd /c npx -y @cortex-agent/cli@latest mcp start');
     }
     if (config.ruvSwarm) {
       commands.push('claude mcp add ruv-swarm -- cmd /c npx -y ruv-swarm mcp start');
@@ -116,7 +116,7 @@ export function generateMCPCommands(options: InitOptions): string[] {
     }
   } else {
     if (config.claudeFlow) {
-      commands.push("claude mcp add claude-flow -- npx -y @claude-flow/cli@latest mcp start");
+      commands.push("claude mcp add cortex-agent -- npx -y @cortex-agent/cli@latest mcp start");
     }
     if (config.ruvSwarm) {
       commands.push("claude mcp add ruv-swarm -- npx -y ruv-swarm mcp start");

@@ -1,7 +1,7 @@
 /**
  * WorkerBase - Abstract Base Worker Class
  *
- * Provides the foundation for all worker patterns in Claude Flow v3,
+ * Provides the foundation for all worker patterns in Cortex Agent v3,
  * aligned with agentic-flow@alpha's worker architecture.
  *
  * Key Features:
@@ -11,7 +11,7 @@
  * - Memory and coordination integration
  *
  * This implements ADR-001 by building on agentic-flow patterns
- * while providing Claude Flow-specific extensions.
+ * while providing Cortex Agent-specific extensions.
  *
  * @module v3/integration/worker-base
  * @version 3.0.0-alpha.1

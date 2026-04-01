@@ -274,8 +274,8 @@ export class MCPIntegrationLayer {
     }
 
     try {
-      // Use the mcp__claude-flow__ tools that are available
-      const mcpToolName = `mcp__claude-flow__${toolName}`;
+      // Use the mcp__cortex-agent__ tools that are available
+      const mcpToolName = `mcp__cortex-agent__${toolName}`;
 
       // Check if we have this tool available (would need to be passed from the calling context)
       // For now, simulate execution

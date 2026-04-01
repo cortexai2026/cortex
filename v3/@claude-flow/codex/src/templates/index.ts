@@ -1,5 +1,5 @@
 /**
- * @claude-flow/codex - Templates
+ * @cortex-agent/codex - Templates
  *
  * Built-in templates and skill definitions
  */
@@ -230,7 +230,7 @@ export const DIRECTORY_STRUCTURE = {
     'config.toml': 'User-local overrides (gitignored)',
     'AGENTS.override.md': 'Local instruction overrides',
   },
-  '.claude-flow': {
+  '.cortex-agent': {
     'config.yaml': 'Runtime configuration',
     'data/': 'Memory and cache data',
     'logs/': 'Log files',
@@ -264,9 +264,9 @@ export const GITIGNORE_ENTRIES = [
   '# Codex local configuration',
   '.codex/',
   '',
-  '# Claude Flow runtime data',
-  '.claude-flow/data/',
-  '.claude-flow/logs/',
+  '# Cortex Agent runtime data',
+  '.cortex-agent/data/',
+  '.cortex-agent/logs/',
   '',
   '# Environment variables',
   '.env',

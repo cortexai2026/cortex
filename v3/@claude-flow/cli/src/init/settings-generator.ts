@@ -25,10 +25,10 @@ export function generateSettings(options: InitOptions): object {
   // Add permissions
   settings.permissions = {
     allow: [
-      'Bash(npx @claude-flow*)',
-      'Bash(npx claude-flow*)',
+      'Bash(npx @cortex-agent*)',
+      'Bash(npx cortex-agent*)',
       'Bash(node .claude/*)',
-      'mcp__claude-flow__:*',
+      'mcp__cortex-agent__:*',
     ],
     deny: [
       'Read(./.env)',
@@ -36,10 +36,10 @@ export function generateSettings(options: InitOptions): object {
     ],
   };
 
-  // Add claude-flow attribution for git commits and PRs
+  // Add cortex-agent attribution for git commits and PRs
   settings.attribution = {
-    commit: 'Co-Authored-By: claude-flow <ruv@ruv.net>',
-    pr: '🤖 Generated with [claude-flow](https://github.com/ruvnet/claude-flow)',
+    commit: 'Co-Authored-By: cortex-agent <ruv@ruv.net>',
+    pr: '🤖 Generated with [cortex-agent](https://github.com/ruvnet/cortex-agent)',
   };
 
   // Note: Claude Code expects 'model' to be a string, not an object
@@ -50,9 +50,9 @@ export function generateSettings(options: InitOptions): object {
   settings.env = {
     // Enable Claude Code Agent Teams for multi-agent coordination
     CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS: '1',
-    // Claude Flow specific environment
-    CLAUDE_FLOW_V3_ENABLED: 'true',
-    CLAUDE_FLOW_HOOKS_ENABLED: 'true',
+    // Cortex Agent specific environment
+    CORTEX_AGENT_V3_ENABLED: 'true',
+    CORTEX_AGENT_HOOKS_ENABLED: 'true',
   };
 
   // Detect platform for platform-aware configuration

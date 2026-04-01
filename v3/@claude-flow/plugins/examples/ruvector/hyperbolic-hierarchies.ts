@@ -9,7 +9,7 @@
  *
  * Run with: npx ts-node examples/ruvector/hyperbolic-hierarchies.ts
  *
- * @module @claude-flow/plugins/examples/ruvector/hyperbolic-hierarchies
+ * @module @cortex-agent/plugins/examples/ruvector/hyperbolic-hierarchies
  */
 
 import {

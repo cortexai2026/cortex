@@ -113,7 +113,7 @@ describe('PluginManager', () => {
   });
 
   it('should return correct plugins dir and manifest path', () => {
-    expect(manager.getPluginsDir()).toContain('.claude-flow/plugins');
+    expect(manager.getPluginsDir()).toContain('.cortex-agent/plugins');
     expect(manager.getManifestPath()).toContain('installed.json');
   });
 
@@ -179,7 +179,7 @@ describe('Plugin Store Types', () => {
       ratingCount: 10,
       lastUpdated: new Date().toISOString(),
       createdAt: new Date().toISOString(),
-      minClaudeFlowVersion: '3.0.0',
+      minCortexAgentVersion: '3.0.0',
       dependencies: [],
       type: 'integration',
       hooks: [],
@@ -249,7 +249,7 @@ function createMockPluginRegistry(): PluginRegistry {
     ratingCount: 10,
     lastUpdated: '2026-01-01T00:00:00Z',
     createdAt: '2026-01-01T00:00:00Z',
-    minClaudeFlowVersion: '3.0.0',
+    minCortexAgentVersion: '3.0.0',
     dependencies: [],
     type: 'integration',
     hooks: [],
@@ -898,7 +898,7 @@ describe('Config Adapter', () => {
     const v3 = systemConfigToV3Config({} as any);
     const sys = v3ConfigToSystemConfig(v3);
     expect(sys.swarm?.topology).toBe('hierarchical');
-    expect(sys.mcp?.name).toBe('claude-flow');
+    expect(sys.mcp?.name).toBe('cortex-agent');
   });
 
   it('should denormalize hybrid topology to hierarchical-mesh', () => {
@@ -1408,14 +1408,14 @@ import { validateUpdate, validateBulkUpdate } from '../src/update/validator.js';
 describe('Update Validator', () => {
   it('should validate compatible update', () => {
     const result = validateUpdate(
-      '@claude-flow/cli', '3.0.0-alpha.50', '3.0.0-alpha.55', {}
+      '@cortex-agent/cli', '3.0.0-alpha.50', '3.0.0-alpha.55', {}
     );
     expect(result.valid).toBe(true);
   });
 
   it('should warn about major version bumps', () => {
     const result = validateUpdate(
-      '@claude-flow/cli', '2.0.0', '3.0.0', {}
+      '@cortex-agent/cli', '2.0.0', '3.0.0', {}
     );
     expect(result.warnings.length).toBeGreaterThan(0);
     expect(result.warnings.some(w => w.includes('Major version'))).toBe(true);
@@ -1423,8 +1423,8 @@ describe('Update Validator', () => {
 
   it('should detect incompatible peer dependency', () => {
     const result = validateUpdate(
-      '@claude-flow/cli', '3.0.0-alpha.50', '3.0.0-alpha.55',
-      { '@claude-flow/embeddings': '2.0.0' }
+      '@cortex-agent/cli', '3.0.0-alpha.50', '3.0.0-alpha.55',
+      { '@cortex-agent/embeddings': '2.0.0' }
     );
     // CLI requires embeddings >= 3.0.0-alpha.1
     expect(result.valid).toBe(false);
@@ -1439,10 +1439,10 @@ describe('Update Validator', () => {
   it('validateBulkUpdate checks all updates', () => {
     const result = validateBulkUpdate(
       [
-        { package: '@claude-flow/cli', from: '3.0.0-alpha.50', to: '3.0.0-alpha.55' },
-        { package: '@claude-flow/embeddings', from: '3.0.0-alpha.1', to: '3.0.0-alpha.5' },
+        { package: '@cortex-agent/cli', from: '3.0.0-alpha.50', to: '3.0.0-alpha.55' },
+        { package: '@cortex-agent/embeddings', from: '3.0.0-alpha.1', to: '3.0.0-alpha.5' },
       ],
-      { '@claude-flow/cli': '3.0.0-alpha.50', '@claude-flow/embeddings': '3.0.0-alpha.1' }
+      { '@cortex-agent/cli': '3.0.0-alpha.50', '@cortex-agent/embeddings': '3.0.0-alpha.1' }
     );
     expect(result.valid).toBe(true);
   });
@@ -1466,30 +1466,30 @@ describe('Update Rate Limiter', () => {
 
   it('should block when auto-update disabled', () => {
     const origCI = process.env.CI;
-    const origAutoUpdate = process.env.CLAUDE_FLOW_AUTO_UPDATE;
+    const origAutoUpdate = process.env.CORTEX_AGENT_AUTO_UPDATE;
     delete process.env.CI;
     delete process.env.CONTINUOUS_INTEGRATION;
-    process.env.CLAUDE_FLOW_AUTO_UPDATE = 'false';
+    process.env.CORTEX_AGENT_AUTO_UPDATE = 'false';
     const result = shouldCheckForUpdates();
     expect(result.allowed).toBe(false);
     expect(result.reason).toContain('disabled');
     if (origCI) process.env.CI = origCI;
-    if (origAutoUpdate) process.env.CLAUDE_FLOW_AUTO_UPDATE = origAutoUpdate;
-    else delete process.env.CLAUDE_FLOW_AUTO_UPDATE;
+    if (origAutoUpdate) process.env.CORTEX_AGENT_AUTO_UPDATE = origAutoUpdate;
+    else delete process.env.CORTEX_AGENT_AUTO_UPDATE;
   });
 
   it('should allow when force update requested', () => {
     const origCI = process.env.CI;
-    const origForce = process.env.CLAUDE_FLOW_FORCE_UPDATE;
+    const origForce = process.env.CORTEX_AGENT_FORCE_UPDATE;
     delete process.env.CI;
     delete process.env.CONTINUOUS_INTEGRATION;
-    delete process.env.CLAUDE_FLOW_AUTO_UPDATE;
-    process.env.CLAUDE_FLOW_FORCE_UPDATE = 'true';
+    delete process.env.CORTEX_AGENT_AUTO_UPDATE;
+    process.env.CORTEX_AGENT_FORCE_UPDATE = 'true';
     const result = shouldCheckForUpdates();
     expect(result.allowed).toBe(true);
     if (origCI) process.env.CI = origCI;
-    if (origForce) process.env.CLAUDE_FLOW_FORCE_UPDATE = origForce;
-    else delete process.env.CLAUDE_FLOW_FORCE_UPDATE;
+    if (origForce) process.env.CORTEX_AGENT_FORCE_UPDATE = origForce;
+    else delete process.env.CORTEX_AGENT_FORCE_UPDATE;
   });
 });
 
@@ -1676,7 +1676,7 @@ function createMockPatternRegistry(): TPatternRegistry {
     ratingCount: 5,
     lastUpdated: '2026-01-01T00:00:00Z',
     createdAt: '2026-01-01T00:00:00Z',
-    minClaudeFlowVersion: '3.0.0',
+    minCortexAgentVersion: '3.0.0',
     verified: true,
     trustLevel: 'official',
     ...overrides,
@@ -1806,7 +1806,7 @@ describe('Transfer Store Registry', () => {
       ratingCount: 0,
       lastUpdated: new Date().toISOString(),
       createdAt: new Date().toISOString(),
-      minClaudeFlowVersion: '3.0.0',
+      minCortexAgentVersion: '3.0.0',
       verified: false,
       trustLevel: 'community',
     };
@@ -1835,7 +1835,7 @@ describe('Transfer Store Registry', () => {
       ratingCount: 0,
       lastUpdated: new Date().toISOString(),
       createdAt: new Date().toISOString(),
-      minClaudeFlowVersion: '3.0.0',
+      minCortexAgentVersion: '3.0.0',
       verified: false,
       trustLevel: 'community',
     };
@@ -1880,7 +1880,7 @@ describe('Transfer Store Registry', () => {
       ratingCount: 0,
       lastUpdated: new Date().toISOString(),
       createdAt: new Date().toISOString(),
-      minClaudeFlowVersion: '3.0.0',
+      minCortexAgentVersion: '3.0.0',
       verified: false,
       trustLevel: 'community',
     };

@@ -9,7 +9,7 @@ The CLI module now supports loading configuration from multiple sources with pro
 ### Files Added/Modified
 
 1. **`src/config-adapter.ts`** (NEW)
-   - Converts between `SystemConfig` (from `@claude-flow/shared`) and `V3Config` (CLI-specific format)
+   - Converts between `SystemConfig` (from `@cortex-agent/shared`) and `V3Config` (CLI-specific format)
    - Provides bidirectional conversion functions:
      - `systemConfigToV3Config()` - Convert SystemConfig to V3Config
      - `v3ConfigToSystemConfig()` - Convert V3Config to SystemConfig
@@ -37,25 +37,25 @@ The CLI loads configuration in the following priority order:
 2. **Auto-discovery** - Searches for config files in:
    - Current working directory
    - Parent directory
-   - `~/.claude-flow/`
+   - `~/.cortex-agent/`
 
 ### Supported Config Files
 
-- `claude-flow.config.json`
-- `claude-flow.config.js`
-- `claude-flow.json`
-- `.claude-flow.json`
+- `cortex-agent.config.json`
+- `cortex-agent.config.js`
+- `cortex-agent.json`
+- `.cortex-agent.json`
 
 ## Environment Variables
 
 Configuration can also be overridden via environment variables:
 
-- `CLAUDE_FLOW_MAX_AGENTS` - Maximum concurrent agents
-- `CLAUDE_FLOW_DATA_DIR` - Data directory path
-- `CLAUDE_FLOW_MEMORY_TYPE` - Memory backend type
-- `CLAUDE_FLOW_MCP_TRANSPORT` - MCP transport type
-- `CLAUDE_FLOW_MCP_PORT` - MCP server port
-- `CLAUDE_FLOW_SWARM_TOPOLOGY` - Swarm topology type
+- `CORTEX_AGENT_MAX_AGENTS` - Maximum concurrent agents
+- `CORTEX_AGENT_DATA_DIR` - Data directory path
+- `CORTEX_AGENT_MEMORY_TYPE` - Memory backend type
+- `CORTEX_AGENT_MCP_TRANSPORT` - MCP transport type
+- `CORTEX_AGENT_MCP_PORT` - MCP server port
+- `CORTEX_AGENT_SWARM_TOPOLOGY` - Swarm topology type
 
 ## Configuration Schema
 
@@ -120,13 +120,13 @@ interface V3Config {
 
 ```bash
 # Use default config search paths
-claude-flow agent spawn -t coder
+cortex-agent agent spawn -t coder
 
 # Use specific config file
-claude-flow agent spawn -t coder --config ./custom-config.json
+cortex-agent agent spawn -t coder --config ./custom-config.json
 
 # Override with environment variables
-CLAUDE_FLOW_MAX_AGENTS=20 claude-flow swarm init
+CORTEX_AGENT_MAX_AGENTS=20 cortex-agent swarm init
 ```
 
 ### Example Config File
@@ -223,14 +223,14 @@ npx vitest run __tests__/config-loading.test.ts
 
 1. **Adapter Pattern** - Separates SystemConfig (shared) from V3Config (CLI-specific)
 2. **Optional Loading** - Config files are optional, failures don't crash CLI
-3. **Validation** - Uses existing Zod schemas from `@claude-flow/shared`
+3. **Validation** - Uses existing Zod schemas from `@cortex-agent/shared`
 4. **Merge Strategy** - Merges loaded config with defaults
 5. **Environment Priority** - Environment variables override file config
 
 ## Future Enhancements
 
 - [ ] TypeScript config support (`.ts` files)
-- [ ] Config validation command (`claude-flow config validate`)
+- [ ] Config validation command (`cortex-agent config validate`)
 - [ ] Config migration tool (v2 → v3)
 - [ ] Interactive config setup wizard
 - [ ] Schema documentation generation

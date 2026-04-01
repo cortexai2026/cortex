@@ -2,7 +2,7 @@
  * Google Cloud Storage Backend
  * Real storage implementation using gcloud CLI or GCS APIs
  *
- * @module @claude-flow/cli/transfer/storage/gcs
+ * @module @cortex-agent/cli/transfer/storage/gcs
  * @version 3.0.0
  */
 
@@ -44,7 +44,7 @@ export function getGCSConfig(): GCSConfig | null {
     bucket,
     projectId: process.env.GCS_PROJECT_ID || process.env.GOOGLE_CLOUD_PROJECT,
     keyFile: process.env.GOOGLE_APPLICATION_CREDENTIALS,
-    prefix: process.env.GCS_PREFIX || 'claude-flow-patterns',
+    prefix: process.env.GCS_PREFIX || 'cortex-agent-patterns',
   };
 }
 
@@ -137,7 +137,7 @@ export async function uploadToGCS(
 
   // Write content to temp file
   const tempDir = process.env.TMPDIR || '/tmp';
-  const tempFile = path.join(tempDir, `claude-flow-upload-${Date.now()}.json`);
+  const tempFile = path.join(tempDir, `cortex-agent-upload-${Date.now()}.json`);
   fs.writeFileSync(tempFile, content);
 
   try {
@@ -205,7 +205,7 @@ export async function downloadFromGCS(
 
   // Write to temp file first
   const tempDir = process.env.TMPDIR || '/tmp';
-  const tempFile = path.join(tempDir, `claude-flow-download-${Date.now()}.json`);
+  const tempFile = path.join(tempDir, `cortex-agent-download-${Date.now()}.json`);
 
   try {
     // Download using gcloud storage cp (array form prevents shell injection)

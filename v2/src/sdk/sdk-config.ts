@@ -26,7 +26,7 @@ export interface SDKConfiguration {
  * Claude-Flow SDK Adapter
  * Wraps the Anthropic SDK with Claude-Flow extensions
  */
-export class ClaudeFlowSDKAdapter {
+export class CortexAgentSDKAdapter {
   private sdk: Anthropic;
   private config: SDKConfiguration;
   private swarmMetadata: Map<string, Record<string, unknown>> = new Map();
@@ -41,7 +41,7 @@ export class ClaudeFlowSDKAdapter {
       swarmMode: config.swarmMode !== false,
       persistenceEnabled: config.persistenceEnabled !== false,
       checkpointInterval: config.checkpointInterval || 60000,
-      memoryNamespace: config.memoryNamespace || 'claude-flow'
+      memoryNamespace: config.memoryNamespace || 'cortex-agent'
     };
 
     // Initialize Anthropic SDK with configuration
@@ -203,4 +203,4 @@ export class ClaudeFlowSDKAdapter {
 }
 
 // Export a singleton instance for convenience
-export const defaultSDKAdapter = new ClaudeFlowSDKAdapter();
+export const defaultSDKAdapter = new CortexAgentSDKAdapter();

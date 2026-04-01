@@ -3,7 +3,7 @@
  *
  * Supports Gemini 2.0, 1.5 Pro, and Flash models.
  *
- * @module @claude-flow/providers/google-provider
+ * @module @cortex-agent/providers/google-provider
  */
 
 import { BaseProvider, BaseProviderOptions } from './base-provider.js';

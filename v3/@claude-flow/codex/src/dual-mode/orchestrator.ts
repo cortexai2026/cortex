@@ -77,7 +77,7 @@ export class DualModeOrchestrator extends EventEmitter {
     // Initialize memory database
     await this.runCommand(
       'npx',
-      ['claude-flow@alpha', 'memory', 'init', '--force'],
+      ['cortex-agent@alpha', 'memory', 'init', '--force'],
       projectPath
     );
 
@@ -85,7 +85,7 @@ export class DualModeOrchestrator extends EventEmitter {
     await this.runCommand(
       'npx',
       [
-        'claude-flow@alpha', 'memory', 'store',
+        'cortex-agent@alpha', 'memory', 'store',
         '--key', 'task-context',
         '--value', taskContext,
         '--namespace', sharedNamespace
@@ -211,9 +211,9 @@ Working Directory: ${projectPath}
 Shared Memory Namespace: ${sharedNamespace}
 
 COLLABORATION PROTOCOL:
-1. Search shared memory for context: npx claude-flow@alpha memory search --query "<relevant terms>" --namespace ${sharedNamespace}
+1. Search shared memory for context: npx cortex-agent@alpha memory search --query "<relevant terms>" --namespace ${sharedNamespace}
 2. Complete your assigned task
-3. Store your results: npx claude-flow@alpha memory store --key "${config.id}-result" --value "<your summary>" --namespace ${sharedNamespace}
+3. Store your results: npx cortex-agent@alpha memory store --key "${config.id}-result" --value "<your summary>" --namespace ${sharedNamespace}
 
 YOUR TASK:
 ${config.prompt}
@@ -330,7 +330,7 @@ Remember: Other agents depend on your results in shared memory. Be concise and s
     try {
       const output = await this.runCommand(
         'npx',
-        ['claude-flow@alpha', 'memory', 'list', '--namespace', sharedNamespace, '--format', 'json'],
+        ['cortex-agent@alpha', 'memory', 'list', '--namespace', sharedNamespace, '--format', 'json'],
         projectPath
       );
       return JSON.parse(output);

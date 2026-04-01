@@ -47,7 +47,7 @@ export class RealCheckpointManager extends EventEmitter {
 
   constructor(options: CheckpointManagerOptions = {}) {
     super();
-    this.persistPath = options.persistPath || '.claude-flow/checkpoints';
+    this.persistPath = options.persistPath || '.cortex-agent/checkpoints';
     this.autoCheckpointInterval = options.autoCheckpointInterval || 10; // Every 10 messages
     this.maxCheckpoints = options.maxCheckpoints || 50;
     this.ensurePersistPath();

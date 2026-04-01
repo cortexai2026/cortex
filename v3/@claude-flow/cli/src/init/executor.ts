@@ -83,7 +83,7 @@ const SKILLS_MAP: Record<string, string[]> = {
  * Commands to copy based on configuration
  */
 const COMMANDS_MAP: Record<string, string[]> = {
-  core: ['claude-flow-help.md', 'claude-flow-swarm.md', 'claude-flow-memory.md'],
+  core: ['cortex-agent-help.md', 'cortex-agent-swarm.md', 'cortex-agent-memory.md'],
   analysis: ['analysis'],
   automation: ['automation'],
   github: ['github'],
@@ -137,13 +137,13 @@ const DIRECTORIES = {
     '.claude/helpers',
   ],
   runtime: [
-    '.claude-flow',
-    '.claude-flow/data',
-    '.claude-flow/logs',
-    '.claude-flow/sessions',
-    '.claude-flow/hooks',
-    '.claude-flow/agents',
-    '.claude-flow/workflows',
+    '.cortex-agent',
+    '.cortex-agent/data',
+    '.cortex-agent/logs',
+    '.cortex-agent/sessions',
+    '.cortex-agent/hooks',
+    '.cortex-agent/agents',
+    '.cortex-agent/workflows',
   ],
 };
 
@@ -277,8 +277,8 @@ function mergeSettingsForUpgrade(existing: Record<string, unknown>): Record<stri
   merged.env = {
     ...existingEnv,
     CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS: '1',
-    CLAUDE_FLOW_V3_ENABLED: existingEnv.CLAUDE_FLOW_V3_ENABLED || 'true',
-    CLAUDE_FLOW_HOOKS_ENABLED: existingEnv.CLAUDE_FLOW_HOOKS_ENABLED || 'true',
+    CORTEX_AGENT_V3_ENABLED: existingEnv.CORTEX_AGENT_V3_ENABLED || 'true',
+    CORTEX_AGENT_HOOKS_ENABLED: existingEnv.CORTEX_AGENT_HOOKS_ENABLED || 'true',
   };
 
   // 2. Merge hooks (preserve existing, add new Agent Teams + auto-memory hooks)
@@ -352,12 +352,12 @@ function mergeSettingsForUpgrade(existing: Record<string, unknown>): Record<stri
   }
 
   // 4. Merge claudeFlow settings (preserve existing, add agentTeams + memory)
-  const existingClaudeFlow = (existing.claudeFlow as Record<string, unknown>) || {};
-  const existingMemory = (existingClaudeFlow.memory as Record<string, unknown>) || {};
+  const existingCortexAgent = (existing.claudeFlow as Record<string, unknown>) || {};
+  const existingMemory = (existingCortexAgent.memory as Record<string, unknown>) || {};
   merged.claudeFlow = {
-    ...existingClaudeFlow,
-    version: existingClaudeFlow.version || '3.0.0',
-    enabled: existingClaudeFlow.enabled !== false,
+    ...existingCortexAgent,
+    version: existingCortexAgent.version || '3.0.0',
+    enabled: existingCortexAgent.enabled !== false,
     agentTeams: {
       enabled: true,
       teammateMode: 'auto',
@@ -405,9 +405,9 @@ export async function executeUpgrade(targetDir: string, upgradeSettings = false)
     // Ensure required directories exist
     const dirs = [
       '.claude/helpers',
-      '.claude-flow/metrics',
-      '.claude-flow/security',
-      '.claude-flow/learning',
+      '.cortex-agent/metrics',
+      '.cortex-agent/security',
+      '.cortex-agent/learning',
     ];
 
     for (const dir of dirs) {
@@ -475,8 +475,8 @@ export async function executeUpgrade(targetDir: string, upgradeSettings = false)
     fs.writeFileSync(statuslinePath, statuslineContent, 'utf-8');
 
     // 2. Create MISSING metrics files only (preserve existing data)
-    const metricsDir = path.join(targetDir, '.claude-flow', 'metrics');
-    const securityDir = path.join(targetDir, '.claude-flow', 'security');
+    const metricsDir = path.join(targetDir, '.cortex-agent', 'metrics');
+    const securityDir = path.join(targetDir, '.cortex-agent', 'security');
 
     // v3-progress.json
     const progressPath = path.join(metricsDir, 'v3-progress.json');
@@ -488,12 +488,12 @@ export async function executeUpgrade(targetDir: string, upgradeSettings = false)
         ddd: { progress: 0, modules: 0, totalFiles: 0, totalLines: 0 },
         swarm: { activeAgents: 0, maxAgents: 15, topology: 'hierarchical-mesh' },
         learning: { status: 'READY', patternsLearned: 0, sessionsCompleted: 0 },
-        _note: 'Metrics will update as you use Ruflo'
+        _note: 'Metrics will update as you use Cortex Agent'
       };
       fs.writeFileSync(progressPath, JSON.stringify(progress, null, 2), 'utf-8');
-      result.created.push('.claude-flow/metrics/v3-progress.json');
+      result.created.push('.cortex-agent/metrics/v3-progress.json');
     } else {
-      result.preserved.push('.claude-flow/metrics/v3-progress.json');
+      result.preserved.push('.cortex-agent/metrics/v3-progress.json');
     }
 
     // swarm-activity.json
@@ -507,9 +507,9 @@ export async function executeUpgrade(targetDir: string, upgradeSettings = false)
         _initialized: true
       };
       fs.writeFileSync(activityPath, JSON.stringify(activity, null, 2), 'utf-8');
-      result.created.push('.claude-flow/metrics/swarm-activity.json');
+      result.created.push('.cortex-agent/metrics/swarm-activity.json');
     } else {
-      result.preserved.push('.claude-flow/metrics/swarm-activity.json');
+      result.preserved.push('.cortex-agent/metrics/swarm-activity.json');
     }
 
     // learning.json
@@ -520,12 +520,12 @@ export async function executeUpgrade(targetDir: string, upgradeSettings = false)
         routing: { accuracy: 0, decisions: 0 },
         patterns: { shortTerm: 0, longTerm: 0, quality: 0 },
         sessions: { total: 0, current: null },
-        _note: 'Intelligence grows as you use Ruflo'
+        _note: 'Intelligence grows as you use Cortex Agent'
       };
       fs.writeFileSync(learningPath, JSON.stringify(learning, null, 2), 'utf-8');
-      result.created.push('.claude-flow/metrics/learning.json');
+      result.created.push('.cortex-agent/metrics/learning.json');
     } else {
-      result.preserved.push('.claude-flow/metrics/learning.json');
+      result.preserved.push('.cortex-agent/metrics/learning.json');
     }
 
     // audit-status.json
@@ -537,12 +537,12 @@ export async function executeUpgrade(targetDir: string, upgradeSettings = false)
         cvesFixed: 0,
         totalCves: 3,
         lastScan: null,
-        _note: 'Run: npx @claude-flow/cli@latest security scan'
+        _note: 'Run: npx @cortex-agent/cli@latest security scan'
       };
       fs.writeFileSync(auditPath, JSON.stringify(audit, null, 2), 'utf-8');
-      result.created.push('.claude-flow/security/audit-status.json');
+      result.created.push('.cortex-agent/security/audit-status.json');
     } else {
-      result.preserved.push('.claude-flow/security/audit-status.json');
+      result.preserved.push('.cortex-agent/security/audit-status.json');
     }
 
     // 3. Merge settings if requested
@@ -620,7 +620,7 @@ export async function executeUpgradeWithMissing(targetDir: string, upgradeSettin
     const sourceCommandsDir = findSourceDir('commands');
 
     // Debug: Log source directories found
-    if (process.env.DEBUG || process.env.CLAUDE_FLOW_DEBUG) {
+    if (process.env.DEBUG || process.env.CORTEX_AGENT_DEBUG) {
       console.log('[DEBUG] Source directories:');
       console.log(`  Skills: ${sourceSkillsDir || 'NOT FOUND'}`);
       console.log(`  Agents: ${sourceAgentsDir || 'NOT FOUND'}`);
@@ -630,7 +630,7 @@ export async function executeUpgradeWithMissing(targetDir: string, upgradeSettin
     // Add missing skills
     if (sourceSkillsDir) {
       const allSkills = Object.values(SKILLS_MAP).flat();
-      const debugMode = process.env.DEBUG || process.env.CLAUDE_FLOW_DEBUG;
+      const debugMode = process.env.DEBUG || process.env.CORTEX_AGENT_DEBUG;
       if (debugMode) {
         console.log(`[DEBUG] Checking ${allSkills.length} skills from SKILLS_MAP`);
       }
@@ -936,7 +936,7 @@ function findSourceHelpersDir(sourceBaseDir?: string): string | null {
   // Strategy 1: require.resolve to find package root (most reliable for npx)
   try {
     const esmRequire = createRequire(import.meta.url);
-    const pkgJsonPath = esmRequire.resolve('@claude-flow/cli/package.json');
+    const pkgJsonPath = esmRequire.resolve('@cortex-agent/cli/package.json');
     const pkgRoot = path.dirname(pkgJsonPath);
     possiblePaths.push(path.join(pkgRoot, '.claude', 'helpers'));
   } catch {
@@ -1142,21 +1142,21 @@ async function writeStatusline(
 }
 
 /**
- * Write runtime configuration (.claude-flow/)
+ * Write runtime configuration (.cortex-agent/)
  */
 async function writeRuntimeConfig(
   targetDir: string,
   options: InitOptions,
   result: InitResult
 ): Promise<void> {
-  const configPath = path.join(targetDir, '.claude-flow', 'config.yaml');
+  const configPath = path.join(targetDir, '.cortex-agent', 'config.yaml');
 
   if (fs.existsSync(configPath) && !options.force) {
-    result.skipped.push('.claude-flow/config.yaml');
+    result.skipped.push('.cortex-agent/config.yaml');
     return;
   }
 
-  const config = `# RuFlo V3 Runtime Configuration
+  const config = `# Cortex Agent V3 Runtime Configuration
 # Generated: ${new Date().toISOString()}
 
 version: "3.0.0"
@@ -1170,7 +1170,7 @@ swarm:
 memory:
   backend: ${options.runtime.memoryBackend}
   enableHNSW: ${options.runtime.enableHNSW}
-  persistPath: .claude-flow/data
+  persistPath: .cortex-agent/data
   cacheSize: 100
   # ADR-049: Self-Learning Memory
   learningBridge:
@@ -1190,7 +1190,7 @@ memory:
 
 neural:
   enabled: ${options.runtime.enableNeural}
-  modelPath: .claude-flow/neural
+  modelPath: .cortex-agent/neural
 
 hooks:
   enabled: true
@@ -1202,11 +1202,11 @@ mcp:
 `;
 
   fs.writeFileSync(configPath, config, 'utf-8');
-  result.created.files.push('.claude-flow/config.yaml');
+  result.created.files.push('.cortex-agent/config.yaml');
 
   // Write .gitignore
-  const gitignorePath = path.join(targetDir, '.claude-flow', '.gitignore');
-  const gitignore = `# Claude Flow runtime files
+  const gitignorePath = path.join(targetDir, '.cortex-agent', '.gitignore');
+  const gitignore = `# Cortex Agent runtime files
 data/
 logs/
 sessions/
@@ -1217,7 +1217,7 @@ neural/
 
   if (!fs.existsSync(gitignorePath) || options.force) {
     fs.writeFileSync(gitignorePath, gitignore, 'utf-8');
-    result.created.files.push('.claude-flow/.gitignore');
+    result.created.files.push('.cortex-agent/.gitignore');
   }
 
   // Write CAPABILITIES.md with full system overview
@@ -1233,9 +1233,9 @@ async function writeInitialMetrics(
   options: InitOptions,
   result: InitResult
 ): Promise<void> {
-  const metricsDir = path.join(targetDir, '.claude-flow', 'metrics');
-  const learningDir = path.join(targetDir, '.claude-flow', 'learning');
-  const securityDir = path.join(targetDir, '.claude-flow', 'security');
+  const metricsDir = path.join(targetDir, '.cortex-agent', 'metrics');
+  const learningDir = path.join(targetDir, '.cortex-agent', 'learning');
+  const securityDir = path.join(targetDir, '.cortex-agent', 'security');
 
   // Ensure directories exist
   for (const dir of [metricsDir, learningDir, securityDir]) {
@@ -1271,10 +1271,10 @@ async function writeInitialMetrics(
         patternsLearned: 0,
         sessionsCompleted: 0
       },
-      _note: 'Metrics will update as you use Ruflo. Run: npx ruflo@latest daemon start'
+      _note: 'Metrics will update as you use Cortex Agent. Run: npx cortex-agent@latest daemon start'
     };
     fs.writeFileSync(progressPath, JSON.stringify(progress, null, 2), 'utf-8');
-    result.created.files.push('.claude-flow/metrics/v3-progress.json');
+    result.created.files.push('.cortex-agent/metrics/v3-progress.json');
   }
 
   // Create initial swarm-activity.json
@@ -1299,7 +1299,7 @@ async function writeInitialMetrics(
       _initialized: true
     };
     fs.writeFileSync(activityPath, JSON.stringify(activity, null, 2), 'utf-8');
-    result.created.files.push('.claude-flow/metrics/swarm-activity.json');
+    result.created.files.push('.cortex-agent/metrics/swarm-activity.json');
   }
 
   // Create initial learning.json
@@ -1320,10 +1320,10 @@ async function writeInitialMetrics(
         total: 0,
         current: null
       },
-      _note: 'Intelligence grows as you use Ruflo'
+      _note: 'Intelligence grows as you use Cortex Agent'
     };
     fs.writeFileSync(learningPath, JSON.stringify(learning, null, 2), 'utf-8');
-    result.created.files.push('.claude-flow/metrics/learning.json');
+    result.created.files.push('.cortex-agent/metrics/learning.json');
   }
 
   // Create initial audit-status.json
@@ -1335,31 +1335,31 @@ async function writeInitialMetrics(
       cvesFixed: 0,
       totalCves: 3,
       lastScan: null,
-      _note: 'Run: npx @claude-flow/cli@latest security scan'
+      _note: 'Run: npx @cortex-agent/cli@latest security scan'
     };
     fs.writeFileSync(auditPath, JSON.stringify(audit, null, 2), 'utf-8');
-    result.created.files.push('.claude-flow/security/audit-status.json');
+    result.created.files.push('.cortex-agent/security/audit-status.json');
   }
 }
 
 /**
- * Write CAPABILITIES.md - comprehensive overview of all Ruflo features
+ * Write CAPABILITIES.md - comprehensive overview of all Cortex Agent features
  */
 async function writeCapabilitiesDoc(
   targetDir: string,
   options: InitOptions,
   result: InitResult
 ): Promise<void> {
-  const capabilitiesPath = path.join(targetDir, '.claude-flow', 'CAPABILITIES.md');
+  const capabilitiesPath = path.join(targetDir, '.cortex-agent', 'CAPABILITIES.md');
 
   if (fs.existsSync(capabilitiesPath) && !options.force) {
-    result.skipped.push('.claude-flow/CAPABILITIES.md');
+    result.skipped.push('.cortex-agent/CAPABILITIES.md');
     return;
   }
 
-  const capabilities = `# RuFlo V3 - Complete Capabilities Reference
+  const capabilities = `# Cortex Agent V3 - Complete Capabilities Reference
 > Generated: ${new Date().toISOString()}
-> Full documentation: https://github.com/ruvnet/claude-flow
+> Full documentation: https://github.com/ruvnet/cortex-agent
 
 ## 📋 Table of Contents
 
@@ -1377,7 +1377,7 @@ async function writeCapabilitiesDoc(
 
 ## Overview
 
-RuFlo V3 is a domain-driven design architecture for multi-agent AI coordination with:
+Cortex Agent V3 is a domain-driven design architecture for multi-agent AI coordination with:
 
 - **15-Agent Swarm Coordination** with hierarchical and mesh topologies
 - **HNSW Vector Search** - 150x-12,500x faster pattern retrieval
@@ -1419,13 +1419,13 @@ RuFlo V3 is a domain-driven design architecture for multi-agent AI coordination 
 ### Quick Commands
 \`\`\`bash
 # Initialize swarm
-npx @claude-flow/cli@latest swarm init --topology hierarchical --max-agents 8 --strategy specialized
+npx @cortex-agent/cli@latest swarm init --topology hierarchical --max-agents 8 --strategy specialized
 
 # Check status
-npx @claude-flow/cli@latest swarm status
+npx @cortex-agent/cli@latest swarm status
 
 # Monitor activity
-npx @claude-flow/cli@latest swarm monitor
+npx @cortex-agent/cli@latest swarm monitor
 \`\`\`
 
 ---
@@ -1509,17 +1509,17 @@ npx @claude-flow/cli@latest swarm monitor
 ### Example Commands
 \`\`\`bash
 # Initialize
-npx @claude-flow/cli@latest init --wizard
+npx @cortex-agent/cli@latest init --wizard
 
 # Spawn agent
-npx @claude-flow/cli@latest agent spawn -t coder --name my-coder
+npx @cortex-agent/cli@latest agent spawn -t coder --name my-coder
 
 # Memory operations
-npx @claude-flow/cli@latest memory store --key "pattern" --value "data" --namespace patterns
-npx @claude-flow/cli@latest memory search --query "authentication"
+npx @cortex-agent/cli@latest memory store --key "pattern" --value "data" --namespace patterns
+npx @cortex-agent/cli@latest memory search --query "authentication"
 
 # Diagnostics
-npx @claude-flow/cli@latest doctor --fix
+npx @cortex-agent/cli@latest doctor --fix
 \`\`\`
 
 ---
@@ -1618,16 +1618,16 @@ High-confidence insights (>0.8) can transfer between agents.
 ### Memory Commands
 \`\`\`bash
 # Store pattern
-npx @claude-flow/cli@latest memory store --key "name" --value "data" --namespace patterns
+npx @cortex-agent/cli@latest memory store --key "name" --value "data" --namespace patterns
 
 # Semantic search
-npx @claude-flow/cli@latest memory search --query "authentication"
+npx @cortex-agent/cli@latest memory search --query "authentication"
 
 # List entries
-npx @claude-flow/cli@latest memory list --namespace patterns
+npx @cortex-agent/cli@latest memory list --namespace patterns
 
 # Initialize database
-npx @claude-flow/cli@latest memory init --force
+npx @cortex-agent/cli@latest memory init --force
 \`\`\`
 
 ---
@@ -1656,16 +1656,16 @@ npx @claude-flow/cli@latest memory init --force
 ### Hive-Mind Commands
 \`\`\`bash
 # Initialize
-npx @claude-flow/cli@latest hive-mind init --queen-type strategic
+npx @cortex-agent/cli@latest hive-mind init --queen-type strategic
 
 # Status
-npx @claude-flow/cli@latest hive-mind status
+npx @cortex-agent/cli@latest hive-mind status
 
 # Spawn workers
-npx @claude-flow/cli@latest hive-mind spawn --count 5 --type worker
+npx @cortex-agent/cli@latest hive-mind spawn --count 5 --type worker
 
 # Consensus
-npx @claude-flow/cli@latest hive-mind consensus --propose "task"
+npx @cortex-agent/cli@latest hive-mind consensus --propose "task"
 \`\`\`
 
 ---
@@ -1708,8 +1708,8 @@ npx @claude-flow/cli@latest hive-mind consensus --propose "task"
 
 ### MCP Server Setup
 \`\`\`bash
-# Add Ruflo MCP
-claude mcp add ruflo -- npx -y ruflo@latest
+# Add Cortex Agent MCP
+claude mcp add cortex-agent -- npx -y cortex-agent@latest
 
 # Optional servers
 claude mcp add ruv-swarm -- npx -y ruv-swarm mcp start
@@ -1723,29 +1723,29 @@ claude mcp add flow-nexus -- npx -y flow-nexus@latest mcp start
 ### Essential Commands
 \`\`\`bash
 # Setup
-npx ruflo@latest init --wizard
-npx ruflo@latest daemon start
-npx ruflo@latest doctor --fix
+npx cortex-agent@latest init --wizard
+npx cortex-agent@latest daemon start
+npx cortex-agent@latest doctor --fix
 
 # Swarm
-npx ruflo@latest swarm init --topology hierarchical --max-agents 8
-npx ruflo@latest swarm status
+npx cortex-agent@latest swarm init --topology hierarchical --max-agents 8
+npx cortex-agent@latest swarm status
 
 # Agents
-npx ruflo@latest agent spawn -t coder
-npx ruflo@latest agent list
+npx cortex-agent@latest agent spawn -t coder
+npx cortex-agent@latest agent list
 
 # Memory
-npx ruflo@latest memory search --query "patterns"
+npx cortex-agent@latest memory search --query "patterns"
 
 # Hooks
-npx ruflo@latest hooks pre-task --description "task"
-npx ruflo@latest hooks worker dispatch --trigger optimize
+npx cortex-agent@latest hooks pre-task --description "task"
+npx cortex-agent@latest hooks worker dispatch --trigger optimize
 \`\`\`
 
 ### File Structure
 \`\`\`
-.claude-flow/
+.cortex-agent/
 ├── config.yaml      # Runtime configuration
 ├── CAPABILITIES.md  # This file
 ├── data/            # Memory storage
@@ -1758,12 +1758,12 @@ npx ruflo@latest hooks worker dispatch --trigger optimize
 
 ---
 
-**Full Documentation**: https://github.com/ruvnet/claude-flow
-**Issues**: https://github.com/ruvnet/claude-flow/issues
+**Full Documentation**: https://github.com/ruvnet/cortex-agent
+**Issues**: https://github.com/ruvnet/cortex-agent/issues
 `;
 
   fs.writeFileSync(capabilitiesPath, capabilities, 'utf-8');
-  result.created.files.push('.claude-flow/CAPABILITIES.md');
+  result.created.files.push('.cortex-agent/CAPABILITIES.md');
 }
 
 /**
@@ -1803,7 +1803,7 @@ function findSourceDir(type: 'skills' | 'commands' | 'agents', sourceBaseDir?: s
 
   // IMPORTANT: Check the package's own .claude directory first
   // This is the primary path when running as an npm package
-  // __dirname is typically /path/to/node_modules/@claude-flow/cli/dist/src/init
+  // __dirname is typically /path/to/node_modules/@cortex-agent/cli/dist/src/init
   // We need to go up 3 levels to reach the package root (dist/src/init -> dist/src -> dist -> root)
   const packageRoot = path.resolve(__dirname, '..', '..', '..');
   const packageDotClaude = path.join(packageRoot, '.claude', type);

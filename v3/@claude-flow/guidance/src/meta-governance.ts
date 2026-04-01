@@ -20,8 +20,8 @@
  * - Emergency veto power
  * - Immutability protection
  *
- * @module @claude-flow/guidance/meta-governance
- * @author Claude Flow Team
+ * @module @cortex-agent/guidance/meta-governance
+ * @author Cortex Agent Team
  */
 
 import { randomUUID } from 'node:crypto';

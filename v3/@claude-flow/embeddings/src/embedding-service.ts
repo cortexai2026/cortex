@@ -670,7 +670,7 @@ export class AgenticFlowEmbeddingService extends BaseEmbeddingService {
       const absolutePaths = [
         path.join(cwd, 'node_modules/agentic-flow/dist/embeddings/optimized-embedder.js'),
         path.join(cwd, '../node_modules/agentic-flow/dist/embeddings/optimized-embedder.js'),
-        '/workspaces/claude-flow/node_modules/agentic-flow/dist/embeddings/optimized-embedder.js',
+        '/workspaces/cortex-agent/node_modules/agentic-flow/dist/embeddings/optimized-embedder.js',
       ];
 
       for (const p of absolutePaths) {

@@ -8,9 +8,9 @@ export { InProcessMCPServer, createInProcessServer } from './in-process-server.j
 export type { InProcessServerConfig, ToolCallMetrics } from './in-process-server.js';
 
 export {
-  ClaudeFlowToolRegistry,
+  CortexAgentToolRegistry,
   createToolRegistry,
-  createClaudeFlowSdkServer,
+  createCortexAgentSdkServer,
 } from './tool-registry.js';
 export type { ToolRegistryConfig } from './tool-registry.js';
 
@@ -76,7 +76,7 @@ export {
 export {
   ProgressiveToolRegistry,
   createProgressiveToolRegistry,
-  createProgressiveClaudeFlowSdkServer,
+  createProgressiveCortexAgentSdkServer,
   type ProgressiveToolRegistryConfig,
 } from './tool-registry-progressive.js';
 
@@ -157,7 +157,7 @@ export { SessionManager, type ISessionManager } from './session-manager.js';
 export { LoadBalancer, type ILoadBalancer, RequestQueue } from './load-balancer.js';
 
 // Tool Implementations
-export { createClaudeFlowTools, type ClaudeFlowToolContext } from './claude-flow-tools.js';
+export { createCortexAgentTools, type CortexAgentToolContext } from './cortex-agent-tools.js';
 export { createSwarmTools, type SwarmToolContext } from './swarm-tools.js';
 
 /**

@@ -1,5 +1,5 @@
 /**
- * @claude-flow/browser - Security Integration Tests
+ * @cortex-agent/browser - Security Integration Tests
  */
 
 import { describe, it, expect, beforeEach } from 'vitest';

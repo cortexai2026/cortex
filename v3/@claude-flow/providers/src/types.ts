@@ -4,7 +4,7 @@
  * Unified type system for all LLM providers with enhanced
  * cost tracking, model capabilities, and error handling.
  *
- * @module @claude-flow/providers/types
+ * @module @cortex-agent/providers/types
  */
 
 import { EventEmitter } from 'events';

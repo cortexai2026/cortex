@@ -317,15 +317,15 @@ export class CredentialGenerator {
    * @returns Environment variable export script
    */
   createEnvScript(credentials: GeneratedCredentials): string {
-    return `# Claude Flow V3 - Generated Credentials
+    return `# Cortex Agent V3 - Generated Credentials
 # Generated: ${credentials.generatedAt.toISOString()}
 # IMPORTANT: Store these securely and delete this file after use
 
-export CLAUDE_FLOW_ADMIN_PASSWORD="${credentials.adminPassword}"
-export CLAUDE_FLOW_SERVICE_PASSWORD="${credentials.servicePassword}"
-export CLAUDE_FLOW_JWT_SECRET="${credentials.jwtSecret}"
-export CLAUDE_FLOW_SESSION_SECRET="${credentials.sessionSecret}"
-export CLAUDE_FLOW_ENCRYPTION_KEY="${credentials.encryptionKey}"
+export CORTEX_AGENT_ADMIN_PASSWORD="${credentials.adminPassword}"
+export CORTEX_AGENT_SERVICE_PASSWORD="${credentials.servicePassword}"
+export CORTEX_AGENT_JWT_SECRET="${credentials.jwtSecret}"
+export CORTEX_AGENT_SESSION_SECRET="${credentials.sessionSecret}"
+export CORTEX_AGENT_ENCRYPTION_KEY="${credentials.encryptionKey}"
 `;
   }
 
@@ -337,13 +337,13 @@ export CLAUDE_FLOW_ENCRYPTION_KEY="${credentials.encryptionKey}"
    */
   createJsonConfig(credentials: GeneratedCredentials): string {
     return JSON.stringify({
-      'claude-flow/admin-password': credentials.adminPassword,
-      'claude-flow/service-password': credentials.servicePassword,
-      'claude-flow/jwt-secret': credentials.jwtSecret,
-      'claude-flow/session-secret': credentials.sessionSecret,
-      'claude-flow/encryption-key': credentials.encryptionKey,
-      'claude-flow/generated-at': credentials.generatedAt.toISOString(),
-      'claude-flow/expires-at': credentials.expiresAt?.toISOString() ?? null,
+      'cortex-agent/admin-password': credentials.adminPassword,
+      'cortex-agent/service-password': credentials.servicePassword,
+      'cortex-agent/jwt-secret': credentials.jwtSecret,
+      'cortex-agent/session-secret': credentials.sessionSecret,
+      'cortex-agent/encryption-key': credentials.encryptionKey,
+      'cortex-agent/generated-at': credentials.generatedAt.toISOString(),
+      'cortex-agent/expires-at': credentials.expiresAt?.toISOString() ?? null,
     }, null, 2);
   }
 }

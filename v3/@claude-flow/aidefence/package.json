@@ -1,5 +1,5 @@
 {
-  "name": "@claude-flow/aidefence",
+  "name": "@cortex-agent/aidefence",
   "version": "3.0.2",
   "description": "AI Manipulation Defense System (AIMDS) with self-learning, prompt injection detection, and vector search integration",
   "type": "module",
@@ -49,7 +49,7 @@
     "jailbreak-detection",
     "threat-detection",
     "pii-detection",
-    "claude-flow",
+    "cortex-agent",
     "vector-search",
     "self-learning",
     "aimds",
@@ -59,13 +59,13 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ruvnet/claude-flow.git",
-    "directory": "v3/@claude-flow/aidefence"
+    "url": "git+https://github.com/ruvnet/cortex-agent.git",
+    "directory": "v3/@cortex-agent/aidefence"
   },
   "bugs": {
-    "url": "https://github.com/ruvnet/claude-flow/issues"
+    "url": "https://github.com/ruvnet/cortex-agent/issues"
   },
-  "homepage": "https://github.com/ruvnet/claude-flow/tree/main/v3/@claude-flow/aidefence#readme",
+  "homepage": "https://github.com/ruvnet/cortex-agent/tree/main/v3/@cortex-agent/aidefence#readme",
   "publishConfig": {
     "access": "public",
     "tag": "alpha"

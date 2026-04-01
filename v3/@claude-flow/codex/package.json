@@ -1,12 +1,12 @@
 {
-  "name": "@claude-flow/codex",
+  "name": "@cortex-agent/codex",
   "version": "3.0.0-alpha.9",
-  "description": "Codex CLI integration for Claude Flow - OpenAI Codex platform adapter",
+  "description": "Codex CLI integration for Cortex Agent - OpenAI Codex platform adapter",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "bin": {
-    "claude-flow-codex": "./dist/cli.js"
+    "cortex-agent-codex": "./dist/cli.js"
   },
   "exports": {
     ".": {
@@ -50,7 +50,7 @@
   "keywords": [
     "codex",
     "openai",
-    "claude-flow",
+    "cortex-agent",
     "coflow",
     "agents",
     "skills",
@@ -61,21 +61,21 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ruvnet/claude-flow.git",
-    "directory": "v3/@claude-flow/codex"
+    "url": "https://github.com/ruvnet/cortex-agent.git",
+    "directory": "v3/@cortex-agent/codex"
   },
-  "homepage": "https://github.com/ruvnet/claude-flow#readme",
+  "homepage": "https://github.com/ruvnet/cortex-agent#readme",
   "bugs": {
-    "url": "https://github.com/ruvnet/claude-flow/issues"
+    "url": "https://github.com/ruvnet/cortex-agent/issues"
   },
   "engines": {
     "node": ">=18"
   },
   "peerDependencies": {
-    "@claude-flow/cli": "^3.0.0-alpha.1"
+    "@cortex-agent/cli": "^3.0.0-alpha.1"
   },
   "peerDependenciesMeta": {
-    "@claude-flow/cli": {
+    "@cortex-agent/cli": {
       "optional": true
     }
   },

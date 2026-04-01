@@ -4,7 +4,7 @@
  * Comprehensive implementation of all 39 attention mechanisms for the
  * RuVector PostgreSQL vector database integration.
  *
- * @module @claude-flow/plugins/integrations/ruvector/attention
+ * @module @cortex-agent/plugins/integrations/ruvector/attention
  * @version 1.0.0
  */
 

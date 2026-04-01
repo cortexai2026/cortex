@@ -8,8 +8,8 @@ import * as path from 'path';
 
 /** Config file search paths in priority order */
 const CONFIG_FILENAMES = [
-  'claude-flow.config.json',
-  '.claude-flow/config.json',
+  'cortex-agent.config.json',
+  '.cortex-agent/config.json',
 ];
 
 /** Default config values */
@@ -70,7 +70,7 @@ export class ConfigFileManager {
       }
     }
     // Check env var
-    const envPath = process.env.CLAUDE_FLOW_CONFIG;
+    const envPath = process.env.CORTEX_AGENT_CONFIG;
     if (envPath && fs.existsSync(envPath)) {
       return path.resolve(envPath);
     }

@@ -1,5 +1,5 @@
 #!/bin/bash
-# Claude Flow Plugin Verification Script
+# Cortex Agent Plugin Verification Script
 # Verifies installation and configuration
 
 set -e
@@ -17,7 +17,7 @@ warning() { echo -e "${YELLOW}⚠${NC} $1"; }
 error() { echo -e "${RED}✗${NC} $1"; }
 
 echo -e "${BLUE}═══════════════════════════════════════════════════${NC}"
-echo -e "${BLUE}    Claude Flow Plugin Verification${NC}"
+echo -e "${BLUE}    Cortex Agent Plugin Verification${NC}"
 echo -e "${BLUE}═══════════════════════════════════════════════════${NC}"
 echo ""
 
@@ -56,10 +56,10 @@ info "Checking Claude Code settings..."
 if [ -f "$HOME/.claude/settings.json" ]; then
     success "Settings file exists"
 
-    if grep -q "claude-flow" "$HOME/.claude/settings.json"; then
-        success "Claude Flow MCP server configured"
+    if grep -q "cortex-agent" "$HOME/.claude/settings.json"; then
+        success "Cortex Agent MCP server configured"
     else
-        warning "Claude Flow MCP server not configured"
+        warning "Cortex Agent MCP server not configured"
         ((WARNINGS++))
     fi
 else
@@ -69,11 +69,11 @@ fi
 
 # Check MCP packages
 info "Checking MCP packages..."
-if npx claude-flow@alpha --version &> /dev/null; then
-    VERSION=$(npx claude-flow@alpha --version 2>/dev/null || echo "unknown")
-    success "claude-flow MCP: $VERSION"
+if npx cortex-agent@alpha --version &> /dev/null; then
+    VERSION=$(npx cortex-agent@alpha --version 2>/dev/null || echo "unknown")
+    success "cortex-agent MCP: $VERSION"
 else
-    warning "claude-flow MCP not installed"
+    warning "cortex-agent MCP not installed"
     ((WARNINGS++))
 fi
 

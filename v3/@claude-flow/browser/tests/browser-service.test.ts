@@ -1,5 +1,5 @@
 /**
- * @claude-flow/browser - Browser Service Tests
+ * @cortex-agent/browser - Browser Service Tests
  */
 
 import { describe, it, expect, beforeEach, vi, afterEach } from 'vitest';

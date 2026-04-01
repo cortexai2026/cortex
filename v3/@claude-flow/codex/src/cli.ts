@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * @claude-flow/codex - CLI
+ * @cortex-agent/codex - CLI
  *
  * Command-line interface for Codex integration
  * Part of the coflow rebranding initiative
@@ -61,14 +61,14 @@ function validateSkillName(name: string): boolean {
 
 // Print banner
 function printBanner(): void {
-  console.log(chalk.cyan.bold('\n  Claude Flow Codex'));
-  console.log(chalk.gray('  OpenAI Codex integration for Claude Flow'));
+  console.log(chalk.cyan.bold('\n  Cortex Agent Codex'));
+  console.log(chalk.gray('  OpenAI Codex integration for Cortex Agent'));
   console.log(chalk.gray('  ----------------------------------------\n'));
 }
 
 program
-  .name('claude-flow-codex')
-  .description('OpenAI Codex integration for Claude Flow - Part of the coflow ecosystem')
+  .name('cortex-agent-codex')
+  .description('OpenAI Codex integration for Cortex Agent - Part of the coflow ecosystem')
   .version(VERSION, '-v, --version', 'Display version number')
   .option('--debug', 'Enable debug mode', false)
   .hook('preAction', (thisCommand) => {
@@ -322,7 +322,7 @@ program
 
       if (filesToValidate.length === 0) {
         console.log(chalk.yellow('No files found to validate'));
-        console.log(chalk.gray('Run `claude-flow-codex init` to create a project'));
+        console.log(chalk.gray('Run `cortex-agent-codex init` to create a project'));
         return;
       }
 
@@ -504,7 +504,7 @@ program
           console.log(chalk.gray('\n  Next steps:'));
           console.log(chalk.gray('    1. Review the generated AGENTS.md'));
           console.log(chalk.gray('    2. Check skill invocation syntax (/ -> $)'));
-          console.log(chalk.gray('    3. Run `claude-flow-codex validate` to verify'));
+          console.log(chalk.gray('    3. Run `cortex-agent-codex validate` to verify'));
           console.log();
         } else {
           console.log(chalk.red.bold('\n  Migration failed'));
@@ -541,7 +541,7 @@ program
         console.log();
       }
 
-      console.log(chalk.gray('Use: claude-flow-codex init --template <name>'));
+      console.log(chalk.gray('Use: cortex-agent-codex init --template <name>'));
       console.log();
     } catch (error) {
       handleError(error, 'Failed to list templates');
@@ -571,7 +571,7 @@ program
         console.log();
       }
 
-      console.log(chalk.gray('Use: claude-flow-codex generate-skill -n <name> to create a custom skill'));
+      console.log(chalk.gray('Use: cortex-agent-codex generate-skill -n <name> to create a custom skill'));
       console.log();
     } catch (error) {
       handleError(error, 'Failed to list skills');
@@ -590,7 +590,7 @@ program
         return;
       }
 
-      console.log(chalk.cyan.bold('\n  @claude-flow/codex'));
+      console.log(chalk.cyan.bold('\n  @cortex-agent/codex'));
       console.log(chalk.gray('  ' + '='.repeat(40)));
       console.log(chalk.white(`  Version:     ${PACKAGE_INFO.version}`));
       console.log(chalk.white(`  Description: ${PACKAGE_INFO.description}`));
@@ -695,7 +695,7 @@ program.addCommand(createDualModeCommand());
 // Error handling for unknown commands
 program.on('command:*', () => {
   console.error(chalk.red(`Invalid command: ${program.args.join(' ')}`));
-  console.log(chalk.gray(`Run ${chalk.white('claude-flow-codex --help')} for available commands.`));
+  console.log(chalk.gray(`Run ${chalk.white('cortex-agent-codex --help')} for available commands.`));
   process.exit(1);
 });
 

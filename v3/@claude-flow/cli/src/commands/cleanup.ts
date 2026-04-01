@@ -1,6 +1,6 @@
 /**
  * V3 CLI Cleanup Command
- * Removes project artifacts created by claude-flow/ruflo
+ * Removes project artifacts created by cortex-agent/cortex-agent
  *
  * Created with ruv.io
  */
@@ -11,11 +11,11 @@ import { existsSync, statSync, rmSync, readdirSync } from 'fs';
 import { join } from 'path';
 
 /**
- * Artifact directories and files that claude-flow/ruflo may create
+ * Artifact directories and files that cortex-agent/cortex-agent may create
  */
 const ARTIFACT_DIRS = [
   { path: '.claude', description: 'Claude settings, helpers, agents' },
-  { path: '.claude-flow', description: 'Capabilities and configuration' },
+  { path: '.cortex-agent', description: 'Capabilities and configuration' },
   { path: 'data', description: 'Memory databases' },
   { path: '.swarm', description: 'Swarm state' },
   { path: '.hive-mind', description: 'Consensus state' },
@@ -24,14 +24,14 @@ const ARTIFACT_DIRS = [
 ];
 
 const ARTIFACT_FILES = [
-  { path: 'claude-flow.config.json', description: 'Claude Flow configuration' },
+  { path: 'cortex-agent.config.json', description: 'Cortex Agent configuration' },
 ];
 
 /**
  * Paths to preserve when --keep-config is set
  */
 const KEEP_CONFIG_PATHS = [
-  'claude-flow.config.json',
+  'cortex-agent.config.json',
   join('.claude', 'settings.json'),
 ];
 
@@ -74,7 +74,7 @@ function formatSize(bytes: number): string {
  */
 export const cleanupCommand: Command = {
   name: 'cleanup',
-  description: 'Remove project artifacts created by claude-flow/ruflo',
+  description: 'Remove project artifacts created by cortex-agent/cortex-agent',
   aliases: ['clean'],
   options: [
     {
@@ -94,7 +94,7 @@ export const cleanupCommand: Command = {
     {
       name: 'keep-config',
       short: 'k',
-      description: 'Preserve claude-flow.config.json and .claude/settings.json',
+      description: 'Preserve cortex-agent.config.json and .claude/settings.json',
       type: 'boolean',
       default: false,
     },
@@ -106,7 +106,7 @@ export const cleanupCommand: Command = {
     },
     {
       command: 'cleanup --force',
-      description: 'Remove all claude-flow artifacts',
+      description: 'Remove all cortex-agent artifacts',
     },
     {
       command: 'cleanup --force --keep-config',
@@ -122,8 +122,8 @@ export const cleanupCommand: Command = {
 
     output.writeln();
     output.writeln(output.bold(dryRun
-      ? 'Claude Flow Cleanup (dry run)'
-      : 'Claude Flow Cleanup'));
+      ? 'Cortex Agent Cleanup (dry run)'
+      : 'Cortex Agent Cleanup'));
     output.writeln();
 
     const found: { path: string; description: string; size: number; type: 'dir' | 'file'; skipped?: boolean }[] = [];
@@ -150,7 +150,7 @@ export const cleanupCommand: Command = {
     }
 
     if (found.length === 0) {
-      output.writeln(output.info('No claude-flow artifacts found in the current directory.'));
+      output.writeln(output.info('No cortex-agent artifacts found in the current directory.'));
       return { success: true, message: 'Nothing to clean' };
     }
 

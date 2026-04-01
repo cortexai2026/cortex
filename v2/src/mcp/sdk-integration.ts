@@ -6,7 +6,7 @@
  */
 
 import { query, type Query, type Options } from '@anthropic-ai/claude-code/sdk';
-import { createClaudeFlowSdkServer, ClaudeFlowToolRegistry } from './tool-registry.js';
+import { createCortexAgentSdkServer, CortexAgentToolRegistry } from './tool-registry.js';
 import type { McpSdkServerConfigWithInstance } from '@anthropic-ai/claude-code/sdk.d.ts';
 import { logger } from '../core/logger.js';
 
@@ -24,7 +24,7 @@ export interface SDKIntegrationConfig {
  */
 export class SDKIntegration {
   private sdkServer?: McpSdkServerConfigWithInstance;
-  private registry?: ClaudeFlowToolRegistry;
+  private registry?: CortexAgentToolRegistry;
   private config: SDKIntegrationConfig;
 
   constructor(config: SDKIntegrationConfig) {
@@ -52,7 +52,7 @@ export class SDKIntegration {
 
     try {
       // Create SDK server with all Claude-Flow tools
-      this.sdkServer = await createClaudeFlowSdkServer(this.config.orchestratorContext);
+      this.sdkServer = await createCortexAgentSdkServer(this.config.orchestratorContext);
 
       logger.info('In-process MCP server initialized successfully', {
         serverName: this.sdkServer.name,
@@ -81,7 +81,7 @@ export class SDKIntegration {
     if (this.sdkServer) {
       queryOptions.mcpServers = {
         ...queryOptions.mcpServers,
-        'claude-flow': this.sdkServer,
+        'cortex-agent': this.sdkServer,
       };
 
       logger.debug('Query created with in-process MCP server', {
@@ -111,7 +111,7 @@ export class SDKIntegration {
 
     // Add in-process server
     if (this.sdkServer) {
-      queryOptions.mcpServers!['claude-flow'] = this.sdkServer;
+      queryOptions.mcpServers!['cortex-agent'] = this.sdkServer;
     }
 
     // Create agent-specific context

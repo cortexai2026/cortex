@@ -23,11 +23,11 @@ export const REGISTRY_VERSION = '1.0.0';
  */
 export const BOOTSTRAP_REGISTRIES: KnownRegistry[] = [
   {
-    name: 'claude-flow-official',
-    description: 'Official Claude Flow pattern registry',
+    name: 'cortex-agent-official',
+    description: 'Official Cortex Agent pattern registry',
     ipnsName: 'k51qzi5uqu5dj0w8q1xvqn8ql2g4p7x8qpk9vz3xm1y2n3o4p5q6r7s8t9u0v',
     gateway: 'https://w3s.link',
-    publicKey: 'ed25519:claude-flow-registry-key',
+    publicKey: 'ed25519:cortex-agent-registry-key',
     trusted: true,
   },
   {
@@ -45,10 +45,10 @@ export const BOOTSTRAP_REGISTRIES: KnownRegistry[] = [
  */
 export const DEFAULT_STORE_CONFIG: StoreConfig = {
   registries: BOOTSTRAP_REGISTRIES,
-  defaultRegistry: 'claude-flow-official',
+  defaultRegistry: 'cortex-agent-official',
   gateway: 'https://w3s.link',
   timeout: 30000,
-  cacheDir: '.claude-flow/patterns/cache',
+  cacheDir: '.cortex-agent/patterns/cache',
   cacheExpiry: 3600000, // 1 hour
   requireVerification: false,
   minTrustLevel: 'unverified',

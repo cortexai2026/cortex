@@ -322,10 +322,10 @@ export const enterpriseCommands: Command[] = [
           console.log();
           console.log(`${bold('Examples:')}`);
           console.log(
-            `  ${cyan('claude-flow project create')} "E-commerce Platform" --type web-app --priority high`,
+            `  ${cyan('cortex-agent project create')} "E-commerce Platform" --type web-app --priority high`,
           );
-          console.log(`  ${cyan('claude-flow project list')} --status active --verbose`);
-          console.log(`  ${cyan('claude-flow project report')} proj-123 financial`);
+          console.log(`  ${cyan('cortex-agent project list')} --status active --verbose`);
+          console.log(`  ${cyan('cortex-agent project report')} proj-123 financial`);
           break;
         }
       }
@@ -586,10 +586,10 @@ export const enterpriseCommands: Command[] = [
           console.log();
           console.log(`${bold('Examples:')}`);
           console.log(
-            `  ${cyan('claude-flow deploy create')} "v2.1.0" --environment production --strategy blue-green`,
+            `  ${cyan('cortex-agent deploy create')} "v2.1.0" --environment production --strategy blue-green`,
           );
-          console.log(`  ${cyan('claude-flow deploy rollback')} deploy-123 "Critical bug found"`);
-          console.log(`  ${cyan('claude-flow deploy metrics')} --environment production`);
+          console.log(`  ${cyan('cortex-agent deploy rollback')} deploy-123 "Critical bug found"`);
+          console.log(`  ${cyan('cortex-agent deploy metrics')} --environment production`);
           break;
         }
       }
@@ -870,12 +870,12 @@ export const enterpriseCommands: Command[] = [
           console.log();
           console.log(`${bold('Examples:')}`);
           console.log(
-            `  ${cyan('claude-flow cloud providers add')} "AWS Production" aws --access-key xxx`,
+            `  ${cyan('cortex-agent cloud providers add')} "AWS Production" aws --access-key xxx`,
           );
           console.log(
-            `  ${cyan('claude-flow cloud resources create')} "web-server" compute --provider aws-prod`,
+            `  ${cyan('cortex-agent cloud resources create')} "web-server" compute --provider aws-prod`,
           );
-          console.log(`  ${cyan('claude-flow cloud optimize')} --environment production`);
+          console.log(`  ${cyan('cortex-agent cloud optimize')} --environment production`);
           break;
         }
       }
@@ -1114,12 +1114,12 @@ export const enterpriseCommands: Command[] = [
           console.log();
           console.log(`${bold('Examples:')}`);
           console.log(
-            `  ${cyan('claude-flow security scan')} "API Vulnerability Scan" ./api --type vulnerability`,
+            `  ${cyan('cortex-agent security scan')} "API Vulnerability Scan" ./api --type vulnerability`,
           );
           console.log(
-            `  ${cyan('claude-flow security incident create')} "Unauthorized Access" --severity high`,
+            `  ${cyan('cortex-agent security incident create')} "Unauthorized Access" --severity high`,
           );
-          console.log(`  ${cyan('claude-flow security compliance')} SOC2 GDPR --project web-app`);
+          console.log(`  ${cyan('cortex-agent security compliance')} SOC2 GDPR --project web-app`);
           break;
         }
       }
@@ -1449,10 +1449,10 @@ export const enterpriseCommands: Command[] = [
           console.log('  predict           Predictive modeling and forecasting');
           console.log();
           console.log(`${bold('Examples:')}`);
-          console.log(`  ${cyan('claude-flow analytics insights')} --timerange 7d`);
-          console.log(`  ${cyan('claude-flow analytics metrics')} performance`);
+          console.log(`  ${cyan('cortex-agent analytics insights')} --timerange 7d`);
+          console.log(`  ${cyan('cortex-agent analytics metrics')} performance`);
           console.log(
-            `  ${cyan('claude-flow analytics predict train')} "load-predictor" --features cpu,memory --target response-time`,
+            `  ${cyan('cortex-agent analytics predict train')} "load-predictor" --features cpu,memory --target response-time`,
           );
           break;
         }
@@ -1756,13 +1756,13 @@ export const enterpriseCommands: Command[] = [
           console.log();
           console.log(`${bold('Examples:')}`);
           console.log(
-            `  ${cyan('claude-flow audit log')} user_login success --user john.doe --resource user-account`,
+            `  ${cyan('cortex-agent audit log')} user_login success --user john.doe --resource user-account`,
           );
           console.log(
-            `  ${cyan('claude-flow audit report')} compliance --framework SOC2 --timerange 90d`,
+            `  ${cyan('cortex-agent audit report')} compliance --framework SOC2 --timerange 90d`,
           );
           console.log(
-            `  ${cyan('claude-flow audit export')} --format csv --timerange 30d --encrypt`,
+            `  ${cyan('cortex-agent audit export')} --format csv --timerange 30d --encrypt`,
           );
           break;
         }

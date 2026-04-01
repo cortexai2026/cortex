@@ -1,5 +1,5 @@
 /**
- * Utility tests for @claude-flow/embeddings
+ * Utility tests for @cortex-agent/embeddings
  * Lightweight tests that don't require the embedding service
  */
 

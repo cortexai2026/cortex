@@ -167,7 +167,7 @@ export const mcpCommand = new Command()
           console.log(`🔧 Tools: ${chalk.green('Available')}`);
           console.log(`📊 Metrics: ${chalk.green('Collecting')}`);
         } else {
-          console.log(chalk.gray('Use "claude-flow mcp start" to start the server'));
+          console.log(chalk.gray('Use "cortex-agent mcp start" to start the server'));
         }
       } catch (error) {
         console.error(chalk.red(`❌ Failed to get MCP status: ${(error as Error).message}`));

@@ -5,7 +5,7 @@
  * Implements adaptive query optimization, intelligent index tuning,
  * pattern recognition, and continuous learning with EWC++ protection.
  *
- * @module @claude-flow/plugins/integrations/ruvector/self-learning
+ * @module @cortex-agent/plugins/integrations/ruvector/self-learning
  * @version 1.0.0
  */
 

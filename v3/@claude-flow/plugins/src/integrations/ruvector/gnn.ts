@@ -4,7 +4,7 @@
  * Comprehensive GNN support for RuVector PostgreSQL vector database integration.
  * Implements GCN, GAT, GraphSAGE, GIN, MPNN, EdgeConv, and more.
  *
- * @module @claude-flow/plugins/integrations/ruvector/gnn
+ * @module @cortex-agent/plugins/integrations/ruvector/gnn
  * @version 1.0.0
  */
 

@@ -3,13 +3,13 @@
   "customInstructions": "Follow the project's CLAUDE.md guidelines. Use concurrent execution for all operations. Prioritize v3 implementation with security-first development, 15-agent swarm coordination, phased performance optimization, and cross-platform helper automation.",
   "env": {
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
-    "CLAUDE_FLOW_V3_ENABLED": "true",
-    "CLAUDE_FLOW_HOOKS_ENABLED": "true"
+    "CORTEX_AGENT_V3_ENABLED": "true",
+    "CORTEX_AGENT_HOOKS_ENABLED": "true"
   },
   "permissions": {
     "allow": [
-      "Bash(npx @claude-flow*)",
-      "Bash(npx claude-flow*)",
+      "Bash(npx @cortex-agent*)",
+      "Bash(npx cortex-agent*)",
       "Bash(node .claude/*)",
       "Bash(npm run:*)",
       "Bash(npm test:*)",
@@ -30,7 +30,7 @@
       "Bash(pwd)",
       "Bash(ls:*)",
       "Bash(npx:*)",
-      "mcp__claude-flow__*",
+      "mcp__cortex-agent__*",
       "mcp__ruv-swarm__*",
       "mcp__flow-nexus__*"
     ],
@@ -179,8 +179,8 @@
     ]
   },
   "attribution": {
-    "commit": "Co-Authored-By: claude-flow <ruv@ruv.net>",
-    "pr": "\ud83e\udd16 Generated with [claude-flow](https://github.com/ruvnet/claude-flow)"
+    "commit": "Co-Authored-By: cortex-agent <ruv@ruv.net>",
+    "pr": "\ud83e\udd16 Generated with [cortex-agent](https://github.com/ruvnet/cortex-agent)"
   },
   "claudeFlow": {
     "version": "3.5.2",
@@ -289,17 +289,17 @@
     "command": "node \"$CLAUDE_PROJECT_DIR/.claude/helpers/statusline.cjs\""
   },
   "mcpServers": {
-    "claude-flow": {
+    "cortex-agent": {
       "command": "node",
       "args": [
-        "/workspaces/claude-flow/v3/@claude-flow/cli/bin/cli.js",
+        "/workspaces/cortex-agent/v3/@cortex-agent/cli/bin/cli.js",
         "mcp",
         "start"
       ]
     }
   },
   "enabledMcpjsonServers": [
-    "claude-flow",
+    "cortex-agent",
     "ruv-swarm"
   ]
 }

@@ -10,7 +10,7 @@
  * All @ruvector/* packages are optional peer dependencies.
  * The bridge degrades gracefully when they are absent.
  *
- * @module @claude-flow/cli/appliance/ruvllm-bridge
+ * @module @cortex-agent/cli/appliance/ruvllm-bridge
  */
 
 import { readdir, stat } from 'node:fs/promises';

@@ -162,8 +162,8 @@ async function main() {
   // Test 10: Similar Plugins
   console.log('▶ Test 10: Find Similar Plugins');
   try {
-    const similar = findSimilarPlugins(registry, '@claude-flow/neural', 3);
-    console.log(`  ✅ Found ${similar.length} similar plugins to @claude-flow/neural`);
+    const similar = findSimilarPlugins(registry, '@cortex-agent/neural', 3);
+    console.log(`  ✅ Found ${similar.length} similar plugins to @cortex-agent/neural`);
     passed++;
   } catch (e) {
     console.log(`  ❌ Failed: ${(e as Error).message}`);
@@ -185,10 +185,10 @@ async function main() {
     console.log('  🎉 All tests passed! Plugin Store is working correctly.');
     console.log('');
     console.log('  Available CLI Commands:');
-    console.log('    npx @claude-flow/cli plugins list');
-    console.log('    npx @claude-flow/cli plugins list --official');
-    console.log('    npx @claude-flow/cli plugins search -q "plugin creator"');
-    console.log('    npx @claude-flow/cli plugins info -n plugin-creator');
+    console.log('    npx @cortex-agent/cli plugins list');
+    console.log('    npx @cortex-agent/cli plugins list --official');
+    console.log('    npx @cortex-agent/cli plugins search -q "plugin creator"');
+    console.log('    npx @cortex-agent/cli plugins info -n plugin-creator');
     console.log('');
   }
 

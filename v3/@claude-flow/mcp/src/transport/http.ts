@@ -1,5 +1,5 @@
 /**
- * @claude-flow/mcp - HTTP Transport
+ * @cortex-agent/mcp - HTTP Transport
  *
  * HTTP/REST transport with WebSocket support
  */

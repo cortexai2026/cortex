@@ -26,32 +26,32 @@ Vector embeddings for semantic search and pattern matching with HNSW indexing.
 
 ### Initialize Embeddings
 ```bash
-npx claude-flow embeddings init --backend sqlite
+npx cortex-agent embeddings init --backend sqlite
 ```
 
 ### Embed Text
 ```bash
-npx claude-flow embeddings embed --text "authentication patterns"
+npx cortex-agent embeddings embed --text "authentication patterns"
 ```
 
 ### Batch Embed
 ```bash
-npx claude-flow embeddings batch --file documents.json
+npx cortex-agent embeddings batch --file documents.json
 ```
 
 ### Semantic Search
 ```bash
-npx claude-flow embeddings search --query "security best practices" --top-k 5
+npx cortex-agent embeddings search --query "security best practices" --top-k 5
 ```
 
 ## Memory Integration
 
 ```bash
 # Store with embeddings
-npx claude-flow memory store --key "pattern-1" --value "description" --embed
+npx cortex-agent memory store --key "pattern-1" --value "description" --embed
 
 # Search with embeddings
-npx claude-flow memory search --query "related patterns" --semantic
+npx cortex-agent memory search --query "related patterns" --semantic
 ```
 
 ## Quantization

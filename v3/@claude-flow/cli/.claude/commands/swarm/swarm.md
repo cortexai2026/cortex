@@ -1,6 +1,6 @@
 # /swarm
 
-Main swarm orchestration command for Claude Flow V3.
+Main swarm orchestration command for Cortex Agent V3.
 
 ## 🚨 CRITICAL: Background Execution Pattern
 
@@ -70,8 +70,8 @@ swarm status                       // ❌ Don't check repeatedly
 
 ## Usage
 ```bash
-npx @claude-flow/cli@latest swarm init --topology hierarchical
-npx @claude-flow/cli@latest swarm status  # Only after completion
+npx @cortex-agent/cli@latest swarm init --topology hierarchical
+npx @cortex-agent/cli@latest swarm status  # Only after completion
 ```
 
 ## Options

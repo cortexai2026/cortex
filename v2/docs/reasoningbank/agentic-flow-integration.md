@@ -9,7 +9,7 @@ This document explains how **agentic-flow@1.5.13** underpins ReasoningBank's cap
 1. [What is Agentic-Flow?](#what-is-agentic-flow)
 2. [Architecture Overview](#architecture-overview)
 3. [Core Components](#core-components)
-4. [Integration with Claude-Flow](#integration-with-claude-flow)
+4. [Integration with Claude-Flow](#integration-with-cortex-agent)
 5. [Advanced Features](#advanced-features)
 6. [Extension Points](#extension-points)
 

@@ -1,11 +1,11 @@
 /**
- * AgenticFlowAgent - Claude Flow Agent with agentic-flow Delegation
+ * AgenticFlowAgent - Cortex Agent Agent with agentic-flow Delegation
  *
  * Per ADR-001: "Use agentic-flow's Agent base class for all agents"
- * This class wraps agentic-flow functionality while adding Claude Flow specifics.
+ * This class wraps agentic-flow functionality while adding Cortex Agent specifics.
  *
  * This implements the adapter pattern to bridge between:
- * - Claude Flow's agent lifecycle (v3 DDD architecture)
+ * - Cortex Agent's agent lifecycle (v3 DDD architecture)
  * - agentic-flow's optimized agent implementations
  *
  * When agentic-flow is available, this class delegates core operations to
@@ -215,9 +215,9 @@ export interface AgentConfig extends IAgentConfig {
 }
 
 /**
- * AgenticFlowAgent - Base class for all Claude Flow v3 agents
+ * AgenticFlowAgent - Base class for all Cortex Agent v3 agents
  *
- * This class serves as the foundation for all agent types in Claude Flow v3,
+ * This class serves as the foundation for all agent types in Cortex Agent v3,
  * implementing ADR-001 by delegating to agentic-flow when available while
  * maintaining backward compatibility with local implementations.
  *

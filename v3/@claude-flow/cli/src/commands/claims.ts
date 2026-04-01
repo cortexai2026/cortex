@@ -15,8 +15,8 @@ interface ClaimsConfig {
 }
 
 const CLAIMS_CONFIG_PATHS = [
-  '.claude-flow/claims.json',
-  'claude-flow.claims.json',
+  '.cortex-agent/claims.json',
+  'cortex-agent.claims.json',
 ];
 
 function getClaimsConfigPaths(): string[] {
@@ -26,7 +26,7 @@ function getClaimsConfigPaths(): string[] {
   return [
     path.resolve(CLAIMS_CONFIG_PATHS[0]),
     path.resolve(CLAIMS_CONFIG_PATHS[1]),
-    path.resolve(process.env.HOME || '~', '.config/claude-flow/claims.json'),
+    path.resolve(process.env.HOME || '~', '.config/cortex-agent/claims.json'),
   ];
 }
 
@@ -78,8 +78,8 @@ const listCommand: Command = {
     { name: 'resource', type: 'string', description: 'Filter by resource' },
   ],
   examples: [
-    { command: 'claude-flow claims list', description: 'List all claims' },
-    { command: 'claude-flow claims list -u user123', description: 'List user claims' },
+    { command: 'cortex-agent claims list', description: 'List all claims' },
+    { command: 'cortex-agent claims list -u user123', description: 'List user claims' },
   ],
   action: async (_ctx: CommandContext): Promise<CommandResult> => {
     try {
@@ -162,8 +162,8 @@ const checkCommand: Command = {
     { name: 'resource', short: 'r', type: 'string', description: 'Resource context' },
   ],
   examples: [
-    { command: 'claude-flow claims check -c swarm:create', description: 'Check swarm creation permission' },
-    { command: 'claude-flow claims check -c admin:delete -u user123', description: 'Check user permission' },
+    { command: 'cortex-agent claims check -c swarm:create', description: 'Check swarm creation permission' },
+    { command: 'cortex-agent claims check -c admin:delete -u user123', description: 'Check user permission' },
   ],
   action: async (ctx: CommandContext): Promise<CommandResult> => {
     const claim = ctx.flags.claim as string;
@@ -193,9 +193,9 @@ const checkCommand: Command = {
     try {
       // Check for claims config file
       const claimsConfigPaths = [
-        path.resolve('.claude-flow/claims.json'),
-        path.resolve('claude-flow.claims.json'),
-        path.resolve(process.env.HOME || '~', '.config/claude-flow/claims.json'),
+        path.resolve('.cortex-agent/claims.json'),
+        path.resolve('cortex-agent.claims.json'),
+        path.resolve(process.env.HOME || '~', '.config/cortex-agent/claims.json'),
       ];
 
       let claimsConfig: {
@@ -308,8 +308,8 @@ const grantCommand: Command = {
     { name: 'expires', short: 'e', type: 'string', description: 'Expiration time (e.g., 24h, 7d)' },
   ],
   examples: [
-    { command: 'claude-flow claims grant -c swarm:create -u user123', description: 'Grant to user' },
-    { command: 'claude-flow claims grant -c agent:spawn -r developer', description: 'Grant to role' },
+    { command: 'cortex-agent claims grant -c swarm:create -u user123', description: 'Grant to user' },
+    { command: 'cortex-agent claims grant -c agent:spawn -r developer', description: 'Grant to role' },
   ],
   action: async (ctx: CommandContext): Promise<CommandResult> => {
     const claim = ctx.flags.claim as string;
@@ -370,8 +370,8 @@ const revokeCommand: Command = {
     { name: 'role', short: 'r', type: 'string', description: 'Role name' },
   ],
   examples: [
-    { command: 'claude-flow claims revoke -c swarm:delete -u user123', description: 'Revoke from user' },
-    { command: 'claude-flow claims revoke -c admin:* -r guest', description: 'Revoke from role' },
+    { command: 'cortex-agent claims revoke -c swarm:delete -u user123', description: 'Revoke from user' },
+    { command: 'cortex-agent claims revoke -c admin:* -r guest', description: 'Revoke from role' },
   ],
   action: async (ctx: CommandContext): Promise<CommandResult> => {
     const claim = ctx.flags.claim as string;
@@ -438,8 +438,8 @@ const rolesCommand: Command = {
     { name: 'name', short: 'n', type: 'string', description: 'Role name' },
   ],
   examples: [
-    { command: 'claude-flow claims roles', description: 'List all roles' },
-    { command: 'claude-flow claims roles -a show -n admin', description: 'Show role details' },
+    { command: 'cortex-agent claims roles', description: 'List all roles' },
+    { command: 'cortex-agent claims roles -a show -n admin', description: 'Show role details' },
   ],
   action: async (ctx: CommandContext): Promise<CommandResult> => {
     const action = (ctx.flags.action as string) || 'list';
@@ -546,8 +546,8 @@ const policiesCommand: Command = {
     { name: 'name', short: 'n', type: 'string', description: 'Policy name' },
   ],
   examples: [
-    { command: 'claude-flow claims policies', description: 'List policies' },
-    { command: 'claude-flow claims policies -a create -n rate-limit', description: 'Create policy' },
+    { command: 'cortex-agent claims policies', description: 'List policies' },
+    { command: 'cortex-agent claims policies -a create -n rate-limit', description: 'Create policy' },
   ],
   action: async (ctx: CommandContext): Promise<CommandResult> => {
     const action = (ctx.flags.action as string) || 'list';
@@ -647,13 +647,13 @@ export const claimsCommand: Command = {
   description: 'Claims-based authorization, permissions, and access control',
   subcommands: [listCommand, checkCommand, grantCommand, revokeCommand, rolesCommand, policiesCommand],
   examples: [
-    { command: 'claude-flow claims list', description: 'List all claims' },
-    { command: 'claude-flow claims check -c swarm:create', description: 'Check permission' },
-    { command: 'claude-flow claims grant -c agent:spawn -r developer', description: 'Grant claim' },
+    { command: 'cortex-agent claims list', description: 'List all claims' },
+    { command: 'cortex-agent claims check -c swarm:create', description: 'Check permission' },
+    { command: 'cortex-agent claims grant -c agent:spawn -r developer', description: 'Grant claim' },
   ],
   action: async (): Promise<CommandResult> => {
     output.writeln();
-    output.writeln(output.bold('RuFlo Claims System'));
+    output.writeln(output.bold('Cortex Agent Claims System'));
     output.writeln(output.dim('Fine-grained authorization and access control'));
     output.writeln();
     output.writeln('Subcommands:');

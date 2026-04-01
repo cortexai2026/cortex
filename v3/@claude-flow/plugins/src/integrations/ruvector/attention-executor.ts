@@ -3,7 +3,7 @@
  *
  * Provides execution layer and factory for attention mechanisms.
  *
- * @module @claude-flow/plugins/integrations/ruvector/attention-executor
+ * @module @cortex-agent/plugins/integrations/ruvector/attention-executor
  */
 
 import type {

@@ -65,7 +65,7 @@ async function spawnAgent(subArgs, flags) {
   const path = await import('path');
   
   // Ensure agents directory exists
-  const agentsDir = '.claude-flow/agents';
+  const agentsDir = '.cortex-agent/agents';
   await fs.mkdir(agentsDir, { recursive: true });
   
   // Save agent data
@@ -73,7 +73,7 @@ async function spawnAgent(subArgs, flags) {
   await fs.writeFile(agentFile, JSON.stringify(agent, null, 2));
   
   // Update performance metrics
-  const perfFile = '.claude-flow/metrics/performance.json';
+  const perfFile = '.cortex-agent/metrics/performance.json';
   try {
     const perfData = JSON.parse(await fs.readFile(perfFile, 'utf8'));
     perfData.totalAgents = (perfData.totalAgents || 0) + 1;
@@ -121,7 +121,7 @@ async function listAgents(subArgs, flags) {
   const { promises: fs } = await import('fs');
   const path = await import('path');
   
-  const agentsDir = '.claude-flow/agents';
+  const agentsDir = '.cortex-agent/agents';
   const agents = [];
   
   try {
@@ -155,9 +155,9 @@ async function listAgents(subArgs, flags) {
   } else {
     console.log('📋 No agents currently active');
     console.log('\nTo create agents:');
-    console.log('  claude-flow agent spawn researcher --name "ResearchBot"');
-    console.log('  claude-flow agent spawn coder --name "CodeBot"');
-    console.log('  claude-flow agent spawn analyst --name "DataBot"');
+    console.log('  cortex-agent agent spawn researcher --name "ResearchBot"');
+    console.log('  cortex-agent agent spawn coder --name "CodeBot"');
+    console.log('  cortex-agent agent spawn analyst --name "DataBot"');
   }
 }
 
@@ -182,8 +182,8 @@ async function manageHierarchy(subArgs, flags) {
     default:
       console.log('Hierarchy commands: create, show');
       console.log('Examples:');
-      console.log('  claude-flow agent hierarchy create enterprise');
-      console.log('  claude-flow agent hierarchy show');
+      console.log('  cortex-agent agent hierarchy create enterprise');
+      console.log('  cortex-agent agent hierarchy show');
   }
 }
 
@@ -301,8 +301,8 @@ function showAgentHelp() {
   console.log('  general       Multi-purpose agent');
   console.log();
   console.log('Examples:');
-  console.log('  claude-flow agent spawn researcher --name "DataBot"');
-  console.log('  claude-flow agent list --verbose');
-  console.log('  claude-flow agent hierarchy create enterprise');
-  console.log('  claude-flow agent ecosystem status');
+  console.log('  cortex-agent agent spawn researcher --name "DataBot"');
+  console.log('  cortex-agent agent list --verbose');
+  console.log('  cortex-agent agent hierarchy create enterprise');
+  console.log('  cortex-agent agent ecosystem status');
 }

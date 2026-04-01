@@ -3,31 +3,31 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@claude-flow/security": ["./@claude-flow/security/src"],
-      "@claude-flow/memory": ["./@claude-flow/memory/src"],
-      "@claude-flow/integration": ["./@claude-flow/integration/src"],
-      "@claude-flow/swarm": ["./@claude-flow/swarm/src"],
-      "@claude-flow/performance": ["./@claude-flow/performance/src"],
-      "@claude-flow/cli": ["./@claude-flow/cli/src"],
-      "@claude-flow/neural": ["./@claude-flow/neural/src"],
-      "@claude-flow/testing": ["./@claude-flow/testing/src"],
-      "@claude-flow/deployment": ["./@claude-flow/deployment/src"],
-      "@claude-flow/shared": ["./@claude-flow/shared/src"],
-      "@claude-flow/hooks": ["./@claude-flow/hooks/src"]
+      "@cortex-agent/security": ["./@cortex-agent/security/src"],
+      "@cortex-agent/memory": ["./@cortex-agent/memory/src"],
+      "@cortex-agent/integration": ["./@cortex-agent/integration/src"],
+      "@cortex-agent/swarm": ["./@cortex-agent/swarm/src"],
+      "@cortex-agent/performance": ["./@cortex-agent/performance/src"],
+      "@cortex-agent/cli": ["./@cortex-agent/cli/src"],
+      "@cortex-agent/neural": ["./@cortex-agent/neural/src"],
+      "@cortex-agent/testing": ["./@cortex-agent/testing/src"],
+      "@cortex-agent/deployment": ["./@cortex-agent/deployment/src"],
+      "@cortex-agent/shared": ["./@cortex-agent/shared/src"],
+      "@cortex-agent/hooks": ["./@cortex-agent/hooks/src"]
     }
   },
   "references": [
-    { "path": "./@claude-flow/shared" },
-    { "path": "./@claude-flow/security" },
-    { "path": "./@claude-flow/memory" },
-    { "path": "./@claude-flow/integration" },
-    { "path": "./@claude-flow/swarm" },
-    { "path": "./@claude-flow/performance" },
-    { "path": "./@claude-flow/cli" },
-    { "path": "./@claude-flow/neural" },
-    { "path": "./@claude-flow/testing" },
-    { "path": "./@claude-flow/deployment" },
-    { "path": "./@claude-flow/hooks" }
+    { "path": "./@cortex-agent/shared" },
+    { "path": "./@cortex-agent/security" },
+    { "path": "./@cortex-agent/memory" },
+    { "path": "./@cortex-agent/integration" },
+    { "path": "./@cortex-agent/swarm" },
+    { "path": "./@cortex-agent/performance" },
+    { "path": "./@cortex-agent/cli" },
+    { "path": "./@cortex-agent/neural" },
+    { "path": "./@cortex-agent/testing" },
+    { "path": "./@cortex-agent/deployment" },
+    { "path": "./@cortex-agent/hooks" }
   ],
   "include": [],
   "exclude": ["node_modules", "dist"]

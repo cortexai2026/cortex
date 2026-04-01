@@ -1,15 +1,15 @@
-# @claude-flow/browser
+# @cortex-agent/browser
 
 <div align="center">
 
-[![npm version](https://img.shields.io/npm/v/@claude-flow/browser?style=for-the-badge&logo=npm&color=blue)](https://www.npmjs.com/package/@claude-flow/browser)
+[![npm version](https://img.shields.io/npm/v/@cortex-agent/browser?style=for-the-badge&logo=npm&color=blue)](https://www.npmjs.com/package/@cortex-agent/browser)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.3+-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](https://opensource.org/licenses/MIT)
 [![Tests](https://img.shields.io/badge/Tests-128%20passing-green?style=for-the-badge&logo=vitest)](./tests)
 
 **AI-Optimized Browser Automation for Claude-Flow Swarms**
 
-*Integrate [agent-browser](https://github.com/AugmentCode/agent-browser) with claude-flow for intelligent web automation, trajectory learning, security scanning, and multi-agent browser coordination.*
+*Integrate [agent-browser](https://github.com/AugmentCode/agent-browser) with cortex-agent for intelligent web automation, trajectory learning, security scanning, and multi-agent browser coordination.*
 
 </div>
 
@@ -17,7 +17,7 @@
 
 ## Overview
 
-`@claude-flow/browser` provides a comprehensive browser automation layer for AI agents, combining Vercel Labs' `agent-browser` CLI with claude-flow's learning, memory, and security capabilities. It enables agents to navigate websites, fill forms, extract data, and learn from successful interaction patterns.
+`@cortex-agent/browser` provides a comprehensive browser automation layer for AI agents, combining Vercel Labs' `agent-browser` CLI with cortex-agent's learning, memory, and security capabilities. It enables agents to navigate websites, fill forms, extract data, and learn from successful interaction patterns.
 
 ### Architecture
 
@@ -49,10 +49,10 @@ Agent Request → Security Scan → Browser Adapter → agent-browser CLI → Pl
 
 ```bash
 # Install the package
-npm install @claude-flow/browser
+npm install @cortex-agent/browser
 
 # Peer dependency (if not already installed)
-npm install @claude-flow/cli@^3.0.0-alpha
+npm install @cortex-agent/cli@^3.0.0-alpha
 
 # agent-browser CLI (required)
 npm install -g agent-browser
@@ -71,7 +71,7 @@ npm install -g agent-browser
 ### Basic Usage
 
 ```typescript
-import { createBrowserService, browserTools } from '@claude-flow/browser';
+import { createBrowserService, browserTools } from '@cortex-agent/browser';
 
 // Create a browser service with security and memory enabled
 const browser = createBrowserService({
@@ -104,10 +104,10 @@ await browser.close();
 
 ### MCP Integration
 
-Register browser tools with claude-flow's MCP server:
+Register browser tools with cortex-agent's MCP server:
 
 ```typescript
-import { browserTools } from '@claude-flow/browser';
+import { browserTools } from '@cortex-agent/browser';
 
 // browserTools contains 59 MCP-compatible tools
 // Register with your MCP server
@@ -200,7 +200,7 @@ const piiResult = browser.scanForPII('SSN: 123-45-6789');
 Store and search browser patterns using HNSW-indexed memory:
 
 ```typescript
-import { createMemoryManager } from '@claude-flow/browser';
+import { createMemoryManager } from '@cortex-agent/browser';
 
 const memory = createMemoryManager('session-1');
 
@@ -224,7 +224,7 @@ const stats = await memory.getSessionStats();
 Comprehensive threat detection:
 
 ```typescript
-import { getSecurityScanner, isUrlSafe, containsPII } from '@claude-flow/browser';
+import { getSecurityScanner, isUrlSafe, containsPII } from '@cortex-agent/browser';
 
 const scanner = getSecurityScanner({
   requireHttps: true,
@@ -254,7 +254,7 @@ containsPII('My SSN is 123-45-6789'); // true
 Pre-built automation workflows:
 
 ```typescript
-import { listWorkflows, getWorkflow, getWorkflowManager } from '@claude-flow/browser';
+import { listWorkflows, getWorkflow, getWorkflowManager } from '@cortex-agent/browser';
 
 // List all templates
 const workflows = listWorkflows();
@@ -300,7 +300,7 @@ const validation = manager.validateVariables('login-basic', {
 Pre-browse and post-browse hooks for learning:
 
 ```typescript
-import { preBrowseHook, postBrowseHook, browserHooks } from '@claude-flow/browser';
+import { preBrowseHook, postBrowseHook, browserHooks } from '@cortex-agent/browser';
 
 // Before browsing - get recommendations
 const preResult = await preBrowseHook({
@@ -336,7 +336,7 @@ const postResult = await postBrowseHook({
 Coordinate multiple browser sessions for parallel tasks:
 
 ```typescript
-import { createBrowserSwarm } from '@claude-flow/browser';
+import { createBrowserSwarm } from '@cortex-agent/browser';
 
 // Create a swarm coordinator
 const swarm = createBrowserSwarm({
@@ -580,7 +580,7 @@ BROWSER_MEMORY_NAMESPACE=browser
 ### Login and Extract Data
 
 ```typescript
-import { createBrowserService } from '@claude-flow/browser';
+import { createBrowserService } from '@cortex-agent/browser';
 
 const browser = createBrowserService();
 
@@ -610,7 +610,7 @@ async function loginAndExtract() {
 ### Parallel Scraping
 
 ```typescript
-import { createBrowserSwarm } from '@claude-flow/browser';
+import { createBrowserSwarm } from '@cortex-agent/browser';
 
 async function parallelScrape(urls: string[]) {
   const swarm = createBrowserSwarm({ maxSessions: 5 });
@@ -635,7 +635,7 @@ async function parallelScrape(urls: string[]) {
 ### Security-First Automation
 
 ```typescript
-import { createBrowserService, getSecurityScanner } from '@claude-flow/browser';
+import { createBrowserService, getSecurityScanner } from '@cortex-agent/browser';
 
 async function secureAutomation(url: string, formData: Record<string, string>) {
   const scanner = getSecurityScanner({ requireHttps: true });
@@ -714,16 +714,16 @@ MIT License - see [LICENSE](../../LICENSE) for details.
 
 ## Links
 
-- [GitHub Repository](https://github.com/ruvnet/claude-flow)
+- [GitHub Repository](https://github.com/ruvnet/cortex-agent)
 - [agent-browser](https://github.com/AugmentCode/agent-browser)
-- [Claude-Flow Documentation](https://github.com/ruvnet/claude-flow#readme)
+- [Claude-Flow Documentation](https://github.com/ruvnet/cortex-agent#readme)
 - [MCP Protocol](https://modelcontextprotocol.io)
 
 ---
 
 <div align="center">
 
-**Part of the [Claude-Flow](https://github.com/ruvnet/claude-flow) ecosystem**
+**Part of the [Claude-Flow](https://github.com/ruvnet/cortex-agent) ecosystem**
 
 Made with ❤️ by [ruvnet](https://github.com/ruvnet)
 

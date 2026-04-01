@@ -287,7 +287,7 @@ export class Logger implements ILogger {
 ```typescript
 // src-v3/infrastructure/config/config-manager.ts
 export class ConfigManager {
-  private config: ClaudeFlowConfig;
+  private config: CortexAgentConfig;
 
   load(path?: string): Promise<void>;
   get<T>(key: string): T;
@@ -324,7 +324,7 @@ export class ConfigManager {
 **Plugin Interface (Day 1)**
 ```typescript
 // src-v3/infrastructure/plugins/plugin-interface.ts
-export interface ClaudeFlowPlugin {
+export interface CortexAgentPlugin {
   readonly name: string;
   readonly version: string;
   readonly dependencies?: string[];
@@ -356,10 +356,10 @@ export interface PluginContext {
 ```typescript
 // src-v3/infrastructure/plugins/plugin-loader.ts
 export class PluginLoader {
-  private plugins = new Map<string, ClaudeFlowPlugin>();
+  private plugins = new Map<string, CortexAgentPlugin>();
   private initialized = new Set<string>();
 
-  async loadPlugin(plugin: ClaudeFlowPlugin): Promise<void> {
+  async loadPlugin(plugin: CortexAgentPlugin): Promise<void> {
     // Validate plugin
     this.validatePlugin(plugin);
 
@@ -388,15 +388,15 @@ export class PluginLoader {
     this.initialized.delete(name);
   }
 
-  getPlugin(name: string): ClaudeFlowPlugin | undefined;
-  listPlugins(): ClaudeFlowPlugin[];
+  getPlugin(name: string): CortexAgentPlugin | undefined;
+  listPlugins(): CortexAgentPlugin[];
 }
 ```
 
 **Example Plugin (Day 4)**
 ```typescript
 // src-v3/plugins/example/example-plugin.ts
-export class ExamplePlugin implements ClaudeFlowPlugin {
+export class ExamplePlugin implements CortexAgentPlugin {
   readonly name = 'example';
   readonly version = '1.0.0';
 
@@ -581,7 +581,7 @@ Step-by-step guide for migrating from v2 to v3
 
 ## Automated Migration Tool
 ```bash
-npx claude-flow migrate v2-to-v3
+npx cortex-agent migrate v2-to-v3
 ```
 
 ## Common Issues
@@ -1186,7 +1186,7 @@ npm run benchmark:compare -- --base=v2 --compare=v3
 
 # Backup v2 data
 echo "Backing up v2 data..."
-cp claude-flow.db claude-flow-v2-backup.db
+cp cortex-agent.db cortex-agent-v2-backup.db
 
 # Migrate configuration
 echo "Migrating configuration..."
@@ -1208,7 +1208,7 @@ echo "Migration complete! Review logs at migration.log"
 # Migrating from v2 to v3
 
 ## Overview
-This guide helps you migrate your claude-flow installation from v2 to v3.
+This guide helps you migrate your cortex-agent installation from v2 to v3.
 
 ## Prerequisites
 - Node.js 20+
@@ -1218,39 +1218,39 @@ This guide helps you migrate your claude-flow installation from v2 to v3.
 ## Step 1: Backup
 ```bash
 # Backup data
-cp claude-flow.db backup/
+cp cortex-agent.db backup/
 cp -r .claude/ backup/
 ```
 
 ## Step 2: Install v3
 ```bash
-npm install claude-flow@3.0.0
+npm install cortex-agent@3.0.0
 ```
 
 ## Step 3: Migrate Config
 ```bash
-npx claude-flow migrate config
+npx cortex-agent migrate config
 ```
 
 ## Step 4: Migrate Data
 ```bash
-npx claude-flow migrate data
+npx cortex-agent migrate data
 ```
 
 ## Step 5: Test
 ```bash
-npx claude-flow test-migration
+npx cortex-agent test-migration
 ```
 
 ## Step 6: Switch
 ```bash
-npx claude-flow activate v3
+npx cortex-agent activate v3
 ```
 
 ## Rollback
 If issues occur:
 ```bash
-npx claude-flow rollback v2
+npx cortex-agent rollback v2
 ```
 ```
 

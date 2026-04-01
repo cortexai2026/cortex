@@ -24,7 +24,7 @@ import type {
 async function createTestDirectory(): Promise<string> {
   const testDir = join(tmpdir(), `perm-test-${Date.now()}`);
   await mkdir(testDir, { recursive: true });
-  await mkdir(join(testDir, '.claude-flow'), { recursive: true });
+  await mkdir(join(testDir, '.cortex-agent'), { recursive: true });
   return testDir;
 }
 
@@ -61,7 +61,7 @@ describe('PermissionManager', () => {
       cacheEnabled: true,
       cacheTTL: 60000,
       userConfigPath: join(testDir, 'user.json'),
-      projectConfigPath: join(testDir, '.claude-flow', 'permissions.json'),
+      projectConfigPath: join(testDir, '.cortex-agent', 'permissions.json'),
       localConfigPath: join(testDir, '.permissions.json'),
     });
 

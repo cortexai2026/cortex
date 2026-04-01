@@ -194,8 +194,8 @@ jobs:
 
       - name: Verify CLI
         run: |
-          ./bin/claude-flow --version
-          ./bin/claude-flow --help
+          ./bin/cortex-agent --version
+          ./bin/cortex-agent --help
 
       - uses: actions/upload-artifact@v4
         with:

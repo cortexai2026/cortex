@@ -138,7 +138,7 @@ class ModelValidator {
     // Run 100 semantic queries
     for (let i = 0; i < 100; i++) {
       execSync(
-        `npx claude-flow@alpha memory query "test query ${i}" --namespace ${this.modelName} --reasoningbank`,
+        `npx cortex-agent@alpha memory query "test query ${i}" --namespace ${this.modelName} --reasoningbank`,
         { stdio: 'pipe' }
       );
     }

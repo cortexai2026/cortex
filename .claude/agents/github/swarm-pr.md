@@ -2,7 +2,7 @@
 name: swarm-pr
 description: |
   Pull request swarm management agent that coordinates multi-agent code review, validation, and integration workflows with automated PR lifecycle management
-tools: mcp__github__get_pull_request, mcp__github__create_pull_request, mcp__github__update_pull_request, mcp__github__list_pull_requests, mcp__github__create_pr_comment, mcp__github__get_pr_diff, mcp__github__merge_pull_request, mcp__claude-flow__swarm_init, mcp__claude-flow__agent_spawn, mcp__claude-flow__task_orchestrate, mcp__claude-flow__memory_usage, mcp__claude-flow__coordination_sync, TodoWrite, TodoRead, Bash, Grep, Read, Write, Edit
+tools: mcp__github__get_pull_request, mcp__github__create_pull_request, mcp__github__update_pull_request, mcp__github__list_pull_requests, mcp__github__create_pr_comment, mcp__github__get_pr_diff, mcp__github__merge_pull_request, mcp__cortex-agent__swarm_init, mcp__cortex-agent__agent_spawn, mcp__cortex-agent__task_orchestrate, mcp__cortex-agent__memory_usage, mcp__cortex-agent__coordination_sync, TodoWrite, TodoRead, Bash, Grep, Read, Write, Edit
 ---
 
 # Swarm PR - Managing Swarms through Pull Requests
@@ -294,15 +294,15 @@ When using with Claude Code:
 ### Multi-Agent PR Analysis
 ```bash
 # Initialize PR-specific swarm with intelligent topology selection
-mcp__claude-flow__swarm_init { topology: "mesh", maxAgents: 8 }
-mcp__claude-flow__agent_spawn { type: "coordinator", name: "PR Coordinator" }
-mcp__claude-flow__agent_spawn { type: "reviewer", name: "Code Reviewer" }
-mcp__claude-flow__agent_spawn { type: "tester", name: "Test Engineer" }
-mcp__claude-flow__agent_spawn { type: "analyst", name: "Impact Analyzer" }
-mcp__claude-flow__agent_spawn { type: "optimizer", name: "Performance Optimizer" }
+mcp__cortex-agent__swarm_init { topology: "mesh", maxAgents: 8 }
+mcp__cortex-agent__agent_spawn { type: "coordinator", name: "PR Coordinator" }
+mcp__cortex-agent__agent_spawn { type: "reviewer", name: "Code Reviewer" }
+mcp__cortex-agent__agent_spawn { type: "tester", name: "Test Engineer" }
+mcp__cortex-agent__agent_spawn { type: "analyst", name: "Impact Analyzer" }
+mcp__cortex-agent__agent_spawn { type: "optimizer", name: "Performance Optimizer" }
 
 # Store PR context for swarm coordination
-mcp__claude-flow__memory_usage {
+mcp__cortex-agent__memory_usage {
   action: "store",
   key: "pr/#{pr_number}/analysis",
   value: { 
@@ -314,7 +314,7 @@ mcp__claude-flow__memory_usage {
 }
 
 # Orchestrate comprehensive PR workflow
-mcp__claude-flow__task_orchestrate {
+mcp__cortex-agent__task_orchestrate {
   task: "Execute multi-agent PR review and validation workflow",
   strategy: "parallel",
   priority: "high",
@@ -331,10 +331,10 @@ const prPreHook = async (prData) => {
   const topology = complexity > 7 ? "hierarchical" : "mesh";
   
   // Initialize swarm with PR-specific configuration
-  await mcp__claude_flow__swarm_init({ topology, maxAgents: 8 });
+  await mcp__cortex_agent__swarm_init({ topology, maxAgents: 8 });
   
   // Store comprehensive PR context
-  await mcp__claude_flow__memory_usage({
+  await mcp__cortex_agent__memory_usage({
     action: "store",
     key: `pr/${prData.number}/context`,
     value: {
@@ -346,7 +346,7 @@ const prPreHook = async (prData) => {
   });
   
   // Coordinate initial agent synchronization
-  await mcp__claude_flow__coordination_sync({ swarmId: "current" });
+  await mcp__cortex_agent__coordination_sync({ swarmId: "current" });
 };
 
 // Post-hook: PR Completion and Metrics
@@ -358,7 +358,7 @@ const prPostHook = async (results) => {
   await updatePRWithResults(report);
   
   // Store completion metrics for future optimization
-  await mcp__claude_flow__memory_usage({
+  await mcp__cortex_agent__memory_usage({
     action: "store",
     key: `pr/${results.number}/completion`,
     value: {
@@ -374,17 +374,17 @@ const prPostHook = async (results) => {
 ### Intelligent PR Merge Coordination
 ```bash
 # Coordinate merge decision with swarm consensus
-mcp__claude-flow__coordination_sync { swarmId: "pr-review-swarm" }
+mcp__cortex-agent__coordination_sync { swarmId: "pr-review-swarm" }
 
 # Analyze merge readiness with multiple agents
-mcp__claude-flow__task_orchestrate {
+mcp__cortex-agent__task_orchestrate {
   task: "Evaluate PR merge readiness with comprehensive validation",
   strategy: "sequential",
   priority: "critical"
 }
 
 # Store merge decision context
-mcp__claude-flow__memory_usage {
+mcp__cortex-agent__memory_usage {
   action: "store",
   key: "pr/merge_decisions/#{pr_number}",
   value: {

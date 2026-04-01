@@ -27,7 +27,7 @@ export class CheckpointManager {
   private snapshotStore: Map<string, StateSnapshot> = new Map();
   private storagePath: string;
 
-  constructor(storagePath: string = '.claude-flow/checkpoints') {
+  constructor(storagePath: string = '.cortex-agent/checkpoints') {
     this.storagePath = storagePath;
     this.ensureStorageDirectory();
   }

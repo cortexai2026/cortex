@@ -3,7 +3,7 @@
 ## Installation
 
 ```bash
-npm install @claude-flow/deployment
+npm install @cortex-agent/deployment
 ```
 
 ## Common Commands
@@ -11,7 +11,7 @@ npm install @claude-flow/deployment
 ### 1. Patch Release (1.0.0 → 1.0.1)
 
 ```typescript
-import { prepareRelease, publishToNpm } from '@claude-flow/deployment';
+import { prepareRelease, publishToNpm } from '@cortex-agent/deployment';
 
 await prepareRelease({ bumpType: 'patch' });
 await publishToNpm({ tag: 'latest' });
@@ -48,7 +48,7 @@ await publishToNpm({ tag: 'latest', dryRun: true });
 ### 6. Validate Package
 
 ```typescript
-import { validate } from '@claude-flow/deployment';
+import { validate } from '@cortex-agent/deployment';
 
 const result = await validate();
 if (!result.valid) {
@@ -59,7 +59,7 @@ if (!result.valid) {
 ## Complete Workflow
 
 ```typescript
-import { validate, prepareRelease, publishToNpm } from '@claude-flow/deployment';
+import { validate, prepareRelease, publishToNpm } from '@cortex-agent/deployment';
 
 // 1. Validate
 const validation = await validate();
@@ -85,7 +85,7 @@ console.log(`Released ${publish.packageName}@${publish.version}`);
 ## Class-Based API
 
 ```typescript
-import { Validator, ReleaseManager, Publisher } from '@claude-flow/deployment';
+import { Validator, ReleaseManager, Publisher } from '@cortex-agent/deployment';
 
 const validator = new Validator();
 const manager = new ReleaseManager();
@@ -187,7 +187,7 @@ await publishToNpm({ tag: 'latest' });
 ### Check Before Release
 
 ```typescript
-import { Publisher } from '@claude-flow/deployment';
+import { Publisher } from '@cortex-agent/deployment';
 
 const publisher = new Publisher();
 

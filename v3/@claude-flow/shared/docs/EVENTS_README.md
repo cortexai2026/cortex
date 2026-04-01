@@ -1,6 +1,6 @@
 # Event Store Persistence (ADR-007)
 
-Complete event sourcing implementation for V3 Claude Flow with persistent storage, projections, and event replay.
+Complete event sourcing implementation for V3 Cortex Agent with persistent storage, projections, and event replay.
 
 ## Overview
 
@@ -101,7 +101,7 @@ Build queryable read models from events:
 ### Basic Event Storage
 
 ```typescript
-import { EventStore, createAgentSpawnedEvent } from '@claude-flow/shared/events';
+import { EventStore, createAgentSpawnedEvent } from '@cortex-agent/shared/events';
 
 // Initialize
 const eventStore = new EventStore({
@@ -136,7 +136,7 @@ import {
   EventStore,
   AgentStateProjection,
   TaskHistoryProjection
-} from '@claude-flow/shared/events';
+} from '@cortex-agent/shared/events';
 
 const eventStore = new EventStore({ databasePath: './events.db' });
 await eventStore.initialize();
@@ -257,7 +257,7 @@ npm test -- event-store.test.ts -t "Event Appending"
 See `example-usage.ts` for a complete demonstration:
 
 ```bash
-npx tsx v3/@claude-flow/shared/src/events/example-usage.ts
+npx tsx v3/@cortex-agent/shared/src/events/example-usage.ts
 ```
 
 Output includes:
@@ -349,4 +349,4 @@ When adding new domain events:
 
 ## License
 
-Part of claude-flow V3 - See root LICENSE file.
+Part of cortex-agent V3 - See root LICENSE file.

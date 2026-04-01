@@ -7,7 +7,7 @@ description: "15-agent hierarchical mesh coordination for v3 implementation. Orc
 
 ## What This Skill Does
 
-Orchestrates the complete 15-agent hierarchical mesh swarm for claude-flow v3 implementation, coordinating parallel execution across domains while maintaining dependencies and timeline adherence.
+Orchestrates the complete 15-agent hierarchical mesh swarm for cortex-agent v3 implementation, coordinating parallel execution across domains while maintaining dependencies and timeline adherence.
 
 ## Quick Start
 

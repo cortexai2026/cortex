@@ -1,24 +1,24 @@
 {
-  "name": "@claude-flow/cli",
+  "name": "@cortex-agent/cli",
   "version": "3.5.48",
   "type": "module",
-  "description": "Ruflo CLI - Enterprise AI agent orchestration with 60+ specialized agents, swarm coordination, MCP server, self-learning hooks, and vector memory for Claude Code",
+  "description": "Cortex Agent CLI - Enterprise AI agent orchestration with 60+ specialized agents, swarm coordination, MCP server, self-learning hooks, and vector memory for Claude Code",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
   "sideEffects": false,
   "bin": {
     "cli": "./bin/cli.js",
-    "claude-flow": "./bin/cli.js",
-    "claude-flow-mcp": "./bin/mcp-server.js"
+    "cortex-agent": "./bin/cli.js",
+    "cortex-agent-mcp": "./bin/mcp-server.js"
   },
-  "homepage": "https://github.com/ruvnet/claude-flow#readme",
+  "homepage": "https://github.com/ruvnet/cortex-agent#readme",
   "bugs": {
-    "url": "https://github.com/ruvnet/claude-flow/issues"
+    "url": "https://github.com/ruvnet/cortex-agent/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ruvnet/claude-flow.git",
-    "directory": "v3/@claude-flow/cli"
+    "url": "https://github.com/ruvnet/cortex-agent.git",
+    "directory": "v3/@cortex-agent/cli"
   },
   "keywords": [
     "claude",
@@ -84,18 +84,18 @@
     "vitest": "^4.0.16"
   },
   "dependencies": {
-    "@claude-flow/mcp": "^3.0.0-alpha.8",
-    "@claude-flow/shared": "^3.0.0-alpha.7",
+    "@cortex-agent/mcp": "^3.0.0-alpha.8",
+    "@cortex-agent/shared": "^3.0.0-alpha.7",
     "@noble/ed25519": "^2.1.0",
     "semver": "^7.6.0"
   },
   "optionalDependencies": {
-    "@claude-flow/aidefence": "^3.0.2",
-    "@claude-flow/codex": "^3.0.0-alpha.8",
-    "@claude-flow/embeddings": "^3.0.0-alpha.12",
-    "@claude-flow/guidance": "^3.0.0-alpha.1",
-    "@claude-flow/memory": "^3.0.0-alpha.12",
-    "@claude-flow/plugin-gastown-bridge": "^0.1.3",
+    "@cortex-agent/aidefence": "^3.0.2",
+    "@cortex-agent/codex": "^3.0.0-alpha.8",
+    "@cortex-agent/embeddings": "^3.0.0-alpha.12",
+    "@cortex-agent/guidance": "^3.0.0-alpha.1",
+    "@cortex-agent/memory": "^3.0.0-alpha.12",
+    "@cortex-agent/plugin-gastown-bridge": "^0.1.3",
     "agentic-flow": "^3.0.0-alpha.1",
     "@ruvector/attention": "^0.1.4",
     "@ruvector/learning-wasm": "^0.1.29",

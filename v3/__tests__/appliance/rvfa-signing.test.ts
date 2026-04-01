@@ -17,12 +17,12 @@ import {
   RvfaSigner,
   RvfaVerifier,
   type RvfaKeyPair,
-} from '../../@claude-flow/cli/src/appliance/rvfa-signing.js';
+} from '../../@cortex-agent/cli/src/appliance/rvfa-signing.js';
 import {
   RvfaWriter,
   RvfaReader,
   createDefaultHeader,
-} from '../../@claude-flow/cli/src/appliance/rvfa-format.js';
+} from '../../@cortex-agent/cli/src/appliance/rvfa-format.js';
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -54,7 +54,7 @@ function buildTestRvfa(name = 'test-appliance'): Buffer {
   const writer = new RvfaWriter({ ...header, name });
   writer.addSection('kernel', Buffer.from('kernel-data'), { compression: 'none' });
   writer.addSection('runtime', Buffer.from('runtime-data'), { compression: 'none' });
-  writer.addSection('ruflo', Buffer.from('ruflo-data'), { compression: 'none' });
+  writer.addSection('cortex-agent', Buffer.from('cortex-agent-data'), { compression: 'none' });
   return writer.build();
 }
 

@@ -2,7 +2,7 @@
 name: aidefence
 version: 1.0.0
 description: |
-  AI Manipulation Defense System (AIMDS) integration for Claude Flow V3.
+  AI Manipulation Defense System (AIMDS) integration for Cortex Agent V3.
   Provides real-time threat detection, behavioral analysis, and adaptive
   mitigation with 25-level meta-learning capabilities.
 
@@ -154,7 +154,7 @@ hooks:
       require_security_agent: true  # Require security-architect in swarm
       validate_topology: true       # Validate topology security
 
-# Integration with claude-flow systems
+# Integration with cortex-agent systems
 integration:
   # AgentDB integration for shared threat patterns
   agentdb:

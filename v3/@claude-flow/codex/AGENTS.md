@@ -4,7 +4,7 @@
 
 ## Project Overview
 
-A Claude Flow powered project
+A Cortex Agent powered project
 
 **Tech Stack**: TypeScript, Node.js
 **Architecture**: Domain-Driven Design with bounded contexts
@@ -103,7 +103,7 @@ Use `$skill-name` syntax to invoke:
 
 [optional body]
 
-Co-Authored-By: claude-flow <ruv@ruv.net>
+Co-Authored-By: cortex-agent <ruv@ruv.net>
 ```
 
 Types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `chore`
@@ -126,7 +126,7 @@ Types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `chore`
 
 ### Storing Patterns
 ```bash
-npx @claude-flow/cli memory store \
+npx @cortex-agent/cli memory store \
   --key "pattern-name" \
   --value "pattern description" \
   --namespace patterns
@@ -134,12 +134,12 @@ npx @claude-flow/cli memory store \
 
 ### Searching Memory
 ```bash
-npx @claude-flow/cli memory search \
+npx @cortex-agent/cli memory search \
   --query "search terms" \
   --namespace patterns
 ```
 
 ## Links
 
-- Documentation: https://github.com/ruvnet/claude-flow
-- Issues: https://github.com/ruvnet/claude-flow/issues
+- Documentation: https://github.com/ruvnet/cortex-agent
+- Issues: https://github.com/ruvnet/cortex-agent/issues

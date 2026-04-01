@@ -1,18 +1,18 @@
 {
-  "name": "claude-flow",
+  "name": "cortex-agent",
   "version": "2.5.0",
   "description": "Enterprise AI agent orchestration plugin with 150+ commands, 74+ specialized agents, SPARC methodology, swarm coordination, GitHub integration, and neural training capabilities",
   "author": {
     "name": "rUv",
     "email": "ruv@ruv.net"
   },
-  "homepage": "https://github.com/ruvnet/claude-flow",
+  "homepage": "https://github.com/ruvnet/cortex-agent",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ruvnet/claude-flow.git"
+    "url": "https://github.com/ruvnet/cortex-agent.git"
   },
   "bugs": {
-    "url": "https://github.com/ruvnet/claude-flow/issues"
+    "url": "https://github.com/ruvnet/cortex-agent/issues"
   },
   "license": "MIT",
   "keywords": [
@@ -49,10 +49,10 @@
     "node": ">=20.0.0"
   },
   "mcpServers": {
-    "claude-flow": {
+    "cortex-agent": {
       "command": "npx",
-      "args": ["claude-flow@alpha", "mcp", "start"],
-      "description": "Core Claude Flow MCP server for swarm coordination, agent management, and task orchestration (40+ tools)",
+      "args": ["cortex-agent@alpha", "mcp", "start"],
+      "description": "Core Cortex Agent MCP server for swarm coordination, agent management, and task orchestration (40+ tools)",
       "optional": false
     },
     "ruv-swarm": {

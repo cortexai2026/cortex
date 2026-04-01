@@ -97,7 +97,7 @@ function antiDriftConfig(): string {
 - Keep shared memory namespace for all agents
 
 \`\`\`bash
-npx @claude-flow/cli@latest swarm init --topology hierarchical --max-agents 8 --strategy specialized
+npx @cortex-agent/cli@latest swarm init --topology hierarchical --max-agents 8 --strategy specialized
 \`\`\``;
 }
 
@@ -110,7 +110,7 @@ When the user requests a complex task, spawn agents in background and WAIT:
 
 \`\`\`javascript
 // STEP 1: Initialize swarm coordination
-Bash("npx @claude-flow/cli@latest swarm init --topology hierarchical --max-agents 8 --strategy specialized")
+Bash("npx @cortex-agent/cli@latest swarm init --topology hierarchical --max-agents 8 --strategy specialized")
 
 // STEP 2: Spawn ALL agents IN BACKGROUND in a SINGLE message
 Task({prompt: "Research requirements...", subagent_type: "researcher", run_in_background: true})
@@ -165,11 +165,11 @@ function cliCommandsTable(): string {
 ### Quick CLI Examples
 
 \`\`\`bash
-npx @claude-flow/cli@latest init --wizard
-npx @claude-flow/cli@latest agent spawn -t coder --name my-coder
-npx @claude-flow/cli@latest swarm init --v3-mode
-npx @claude-flow/cli@latest memory search --query "authentication patterns"
-npx @claude-flow/cli@latest doctor --fix
+npx @cortex-agent/cli@latest init --wizard
+npx @cortex-agent/cli@latest agent spawn -t coder --name my-coder
+npx @cortex-agent/cli@latest swarm init --v3-mode
+npx @cortex-agent/cli@latest memory search --query "authentication patterns"
+npx @cortex-agent/cli@latest doctor --fix
 \`\`\``;
 }
 
@@ -218,9 +218,9 @@ function hooksSystem(): string {
 | \`document\` | normal | Auto-documentation |
 
 \`\`\`bash
-npx @claude-flow/cli@latest hooks pre-task --description "[task]"
-npx @claude-flow/cli@latest hooks post-task --task-id "[id]" --success true
-npx @claude-flow/cli@latest hooks worker dispatch --trigger audit
+npx @cortex-agent/cli@latest hooks pre-task --description "[task]"
+npx @cortex-agent/cli@latest hooks post-task --task-id "[id]" --success true
+npx @cortex-agent/cli@latest hooks worker dispatch --trigger audit
 \`\`\``;
 }
 
@@ -229,14 +229,14 @@ function learningProtocol(): string {
 
 ### Before Starting Any Task
 \`\`\`bash
-npx @claude-flow/cli@latest memory search --query "[task keywords]" --namespace patterns
-npx @claude-flow/cli@latest hooks route --task "[task description]"
+npx @cortex-agent/cli@latest memory search --query "[task keywords]" --namespace patterns
+npx @cortex-agent/cli@latest hooks route --task "[task description]"
 \`\`\`
 
 ### After Completing Any Task Successfully
 \`\`\`bash
-npx @claude-flow/cli@latest memory store --namespace patterns --key "[pattern-name]" --value "[what worked]"
-npx @claude-flow/cli@latest hooks post-task --task-id "[id]" --success true --store-results true
+npx @cortex-agent/cli@latest memory store --namespace patterns --key "[pattern-name]" --value "[what worked]"
+npx @cortex-agent/cli@latest hooks post-task --task-id "[id]" --success true --store-results true
 \`\`\`
 
 - ALWAYS check memory before starting new features, debugging, or refactoring
@@ -248,16 +248,16 @@ function memoryCommands(): string {
 
 \`\`\`bash
 # Store (REQUIRED: --key, --value; OPTIONAL: --namespace, --ttl, --tags)
-npx @claude-flow/cli@latest memory store --key "pattern-auth" --value "JWT with refresh" --namespace patterns
+npx @cortex-agent/cli@latest memory store --key "pattern-auth" --value "JWT with refresh" --namespace patterns
 
 # Search (REQUIRED: --query; OPTIONAL: --namespace, --limit, --threshold)
-npx @claude-flow/cli@latest memory search --query "authentication patterns"
+npx @cortex-agent/cli@latest memory search --query "authentication patterns"
 
 # List (OPTIONAL: --namespace, --limit)
-npx @claude-flow/cli@latest memory list --namespace patterns --limit 10
+npx @cortex-agent/cli@latest memory list --namespace patterns --limit 10
 
 # Retrieve (REQUIRED: --key; OPTIONAL: --namespace)
-npx @claude-flow/cli@latest memory retrieve --key "pattern-auth" --namespace patterns
+npx @cortex-agent/cli@latest memory retrieve --key "pattern-auth" --namespace patterns
 \`\`\``;
 }
 
@@ -268,7 +268,7 @@ function securityRulesLight(): string {
 - NEVER commit .env files or any file containing secrets
 - Always validate user input at system boundaries
 - Always sanitize file paths to prevent directory traversal
-- Run \`npx @claude-flow/cli@latest security scan\` after security-related changes`;
+- Run \`npx @cortex-agent/cli@latest security scan\` after security-related changes`;
 }
 
 function buildAndTest(): string {
@@ -301,9 +301,9 @@ function securitySection(): string {
 
 ### Security Scanning
 \`\`\`bash
-npx @claude-flow/cli@latest security scan --depth full
-npx @claude-flow/cli@latest security audit --report
-npx @claude-flow/cli@latest security cve --check
+npx @cortex-agent/cli@latest security scan --depth full
+npx @cortex-agent/cli@latest security audit --report
+npx @cortex-agent/cli@latest security cve --check
 \`\`\`
 
 ### Security Agents
@@ -323,9 +323,9 @@ function performanceSection(): string {
 
 ### Performance Tooling
 \`\`\`bash
-npx @claude-flow/cli@latest performance benchmark --suite all
-npx @claude-flow/cli@latest performance profile --target "[component]"
-npx @claude-flow/cli@latest performance metrics --format table
+npx @cortex-agent/cli@latest performance benchmark --suite all
+npx @cortex-agent/cli@latest performance profile --target "[component]"
+npx @cortex-agent/cli@latest performance metrics --format table
 \`\`\`
 
 ### Performance Agents
@@ -353,11 +353,11 @@ function envVars(): string {
   return `## Environment Variables
 
 \`\`\`bash
-CLAUDE_FLOW_CONFIG=./claude-flow.config.json
-CLAUDE_FLOW_LOG_LEVEL=info
+CORTEX_AGENT_CONFIG=./cortex-agent.config.json
+CORTEX_AGENT_LOG_LEVEL=info
 ANTHROPIC_API_KEY=sk-ant-...
-CLAUDE_FLOW_MEMORY_BACKEND=hybrid
-CLAUDE_FLOW_MEMORY_PATH=./data/memory
+CORTEX_AGENT_MEMORY_BACKEND=hybrid
+CORTEX_AGENT_MEMORY_PATH=./data/memory
 \`\`\``;
 }
 
@@ -365,9 +365,9 @@ function setupAndBoundary(): string {
   return `## Quick Setup
 
 \`\`\`bash
-claude mcp add claude-flow -- npx -y @claude-flow/cli@latest
-npx @claude-flow/cli@latest daemon start
-npx @claude-flow/cli@latest doctor --fix
+claude mcp add cortex-agent -- npx -y @cortex-agent/cli@latest
+npx @cortex-agent/cli@latest daemon start
+npx @cortex-agent/cli@latest doctor --fix
 \`\`\`
 
 ## Claude Code vs CLI Tools
@@ -378,8 +378,8 @@ npx @claude-flow/cli@latest doctor --fix
 
 ## Support
 
-- Documentation: https://github.com/ruvnet/claude-flow
-- Issues: https://github.com/ruvnet/claude-flow/issues`;
+- Documentation: https://github.com/ruvnet/cortex-agent
+- Issues: https://github.com/ruvnet/cortex-agent/issues`;
 }
 
 // --- Template Composers ---
@@ -491,7 +491,7 @@ export function generateClaudeMd(options: InitOptions, template?: ClaudeMdTempla
   const tmpl = template ?? options.runtime.claudeMdTemplate ?? 'standard';
   const sections = TEMPLATE_SECTIONS[tmpl] ?? TEMPLATE_SECTIONS.standard;
 
-  const header = `# Claude Code Configuration - RuFlo V3\n`;
+  const header = `# Claude Code Configuration - Cortex Agent V3\n`;
   const body = sections.map(fn => fn(options)).join('\n\n');
 
   return `${header}\n${body}\n`;

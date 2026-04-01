@@ -1,5 +1,5 @@
 /**
- * @claude-flow/browser - Domain Types
+ * @cortex-agent/browser - Domain Types
  * Core type definitions for browser automation
  */
 

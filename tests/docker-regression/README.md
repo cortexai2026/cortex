@@ -109,10 +109,10 @@ bash scripts/run-all-tests.sh
 | Variable | Default | Description |
 |----------|---------|-------------|
 | `TEST_REPORT_PATH` | `/app/reports` | Report output directory |
-| `CLAUDE_FLOW_MODE` | `test` | Operating mode |
-| `CLAUDE_FLOW_MEMORY_PATH` | `/app/data` | Memory storage path |
-| `CLAUDE_FLOW_LOG_LEVEL` | `debug` | Log verbosity |
-| `CLAUDE_FLOW_MAX_AGENTS` | `15` | Max concurrent agents |
+| `CORTEX_AGENT_MODE` | `test` | Operating mode |
+| `CORTEX_AGENT_MEMORY_PATH` | `/app/data` | Memory storage path |
+| `CORTEX_AGENT_LOG_LEVEL` | `debug` | Log verbosity |
+| `CORTEX_AGENT_MAX_AGENTS` | `15` | Max concurrent agents |
 | `MCP_SERVER_HOST` | `mcp-server` | MCP server hostname |
 | `MCP_SERVER_PORT` | `3000` | MCP server port |
 
@@ -165,11 +165,11 @@ regression-tests:
 
 | Package | Tests | Pass Rate |
 |---------|-------|-----------|
-| @claude-flow/hooks | 112 | 100% |
-| @claude-flow/plugins | 142 | 100% |
-| @claude-flow/security | 47 | 100% |
-| @claude-flow/swarm | 89 | 100% |
-| @claude-flow/cli | 34 | 100% |
+| @cortex-agent/hooks | 112 | 100% |
+| @cortex-agent/plugins | 142 | 100% |
+| @cortex-agent/security | 47 | 100% |
+| @cortex-agent/swarm | 89 | 100% |
+| @cortex-agent/cli | 34 | 100% |
 
 ### Feature Coverage
 

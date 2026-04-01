@@ -14,7 +14,7 @@ project/
 │   ├── helpers/                # Utility scripts
 │   ├── statusline.sh           # Unix/macOS statusline
 │   └── statusline.mjs          # ESM statusline module
-├── .claude-flow/               # V3 runtime
+├── .cortex-agent/               # V3 runtime
 │   ├── config.yaml             # Runtime configuration
 │   ├── data/                   # Persistent data
 │   ├── logs/                   # Log files
@@ -80,9 +80,9 @@ Skills are installed to `.claude/skills/` and provide specialized capabilities.
 Commands are installed to `.claude/commands/` and provide quick actions.
 
 ### Core Commands
-- `claude-flow-help.md` - Help documentation
-- `claude-flow-swarm.md` - Swarm operations
-- `claude-flow-memory.md` - Memory operations
+- `cortex-agent-help.md` - Help documentation
+- `cortex-agent-swarm.md` - Swarm operations
+- `cortex-agent-memory.md` - Memory operations
 
 ### Command Groups
 | Group | Contents |
@@ -171,15 +171,15 @@ Claude Code statusline module showing:
 ```json
 {
   "mcpServers": {
-    "claude-flow": {
+    "cortex-agent": {
       "command": "npx",
-      "args": ["@claude-flow/cli", "mcp", "start"],
+      "args": ["@cortex-agent/cli", "mcp", "start"],
       "env": {
-        "CLAUDE_FLOW_MODE": "v3",
-        "CLAUDE_FLOW_HOOKS_ENABLED": "true",
-        "CLAUDE_FLOW_TOPOLOGY": "hierarchical-mesh",
-        "CLAUDE_FLOW_MAX_AGENTS": "15",
-        "CLAUDE_FLOW_MEMORY_BACKEND": "hybrid"
+        "CORTEX_AGENT_MODE": "v3",
+        "CORTEX_AGENT_HOOKS_ENABLED": "true",
+        "CORTEX_AGENT_TOPOLOGY": "hierarchical-mesh",
+        "CORTEX_AGENT_MAX_AGENTS": "15",
+        "CORTEX_AGENT_MEMORY_BACKEND": "hybrid"
       }
     }
   }
@@ -188,7 +188,7 @@ Claude Code statusline module showing:
 
 ## Runtime Configuration
 
-`.claude-flow/config.yaml` configures V3 runtime.
+`.cortex-agent/config.yaml` configures V3 runtime.
 
 ```yaml
 version: "3.0.0"
@@ -202,12 +202,12 @@ swarm:
 memory:
   backend: hybrid
   enableHNSW: true
-  persistPath: .claude-flow/data
+  persistPath: .cortex-agent/data
   cacheSize: 100
 
 neural:
   enabled: true
-  modelPath: .claude-flow/neural
+  modelPath: .cortex-agent/neural
 
 hooks:
   enabled: true

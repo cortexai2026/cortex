@@ -17,7 +17,7 @@ import { HookEvent, HookPriority } from '../../types/index.js';
  */
 export const sessionPlugin = new PluginBuilder('session-manager', '3.0.0')
   .withDescription('Manages session lifecycle with auto-save and restore')
-  .withAuthor('Claude Flow')
+  .withAuthor('Cortex Agent')
   .withTags(['core', 'session', 'persistence'])
   .withHooks([
     {
@@ -44,7 +44,7 @@ export const sessionPlugin = new PluginBuilder('session-manager', '3.0.0')
  */
 export const memoryCoordinatorPlugin = new PluginBuilder('memory-coordinator', '3.0.0')
   .withDescription('Coordinates memory access and synchronization across agents')
-  .withAuthor('Claude Flow')
+  .withAuthor('Cortex Agent')
   .withTags(['core', 'memory', 'coordination'])
   .withHooks([
     {
@@ -71,7 +71,7 @@ export const memoryCoordinatorPlugin = new PluginBuilder('memory-coordinator', '
  */
 export const eventBusPlugin = new PluginBuilder('event-bus', '3.0.0')
   .withDescription('Pub/sub event messaging system')
-  .withAuthor('Claude Flow')
+  .withAuthor('Cortex Agent')
   .withTags(['core', 'events', 'messaging'])
   .withMCPTools([
     {
@@ -103,7 +103,7 @@ export const eventBusPlugin = new PluginBuilder('event-bus', '3.0.0')
  */
 export const coderAgentPlugin = new PluginBuilder('coder-agent', '3.0.0')
   .withDescription('AI-powered coding assistance agent')
-  .withAuthor('Claude Flow')
+  .withAuthor('Cortex Agent')
   .withTags(['development', 'agent', 'coding'])
   .withAgentTypes([
     {
@@ -123,7 +123,7 @@ export const coderAgentPlugin = new PluginBuilder('coder-agent', '3.0.0')
  */
 export const testerAgentPlugin = new PluginBuilder('tester-agent', '3.0.0')
   .withDescription('AI-powered testing and QA agent')
-  .withAuthor('Claude Flow')
+  .withAuthor('Cortex Agent')
   .withTags(['development', 'agent', 'testing'])
   .withAgentTypes([
     {
@@ -143,7 +143,7 @@ export const testerAgentPlugin = new PluginBuilder('tester-agent', '3.0.0')
  */
 export const reviewerAgentPlugin = new PluginBuilder('reviewer-agent', '3.0.0')
   .withDescription('AI-powered code review agent')
-  .withAuthor('Claude Flow')
+  .withAuthor('Cortex Agent')
   .withTags(['development', 'agent', 'review'])
   .withAgentTypes([
     {
@@ -163,7 +163,7 @@ export const reviewerAgentPlugin = new PluginBuilder('reviewer-agent', '3.0.0')
  */
 export const gitIntegrationPlugin = new PluginBuilder('git-integration', '3.0.0')
   .withDescription('Git version control integration')
-  .withAuthor('Claude Flow')
+  .withAuthor('Cortex Agent')
   .withTags(['development', 'integration', 'git'])
   .withMCPTools([
     {
@@ -206,7 +206,7 @@ export const gitIntegrationPlugin = new PluginBuilder('git-integration', '3.0.0'
  */
 export const linterPlugin = new PluginBuilder('linter', '3.0.0')
   .withDescription('Code linting and style checking')
-  .withAuthor('Claude Flow')
+  .withAuthor('Cortex Agent')
   .withTags(['development', 'tool', 'linting'])
   .withHooks([
     {
@@ -230,7 +230,7 @@ export const linterPlugin = new PluginBuilder('linter', '3.0.0')
  */
 export const sonaPlugin = new PluginBuilder('sona-integration', '3.0.0')
   .withDescription('SONA self-optimizing neural architecture integration')
-  .withAuthor('Claude Flow')
+  .withAuthor('Cortex Agent')
   .withTags(['intelligence', 'neural', 'learning'])
   .withDependencies(['memory-coordinator@^3.0.0'])
   .withHooks([
@@ -250,7 +250,7 @@ export const sonaPlugin = new PluginBuilder('sona-integration', '3.0.0')
  */
 export const reasoningBankPlugin = new PluginBuilder('reasoning-bank', '3.0.0')
   .withDescription('Pattern storage and retrieval for reasoning')
-  .withAuthor('Claude Flow')
+  .withAuthor('Cortex Agent')
   .withTags(['intelligence', 'memory', 'patterns'])
   .withMCPTools([
     {
@@ -296,7 +296,7 @@ export const reasoningBankPlugin = new PluginBuilder('reasoning-bank', '3.0.0')
  */
 export const patternLearningPlugin = new PluginBuilder('pattern-learning', '3.0.0')
   .withDescription('Learns patterns from task execution')
-  .withAuthor('Claude Flow')
+  .withAuthor('Cortex Agent')
   .withTags(['intelligence', 'learning', 'hooks'])
   .withHooks([
     {
@@ -327,7 +327,7 @@ export const patternLearningPlugin = new PluginBuilder('pattern-learning', '3.0.
  */
 export const hiveMindPlugin = new PluginBuilder('hive-mind', '3.0.0')
   .withDescription('Collective intelligence and consensus mechanisms')
-  .withAuthor('Claude Flow')
+  .withAuthor('Cortex Agent')
   .withTags(['swarm', 'integration', 'consensus'])
   .withMCPTools([
     {
@@ -356,7 +356,7 @@ export const hiveMindPlugin = new PluginBuilder('hive-mind', '3.0.0')
  */
 export const maestroPlugin = new PluginBuilder('maestro', '3.0.0')
   .withDescription('Multi-agent workflow orchestration')
-  .withAuthor('Claude Flow')
+  .withAuthor('Cortex Agent')
   .withTags(['swarm', 'integration', 'orchestration'])
   .withMCPTools([
     {
@@ -401,7 +401,7 @@ export const maestroPlugin = new PluginBuilder('maestro', '3.0.0')
  */
 export const consensusPlugin = new PluginBuilder('consensus', '3.0.0')
   .withDescription('Byzantine fault-tolerant consensus mechanisms')
-  .withAuthor('Claude Flow')
+  .withAuthor('Cortex Agent')
   .withTags(['swarm', 'integration', 'consensus', 'byzantine'])
   .withDependencies(['hive-mind@^3.0.0'])
   .build();
@@ -411,7 +411,7 @@ export const consensusPlugin = new PluginBuilder('consensus', '3.0.0')
  */
 export const coordinatorAgentPlugin = new PluginBuilder('coordinator-agent', '3.0.0')
   .withDescription('Swarm coordination agent')
-  .withAuthor('Claude Flow')
+  .withAuthor('Cortex Agent')
   .withTags(['swarm', 'agent', 'coordination'])
   .withAgentTypes([
     {
@@ -435,7 +435,7 @@ export const coordinatorAgentPlugin = new PluginBuilder('coordinator-agent', '3.
  */
 export const inputValidationPlugin = new PluginBuilder('input-validation', '3.0.0')
   .withDescription('Input validation and sanitization')
-  .withAuthor('Claude Flow')
+  .withAuthor('Cortex Agent')
   .withTags(['security', 'hook', 'validation'])
   .withHooks([
     {
@@ -464,7 +464,7 @@ export const inputValidationPlugin = new PluginBuilder('input-validation', '3.0.
  */
 export const pathSecurityPlugin = new PluginBuilder('path-security', '3.0.0')
   .withDescription('Path traversal prevention and validation')
-  .withAuthor('Claude Flow')
+  .withAuthor('Cortex Agent')
   .withTags(['security', 'hook', 'filesystem'])
   .withHooks([
     {
@@ -492,7 +492,7 @@ export const pathSecurityPlugin = new PluginBuilder('path-security', '3.0.0')
  */
 export const auditLogPlugin = new PluginBuilder('audit-log', '3.0.0')
   .withDescription('Comprehensive audit logging')
-  .withAuthor('Claude Flow')
+  .withAuthor('Cortex Agent')
   .withTags(['security', 'hook', 'audit', 'logging'])
   .withHooks([
     {
@@ -533,7 +533,7 @@ export const auditLogPlugin = new PluginBuilder('audit-log', '3.0.0')
  */
 export const securityScanPlugin = new PluginBuilder('security-scan', '3.0.0')
   .withDescription('Security vulnerability scanning')
-  .withAuthor('Claude Flow')
+  .withAuthor('Cortex Agent')
   .withTags(['security', 'tool', 'scanning'])
   .withMCPTools([
     {
@@ -565,7 +565,7 @@ export const securityScanPlugin = new PluginBuilder('security-scan', '3.0.0')
  */
 export const metricsPlugin = new PluginBuilder('metrics', '3.0.0')
   .withDescription('Performance and usage metrics collection')
-  .withAuthor('Claude Flow')
+  .withAuthor('Cortex Agent')
   .withTags(['utility', 'metrics', 'monitoring'])
   .withMCPTools([
     {
@@ -592,7 +592,7 @@ export const metricsPlugin = new PluginBuilder('metrics', '3.0.0')
  */
 export const cachePlugin = new PluginBuilder('cache', '3.0.0')
   .withDescription('Caching utilities for improved performance')
-  .withAuthor('Claude Flow')
+  .withAuthor('Cortex Agent')
   .withTags(['utility', 'cache', 'performance'])
   .build();
 
@@ -614,7 +614,7 @@ export const cachePlugin = new PluginBuilder('cache', '3.0.0')
  */
 export const ruvectorPostgresPlugin = new PluginBuilder('ruvector-postgres', '3.0.0')
   .withDescription('RuVector PostgreSQL Bridge - Advanced vector search with attention, GNN, and hyperbolic embeddings')
-  .withAuthor('Claude Flow')
+  .withAuthor('Cortex Agent')
   .withTags(['database', 'vector', 'postgresql', 'attention', 'gnn', 'hyperbolic', 'intelligence'])
   .withDependencies(['memory-coordinator'])
   .withMCPTools([
@@ -743,14 +743,14 @@ export const ruvectorPostgresPlugin = new PluginBuilder('ruvector-postgres', '3.
 // ============================================================================
 
 /**
- * Core collection - essential plugins for Claude Flow operation.
+ * Core collection - essential plugins for Cortex Agent operation.
  */
 export const coreCollection: PluginCollection = {
-  id: 'claude-flow-core',
-  name: 'Claude Flow Core Plugins',
+  id: 'cortex-agent-core',
+  name: 'Cortex Agent Core Plugins',
   version: '3.0.0',
-  description: 'Essential plugins for Claude Flow operation',
-  author: 'Claude Flow',
+  description: 'Essential plugins for Cortex Agent operation',
+  author: 'Cortex Agent',
   license: 'MIT',
   categories: ['hook', 'integration', 'utility'],
   plugins: [
@@ -782,11 +782,11 @@ export const coreCollection: PluginCollection = {
  * Development collection - plugins for software development workflows.
  */
 export const developmentCollection: PluginCollection = {
-  id: 'claude-flow-development',
+  id: 'cortex-agent-development',
   name: 'Development Tools',
   version: '3.0.0',
   description: 'Plugins for software development workflows',
-  author: 'Claude Flow',
+  author: 'Cortex Agent',
   license: 'MIT',
   categories: ['agent', 'tool', 'integration'],
   plugins: [
@@ -832,11 +832,11 @@ export const developmentCollection: PluginCollection = {
  * Intelligence collection - AI/ML and learning plugins.
  */
 export const intelligenceCollection: PluginCollection = {
-  id: 'claude-flow-intelligence',
+  id: 'cortex-agent-intelligence',
   name: 'Intelligence & Learning',
   version: '3.0.0',
   description: 'AI/ML features and learning capabilities',
-  author: 'Claude Flow',
+  author: 'Cortex Agent',
   license: 'MIT',
   categories: ['integration', 'memory', 'hook', 'database'],
   plugins: [
@@ -878,11 +878,11 @@ export const intelligenceCollection: PluginCollection = {
  * Database collection - database and storage plugins.
  */
 export const databaseCollection: PluginCollection = {
-  id: 'claude-flow-database',
+  id: 'cortex-agent-database',
   name: 'Database & Storage',
   version: '3.0.0',
   description: 'Database integrations and storage plugins',
-  author: 'Claude Flow',
+  author: 'Cortex Agent',
   license: 'MIT',
   categories: ['database', 'integration'],
   plugins: [
@@ -901,11 +901,11 @@ export const databaseCollection: PluginCollection = {
  * Swarm collection - multi-agent coordination plugins.
  */
 export const swarmCollection: PluginCollection = {
-  id: 'claude-flow-swarm',
+  id: 'cortex-agent-swarm',
   name: 'Swarm Coordination',
   version: '3.0.0',
   description: 'Multi-agent swarm coordination and orchestration',
-  author: 'Claude Flow',
+  author: 'Cortex Agent',
   license: 'MIT',
   categories: ['integration', 'agent'],
   plugins: [
@@ -944,11 +944,11 @@ export const swarmCollection: PluginCollection = {
  * Security collection - security and audit plugins.
  */
 export const securityCollection: PluginCollection = {
-  id: 'claude-flow-security',
+  id: 'cortex-agent-security',
   name: 'Security & Audit',
   version: '3.0.0',
   description: 'Security validation and audit logging',
-  author: 'Claude Flow',
+  author: 'Cortex Agent',
   license: 'MIT',
   categories: ['hook', 'tool'],
   plugins: [
@@ -987,11 +987,11 @@ export const securityCollection: PluginCollection = {
  * Utility collection - general utility plugins.
  */
 export const utilityCollection: PluginCollection = {
-  id: 'claude-flow-utility',
+  id: 'cortex-agent-utility',
   name: 'Utilities',
   version: '3.0.0',
   description: 'General utility plugins',
-  author: 'Claude Flow',
+  author: 'Cortex Agent',
   license: 'MIT',
   categories: ['utility'],
   plugins: [

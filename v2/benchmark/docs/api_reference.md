@@ -1,7 +1,7 @@
-# API Reference - Claude Flow Benchmark System
+# API Reference - Cortex Agent Benchmark System
 
 ## Overview
-This document provides comprehensive API documentation for the Claude Flow Benchmark System, including the new CLAUDE.md optimizer, MLE-STAR integration, and advanced metrics collection.
+This document provides comprehensive API documentation for the Cortex Agent Benchmark System, including the new CLAUDE.md optimizer, MLE-STAR integration, and advanced metrics collection.
 
 ## Module Structure
 
@@ -482,9 +482,9 @@ class ConfigurationError(BenchmarkError):
 
 ### Environment Variables
 
-- `CLAUDE_FLOW_LOG_LEVEL`: Logging level (DEBUG, INFO, WARNING, ERROR)
-- `CLAUDE_FLOW_CONFIG_PATH`: Path to configuration file
-- `CLAUDE_FLOW_CACHE_DIR`: Directory for caching optimization results
+- `CORTEX_AGENT_LOG_LEVEL`: Logging level (DEBUG, INFO, WARNING, ERROR)
+- `CORTEX_AGENT_CONFIG_PATH`: Path to configuration file
+- `CORTEX_AGENT_CACHE_DIR`: Directory for caching optimization results
 
 ### Configuration File Format
 
@@ -594,4 +594,4 @@ async def optimize_for_project():
 asyncio.run(optimize_for_project())
 ```
 
-This API reference provides comprehensive documentation for using the Claude Flow Benchmark System's optimization and benchmarking capabilities. For additional examples and advanced usage patterns, see the examples directory and user guides.
+This API reference provides comprehensive documentation for using the Cortex Agent Benchmark System's optimization and benchmarking capabilities. For additional examples and advanced usage patterns, see the examples directory and user guides.

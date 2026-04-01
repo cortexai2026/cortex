@@ -1,10 +1,10 @@
-# ADR-058: Self-Contained Ruflo RVF Appliance — Linux Kernel + Claude Code + ruvLLM
+# ADR-058: Self-Contained Cortex Agent RVF Appliance — Linux Kernel + Claude Code + ruvLLM
 
 | Field | Value |
 |-------|-------|
 | **Status** | Proposed |
 | **Date** | 2026-02-28 |
-| **Authors** | Claude Flow Team |
+| **Authors** | Cortex Agent Team |
 | **Supersedes** | — |
 | **Related** | ADR-057 (RVF Native Storage), ADR-054 (RVF Plugin Marketplace), ADR-056 (agentic-flow v3 Integration), ADR-017 (RuVector Integration) |
 
@@ -14,7 +14,7 @@
 
 ### The Problem
 
-Ruflo v3.5 requires the user to have Node.js 20+, npm, Claude Code CLI, API keys, and a properly configured OS environment. This means:
+Cortex Agent v3.5 requires the user to have Node.js 20+, npm, Claude Code CLI, API keys, and a properly configured OS environment. This means:
 
 - **10+ setup steps** before a user can run their first agent swarm
 - **Network dependency** at runtime for API calls, npm installs, MCP server downloads
@@ -24,14 +24,14 @@ Ruflo v3.5 requires the user to have Node.js 20+, npm, Claude Code CLI, API keys
 
 ### The Vision
 
-A **single `ruflo.rvf` file** that contains everything needed to run the full Ruflo platform:
+A **single `cortex-agent.rvf` file** that contains everything needed to run the full Cortex Agent platform:
 
 ```
-ruflo.rvf (self-contained appliance)
+cortex-agent.rvf (self-contained appliance)
 ├── Linux microkernel (Alpine-based, ~5MB)
 ├── Node.js 22 runtime (~30MB stripped)
 ├── Claude Code CLI
-├── Ruflo v3.5+ (all packages)
+├── Cortex Agent v3.5+ (all packages)
 ├── ruvLLM local inference OR API key vault
 ├── AgentDB with HNSW indexes
 ├── Pre-trained SONA patterns
@@ -54,7 +54,7 @@ The RVF (RuVector Format) binary format from ADR-057 already provides:
 | CRC32/SHA256 integrity | Appliance verification |
 | Streaming reads | Boot without full decompression |
 
-Extending RVF to `RVFA` (RuVector Format Appliance) creates a unified format that Ruflo already understands natively.
+Extending RVF to `RVFA` (RuVector Format Appliance) creates a unified format that Cortex Agent already understands natively.
 
 ---
 
@@ -77,14 +77,14 @@ Extending RVF to `RVFA` (RuVector Format Appliance) creates a unified format tha
 ├─────────────────────────────────────────────────┤
 │ Section 0: KERNEL (compressed rootfs)           │
 │   Alpine Linux 3.23 minimal + busybox           │
-│   /sbin/init → ruflo-init (PID 1)              │
+│   /sbin/init → cortex-agent-init (PID 1)              │
 ├─────────────────────────────────────────────────┤
 │ Section 1: RUNTIME (compressed)                 │
 │   Node.js 22 (stripped, no npm)                 │
 │   Claude Code CLI binary                        │
 ├─────────────────────────────────────────────────┤
-│ Section 2: RUFLO (compressed)                   │
-│   @claude-flow/cli + shared + guidance           │
+│ Section 2: CORTEX_AGENT (compressed)                   │
+│   @cortex-agent/cli + shared + guidance           │
 │   All 26 commands, 140+ subcommands             │
 │   60+ agent definitions                         │
 │   17 hooks + 12 workers                         │
@@ -155,11 +155,11 @@ ruvLLM bridges the gap between RuVector's vector intelligence (search, routing, 
 ### 2.3 Boot Sequence
 
 ```
-1. ruflo-appliance load ruflo.rvf
+1. cortex-agent-appliance load cortex-agent.rvf
 2. Verify RVFA magic bytes + footer SHA256
 3. Extract KERNEL section → mount as rootfs
 4. Extract RUNTIME section → /usr/local/bin/
-5. Extract RUFLO section → /opt/ruflo/
+5. Extract CORTEX_AGENT section → /opt/cortex-agent/
 6. Mount DATA section (read-write overlay)
 7. Load MODELS section:
    - If ruvLLM: start inference server on unix socket
@@ -174,13 +174,13 @@ ruvLLM bridges the gap between RuVector's vector intelligence (search, routing, 
 
 | Mode | Command | Description |
 |------|---------|-------------|
-| **Run** | `ruflo-appliance run ruflo.rvf` | Boot and enter interactive CLI |
-| **MCP** | `ruflo-appliance mcp ruflo.rvf` | Boot as MCP server (stdio) |
-| **Verify** | `ruflo-appliance verify ruflo.rvf` | Run full capability test suite |
-| **Extract** | `ruflo-appliance extract ruflo.rvf ./out/` | Unpack all sections |
-| **Build** | `ruflo-appliance build --profile offline` | Create new appliance |
-| **Update** | `ruflo-appliance update ruflo.rvf --section RUFLO` | Hot-patch one section |
-| **Inspect** | `ruflo-appliance inspect ruflo.rvf` | Show header + section manifest |
+| **Run** | `cortex-agent-appliance run cortex-agent.rvf` | Boot and enter interactive CLI |
+| **MCP** | `cortex-agent-appliance mcp cortex-agent.rvf` | Boot as MCP server (stdio) |
+| **Verify** | `cortex-agent-appliance verify cortex-agent.rvf` | Run full capability test suite |
+| **Extract** | `cortex-agent-appliance extract cortex-agent.rvf ./out/` | Unpack all sections |
+| **Build** | `cortex-agent-appliance build --profile offline` | Create new appliance |
+| **Update** | `cortex-agent-appliance update cortex-agent.rvf --section CORTEX_AGENT` | Hot-patch one section |
+| **Inspect** | `cortex-agent-appliance inspect cortex-agent.rvf` | Show header + section manifest |
 
 ### 2.5 Runtime Isolation
 
@@ -195,16 +195,16 @@ The appliance runs in one of three isolation levels:
 Container mode (default):
 ```bash
 # The .rvf file IS the container image
-ruflo-appliance run ruflo.rvf
+cortex-agent-appliance run cortex-agent.rvf
 # Equivalent to:
-# docker run --rm -it ruflo:self-contained
+# docker run --rm -it cortex-agent:self-contained
 ```
 
 ---
 
 ## 3. Capability Verification Suite
 
-The appliance includes a built-in verification suite that tests **every capability** of Ruflo + Claude Flow. This runs automatically at boot (`Section 5: VERIFY`) and can be triggered manually.
+The appliance includes a built-in verification suite that tests **every capability** of Cortex Agent + Cortex Agent. This runs automatically at boot (`Section 5: VERIFY`) and can be triggered manually.
 
 ### 3.1 Test Categories (25 Categories, 80+ Checks)
 
@@ -249,20 +249,20 @@ The appliance includes a built-in verification suite that tests **every capabili
 | 32 | MCP E2E | JSON-RPC init → tool call → response | Protocol compliance |
 | 33 | Persistence | write data → reboot → verify data survives | RVF durability |
 | 34 | Offline Mode | disconnect network → run full workflow | Air-gap capability |
-| 35 | Hot Update | patch RUFLO section → verify new version | Live update |
+| 35 | Hot Update | patch CORTEX_AGENT section → verify new version | Live update |
 
 ### 3.3 Test Output Format
 
 ```
 ╔══════════════════════════════════════════════════════════╗
-║  Ruflo Appliance v3.5.2 — Full Capability Verification  ║
+║  Cortex Agent Appliance v3.5.2 — Full Capability Verification  ║
 ║  Format: RVFA v1 | Profile: offline | Arch: x86_64      ║
 ║  Kernel: Alpine 3.23 | Node: 22.22.0 | ruvLLM: 0.1.0    ║
 ╚══════════════════════════════════════════════════════════╝
 
 ═══ 1. CLI Core ═══
-  ✓ ruflo --version
-  ✓ ruflo --help
+  ✓ cortex-agent --version
+  ✓ cortex-agent --help
   ✓ version is 3.5.2
 
 ═══ 2. Doctor ═══
@@ -297,24 +297,24 @@ The appliance includes a built-in verification suite that tests **every capabili
 
 ```bash
 # Build offline appliance (includes local models)
-ruflo-appliance build \
+cortex-agent-appliance build \
   --profile offline \
   --arch x86_64 \
   --models "phi-3-mini-q4,qwen2.5-coder-3b-q4" \
-  --output ruflo-offline.rvf
+  --output cortex-agent-offline.rvf
 
 # Build cloud appliance (API keys only)
-ruflo-appliance build \
+cortex-agent-appliance build \
   --profile cloud \
   --api-keys .env \
-  --output ruflo-cloud.rvf
+  --output cortex-agent-cloud.rvf
 
 # Build hybrid appliance
-ruflo-appliance build \
+cortex-agent-appliance build \
   --profile hybrid \
   --models "phi-3-mini-q4" \
   --api-keys .env \
-  --output ruflo-hybrid.rvf
+  --output cortex-agent-hybrid.rvf
 ```
 
 ### 4.2 Build Stages
@@ -332,8 +332,8 @@ Stage 2: RUNTIME
   ├── Include Claude Code CLI binary
   └── Compress (~30MB → ~12MB)
 
-Stage 3: RUFLO
-  ├── npm pack ruflo@latest --omit=optional
+Stage 3: CORTEX_AGENT
+  ├── npm pack cortex-agent@latest --omit=optional
   ├── Include all CLI commands + agent defs
   ├── Pre-configure MCP server
   └── Compress (~9MB → ~3MB)
@@ -358,14 +358,14 @@ Final: Assemble RVFA
   ├── Write magic + version + header
   ├── Append all sections with offsets
   ├── Compute and append footer SHA256
-  └── Output: ruflo.rvf
+  └── Output: cortex-agent.rvf
 ```
 
 ### 4.3 Size Targets
 
 | Profile | Sections | Compressed Size |
 |---------|----------|-----------------|
-| `cloud` | Kernel + Runtime + Ruflo + Data + Verify | ~60MB |
+| `cloud` | Kernel + Runtime + Cortex Agent + Data + Verify | ~60MB |
 | `hybrid` | All + Phi-3-mini-Q4 | ~2GB |
 | `offline` | All + Phi-3 + Qwen2.5-Coder-3B | ~4GB |
 
@@ -377,13 +377,13 @@ Final: Assemble RVFA
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
-│                    ruflo.rvf (RVFA)                           │
+│                    cortex-agent.rvf (RVFA)                           │
 │  ┌────────────────────────────────────────────────────────┐  │
 │  │  KERNEL: Alpine Linux 3.23 (~5MB)                      │  │
 │  │  ┌──────────────────────────────────────────────────┐  │  │
 │  │  │  RUNTIME: Node.js 22 + Claude Code CLI           │  │  │
 │  │  │  ┌──────────────────────────────────────────────┐│  │  │
-│  │  │  │  RUFLO v3.5+                                 ││  │  │
+│  │  │  │  CORTEX_AGENT v3.5+                                 ││  │  │
 │  │  │  │  ├── 26 CLI commands (140+ subcommands)      ││  │  │
 │  │  │  │  ├── 60+ agent definitions                   ││  │  │
 │  │  │  │  ├── 17 hooks + 12 workers                   ││  │  │
@@ -495,18 +495,18 @@ Hot Update Flow:
 | Task | Description |
 |------|-------------|
 | Define RVFA binary spec | Magic bytes, header schema, section table |
-| `ruflo-appliance build` | Multi-stage builder with profile selection |
-| `ruflo-appliance inspect` | Header + section manifest viewer |
-| `ruflo-appliance extract` | Unpack all sections to directory |
-| Cloud profile | Kernel + Runtime + Ruflo + encrypted keys |
+| `cortex-agent-appliance build` | Multi-stage builder with profile selection |
+| `cortex-agent-appliance inspect` | Header + section manifest viewer |
+| `cortex-agent-appliance extract` | Unpack all sections to directory |
+| Cloud profile | Kernel + Runtime + Cortex Agent + encrypted keys |
 
 ### Phase 2: Runtime + Verification (Week 3-4)
 
 | Task | Description |
 |------|-------------|
-| `ruflo-appliance run` | Boot sequence with container isolation |
-| `ruflo-appliance verify` | 95-check capability suite |
-| `ruflo-appliance mcp` | MCP server mode (stdio + SSE) |
+| `cortex-agent-appliance run` | Boot sequence with container isolation |
+| `cortex-agent-appliance verify` | 95-check capability suite |
+| `cortex-agent-appliance mcp` | MCP server mode (stdio + SSE) |
 | DATA section | Pre-built AgentDB + HNSW + SONA |
 | CI integration | Build appliance on every release |
 
@@ -524,7 +524,7 @@ Hot Update Flow:
 
 | Task | Description |
 |------|-------------|
-| `ruflo-appliance update` | Hot-patch individual sections |
+| `cortex-agent-appliance update` | Hot-patch individual sections |
 | Ed25519 signing | Code signing for appliance + patches |
 | IPFS distribution | Publish appliances to decentralized storage |
 | MicroVM support | Firecracker/Cloud Hypervisor isolation |
@@ -540,7 +540,7 @@ Hot Update Flow:
 - **Offline-capable**: Full agent orchestration without internet (offline profile)
 - **Reproducible**: Same binary = same behavior everywhere
 - **Secure**: Encrypted keys, signed updates, container isolation
-- **Fast boot**: <5s from cold start (vs 35s for `npx ruflo@latest`)
+- **Fast boot**: <5s from cold start (vs 35s for `npx cortex-agent@latest`)
 - **Verifiable**: Built-in 95-check suite proves every capability works
 - **Updatable**: Hot-patch sections without rebuilding entire appliance
 

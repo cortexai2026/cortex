@@ -13,7 +13,7 @@
  *
  * @example
  * ```typescript
- * import { hookPatternLibraryPlugin } from '@claude-flow/plugins/examples/ruvector-plugins';
+ * import { hookPatternLibraryPlugin } from '@cortex-agent/plugins/examples/ruvector-plugins';
  * await getDefaultRegistry().register(hookPatternLibraryPlugin);
  * ```
  */
@@ -341,7 +341,7 @@ async function getLibrary(): Promise<HookPatternLibrary> {
 
 export const hookPatternLibraryPlugin = new PluginBuilder('hook-pattern-library', '1.0.0')
   .withDescription('Learn optimal hook patterns for file types using @ruvector/wasm')
-  .withAuthor('Claude Flow Team')
+  .withAuthor('Cortex Agent Team')
   .withTags(['hooks', 'patterns', 'learning', 'ruvector', 'optimization'])
   .withMCPTools([
     new MCPToolBuilder('hook-recommend')

@@ -1,15 +1,15 @@
 /**
- * Claude Flow SPARC Executor
- * Executes tasks using the full claude-flow SPARC system in non-interactive mode
+ * Cortex Agent SPARC Executor
+ * Executes tasks using the full cortex-agent SPARC system in non-interactive mode
  */
 
 import type { TaskDefinition, AgentState, TaskResult } from './types.js';
 import { Logger } from '../core/logger.js';
 import * as path from 'node:path';
 import { spawn } from 'node:child_process';
-import { getClaudeFlowBin } from '../utils/paths.js';
+import { getCortexAgentBin } from '../utils/paths.js';
 
-export interface ClaudeFlowExecutorConfig {
+export interface CortexAgentExecutorConfig {
   logger?: Logger;
   claudeFlowPath?: string;
   enableSparc?: boolean;
@@ -17,21 +17,21 @@ export interface ClaudeFlowExecutorConfig {
   timeoutMinutes?: number;
 }
 
-export class ClaudeFlowExecutor {
+export class CortexAgentExecutor {
   private logger: Logger;
   private claudeFlowPath: string;
   private enableSparc: boolean;
   private verbose: boolean;
   private timeoutMinutes: number;
 
-  constructor(config: ClaudeFlowExecutorConfig = {}) {
+  constructor(config: CortexAgentExecutorConfig = {}) {
     this.logger =
       config.logger ||
       new Logger(
         { level: 'info', format: 'text', destination: 'console' },
-        { component: 'ClaudeFlowExecutor' },
+        { component: 'CortexAgentExecutor' },
       );
-    this.claudeFlowPath = config.claudeFlowPath || getClaudeFlowBin();
+    this.claudeFlowPath = config.claudeFlowPath || getCortexAgentBin();
     this.enableSparc = config.enableSparc ?? true;
     this.verbose = config.verbose ?? false;
     this.timeoutMinutes = config.timeoutMinutes ?? 59;
@@ -42,7 +42,7 @@ export class ClaudeFlowExecutor {
     agent: AgentState,
     targetDir?: string,
   ): Promise<TaskResult> {
-    this.logger.info('Executing task with Claude Flow SPARC', {
+    this.logger.info('Executing task with Cortex Agent SPARC', {
       taskId: task.id.id,
       taskName: task.name,
       agentType: agent.type,
@@ -83,7 +83,7 @@ export class ClaudeFlowExecutor {
         error: result.error,
       };
     } catch (error) {
-      this.logger.error('Failed to execute Claude Flow SPARC command', {
+      this.logger.error('Failed to execute Cortex Agent SPARC command', {
         error: error instanceof Error ? error.message : String(error),
         taskId: task.id.id,
       });
@@ -202,8 +202,8 @@ export class ClaudeFlowExecutor {
         shell: true,
         env: {
           ...process.env,
-          CLAUDE_FLOW_NON_INTERACTIVE: 'true',
-          CLAUDE_FLOW_AUTO_CONFIRM: 'true',
+          CORTEX_AGENT_NON_INTERACTIVE: 'true',
+          CORTEX_AGENT_AUTO_CONFIRM: 'true',
         },
       });
 
@@ -263,4 +263,4 @@ export class ClaudeFlowExecutor {
 }
 
 // Export for use in swarm coordinator
-export default ClaudeFlowExecutor;
+export default CortexAgentExecutor;

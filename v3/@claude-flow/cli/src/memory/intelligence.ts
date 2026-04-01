@@ -21,16 +21,16 @@ import { dirname, join } from 'node:path';
 
 /**
  * Get the data directory for neural pattern persistence
- * Uses .claude-flow/neural in the current working directory,
+ * Uses .cortex-agent/neural in the current working directory,
  * falling back to home directory
  */
 function getDataDir(): string {
   const cwd = process.cwd();
-  const localDir = join(cwd, '.claude-flow', 'neural');
-  const homeDir = join(homedir(), '.claude-flow', 'neural');
+  const localDir = join(cwd, '.cortex-agent', 'neural');
+  const homeDir = join(homedir(), '.cortex-agent', 'neural');
 
-  // Prefer local directory if .claude-flow exists
-  if (existsSync(join(cwd, '.claude-flow'))) {
+  // Prefer local directory if .cortex-agent exists
+  if (existsSync(join(cwd, '.cortex-agent'))) {
     return localDir;
   }
 

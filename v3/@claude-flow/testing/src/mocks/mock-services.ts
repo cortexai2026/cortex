@@ -1,5 +1,5 @@
 /**
- * @claude-flow/testing - Mock Services
+ * @cortex-agent/testing - Mock Services
  *
  * Comprehensive mock implementations of V3 core services.
  * Provides realistic behavior for testing with full state tracking.

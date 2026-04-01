@@ -19,8 +19,8 @@ const benchmarkCommand: Command = {
     { name: 'output', short: 'o', type: 'string', description: 'Output format: text, json, csv', default: 'text' },
   ],
   examples: [
-    { command: 'claude-flow performance benchmark -s neural', description: 'Benchmark neural operations' },
-    { command: 'claude-flow performance benchmark -i 1000', description: 'Run with 1000 iterations' },
+    { command: 'cortex-agent performance benchmark -s neural', description: 'Benchmark neural operations' },
+    { command: 'cortex-agent performance benchmark -i 1000', description: 'Run with 1000 iterations' },
   ],
   action: async (ctx: CommandContext): Promise<CommandResult> => {
     const suite = ctx.flags.suite as string || 'all';
@@ -256,8 +256,8 @@ const profileCommand: Command = {
     { name: 'output', short: 'o', type: 'string', description: 'Output file for profile data' },
   ],
   examples: [
-    { command: 'claude-flow performance profile -t cpu', description: 'Profile CPU usage' },
-    { command: 'claude-flow performance profile -d 60', description: 'Profile for 60 seconds' },
+    { command: 'cortex-agent performance profile -t cpu', description: 'Profile CPU usage' },
+    { command: 'cortex-agent performance profile -d 60', description: 'Profile for 60 seconds' },
   ],
   action: async (ctx: CommandContext): Promise<CommandResult> => {
     const type = ctx.flags.type as string || 'all';
@@ -338,8 +338,8 @@ const metricsCommand: Command = {
     { name: 'component', short: 'c', type: 'string', description: 'Component to filter' },
   ],
   examples: [
-    { command: 'claude-flow performance metrics -t 7d', description: 'Show 7-day metrics' },
-    { command: 'claude-flow performance metrics -f prometheus', description: 'Export as Prometheus format' },
+    { command: 'cortex-agent performance metrics -t 7d', description: 'Show 7-day metrics' },
+    { command: 'cortex-agent performance metrics -f prometheus', description: 'Export as Prometheus format' },
   ],
   action: async (ctx: CommandContext): Promise<CommandResult> => {
     const timeframe = ctx.flags.timeframe as string || '24h';
@@ -434,22 +434,22 @@ const metricsCommand: Command = {
     }
 
     if (format === 'prometheus') {
-      output.writeln(`# HELP claude_flow_heap_used_bytes Heap memory used`);
-      output.writeln(`claude_flow_heap_used_bytes ${memUsage.heapUsed}`);
-      output.writeln(`# HELP claude_flow_heap_total_bytes Total heap memory`);
-      output.writeln(`claude_flow_heap_total_bytes ${memUsage.heapTotal}`);
-      output.writeln(`# HELP claude_flow_rss_bytes Resident set size`);
-      output.writeln(`claude_flow_rss_bytes ${memUsage.rss}`);
-      output.writeln(`# HELP claude_flow_cpu_user_microseconds CPU user time`);
-      output.writeln(`claude_flow_cpu_user_microseconds ${cpuUsage.user}`);
-      output.writeln(`# HELP claude_flow_cpu_system_microseconds CPU system time`);
-      output.writeln(`claude_flow_cpu_system_microseconds ${cpuUsage.system}`);
-      output.writeln(`# HELP claude_flow_cache_entries Embedding cache entries`);
-      output.writeln(`claude_flow_cache_entries ${cacheEntries}`);
-      output.writeln(`# HELP claude_flow_hnsw_entries HNSW index entries`);
-      output.writeln(`claude_flow_hnsw_entries ${hnswEntries}`);
-      output.writeln(`# HELP claude_flow_uptime_seconds Process uptime`);
-      output.writeln(`claude_flow_uptime_seconds ${uptime}`);
+      output.writeln(`# HELP cortex_agent_heap_used_bytes Heap memory used`);
+      output.writeln(`cortex_agent_heap_used_bytes ${memUsage.heapUsed}`);
+      output.writeln(`# HELP cortex_agent_heap_total_bytes Total heap memory`);
+      output.writeln(`cortex_agent_heap_total_bytes ${memUsage.heapTotal}`);
+      output.writeln(`# HELP cortex_agent_rss_bytes Resident set size`);
+      output.writeln(`cortex_agent_rss_bytes ${memUsage.rss}`);
+      output.writeln(`# HELP cortex_agent_cpu_user_microseconds CPU user time`);
+      output.writeln(`cortex_agent_cpu_user_microseconds ${cpuUsage.user}`);
+      output.writeln(`# HELP cortex_agent_cpu_system_microseconds CPU system time`);
+      output.writeln(`cortex_agent_cpu_system_microseconds ${cpuUsage.system}`);
+      output.writeln(`# HELP cortex_agent_cache_entries Embedding cache entries`);
+      output.writeln(`cortex_agent_cache_entries ${cacheEntries}`);
+      output.writeln(`# HELP cortex_agent_hnsw_entries HNSW index entries`);
+      output.writeln(`cortex_agent_hnsw_entries ${hnswEntries}`);
+      output.writeln(`# HELP cortex_agent_uptime_seconds Process uptime`);
+      output.writeln(`cortex_agent_uptime_seconds ${uptime}`);
       return { success: true };
     }
 
@@ -531,8 +531,8 @@ const optimizeCommand: Command = {
     { name: 'dry-run', short: 'd', type: 'boolean', description: 'Show changes without applying' },
   ],
   examples: [
-    { command: 'claude-flow performance optimize -t memory', description: 'Optimize memory usage' },
-    { command: 'claude-flow performance optimize --apply', description: 'Apply all optimizations' },
+    { command: 'cortex-agent performance optimize -t memory', description: 'Optimize memory usage' },
+    { command: 'cortex-agent performance optimize --apply', description: 'Apply all optimizations' },
   ],
   action: async (ctx: CommandContext): Promise<CommandResult> => {
     const target = ctx.flags.target as string || 'all';
@@ -579,8 +579,8 @@ const bottleneckCommand: Command = {
     { name: 'depth', short: 'd', type: 'string', description: 'Analysis depth: quick, full', default: 'quick' },
   ],
   examples: [
-    { command: 'claude-flow performance bottleneck', description: 'Find bottlenecks' },
-    { command: 'claude-flow performance bottleneck -d full', description: 'Full analysis' },
+    { command: 'cortex-agent performance bottleneck', description: 'Find bottlenecks' },
+    { command: 'cortex-agent performance bottleneck -d full', description: 'Full analysis' },
   ],
   action: async (ctx: CommandContext): Promise<CommandResult> => {
     output.writeln();
@@ -618,13 +618,13 @@ export const performanceCommand: Command = {
   aliases: ['perf'],
   subcommands: [benchmarkCommand, profileCommand, metricsCommand, optimizeCommand, bottleneckCommand],
   examples: [
-    { command: 'claude-flow performance benchmark', description: 'Run benchmarks' },
-    { command: 'claude-flow performance profile', description: 'Profile application' },
-    { command: 'claude-flow perf metrics', description: 'View metrics (alias)' },
+    { command: 'cortex-agent performance benchmark', description: 'Run benchmarks' },
+    { command: 'cortex-agent performance profile', description: 'Profile application' },
+    { command: 'cortex-agent perf metrics', description: 'View metrics (alias)' },
   ],
   action: async (): Promise<CommandResult> => {
     output.writeln();
-    output.writeln(output.bold('RuFlo Performance Suite'));
+    output.writeln(output.bold('Cortex Agent Performance Suite'));
     output.writeln(output.dim('Advanced performance profiling and optimization'));
     output.writeln();
     output.writeln('Subcommands:');

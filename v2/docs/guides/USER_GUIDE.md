@@ -35,26 +35,26 @@ Before starting with Claude-Flow, ensure you have:
 
 ```bash
 # Option 1: Use npx (recommended for first-time users)
-npx claude-flow@alpha --help
+npx cortex-agent@alpha --help
 
 # Option 2: Global installation
-npm install -g claude-flow@alpha
+npm install -g cortex-agent@alpha
 
 # Option 3: Project-specific installation
-npm install claude-flow@alpha
+npm install cortex-agent@alpha
 ```
 
 ### Initial Setup
 
 ```bash
 # Initialize Claude-Flow in your project
-npx claude-flow@alpha init --force
+npx cortex-agent@alpha init --force
 
 # Verify installation
-npx claude-flow@alpha version
+npx cortex-agent@alpha version
 
 # Run health check
-npx claude-flow@alpha health
+npx cortex-agent@alpha health
 ```
 
 ### First Command
@@ -63,7 +63,7 @@ Try your first Claude-Flow command:
 
 ```bash
 # Simple task execution
-npx claude-flow@alpha swarm "create a simple Hello World application"
+npx cortex-agent@alpha swarm "create a simple Hello World application"
 ```
 
 ---
@@ -163,16 +163,16 @@ For straightforward development tasks:
 
 ```bash
 # Code generation
-npx claude-flow@alpha swarm "create a REST API for user management"
+npx cortex-agent@alpha swarm "create a REST API for user management"
 
 # Bug fixing
-npx claude-flow@alpha swarm "fix all TypeScript errors in the project"
+npx cortex-agent@alpha swarm "fix all TypeScript errors in the project"
 
 # Documentation
-npx claude-flow@alpha swarm "generate comprehensive API documentation"
+npx cortex-agent@alpha swarm "generate comprehensive API documentation"
 
 # Testing
-npx claude-flow@alpha swarm "create unit tests for all service classes"
+npx cortex-agent@alpha swarm "create unit tests for all service classes"
 ```
 
 #### 2. Project-Based Development
@@ -180,18 +180,18 @@ For larger projects requiring coordination:
 
 ```bash
 # Initialize project swarm
-npx claude-flow@alpha hive-mind spawn "e-commerce platform" \
+npx cortex-agent@alpha hive-mind spawn "e-commerce platform" \
   --agents architect,backend-dev,frontend-dev,tester \
   --topology hierarchical
 
 # Continue development in same session
-npx claude-flow@alpha swarm "implement user authentication" --continue-session
+npx cortex-agent@alpha swarm "implement user authentication" --continue-session
 
 # Add new features
-npx claude-flow@alpha swarm "add payment processing integration"
+npx cortex-agent@alpha swarm "add payment processing integration"
 
 # Monitor progress
-npx claude-flow@alpha swarm status --watch
+npx cortex-agent@alpha swarm status --watch
 ```
 
 #### 3. SPARC Development Methodology
@@ -199,15 +199,15 @@ Structured development using Specification → Pseudocode → Architecture → R
 
 ```bash
 # Full SPARC pipeline
-npx claude-flow@alpha sparc pipeline "user management system"
+npx cortex-agent@alpha sparc pipeline "user management system"
 
 # Individual SPARC phases
-npx claude-flow@alpha sparc spec "define requirements for authentication"
-npx claude-flow@alpha sparc architecture "design microservices structure"
-npx claude-flow@alpha sparc code "implement user service"
+npx cortex-agent@alpha sparc spec "define requirements for authentication"
+npx cortex-agent@alpha sparc architecture "design microservices structure"
+npx cortex-agent@alpha sparc code "implement user service"
 
 # Test-driven development
-npx claude-flow@alpha sparc tdd "payment processing module"
+npx cortex-agent@alpha sparc tdd "payment processing module"
 ```
 
 ### Operational Workflows
@@ -215,37 +215,37 @@ npx claude-flow@alpha sparc tdd "payment processing module"
 #### 1. Code Review and Quality
 ```bash
 # Comprehensive code review
-npx claude-flow@alpha swarm "perform security audit and code review" \
+npx cortex-agent@alpha swarm "perform security audit and code review" \
   --agents security-analyst,reviewer,code-quality-checker
 
 # Performance optimization
-npx claude-flow@alpha swarm "analyze and optimize application performance" \
+npx cortex-agent@alpha swarm "analyze and optimize application performance" \
   --agents performance-analyst,optimizer
 ```
 
 #### 2. DevOps and Deployment
 ```bash
 # CI/CD setup
-npx claude-flow@alpha swarm "setup complete CI/CD pipeline" \
+npx cortex-agent@alpha swarm "setup complete CI/CD pipeline" \
   --agents devops-engineer,cicd-specialist
 
 # Container deployment
-npx claude-flow@alpha swarm "containerize application with Docker" \
+npx cortex-agent@alpha swarm "containerize application with Docker" \
   --agents docker-specialist,devops-engineer
 
 # Kubernetes deployment
-npx claude-flow@alpha swarm "deploy to Kubernetes cluster" \
+npx cortex-agent@alpha swarm "deploy to Kubernetes cluster" \
   --agents k8s-specialist,devops-engineer
 ```
 
 #### 3. Documentation and Maintenance
 ```bash
 # Generate documentation
-npx claude-flow@alpha swarm "create comprehensive project documentation" \
+npx cortex-agent@alpha swarm "create comprehensive project documentation" \
   --agents technical-writer,api-docs-generator
 
 # Code maintenance
-npx claude-flow@alpha swarm "refactor legacy code and improve maintainability" \
+npx cortex-agent@alpha swarm "refactor legacy code and improve maintainability" \
   --agents refactoring-specialist,code-quality-checker
 ```
 
@@ -262,7 +262,7 @@ mkdir my-api-project
 cd my-api-project
 
 # Initialize Claude-Flow
-npx claude-flow@alpha init --force
+npx cortex-agent@alpha init --force
 
 # Initialize npm project
 npm init -y
@@ -271,32 +271,32 @@ npm init -y
 #### Step 2: Define Requirements
 ```bash
 # Use SPARC specification mode
-npx claude-flow@alpha sparc spec "REST API for task management with CRUD operations, authentication, and data validation"
+npx cortex-agent@alpha sparc spec "REST API for task management with CRUD operations, authentication, and data validation"
 ```
 
 #### Step 3: Create Architecture
 ```bash
 # Generate system architecture
-npx claude-flow@alpha sparc architecture "Node.js Express API with PostgreSQL database, JWT authentication, and comprehensive error handling"
+npx cortex-agent@alpha sparc architecture "Node.js Express API with PostgreSQL database, JWT authentication, and comprehensive error handling"
 ```
 
 #### Step 4: Implement Code
 ```bash
 # Generate implementation
-npx claude-flow@alpha sparc code "implement the complete task management API based on the architecture"
+npx cortex-agent@alpha sparc code "implement the complete task management API based on the architecture"
 ```
 
 #### Step 5: Add Tests
 ```bash
 # Create comprehensive tests
-npx claude-flow@alpha swarm "create unit tests, integration tests, and API endpoint tests" \
+npx cortex-agent@alpha swarm "create unit tests, integration tests, and API endpoint tests" \
   --agents tester,test-automation-specialist
 ```
 
 #### Step 6: Setup DevOps
 ```bash
 # Add CI/CD and deployment
-npx claude-flow@alpha swarm "setup GitHub Actions CI/CD and Docker deployment" \
+npx cortex-agent@alpha swarm "setup GitHub Actions CI/CD and Docker deployment" \
   --agents devops-engineer,cicd-specialist
 ```
 
@@ -305,7 +305,7 @@ npx claude-flow@alpha swarm "setup GitHub Actions CI/CD and Docker deployment" \
 #### Step 1: Project Planning
 ```bash
 # Initialize large project swarm
-npx claude-flow@alpha hive-mind spawn "full-stack social media application" \
+npx cortex-agent@alpha hive-mind spawn "full-stack social media application" \
   --agents architect,planner,backend-dev,frontend-dev,mobile-dev,tester,devops-engineer \
   --topology hierarchical \
   --max-agents 12
@@ -314,35 +314,35 @@ npx claude-flow@alpha hive-mind spawn "full-stack social media application" \
 #### Step 2: Architecture Design
 ```bash
 # Create comprehensive architecture
-npx claude-flow@alpha swarm "design microservices architecture with event-driven communication" \
+npx cortex-agent@alpha swarm "design microservices architecture with event-driven communication" \
   --agents system-architect,backend-architect,frontend-architect
 ```
 
 #### Step 3: Backend Development
 ```bash
 # Develop backend services
-npx claude-flow@alpha swarm "implement user service, post service, and notification service" \
+npx cortex-agent@alpha swarm "implement user service, post service, and notification service" \
   --agents backend-dev,api-developer,database-specialist
 ```
 
 #### Step 4: Frontend Development
 ```bash
 # Create frontend applications
-npx claude-flow@alpha swarm "build React web app and React Native mobile app" \
+npx cortex-agent@alpha swarm "build React web app and React Native mobile app" \
   --agents frontend-dev,mobile-dev,ui-ux-specialist
 ```
 
 #### Step 5: Testing and Quality Assurance
 ```bash
 # Comprehensive testing
-npx claude-flow@alpha swarm "create automated test suites and perform security audit" \
+npx cortex-agent@alpha swarm "create automated test suites and perform security audit" \
   --agents tester,security-analyst,qa-specialist
 ```
 
 #### Step 6: Deployment and Monitoring
 ```bash
 # Deploy and monitor
-npx claude-flow@alpha swarm "deploy to cloud and setup monitoring" \
+npx cortex-agent@alpha swarm "deploy to cloud and setup monitoring" \
   --agents devops-engineer,cloud-specialist,monitoring-specialist
 ```
 
@@ -351,7 +351,7 @@ npx claude-flow@alpha swarm "deploy to cloud and setup monitoring" \
 #### Step 1: Define Feature Requirements
 ```bash
 # Start TDD cycle
-npx claude-flow@alpha sparc tdd "user authentication with email verification" \
+npx cortex-agent@alpha sparc tdd "user authentication with email verification" \
   --test-framework jest \
   --coverage 95
 ```
@@ -359,26 +359,26 @@ npx claude-flow@alpha sparc tdd "user authentication with email verification" \
 #### Step 2: Write Tests First
 ```bash
 # Create test specifications
-npx claude-flow@alpha swarm "write comprehensive test cases for authentication flow" \
+npx cortex-agent@alpha swarm "write comprehensive test cases for authentication flow" \
   --agents test-architect,tdd-specialist
 ```
 
 #### Step 3: Implement Minimal Code
 ```bash
 # Implement just enough to pass tests
-npx claude-flow@alpha sparc code "implement minimal authentication logic to pass tests"
+npx cortex-agent@alpha sparc code "implement minimal authentication logic to pass tests"
 ```
 
 #### Step 4: Refactor and Optimize
 ```bash
 # Improve implementation
-npx claude-flow@alpha sparc refinement "optimize authentication performance and security"
+npx cortex-agent@alpha sparc refinement "optimize authentication performance and security"
 ```
 
 #### Step 5: Add Integration Tests
 ```bash
 # Create integration tests
-npx claude-flow@alpha swarm "add integration tests for complete authentication flow" \
+npx cortex-agent@alpha swarm "add integration tests for complete authentication flow" \
   --agents integration-tester,api-tester
 ```
 
@@ -391,10 +391,10 @@ npx claude-flow@alpha swarm "add integration tests for complete authentication f
 #### Environment Variables
 ```bash
 # Core settings
-export CLAUDE_FLOW_DEBUG=true
-export CLAUDE_FLOW_LOG_LEVEL=info
-export CLAUDE_FLOW_DATA_DIR=./data
-export CLAUDE_FLOW_MAX_AGENTS=50
+export CORTEX_AGENT_DEBUG=true
+export CORTEX_AGENT_LOG_LEVEL=info
+export CORTEX_AGENT_DATA_DIR=./data
+export CORTEX_AGENT_MAX_AGENTS=50
 
 # API configuration
 export CLAUDE_API_KEY="your_claude_api_key"
@@ -402,13 +402,13 @@ export OPENAI_API_KEY="your_openai_api_key"
 export ANTHROPIC_API_KEY="your_anthropic_api_key"
 
 # Performance tuning
-export CLAUDE_FLOW_MEMORY_LIMIT=1024
-export CLAUDE_FLOW_TIMEOUT=300000
-export CLAUDE_FLOW_CONCURRENT_TASKS=10
+export CORTEX_AGENT_MEMORY_LIMIT=1024
+export CORTEX_AGENT_TIMEOUT=300000
+export CORTEX_AGENT_CONCURRENT_TASKS=10
 ```
 
 #### Configuration File
-Create `.claude-flow.json` in your project root:
+Create `.cortex-agent.json` in your project root:
 
 ```json
 {
@@ -524,7 +524,7 @@ Define custom agent combinations for specific use cases:
       },
       "backup": {
         "type": "s3",
-        "bucket": "claude-flow-backup",
+        "bucket": "cortex-agent-backup",
         "region": "us-east-1"
       }
     },
@@ -573,13 +573,13 @@ Define custom agent combinations for specific use cases:
 #### Basic MCP Setup
 ```bash
 # Start MCP server
-npx claude-flow@alpha mcp start --port 3000
+npx cortex-agent@alpha mcp start --port 3000
 
 # Configure MCP tools
-npx claude-flow@alpha mcp config --tools all
+npx cortex-agent@alpha mcp config --tools all
 
 # Add custom MCP server
-npx claude-flow@alpha mcp add-server \
+npx cortex-agent@alpha mcp add-server \
   --name "custom-tools" \
   --command "node custom-mcp-server.js"
 ```
@@ -587,13 +587,13 @@ npx claude-flow@alpha mcp add-server \
 #### MCP Integration with Claude Code
 ```bash
 # Add Claude-Flow MCP server to Claude Code
-claude mcp add claude-flow npx claude-flow@alpha mcp start
+claude mcp add cortex-agent npx cortex-agent@alpha mcp start
 
 # List available MCP tools
-npx claude-flow@alpha mcp tools --list
+npx cortex-agent@alpha mcp tools --list
 
 # Test MCP connection
-npx claude-flow@alpha mcp test --tool swarm_init
+npx cortex-agent@alpha mcp test --tool swarm_init
 ```
 
 ---
@@ -607,7 +607,7 @@ npx claude-flow@alpha mcp test --tool swarm_init
 **Issue: npm install fails with permission errors**
 ```bash
 # Solution 1: Use npx instead
-npx claude-flow@alpha --help
+npx cortex-agent@alpha --help
 
 # Solution 2: Fix npm permissions
 npm config set prefix ~/.npm-global
@@ -639,37 +639,37 @@ npm install --no-optional
 **Issue: "Agent not found" error**
 ```bash
 # Check available agents
-npx claude-flow@alpha agents list
+npx cortex-agent@alpha agents list
 
 # Verify agent spelling
-npx claude-flow@alpha agents info coder
+npx cortex-agent@alpha agents info coder
 
 # Use default agent if uncertain
-npx claude-flow@alpha swarm "your task" --agent coder
+npx cortex-agent@alpha swarm "your task" --agent coder
 ```
 
 **Issue: Memory-related errors**
 ```bash
 # Check memory usage
-npx claude-flow@alpha memory stats
+npx cortex-agent@alpha memory stats
 
 # Clear memory cache
-npx claude-flow@alpha memory clear --cache
+npx cortex-agent@alpha memory clear --cache
 
 # Optimize memory settings
-npx claude-flow@alpha config set memory.cacheSizeMB 256
+npx cortex-agent@alpha config set memory.cacheSizeMB 256
 ```
 
 **Issue: API rate limiting**
 ```bash
 # Check API status
-npx claude-flow@alpha health --api
+npx cortex-agent@alpha health --api
 
 # Configure rate limiting
-npx claude-flow@alpha config set providers.anthropic.rateLimit 60
+npx cortex-agent@alpha config set providers.anthropic.rateLimit 60
 
 # Use multiple providers
-npx claude-flow@alpha config set providers.fallback openai
+npx cortex-agent@alpha config set providers.fallback openai
 ```
 
 #### Performance Issues
@@ -677,25 +677,25 @@ npx claude-flow@alpha config set providers.fallback openai
 **Issue: Slow task execution**
 ```bash
 # Run diagnostics
-npx claude-flow@alpha diagnostics --performance
+npx cortex-agent@alpha diagnostics --performance
 
 # Optimize configuration
-npx claude-flow@alpha optimize --auto
+npx cortex-agent@alpha optimize --auto
 
 # Monitor real-time performance
-npx claude-flow@alpha monitor --interval 5s
+npx cortex-agent@alpha monitor --interval 5s
 ```
 
 **Issue: High memory usage**
 ```bash
 # Check memory breakdown
-npx claude-flow@alpha memory analyze
+npx cortex-agent@alpha memory analyze
 
 # Enable compression
-npx claude-flow@alpha config set memory.compressionEnabled true
+npx cortex-agent@alpha config set memory.compressionEnabled true
 
 # Reduce cache size
-npx claude-flow@alpha config set memory.cacheSizeMB 128
+npx cortex-agent@alpha config set memory.cacheSizeMB 128
 ```
 
 ### Debug Mode
@@ -704,45 +704,45 @@ Enable detailed logging for troubleshooting:
 
 ```bash
 # Enable debug mode
-export CLAUDE_FLOW_DEBUG=true
-export CLAUDE_FLOW_LOG_LEVEL=debug
+export CORTEX_AGENT_DEBUG=true
+export CORTEX_AGENT_LOG_LEVEL=debug
 
 # Run with verbose output
-npx claude-flow@alpha swarm "your task" --verbose
+npx cortex-agent@alpha swarm "your task" --verbose
 
 # Generate diagnostic report
-npx claude-flow@alpha diagnostics --full --output debug-report.json
+npx cortex-agent@alpha diagnostics --full --output debug-report.json
 ```
 
 ### Log Analysis
 
 ```bash
 # View recent logs
-npx claude-flow@alpha logs --tail 100
+npx cortex-agent@alpha logs --tail 100
 
 # Filter logs by level
-npx claude-flow@alpha logs --level error
+npx cortex-agent@alpha logs --level error
 
 # Search logs
-npx claude-flow@alpha logs --grep "swarm"
+npx cortex-agent@alpha logs --grep "swarm"
 
 # Export logs
-npx claude-flow@alpha logs --export logs.json
+npx cortex-agent@alpha logs --export logs.json
 ```
 
 ### Health Checks
 
 ```bash
 # Comprehensive health check
-npx claude-flow@alpha health --comprehensive
+npx cortex-agent@alpha health --comprehensive
 
 # Check specific components
-npx claude-flow@alpha health --component memory
-npx claude-flow@alpha health --component agents
-npx claude-flow@alpha health --component mcp
+npx cortex-agent@alpha health --component memory
+npx cortex-agent@alpha health --component agents
+npx cortex-agent@alpha health --component mcp
 
 # Automated health monitoring
-npx claude-flow@alpha health --monitor --interval 60s
+npx cortex-agent@alpha health --monitor --interval 60s
 ```
 
 ---
@@ -764,29 +764,29 @@ npx claude-flow@alpha health --monitor --interval 60s
 
 ```bash
 # Configure memory limits
-npx claude-flow@alpha config set memory.cacheSizeMB 512
-npx claude-flow@alpha config set memory.maxMemoryMB 2048
+npx cortex-agent@alpha config set memory.cacheSizeMB 512
+npx cortex-agent@alpha config set memory.maxMemoryMB 2048
 
 # Enable compression
-npx claude-flow@alpha config set memory.compressionEnabled true
-npx claude-flow@alpha config set memory.indexingEnabled true
+npx cortex-agent@alpha config set memory.compressionEnabled true
+npx cortex-agent@alpha config set memory.indexingEnabled true
 
 # Set retention policies
-npx claude-flow@alpha config set memory.retentionDays 30
-npx claude-flow@alpha config set memory.autoCleanup true
+npx cortex-agent@alpha config set memory.retentionDays 30
+npx cortex-agent@alpha config set memory.autoCleanup true
 ```
 
 #### Agent Pool Optimization
 
 ```bash
 # Configure agent pools
-npx claude-flow@alpha config set orchestrator.maxConcurrentAgents 50
-npx claude-flow@alpha config set orchestrator.agentPoolSize 20
+npx cortex-agent@alpha config set orchestrator.maxConcurrentAgents 50
+npx cortex-agent@alpha config set orchestrator.agentPoolSize 20
 
 # Enable auto-scaling
-npx claude-flow@alpha config set swarm.autoScaling true
-npx claude-flow@alpha config set swarm.minAgents 2
-npx claude-flow@alpha config set swarm.maxAgents 100
+npx cortex-agent@alpha config set swarm.autoScaling true
+npx cortex-agent@alpha config set swarm.minAgents 2
+npx cortex-agent@alpha config set swarm.maxAgents 100
 ```
 
 ### Task Optimization
@@ -794,14 +794,14 @@ npx claude-flow@alpha config set swarm.maxAgents 100
 #### Batch Processing
 ```bash
 # Process multiple tasks in parallel
-npx claude-flow@alpha swarm batch \
+npx cortex-agent@alpha swarm batch \
   "create user service" \
   "create product service" \
   "create order service" \
   --parallel
 
 # Use agent profiles for efficiency
-npx claude-flow@alpha swarm "build microservices" \
+npx cortex-agent@alpha swarm "build microservices" \
   --profile backend-development \
   --optimize-for speed
 ```
@@ -809,37 +809,37 @@ npx claude-flow@alpha swarm "build microservices" \
 #### Caching Strategy
 ```bash
 # Enable aggressive caching
-npx claude-flow@alpha config set performance.cacheEnabled true
-npx claude-flow@alpha config set performance.cacheStrategy aggressive
+npx cortex-agent@alpha config set performance.cacheEnabled true
+npx cortex-agent@alpha config set performance.cacheStrategy aggressive
 
 # Pre-warm caches
-npx claude-flow@alpha cache warm --agents common
-npx claude-flow@alpha cache warm --tools frequent
+npx cortex-agent@alpha cache warm --agents common
+npx cortex-agent@alpha cache warm --tools frequent
 ```
 
 ### Network Optimization
 
 ```bash
 # Configure connection pooling
-npx claude-flow@alpha config set network.connectionPooling true
-npx claude-flow@alpha config set network.maxConnections 100
+npx cortex-agent@alpha config set network.connectionPooling true
+npx cortex-agent@alpha config set network.maxConnections 100
 
 # Enable compression
-npx claude-flow@alpha config set network.compressionEnabled true
-npx claude-flow@alpha config set network.timeout 30000
+npx cortex-agent@alpha config set network.compressionEnabled true
+npx cortex-agent@alpha config set network.timeout 30000
 ```
 
 ### Monitoring and Metrics
 
 ```bash
 # Real-time performance monitoring
-npx claude-flow@alpha monitor --dashboard
+npx cortex-agent@alpha monitor --dashboard
 
 # Generate performance report
-npx claude-flow@alpha performance report --period 7d
+npx cortex-agent@alpha performance report --period 7d
 
 # Set up performance alerts
-npx claude-flow@alpha alerts configure \
+npx cortex-agent@alpha alerts configure \
   --cpu-threshold 80 \
   --memory-threshold 85 \
   --response-time-threshold 5000
@@ -854,10 +854,10 @@ npx claude-flow@alpha alerts configure \
 #### Setup
 ```bash
 # Initialize GitHub integration
-npx claude-flow@alpha github init --token YOUR_GITHUB_TOKEN
+npx cortex-agent@alpha github init --token YOUR_GITHUB_TOKEN
 
 # Configure repository
-npx claude-flow@alpha github config \
+npx cortex-agent@alpha github config \
   --repo "username/repository" \
   --default-branch main
 ```
@@ -865,19 +865,19 @@ npx claude-flow@alpha github config \
 #### Common GitHub Workflows
 ```bash
 # Pull Request Management
-npx claude-flow@alpha github pr-manager \
+npx cortex-agent@alpha github pr-manager \
   "review and merge pending PRs" \
   --auto-merge \
   --require-reviews 2
 
 # Issue Management
-npx claude-flow@alpha github issue-tracker \
+npx cortex-agent@alpha github issue-tracker \
   "analyze and categorize open issues" \
   --auto-label \
   --assign-to-team
 
 # Release Management
-npx claude-flow@alpha github release-manager \
+npx cortex-agent@alpha github release-manager \
   "prepare v2.1.0 release" \
   --generate-changelog \
   --create-release-notes
@@ -886,13 +886,13 @@ npx claude-flow@alpha github release-manager \
 #### Advanced GitHub Features
 ```bash
 # Automated code review
-npx claude-flow@alpha github code-review \
+npx cortex-agent@alpha github code-review \
   --pr-number 123 \
   --agents security-analyst,code-reviewer \
   --auto-comment
 
 # Repository analysis
-npx claude-flow@alpha github analyze-repo \
+npx cortex-agent@alpha github analyze-repo \
   --metrics code-quality,security,performance \
   --generate-report
 ```
@@ -902,18 +902,18 @@ npx claude-flow@alpha github analyze-repo \
 #### Container Management
 ```bash
 # Containerize application
-npx claude-flow@alpha docker containerize \
+npx cortex-agent@alpha docker containerize \
   --app-type node \
   --multi-stage \
   --optimize-size
 
 # Build and push images
-npx claude-flow@alpha docker build-push \
+npx cortex-agent@alpha docker build-push \
   --registry docker.io \
   --tags latest,v2.0.0
 
 # Container orchestration
-npx claude-flow@alpha docker compose \
+npx cortex-agent@alpha docker compose \
   --services api,database,redis \
   --environment production
 ```
@@ -923,19 +923,19 @@ npx claude-flow@alpha docker compose \
 #### Cluster Management
 ```bash
 # Deploy to Kubernetes
-npx claude-flow@alpha k8s deploy \
+npx cortex-agent@alpha k8s deploy \
   --cluster production \
   --namespace default \
   --replicas 3
 
 # Manage services
-npx claude-flow@alpha k8s services \
+npx cortex-agent@alpha k8s services \
   "setup load balancer and ingress" \
   --ssl-enabled \
   --auto-scaling
 
 # Monitor cluster
-npx claude-flow@alpha k8s monitor \
+npx cortex-agent@alpha k8s monitor \
   --real-time \
   --alerts \
   --dashboard
@@ -946,14 +946,14 @@ npx claude-flow@alpha k8s monitor \
 #### GitHub Actions
 ```bash
 # Setup CI/CD pipeline
-npx claude-flow@alpha cicd github-actions \
+npx cortex-agent@alpha cicd github-actions \
   "create complete CI/CD workflow" \
   --tests \
   --security-scan \
   --deploy-staging
 
 # Custom workflows
-npx claude-flow@alpha cicd custom \
+npx cortex-agent@alpha cicd custom \
   --provider github-actions \
   --stages "lint,test,build,deploy" \
   --environments "staging,production"
@@ -962,7 +962,7 @@ npx claude-flow@alpha cicd custom \
 #### Jenkins Integration
 ```bash
 # Jenkins pipeline
-npx claude-flow@alpha cicd jenkins \
+npx cortex-agent@alpha cicd jenkins \
   "setup Jenkins pipeline with parallel stages" \
   --agents 4 \
   --parallel-tests
@@ -973,13 +973,13 @@ npx claude-flow@alpha cicd jenkins \
 #### AWS Integration
 ```bash
 # Deploy to AWS
-npx claude-flow@alpha aws deploy \
+npx cortex-agent@alpha aws deploy \
   --service ecs \
   --region us-east-1 \
   --auto-scaling
 
 # Infrastructure as Code
-npx claude-flow@alpha aws infrastructure \
+npx cortex-agent@alpha aws infrastructure \
   "create complete AWS infrastructure" \
   --terraform \
   --best-practices
@@ -988,7 +988,7 @@ npx claude-flow@alpha aws infrastructure \
 #### Azure Integration
 ```bash
 # Azure deployment
-npx claude-flow@alpha azure deploy \
+npx cortex-agent@alpha azure deploy \
   --service app-service \
   --resource-group production \
   --scaling-rules
@@ -997,7 +997,7 @@ npx claude-flow@alpha azure deploy \
 #### Google Cloud Integration
 ```bash
 # GCP deployment
-npx claude-flow@alpha gcp deploy \
+npx cortex-agent@alpha gcp deploy \
   --service cloud-run \
   --region us-central1 \
   --auto-scaling
@@ -1024,10 +1024,10 @@ A: While Claude-Flow can work independently, Claude Code integration provides th
 A: Claude-Flow requires Node.js ≥ 20.0.0. We recommend using the latest LTS version for best performance and security.
 
 **Q: Can I use Claude-Flow without global installation?**
-A: Yes! Using `npx claude-flow@alpha` is actually recommended as it always uses the latest version without requiring global installation.
+A: Yes! Using `npx cortex-agent@alpha` is actually recommended as it always uses the latest version without requiring global installation.
 
 **Q: How do I handle API key configuration?**
-A: Set your API keys as environment variables or in the `.claude-flow.json` configuration file. Never commit API keys to version control.
+A: Set your API keys as environment variables or in the `.cortex-agent.json` configuration file. Never commit API keys to version control.
 
 ### Usage and Functionality
 
@@ -1072,10 +1072,10 @@ A: Yes, Claude-Flow is designed for enterprise use with security features, audit
 ### Troubleshooting
 
 **Q: What should I do if an agent fails?**
-A: Claude-Flow includes automatic fault recovery. You can also check logs with `npx claude-flow@alpha logs` and restart failed tasks.
+A: Claude-Flow includes automatic fault recovery. You can also check logs with `npx cortex-agent@alpha logs` and restart failed tasks.
 
 **Q: How do I debug performance issues?**
-A: Use the built-in diagnostics: `npx claude-flow@alpha diagnostics --performance` and monitor real-time metrics.
+A: Use the built-in diagnostics: `npx cortex-agent@alpha diagnostics --performance` and monitor real-time metrics.
 
 **Q: Where can I get help if I'm stuck?**
 A: Check this guide, review the comprehensive documentation, search GitHub issues, or join our Discord community.
@@ -1097,10 +1097,10 @@ A: Claude-Flow includes enterprise-grade security features including input valid
 
 ### Getting Help
 
-- **📖 Documentation**: [Complete Documentation](https://github.com/ruvnet/claude-flow/docs)
-- **💬 Discord Community**: [Join Discord](https://discord.gg/claude-flow)
-- **🐛 Issue Tracker**: [GitHub Issues](https://github.com/ruvnet/claude-flow/issues)
-- **📧 Email Support**: support@claude-flow.ai
+- **📖 Documentation**: [Complete Documentation](https://github.com/ruvnet/cortex-agent/docs)
+- **💬 Discord Community**: [Join Discord](https://discord.gg/cortex-agent)
+- **🐛 Issue Tracker**: [GitHub Issues](https://github.com/ruvnet/cortex-agent/issues)
+- **📧 Email Support**: support@cortex-agent.ai
 
 ### Contributing
 
@@ -1115,9 +1115,9 @@ We welcome contributions! Please see our [Contributing Guide](../CONTRIBUTING.md
 ### Stay Updated
 
 - 🐦 **Twitter/X**: [@claudeflow](https://twitter.com/claudeflow)
-- 📰 **Blog**: [blog.claude-flow.ai](https://blog.claude-flow.ai)
+- 📰 **Blog**: [blog.cortex-agent.ai](https://blog.cortex-agent.ai)
 - 📺 **YouTube**: [Claude-Flow Channel](https://youtube.com/@claudeflow)
-- 🌟 **GitHub**: [Star the Repository](https://github.com/ruvnet/claude-flow)
+- 🌟 **GitHub**: [Star the Repository](https://github.com/ruvnet/cortex-agent)
 
 ---
 

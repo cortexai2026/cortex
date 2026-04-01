@@ -1,7 +1,7 @@
 /**
- * @claude-flow/ruvector-upstream
+ * @cortex-agent/ruvector-upstream
  *
- * RuVector WASM package bridges for Claude Flow plugins.
+ * RuVector WASM package bridges for Cortex Agent plugins.
  * Provides unified access to 15+ WASM packages from ruvnet/ruvector.
  */
 

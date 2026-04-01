@@ -164,8 +164,8 @@ describe('CredentialGenerator', () => {
       const creds = generator.generateInstallationCredentials();
       const script = generator.createEnvScript(creds);
 
-      expect(script).toContain('CLAUDE_FLOW_ADMIN_PASSWORD');
-      expect(script).toContain('CLAUDE_FLOW_JWT_SECRET');
+      expect(script).toContain('CORTEX_AGENT_ADMIN_PASSWORD');
+      expect(script).toContain('CORTEX_AGENT_JWT_SECRET');
       expect(script).toContain('export');
     });
 
@@ -175,8 +175,8 @@ describe('CredentialGenerator', () => {
       const json = generator.createJsonConfig(creds);
 
       const parsed = JSON.parse(json);
-      expect(parsed['claude-flow/admin-password']).toBeDefined();
-      expect(parsed['claude-flow/jwt-secret']).toBeDefined();
+      expect(parsed['cortex-agent/admin-password']).toBeDefined();
+      expect(parsed['cortex-agent/jwt-secret']).toBeDefined();
     });
   });
 });

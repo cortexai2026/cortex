@@ -1,12 +1,12 @@
-# @claude-flow/memory
+# @cortex-agent/memory
 
-[![npm version](https://img.shields.io/npm/v/@claude-flow/memory.svg)](https://www.npmjs.com/package/@claude-flow/memory)
-[![npm downloads](https://img.shields.io/npm/dm/@claude-flow/memory.svg)](https://www.npmjs.com/package/@claude-flow/memory)
+[![npm version](https://img.shields.io/npm/v/@cortex-agent/memory.svg)](https://www.npmjs.com/package/@cortex-agent/memory)
+[![npm downloads](https://img.shields.io/npm/dm/@cortex-agent/memory.svg)](https://www.npmjs.com/package/@cortex-agent/memory)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue.svg)](https://www.typescriptlang.org/)
-[![Performance](https://img.shields.io/badge/Performance-150x--12500x%20Faster-brightgreen.svg)](https://github.com/ruvnet/claude-flow)
+[![Performance](https://img.shields.io/badge/Performance-150x--12500x%20Faster-brightgreen.svg)](https://github.com/ruvnet/cortex-agent)
 
-> High-performance memory module for Claude Flow V3 - AgentDB unification, HNSW indexing, vector search, self-learning knowledge graph, and hybrid SQLite+AgentDB backend (ADR-009).
+> High-performance memory module for Cortex Agent V3 - AgentDB unification, HNSW indexing, vector search, self-learning knowledge graph, and hybrid SQLite+AgentDB backend (ADR-009).
 
 ## Features
 
@@ -25,13 +25,13 @@
 ## Installation
 
 ```bash
-npm install @claude-flow/memory
+npm install @cortex-agent/memory
 ```
 
 ## Quick Start
 
 ```typescript
-import { HNSWIndex, AgentDBAdapter, CacheManager } from '@claude-flow/memory';
+import { HNSWIndex, AgentDBAdapter, CacheManager } from '@cortex-agent/memory';
 
 // Create HNSW index for vector search
 const index = new HNSWIndex({
@@ -55,7 +55,7 @@ const results = await index.search(queryVector, 10);
 ### HNSW Index
 
 ```typescript
-import { HNSWIndex } from '@claude-flow/memory';
+import { HNSWIndex } from '@cortex-agent/memory';
 
 const index = new HNSWIndex({
   dimensions: 1536,
@@ -97,7 +97,7 @@ const stats = index.getStats();
 ### AgentDB Adapter
 
 ```typescript
-import { AgentDBAdapter } from '@claude-flow/memory';
+import { AgentDBAdapter } from '@cortex-agent/memory';
 
 const adapter = new AgentDBAdapter({
   dimension: 1536,
@@ -136,7 +136,7 @@ await adapter.enableCrossAgentSharing({
 ### Cache Manager
 
 ```typescript
-import { CacheManager } from '@claude-flow/memory';
+import { CacheManager } from '@cortex-agent/memory';
 
 const cache = new CacheManager({
   maxSize: 1000,
@@ -159,7 +159,7 @@ const stats = cache.getStats();
 ### Query Builder
 
 ```typescript
-import { QueryBuilder } from '@claude-flow/memory';
+import { QueryBuilder } from '@cortex-agent/memory';
 
 const results = await new QueryBuilder()
   .semantic(queryVector)
@@ -174,7 +174,7 @@ const results = await new QueryBuilder()
 ### Migration
 
 ```typescript
-import { MemoryMigration } from '@claude-flow/memory';
+import { MemoryMigration } from '@cortex-agent/memory';
 
 const migration = new MemoryMigration({
   source: './data/v2-memory.db',
@@ -221,7 +221,7 @@ Bidirectional sync between Claude Code's [auto memory](https://code.claude.com/d
 ### Quick Start
 
 ```typescript
-import { AutoMemoryBridge } from '@claude-flow/memory';
+import { AutoMemoryBridge } from '@cortex-agent/memory';
 
 const bridge = new AutoMemoryBridge(memoryBackend, {
   workingDir: '/workspaces/my-project',
@@ -291,7 +291,7 @@ import {
   hashContent,           // SHA-256 truncated to 16 hex chars
   pruneTopicFile,        // Keep topic files under line limit
   hasSummaryLine,        // Exact bullet-prefix dedup check
-} from '@claude-flow/memory';
+} from '@cortex-agent/memory';
 ```
 
 ### Types
@@ -306,17 +306,17 @@ import type {
   PruneStrategy,
   SyncResult,
   ImportResult,
-} from '@claude-flow/memory';
+} from '@cortex-agent/memory';
 ```
 
 ## Self-Learning Bridge (ADR-049)
 
-Connects insights to the `@claude-flow/neural` learning pipeline. When neural is unavailable, all operations degrade to no-ops.
+Connects insights to the `@cortex-agent/neural` learning pipeline. When neural is unavailable, all operations degrade to no-ops.
 
 ### Quick Start
 
 ```typescript
-import { AutoMemoryBridge, LearningBridge } from '@claude-flow/memory';
+import { AutoMemoryBridge, LearningBridge } from '@cortex-agent/memory';
 
 const bridge = new AutoMemoryBridge(backend, {
   workingDir: '/workspaces/my-project',
@@ -343,12 +343,12 @@ await bridge.syncToAutoMemory(); // Calls consolidate() first
 ### Standalone Usage
 
 ```typescript
-import { LearningBridge } from '@claude-flow/memory';
+import { LearningBridge } from '@cortex-agent/memory';
 
 const lb = new LearningBridge(backend, {
   // Optional: inject neural loader for custom setups
   neuralLoader: async () => {
-    const { NeuralLearningSystem } = await import('@claude-flow/neural');
+    const { NeuralLearningSystem } = await import('@cortex-agent/neural');
     return new NeuralLearningSystem();
   },
 });
@@ -384,7 +384,7 @@ Pure TypeScript knowledge graph with PageRank and community detection. No extern
 ### Quick Start
 
 ```typescript
-import { AutoMemoryBridge, MemoryGraph } from '@claude-flow/memory';
+import { AutoMemoryBridge, MemoryGraph } from '@cortex-agent/memory';
 
 const bridge = new AutoMemoryBridge(backend, {
   workingDir: '/workspaces/my-project',
@@ -405,7 +405,7 @@ await bridge.curateIndex();
 ### Standalone Usage
 
 ```typescript
-import { MemoryGraph } from '@claude-flow/memory';
+import { MemoryGraph } from '@cortex-agent/memory';
 
 const graph = new MemoryGraph({
   pageRankDamping: 0.85,
@@ -467,7 +467,7 @@ Maps Claude Code's 3-scope agent memory directories for per-agent knowledge isol
 ### Quick Start
 
 ```typescript
-import { createAgentBridge, transferKnowledge } from '@claude-flow/memory';
+import { createAgentBridge, transferKnowledge } from '@cortex-agent/memory';
 
 // Create a bridge for a specific agent scope
 const agentBridge = createAgentBridge(backend, {
@@ -510,7 +510,7 @@ import {
   createAgentBridge,       // Create scoped AutoMemoryBridge
   transferKnowledge,       // Cross-agent knowledge sharing
   listAgentScopes,         // Discover existing agent scopes
-} from '@claude-flow/memory';
+} from '@cortex-agent/memory';
 
 // Resolve path for an agent scope
 const dir = resolveAgentMemoryDir('my-agent', 'project');
@@ -566,7 +566,7 @@ import type {
   // Agent Scope (ADR-049)
   AgentMemoryScope, AgentScopedConfig,
   TransferOptions, TransferResult,
-} from '@claude-flow/memory';
+} from '@cortex-agent/memory';
 ```
 
 ## Dependencies
@@ -574,13 +574,13 @@ import type {
 - `agentdb` - Vector database engine
 - `better-sqlite3` - SQLite driver (native)
 - `sql.js` - SQLite driver (WASM fallback)
-- `@claude-flow/neural` - **Optional peer dependency** for self-learning (graceful fallback when unavailable)
+- `@cortex-agent/neural` - **Optional peer dependency** for self-learning (graceful fallback when unavailable)
 
 ## Related Packages
 
-- [@claude-flow/neural](../neural) - Neural learning integration (SONA, ReasoningBank, EWC++)
-- [@claude-flow/shared](../shared) - Shared types and utilities
-- [@claude-flow/hooks](../hooks) - Session lifecycle hooks for auto memory sync
+- [@cortex-agent/neural](../neural) - Neural learning integration (SONA, ReasoningBank, EWC++)
+- [@cortex-agent/shared](../shared) - Shared types and utilities
+- [@cortex-agent/hooks](../hooks) - Session lifecycle hooks for auto memory sync
 
 ## License
 

@@ -19,11 +19,11 @@ hooks:
   pre: |
     echo "🔐 Claims Authorizer validating access"
     # Check agent claims
-    npx claude-flow@v3alpha claims check --agent "$AGENT_ID" --resource "$RESOURCE" --action "$ACTION"
+    npx cortex-agent@v3alpha claims check --agent "$AGENT_ID" --resource "$RESOURCE" --action "$ACTION"
   post: |
     echo "✅ Authorization complete"
     # Log authorization decision
-    mcp__claude-flow__memory_usage --action="store" --namespace="audit" --key="auth:$(date +%s)" --value="$AUTH_DECISION"
+    mcp__cortex-agent__memory_usage --action="store" --namespace="audit" --key="auth:$(date +%s)" --value="$AUTH_DECISION"
 ---
 
 # V3 Claims Authorizer Agent
@@ -68,24 +68,24 @@ You are a **Claims Authorizer** responsible for implementing ADR-010: Claims-Bas
 
 ```bash
 # Check if agent has permission
-npx claude-flow@v3alpha claims check \
+npx cortex-agent@v3alpha claims check \
   --agent "agent-123" \
   --resource "memory:patterns" \
   --action "write"
 
 # Grant claim to agent
-npx claude-flow@v3alpha claims grant \
+npx cortex-agent@v3alpha claims grant \
   --agent "agent-123" \
   --claim "scope:write" \
   --resource "memory:*"
 
 # Revoke claim
-npx claude-flow@v3alpha claims revoke \
+npx cortex-agent@v3alpha claims revoke \
   --agent "agent-123" \
   --claim "scope:admin"
 
 # List agent claims
-npx claude-flow@v3alpha claims list --agent "agent-123"
+npx cortex-agent@v3alpha claims list --agent "agent-123"
 ```
 
 ## Policy Definitions
@@ -152,17 +152,17 @@ Claims are checked automatically via hooks:
 ```json
 {
   "PreToolUse": [{
-    "matcher": "^mcp__claude-flow__.*$",
+    "matcher": "^mcp__cortex-agent__.*$",
     "hooks": [{
       "type": "command",
-      "command": "npx claude-flow@v3alpha claims check --agent $AGENT_ID --tool $TOOL_NAME --auto-deny"
+      "command": "npx cortex-agent@v3alpha claims check --agent $AGENT_ID --tool $TOOL_NAME --auto-deny"
     }]
   }],
   "PermissionRequest": [{
     "matcher": ".*",
     "hooks": [{
       "type": "command",
-      "command": "npx claude-flow@v3alpha claims evaluate --request '$PERMISSION_REQUEST'"
+      "command": "npx cortex-agent@v3alpha claims evaluate --request '$PERMISSION_REQUEST'"
     }]
   }]
 }
@@ -174,13 +174,13 @@ All authorization decisions are logged:
 
 ```bash
 # Store authorization decision
-mcp__claude-flow__memory_usage --action="store" \
+mcp__cortex-agent__memory_usage --action="store" \
   --namespace="audit" \
   --key="auth:$(date +%s)" \
   --value='{"agent":"agent-123","resource":"memory:patterns","action":"write","decision":"allow","reason":"has scope:write claim"}'
 
 # Query audit log
-mcp__claude-flow__memory_search --pattern="auth:*" --namespace="audit" --limit=100
+mcp__cortex-agent__memory_search --pattern="auth:*" --namespace="audit" --limit=100
 ```
 
 ## Default Policies

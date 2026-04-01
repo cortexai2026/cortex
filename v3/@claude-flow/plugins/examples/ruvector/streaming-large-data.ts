@@ -9,7 +9,7 @@
  *
  * Run with: npx ts-node examples/ruvector/streaming-large-data.ts
  *
- * @module @claude-flow/plugins/examples/ruvector/streaming-large-data
+ * @module @cortex-agent/plugins/examples/ruvector/streaming-large-data
  */
 
 import {

@@ -197,11 +197,11 @@ describe('CredentialGenerator', () => {
       const credentials = generator.generateInstallationCredentials();
       const script = generator.createEnvScript(credentials);
 
-      expect(script).toContain('export CLAUDE_FLOW_ADMIN_PASSWORD=');
-      expect(script).toContain('export CLAUDE_FLOW_SERVICE_PASSWORD=');
-      expect(script).toContain('export CLAUDE_FLOW_JWT_SECRET=');
-      expect(script).toContain('export CLAUDE_FLOW_SESSION_SECRET=');
-      expect(script).toContain('export CLAUDE_FLOW_ENCRYPTION_KEY=');
+      expect(script).toContain('export CORTEX_AGENT_ADMIN_PASSWORD=');
+      expect(script).toContain('export CORTEX_AGENT_SERVICE_PASSWORD=');
+      expect(script).toContain('export CORTEX_AGENT_JWT_SECRET=');
+      expect(script).toContain('export CORTEX_AGENT_SESSION_SECRET=');
+      expect(script).toContain('export CORTEX_AGENT_ENCRYPTION_KEY=');
     });
 
     it('should include warning comment', () => {
@@ -225,11 +225,11 @@ describe('CredentialGenerator', () => {
       const json = generator.createJsonConfig(credentials);
       const parsed = JSON.parse(json);
 
-      expect(parsed['claude-flow/admin-password']).toBe(credentials.adminPassword);
-      expect(parsed['claude-flow/service-password']).toBe(credentials.servicePassword);
-      expect(parsed['claude-flow/jwt-secret']).toBe(credentials.jwtSecret);
-      expect(parsed['claude-flow/session-secret']).toBe(credentials.sessionSecret);
-      expect(parsed['claude-flow/encryption-key']).toBe(credentials.encryptionKey);
+      expect(parsed['cortex-agent/admin-password']).toBe(credentials.adminPassword);
+      expect(parsed['cortex-agent/service-password']).toBe(credentials.servicePassword);
+      expect(parsed['cortex-agent/jwt-secret']).toBe(credentials.jwtSecret);
+      expect(parsed['cortex-agent/session-secret']).toBe(credentials.sessionSecret);
+      expect(parsed['cortex-agent/encryption-key']).toBe(credentials.encryptionKey);
     });
   });
 

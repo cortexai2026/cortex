@@ -1,7 +1,7 @@
 /**
- * @claude-flow/providers
+ * @cortex-agent/providers
  *
- * Multi-LLM Provider System for Claude Flow V3
+ * Multi-LLM Provider System for Cortex Agent V3
  *
  * Supports:
  * - Anthropic (Claude 3.5, 3 Opus, Sonnet, Haiku)
@@ -18,7 +18,7 @@
  * - Circuit breaker protection
  * - Health monitoring
  *
- * @module @claude-flow/providers
+ * @module @cortex-agent/providers
  */
 
 // Export types

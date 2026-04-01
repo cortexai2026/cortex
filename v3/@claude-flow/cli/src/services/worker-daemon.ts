@@ -133,9 +133,9 @@ export class WorkerDaemon extends EventEmitter {
     this.projectRoot = projectRoot;
     this.originalConfig = config;
 
-    const claudeFlowDir = join(projectRoot, '.claude-flow');
+    const claudeFlowDir = join(projectRoot, '.cortex-agent');
 
-    // Read daemon config from .claude-flow/config.json (Layer B)
+    // Read daemon config from .cortex-agent/config.json (Layer B)
     const fileConfig = this.readDaemonConfigFromFile(claudeFlowDir);
 
     // CPU-proportional smart default instead of hardcoded 2.0
@@ -268,7 +268,7 @@ export class WorkerDaemon extends EventEmitter {
   }
 
   /**
-   * Read daemon-specific config from .claude-flow/config.json
+   * Read daemon-specific config from .cortex-agent/config.json
    * Supports dot-notation keys like 'daemon.resourceThresholds.maxCpuLoad'
    */
   private readDaemonConfigFromFile(claudeFlowDir: string): {
@@ -446,7 +446,7 @@ export class WorkerDaemon extends EventEmitter {
    * Get the PID file path for singleton enforcement (#1395 Bug 3).
    */
   private get pidFile(): string {
-    return join(this.projectRoot, '.claude-flow', 'daemon.pid');
+    return join(this.projectRoot, '.cortex-agent', 'daemon.pid');
   }
 
   /**
@@ -472,7 +472,7 @@ export class WorkerDaemon extends EventEmitter {
    * Write PID file for singleton enforcement.
    */
   private writePidFile(): void {
-    const dir = join(this.projectRoot, '.claude-flow');
+    const dir = join(this.projectRoot, '.cortex-agent');
     if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
     writeFileSync(this.pidFile, String(process.pid), 'utf-8');
   }
@@ -802,8 +802,8 @@ export class WorkerDaemon extends EventEmitter {
 
   private async runMapWorker(): Promise<unknown> {
     // Scan project structure and update metrics
-    const metricsFile = join(this.projectRoot, '.claude-flow', 'metrics', 'codebase-map.json');
-    const metricsDir = join(this.projectRoot, '.claude-flow', 'metrics');
+    const metricsFile = join(this.projectRoot, '.cortex-agent', 'metrics', 'codebase-map.json');
+    const metricsDir = join(this.projectRoot, '.cortex-agent', 'metrics');
 
     if (!existsSync(metricsDir)) {
       mkdirSync(metricsDir, { recursive: true });
@@ -816,7 +816,7 @@ export class WorkerDaemon extends EventEmitter {
         hasPackageJson: existsSync(join(this.projectRoot, 'package.json')),
         hasTsConfig: existsSync(join(this.projectRoot, 'tsconfig.json')),
         hasClaudeConfig: existsSync(join(this.projectRoot, '.claude')),
-        hasClaudeFlow: existsSync(join(this.projectRoot, '.claude-flow')),
+        hasCortexAgent: existsSync(join(this.projectRoot, '.cortex-agent')),
       },
       scannedAt: Date.now(),
     };
@@ -830,8 +830,8 @@ export class WorkerDaemon extends EventEmitter {
    */
   private async runAuditWorkerLocal(): Promise<unknown> {
     // Basic security checks
-    const auditFile = join(this.projectRoot, '.claude-flow', 'metrics', 'security-audit.json');
-    const metricsDir = join(this.projectRoot, '.claude-flow', 'metrics');
+    const auditFile = join(this.projectRoot, '.cortex-agent', 'metrics', 'security-audit.json');
+    const metricsDir = join(this.projectRoot, '.cortex-agent', 'metrics');
 
     if (!existsSync(metricsDir)) {
       mkdirSync(metricsDir, { recursive: true });
@@ -859,8 +859,8 @@ export class WorkerDaemon extends EventEmitter {
    */
   private async runOptimizeWorkerLocal(): Promise<unknown> {
     // Update performance metrics
-    const optimizeFile = join(this.projectRoot, '.claude-flow', 'metrics', 'performance.json');
-    const metricsDir = join(this.projectRoot, '.claude-flow', 'metrics');
+    const optimizeFile = join(this.projectRoot, '.cortex-agent', 'metrics', 'performance.json');
+    const metricsDir = join(this.projectRoot, '.cortex-agent', 'metrics');
 
     if (!existsSync(metricsDir)) {
       mkdirSync(metricsDir, { recursive: true });
@@ -884,8 +884,8 @@ export class WorkerDaemon extends EventEmitter {
 
   private async runConsolidateWorker(): Promise<unknown> {
     // Memory consolidation - clean up old patterns
-    const consolidateFile = join(this.projectRoot, '.claude-flow', 'metrics', 'consolidation.json');
-    const metricsDir = join(this.projectRoot, '.claude-flow', 'metrics');
+    const consolidateFile = join(this.projectRoot, '.cortex-agent', 'metrics', 'consolidation.json');
+    const metricsDir = join(this.projectRoot, '.cortex-agent', 'metrics');
 
     if (!existsSync(metricsDir)) {
       mkdirSync(metricsDir, { recursive: true });
@@ -907,8 +907,8 @@ export class WorkerDaemon extends EventEmitter {
    */
   private async runTestGapsWorkerLocal(): Promise<unknown> {
     // Check for test coverage gaps
-    const testGapsFile = join(this.projectRoot, '.claude-flow', 'metrics', 'test-gaps.json');
-    const metricsDir = join(this.projectRoot, '.claude-flow', 'metrics');
+    const testGapsFile = join(this.projectRoot, '.cortex-agent', 'metrics', 'test-gaps.json');
+    const metricsDir = join(this.projectRoot, '.cortex-agent', 'metrics');
 
     if (!existsSync(metricsDir)) {
       mkdirSync(metricsDir, { recursive: true });
@@ -996,8 +996,8 @@ export class WorkerDaemon extends EventEmitter {
    * Local benchmark worker
    */
   private async runBenchmarkWorkerLocal(): Promise<unknown> {
-    const benchmarkFile = join(this.projectRoot, '.claude-flow', 'metrics', 'benchmark.json');
-    const metricsDir = join(this.projectRoot, '.claude-flow', 'metrics');
+    const benchmarkFile = join(this.projectRoot, '.cortex-agent', 'metrics', 'benchmark.json');
+    const metricsDir = join(this.projectRoot, '.cortex-agent', 'metrics');
 
     if (!existsSync(metricsDir)) {
       mkdirSync(metricsDir, { recursive: true });

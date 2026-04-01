@@ -5,7 +5,7 @@
  * Allows programmatic control of the autopilot loop via MCP.
  *
  * ADR-072: Autopilot Integration
- * @module @claude-flow/cli/mcp-tools/autopilot
+ * @module @cortex-agent/cli/mcp-tools/autopilot
  */
 
 import type { MCPTool } from './types.js';

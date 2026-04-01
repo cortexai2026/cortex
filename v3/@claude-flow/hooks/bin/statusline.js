@@ -36,10 +36,10 @@ Usage:
   statusline --help       Show this help
 
 Environment Variables:
-  CLAUDE_FLOW_STATUSLINE_REFRESH   Refresh interval in ms
-  CLAUDE_FLOW_SHOW_HOOKS_METRICS   Show hooks metrics (true/false)
-  CLAUDE_FLOW_SHOW_SWARM_ACTIVITY  Show swarm activity (true/false)
-  CLAUDE_FLOW_SHOW_PERFORMANCE     Show performance targets (true/false)
+  CORTEX_AGENT_STATUSLINE_REFRESH   Refresh interval in ms
+  CORTEX_AGENT_SHOW_HOOKS_METRICS   Show hooks metrics (true/false)
+  CORTEX_AGENT_SHOW_SWARM_ACTIVITY  Show swarm activity (true/false)
+  CORTEX_AGENT_SHOW_PERFORMANCE     Show performance targets (true/false)
 
 Examples:
   statusline                       # Display formatted status
@@ -53,9 +53,9 @@ Examples:
   const generator = new StatuslineGenerator({
     enabled: true,
     refreshOnHook: true,
-    showHooksMetrics: process.env.CLAUDE_FLOW_SHOW_HOOKS_METRICS !== 'false',
-    showSwarmActivity: process.env.CLAUDE_FLOW_SHOW_SWARM_ACTIVITY !== 'false',
-    showPerformance: process.env.CLAUDE_FLOW_SHOW_PERFORMANCE !== 'false',
+    showHooksMetrics: process.env.CORTEX_AGENT_SHOW_HOOKS_METRICS !== 'false',
+    showSwarmActivity: process.env.CORTEX_AGENT_SHOW_SWARM_ACTIVITY !== 'false',
+    showPerformance: process.env.CORTEX_AGENT_SHOW_PERFORMANCE !== 'false',
   });
 
   // Try to read from metrics database or files

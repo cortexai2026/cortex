@@ -1,24 +1,24 @@
 /**
- * GitIgnore updater for Claude Flow initialization
- * Ensures Claude Flow generated files are properly ignored
+ * GitIgnore updater for Cortex Agent initialization
+ * Ensures Cortex Agent generated files are properly ignored
  */
 
 import { existsSync, readTextFile, writeTextFile } from '../../node-compat.js';
 
 /**
- * Default gitignore entries for Claude Flow
+ * Default gitignore entries for Cortex Agent
  */
-const CLAUDE_FLOW_GITIGNORE_ENTRIES = `
-# Claude Flow generated files
+const CORTEX_AGENT_GITIGNORE_ENTRIES = `
+# Cortex Agent generated files
 .claude/settings.local.json
 .mcp.json
-claude-flow.config.json
+cortex-agent.config.json
 .swarm/
 .hive-mind/
-.claude-flow/
+.cortex-agent/
 memory/
 coordination/
-memory/claude-flow-data.json
+memory/cortex-agent-data.json
 memory/sessions/*
 !memory/sessions/README.md
 memory/agents/*
@@ -32,13 +32,13 @@ coordination/orchestration/*
 *.sqlite
 *.sqlite-journal
 *.sqlite-wal
-claude-flow
+cortex-agent
 # Removed Windows wrapper files per user request
 hive-mind-prompt-*.txt
 `;
 
 /**
- * Update or create .gitignore with Claude Flow entries
+ * Update or create .gitignore with Cortex Agent entries
  * @param {string} workingDir - The working directory
  * @param {boolean} force - Whether to force update even if entries exist
  * @param {boolean} dryRun - Whether to run in dry-run mode
@@ -57,19 +57,19 @@ export async function updateGitignore(workingDir, force = false, dryRun = false)
       gitignoreContent = await readTextFile(gitignorePath);
     }
 
-    // Check if Claude Flow section already exists
-    const claudeFlowMarker = '# Claude Flow generated files';
+    // Check if Cortex Agent section already exists
+    const claudeFlowMarker = '# Cortex Agent generated files';
     if (gitignoreContent.includes(claudeFlowMarker) && !force) {
       return {
         success: true,
-        message: '.gitignore already contains Claude Flow entries',
+        message: '.gitignore already contains Cortex Agent entries',
       };
     }
 
     // Prepare the new content
     let newContent = gitignoreContent;
 
-    // Remove existing Claude Flow section if force updating
+    // Remove existing Cortex Agent section if force updating
     if (force && gitignoreContent.includes(claudeFlowMarker)) {
       const startIndex = gitignoreContent.indexOf(claudeFlowMarker);
       const endIndex = gitignoreContent.indexOf('\n# ', startIndex + 1);
@@ -77,16 +77,16 @@ export async function updateGitignore(workingDir, force = false, dryRun = false)
         newContent =
           gitignoreContent.substring(0, startIndex) + gitignoreContent.substring(endIndex);
       } else {
-        // Claude Flow section is at the end
+        // Cortex Agent section is at the end
         newContent = gitignoreContent.substring(0, startIndex);
       }
     }
 
-    // Add Claude Flow entries
+    // Add Cortex Agent entries
     if (!newContent.endsWith('\n') && newContent.length > 0) {
       newContent += '\n';
     }
-    newContent += CLAUDE_FLOW_GITIGNORE_ENTRIES;
+    newContent += CORTEX_AGENT_GITIGNORE_ENTRIES;
 
     // Write the file
     if (!dryRun) {
@@ -97,8 +97,8 @@ export async function updateGitignore(workingDir, force = false, dryRun = false)
       success: true,
       message: fileExists
         ? (dryRun ? '[DRY RUN] Would update' : 'Updated') +
-          ' existing .gitignore with Claude Flow entries'
-        : (dryRun ? '[DRY RUN] Would create' : 'Created') + ' .gitignore with Claude Flow entries',
+          ' existing .gitignore with Cortex Agent entries'
+        : (dryRun ? '[DRY RUN] Would create' : 'Created') + ' .gitignore with Cortex Agent entries',
     };
   } catch (error) {
     return {
@@ -122,7 +122,7 @@ export async function needsGitignoreUpdate(workingDir) {
 
   try {
     const content = await readTextFile(gitignorePath);
-    return !content.includes('# Claude Flow generated files');
+    return !content.includes('# Cortex Agent generated files');
   } catch {
     return true;
   }
@@ -133,7 +133,7 @@ export async function needsGitignoreUpdate(workingDir) {
  * @returns {string[]}
  */
 export function getGitignorePatterns() {
-  return CLAUDE_FLOW_GITIGNORE_ENTRIES.split('\n')
+  return CORTEX_AGENT_GITIGNORE_ENTRIES.split('\n')
     .filter((line) => line.trim() && !line.startsWith('#') && !line.startsWith('!'))
     .map((line) => line.trim());
 }

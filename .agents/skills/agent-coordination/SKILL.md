@@ -35,32 +35,32 @@ Spawn and coordinate agents for complex multi-agent tasks.
 
 ### Spawn Agent
 ```bash
-npx claude-flow agent spawn --type coder --name my-coder
+npx cortex-agent agent spawn --type coder --name my-coder
 ```
 
 ### List Agents
 ```bash
-npx claude-flow agent list --filter active
+npx cortex-agent agent list --filter active
 ```
 
 ### Agent Status
 ```bash
-npx claude-flow agent status --id agent-123
+npx cortex-agent agent status --id agent-123
 ```
 
 ### Agent Metrics
 ```bash
-npx claude-flow agent metrics --id agent-123
+npx cortex-agent agent metrics --id agent-123
 ```
 
 ### Stop Agent
 ```bash
-npx claude-flow agent stop --id agent-123
+npx cortex-agent agent stop --id agent-123
 ```
 
 ### Pool Management
 ```bash
-npx claude-flow agent pool --size 5 --type coder
+npx cortex-agent agent pool --size 5 --type coder
 ```
 
 ## Routing Codes

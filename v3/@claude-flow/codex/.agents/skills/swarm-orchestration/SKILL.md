@@ -27,21 +27,21 @@ Multi-agent swarm coordination for complex tasks.
 Start a new swarm with hierarchical topology
 
 ```bash
-npx @claude-flow/cli swarm init --topology hierarchical --max-agents 8
+npx @cortex-agent/cli swarm init --topology hierarchical --max-agents 8
 ```
 
 ### Route Task
 Route a task to the appropriate agents
 
 ```bash
-npx @claude-flow/cli hooks route --task "[task description]"
+npx @cortex-agent/cli hooks route --task "[task description]"
 ```
 
 ### Monitor Status
 Check the current swarm status
 
 ```bash
-npx @claude-flow/cli swarm status
+npx @cortex-agent/cli swarm status
 ```
 
 

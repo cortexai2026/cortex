@@ -29,20 +29,20 @@ SPARC is a systematic approach to software development:
 
 ## Usage with Claude-Flow
 
-Use the claude-flow SPARC commands to leverage this environment:
+Use the cortex-agent SPARC commands to leverage this environment:
 
 \`\`\`bash
 # List available modes
-claude-flow sparc modes
+cortex-agent sparc modes
 
 # Run specific mode
-claude-flow sparc run code "implement user authentication"
+cortex-agent sparc run code "implement user authentication"
 
 # Execute full TDD workflow  
-claude-flow sparc tdd "payment processing system"
+cortex-agent sparc tdd "payment processing system"
 
 # Use custom workflow
-claude-flow sparc workflow .roo/workflows/basic-tdd.json
+cortex-agent sparc workflow .roo/workflows/basic-tdd.json
 \`\`\`
 
 ## Configuration

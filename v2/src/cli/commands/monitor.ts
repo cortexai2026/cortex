@@ -342,7 +342,7 @@ class Dashboard {
 
     if ((error as Error).message.includes('ECONNREFUSED')) {
       console.log(chalk.red('✗ Cannot connect to Claude-Flow'));
-      console.log(chalk.gray('Make sure Claude-Flow is running with: claude-flow start'));
+      console.log(chalk.gray('Make sure Claude-Flow is running with: cortex-agent start'));
     } else {
       console.log(chalk.red('Error:'), (error as Error).message);
     }
@@ -471,7 +471,7 @@ class Dashboard {
 
   private async checkSystemRunning(): Promise<boolean> {
     try {
-      return await existsSync('.claude-flow.pid');
+      return await existsSync('.cortex-agent.pid');
     } catch {
       return false;
     }

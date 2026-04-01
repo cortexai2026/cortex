@@ -30,7 +30,7 @@ export class MCPIntegration {
 
       this.claudeCodeClient = new Client(
         {
-          name: 'claude-flow-wrapper-client',
+          name: 'cortex-agent-wrapper-client',
           version: '1.0.0',
         },
         {

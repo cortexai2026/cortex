@@ -1,5 +1,5 @@
 /**
- * @claude-flow/guidance - Guidance Control Plane
+ * @cortex-agent/guidance - Guidance Control Plane
  *
  * Sits beside Claude Code (not inside it) to:
  * 1. Compile CLAUDE.md into constitution + shards + manifest
@@ -18,7 +18,7 @@
  * - Hook system for enforcement gates
  * - RuVector/HNSW for semantic shard retrieval
  *
- * @module @claude-flow/guidance
+ * @module @cortex-agent/guidance
  */
 
 import { readFile } from 'node:fs/promises';
@@ -440,7 +440,7 @@ const DEFAULT_CONFIG: GuidanceControlPlaneConfig = {
   gates: {},
   maxShardsPerTask: 5,
   optimizationCycleDays: 7,
-  dataDir: './.claude-flow/guidance',
+  dataDir: './.cortex-agent/guidance',
   headlessMode: false,
 };
 

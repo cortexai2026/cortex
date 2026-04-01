@@ -1,12 +1,12 @@
-# @claude-flow/integration
+# @cortex-agent/integration
 
-[![npm version](https://img.shields.io/npm/v/@claude-flow/integration.svg)](https://www.npmjs.com/package/@claude-flow/integration)
-[![npm downloads](https://img.shields.io/npm/dm/@claude-flow/integration.svg)](https://www.npmjs.com/package/@claude-flow/integration)
+[![npm version](https://img.shields.io/npm/v/@cortex-agent/integration.svg)](https://www.npmjs.com/package/@cortex-agent/integration)
+[![npm downloads](https://img.shields.io/npm/dm/@cortex-agent/integration.svg)](https://www.npmjs.com/package/@cortex-agent/integration)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue.svg)](https://www.typescriptlang.org/)
-[![ADR-001](https://img.shields.io/badge/ADR--001-Compliant-green.svg)](https://github.com/ruvnet/claude-flow)
+[![ADR-001](https://img.shields.io/badge/ADR--001-Compliant-green.svg)](https://github.com/ruvnet/cortex-agent)
 
-> Deep agentic-flow@alpha integration module for Claude Flow V3 - ADR-001 compliance, code deduplication, SONA adapter, and Flash Attention coordinator.
+> Deep agentic-flow@alpha integration module for Cortex Agent V3 - ADR-001 compliance, code deduplication, SONA adapter, and Flash Attention coordinator.
 
 ## Features
 
@@ -21,7 +21,7 @@
 ## Installation
 
 ```bash
-npm install @claude-flow/integration
+npm install @cortex-agent/integration
 
 # Optional: Install agentic-flow for optimal performance
 npm install agentic-flow@alpha
@@ -30,7 +30,7 @@ npm install agentic-flow@alpha
 ## Quick Start
 
 ```typescript
-import { AgenticFlowBridge, createAgenticFlowBridge } from '@claude-flow/integration';
+import { AgenticFlowBridge, createAgenticFlowBridge } from '@cortex-agent/integration';
 
 // Create and initialize bridge
 const bridge = await createAgenticFlowBridge({
@@ -62,7 +62,7 @@ const result = await attention.compute({ query, key, value });
 ### AgenticFlowBridge
 
 ```typescript
-import { AgenticFlowBridge } from '@claude-flow/integration';
+import { AgenticFlowBridge } from '@cortex-agent/integration';
 
 const bridge = new AgenticFlowBridge({
   sona: {
@@ -252,7 +252,7 @@ import type {
   ComponentHealth,
   FeatureFlags,
   AgenticFlowCore
-} from '@claude-flow/integration';
+} from '@cortex-agent/integration';
 ```
 
 ## Peer Dependencies
@@ -261,9 +261,9 @@ import type {
 
 ## Related Packages
 
-- [@claude-flow/neural](../neural) - SONA learning module
-- [@claude-flow/memory](../memory) - AgentDB memory
-- [@claude-flow/performance](../performance) - Benchmarking
+- [@cortex-agent/neural](../neural) - SONA learning module
+- [@cortex-agent/memory](../memory) - AgentDB memory
+- [@cortex-agent/performance](../performance) - Benchmarking
 
 ## License
 

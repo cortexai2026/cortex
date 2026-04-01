@@ -66,7 +66,7 @@ export class PluginManager {
   private manifest: InstalledPluginsManifest | null = null;
 
   constructor(baseDir: string = process.cwd()) {
-    const pluginsDir = path.join(baseDir, '.claude-flow', 'plugins');
+    const pluginsDir = path.join(baseDir, '.cortex-agent', 'plugins');
     this.config = {
       pluginsDir,
       manifestPath: path.join(pluginsDir, 'installed.json'),
@@ -175,10 +175,10 @@ export class PluginManager {
         const pkg = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
         installedVersion = pkg.version;
 
-        // Check for claude-flow plugin metadata
-        if (pkg['claude-flow']) {
-          commands = pkg['claude-flow'].commands || [];
-          hooks = pkg['claude-flow'].hooks || [];
+        // Check for cortex-agent plugin metadata
+        if (pkg['cortex-agent']) {
+          commands = pkg['cortex-agent'].commands || [];
+          hooks = pkg['cortex-agent'].hooks || [];
         }
       }
 
@@ -250,8 +250,8 @@ export class PluginManager {
         enabled: true,
         source: 'local',
         path: absolutePath,
-        commands: pkg['claude-flow']?.commands || [],
-        hooks: pkg['claude-flow']?.hooks || [],
+        commands: pkg['cortex-agent']?.commands || [],
+        hooks: pkg['cortex-agent']?.hooks || [],
       };
 
       // Save to manifest
@@ -460,8 +460,8 @@ export class PluginManager {
       if (fs.existsSync(packageJsonPath)) {
         const pkg = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
         existing.version = pkg.version;
-        existing.commands = pkg['claude-flow']?.commands || existing.commands;
-        existing.hooks = pkg['claude-flow']?.hooks || existing.hooks;
+        existing.commands = pkg['cortex-agent']?.commands || existing.commands;
+        existing.hooks = pkg['cortex-agent']?.hooks || existing.hooks;
       }
 
       await this.saveManifest();
@@ -525,7 +525,7 @@ let defaultManager: PluginManager | null = null;
 export function getPluginManager(baseDir?: string): PluginManager {
   if (!defaultManager) {
     defaultManager = new PluginManager(baseDir);
-  } else if (baseDir && defaultManager.getPluginsDir() !== path.join(baseDir, '.claude-flow', 'plugins')) {
+  } else if (baseDir && defaultManager.getPluginsDir() !== path.join(baseDir, '.cortex-agent', 'plugins')) {
     console.warn(`[PluginManager] Warning: getPluginManager called with different baseDir. Using existing instance. Call resetPluginManager() first to change.`);
   }
   return defaultManager;

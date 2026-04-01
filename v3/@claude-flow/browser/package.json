@@ -1,7 +1,7 @@
 {
-  "name": "@claude-flow/browser",
+  "name": "@cortex-agent/browser",
   "version": "3.0.0-alpha.2",
-  "description": "Browser automation for AI agents - integrates agent-browser with claude-flow swarms",
+  "description": "Browser automation for AI agents - integrates agent-browser with cortex-agent swarms",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -27,7 +27,7 @@
     "zod": "^3.22.4"
   },
   "peerDependencies": {
-    "@claude-flow/cli": "^3.0.0-alpha.140"
+    "@cortex-agent/cli": "^3.0.0-alpha.140"
   },
   "devDependencies": {
     "@types/node": "^20.10.0",
@@ -38,7 +38,7 @@
     "browser",
     "automation",
     "ai-agent",
-    "claude-flow",
+    "cortex-agent",
     "playwright",
     "web-scraping",
     "testing"
@@ -47,8 +47,8 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ruvnet/claude-flow.git",
-    "directory": "v3/@claude-flow/browser"
+    "url": "https://github.com/ruvnet/cortex-agent.git",
+    "directory": "v3/@cortex-agent/browser"
   },
   "engines": {
     "node": ">=18.0.0"

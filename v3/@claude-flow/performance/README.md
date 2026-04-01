@@ -1,12 +1,12 @@
-# @claude-flow/performance
+# @cortex-agent/performance
 
-[![npm version](https://img.shields.io/npm/v/@claude-flow/performance.svg)](https://www.npmjs.com/package/@claude-flow/performance)
-[![npm downloads](https://img.shields.io/npm/dm/@claude-flow/performance.svg)](https://www.npmjs.com/package/@claude-flow/performance)
+[![npm version](https://img.shields.io/npm/v/@cortex-agent/performance.svg)](https://www.npmjs.com/package/@cortex-agent/performance)
+[![npm downloads](https://img.shields.io/npm/dm/@cortex-agent/performance.svg)](https://www.npmjs.com/package/@cortex-agent/performance)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue.svg)](https://www.typescriptlang.org/)
 [![Benchmarks](https://img.shields.io/badge/Benchmarks-Vitest-green.svg)](https://vitest.dev/)
 
-> Comprehensive performance benchmarking module for Claude Flow V3 - statistical analysis, memory tracking, regression detection, and Flash Attention validation.
+> Comprehensive performance benchmarking module for Cortex Agent V3 - statistical analysis, memory tracking, regression detection, and Flash Attention validation.
 
 ## Features
 
@@ -21,13 +21,13 @@
 ## Installation
 
 ```bash
-npm install @claude-flow/performance
+npm install @cortex-agent/performance
 ```
 
 ## Quick Start
 
 ```typescript
-import { benchmark, BenchmarkRunner, V3_PERFORMANCE_TARGETS } from '@claude-flow/performance';
+import { benchmark, BenchmarkRunner, V3_PERFORMANCE_TARGETS } from '@cortex-agent/performance';
 
 // Single benchmark
 const result = await benchmark('vector-search', async () => {
@@ -50,7 +50,7 @@ if (result.mean <= V3_PERFORMANCE_TARGETS['vector-search']) {
 ### Single Benchmark
 
 ```typescript
-import { benchmark } from '@claude-flow/performance';
+import { benchmark } from '@cortex-agent/performance';
 
 const result = await benchmark(
   'my-benchmark',
@@ -90,7 +90,7 @@ const result = await benchmark(
 ### Benchmark Suite
 
 ```typescript
-import { BenchmarkRunner } from '@claude-flow/performance';
+import { BenchmarkRunner } from '@cortex-agent/performance';
 
 const runner = new BenchmarkRunner('Memory Operations');
 
@@ -120,7 +120,7 @@ const json = runner.toJSON();
 ### Comparison & Regression Detection
 
 ```typescript
-import { compareResults, printComparisonReport } from '@claude-flow/performance';
+import { compareResults, printComparisonReport } from '@cortex-agent/performance';
 
 // Compare current vs baseline
 const comparisons = compareResults(baselineResults, currentResults, {
@@ -146,7 +146,7 @@ for (const comp of comparisons) {
 ### V3 Performance Targets
 
 ```typescript
-import { V3_PERFORMANCE_TARGETS, meetsTarget } from '@claude-flow/performance';
+import { V3_PERFORMANCE_TARGETS, meetsTarget } from '@cortex-agent/performance';
 
 // Built-in targets
 V3_PERFORMANCE_TARGETS = {
@@ -180,7 +180,7 @@ const { met, target, ratio } = meetsTarget('vector-search', 0.8);
 ### Formatting Utilities
 
 ```typescript
-import { formatBytes, formatTime } from '@claude-flow/performance';
+import { formatBytes, formatTime } from '@cortex-agent/performance';
 
 formatTime(0.00005);  // '50.00 ns'
 formatTime(0.5);      // '500.00 us'
@@ -210,7 +210,7 @@ npm run bench:startup
 ```typescript
 // benchmarks/memory.bench.ts
 import { describe, bench } from 'vitest';
-import { HNSWIndex } from '@claude-flow/memory';
+import { HNSWIndex } from '@cortex-agent/memory';
 
 describe('Memory Benchmarks', () => {
   const index = new HNSWIndex({ dimensions: 1536 });
@@ -236,7 +236,7 @@ import type {
   EnvironmentInfo,
   ComparisonResult,
   PerformanceTarget
-} from '@claude-flow/performance';
+} from '@cortex-agent/performance';
 ```
 
 ## Dependencies
@@ -247,9 +247,9 @@ import type {
 
 ## Related Packages
 
-- [@claude-flow/memory](../memory) - Memory operations to benchmark
-- [@claude-flow/swarm](../swarm) - Swarm coordination to benchmark
-- [@claude-flow/neural](../neural) - Neural operations to benchmark
+- [@cortex-agent/memory](../memory) - Memory operations to benchmark
+- [@cortex-agent/swarm](../swarm) - Swarm coordination to benchmark
+- [@cortex-agent/neural](../neural) - Neural operations to benchmark
 
 ## License
 

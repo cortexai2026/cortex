@@ -685,7 +685,7 @@ export const SwarmMonitorUI: React.FC = () => {
 
 ### Network Policy Configuration
 ```typescript
-// claude-flow.config.ts
+// cortex-agent.config.ts
 export default {
   swarm: {
     networkPolicies: {

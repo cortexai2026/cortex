@@ -1,5 +1,5 @@
 #!/bin/bash
-# Claude Flow Plugin Uninstallation Script
+# Cortex Agent Plugin Uninstallation Script
 
 set -e
 
@@ -12,11 +12,11 @@ info() { echo -e "${GREEN}ℹ${NC} $1"; }
 warning() { echo -e "${YELLOW}⚠${NC} $1"; }
 
 echo -e "${RED}═══════════════════════════════════════════════════${NC}"
-echo -e "${RED}    Claude Flow Plugin Uninstaller${NC}"
+echo -e "${RED}    Cortex Agent Plugin Uninstaller${NC}"
 echo -e "${RED}═══════════════════════════════════════════════════${NC}"
 echo ""
 
-warning "This will remove Claude Flow commands, agents, and configuration."
+warning "This will remove Cortex Agent commands, agents, and configuration."
 read -p "Continue? (y/n): " CONFIRM
 
 if [ "$CONFIRM" != "y" ]; then

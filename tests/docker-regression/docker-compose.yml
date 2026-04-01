@@ -9,27 +9,27 @@ services:
     build:
       context: ../..
       dockerfile: tests/docker-regression/Dockerfile
-    container_name: claude-flow-test-runner
+    container_name: cortex-agent-test-runner
     volumes:
       - test-data:/app/data
       - test-reports:/app/reports
       - test-logs:/app/logs
     environment:
       - NODE_ENV=test
-      - CLAUDE_FLOW_MODE=test
-      - CLAUDE_FLOW_MEMORY_PATH=/app/data
-      - CLAUDE_FLOW_LOG_LEVEL=debug
-      - CLAUDE_FLOW_MAX_AGENTS=15
-      - CLAUDE_FLOW_SECURITY_MODE=strict
-      - CLAUDE_FLOW_HNSW_M=16
-      - CLAUDE_FLOW_HNSW_EF=200
-      - CLAUDE_FLOW_EMBEDDING_DIM=384
+      - CORTEX_AGENT_MODE=test
+      - CORTEX_AGENT_MEMORY_PATH=/app/data
+      - CORTEX_AGENT_LOG_LEVEL=debug
+      - CORTEX_AGENT_MAX_AGENTS=15
+      - CORTEX_AGENT_SECURITY_MODE=strict
+      - CORTEX_AGENT_HNSW_M=16
+      - CORTEX_AGENT_HNSW_EF=200
+      - CORTEX_AGENT_EMBEDDING_DIM=384
       - CI=true
       - TEST_REPORT_PATH=/app/reports
       - MCP_SERVER_HOST=localhost
       - MCP_SERVER_PORT=3000
     networks:
-      - claude-flow-test
+      - cortex-agent-test
     command: ["bash", "/app/tests/docker-regression/scripts/run-all-tests.sh"]
 
   # MCP Server for integration tests
@@ -37,34 +37,34 @@ services:
     build:
       context: ../..
       dockerfile: tests/docker-regression/Dockerfile
-    container_name: claude-flow-mcp-server
+    container_name: cortex-agent-mcp-server
     volumes:
       - test-data:/app/data
       - test-logs:/app/logs
     environment:
       - NODE_ENV=test
-      - CLAUDE_FLOW_MODE=test
-      - CLAUDE_FLOW_MEMORY_PATH=/app/data
-      - CLAUDE_FLOW_LOG_LEVEL=info
+      - CORTEX_AGENT_MODE=test
+      - CORTEX_AGENT_MEMORY_PATH=/app/data
+      - CORTEX_AGENT_LOG_LEVEL=info
       - MCP_PORT=3000
     ports:
       - "3000:3000"
     networks:
-      - claude-flow-test
+      - cortex-agent-test
     healthcheck:
       test: ["CMD", "nc", "-z", "localhost", "3000"]
       interval: 5s
       timeout: 5s
       retries: 10
       start_period: 30s
-    command: ["npx", "claude-flow", "mcp", "start", "--port", "3000"]
+    command: ["npx", "cortex-agent", "mcp", "start", "--port", "3000"]
 
   # Unit test runner
   unit-tests:
     build:
       context: ../..
       dockerfile: tests/docker-regression/Dockerfile
-    container_name: claude-flow-unit-tests
+    container_name: cortex-agent-unit-tests
     volumes:
       - test-reports:/app/reports
     environment:
@@ -72,7 +72,7 @@ services:
       - CI=true
       - TEST_REPORT_PATH=/app/reports
     networks:
-      - claude-flow-test
+      - cortex-agent-test
     command: ["bash", "/app/tests/docker-regression/scripts/run-unit-tests.sh"]
 
   # Integration test runner
@@ -80,14 +80,14 @@ services:
     build:
       context: ../..
       dockerfile: tests/docker-regression/Dockerfile
-    container_name: claude-flow-integration-tests
+    container_name: cortex-agent-integration-tests
     volumes:
       - test-data:/app/data
       - test-reports:/app/reports
     environment:
       - NODE_ENV=test
-      - CLAUDE_FLOW_MODE=test
-      - CLAUDE_FLOW_MEMORY_PATH=/app/data
+      - CORTEX_AGENT_MODE=test
+      - CORTEX_AGENT_MEMORY_PATH=/app/data
       - CI=true
       - TEST_REPORT_PATH=/app/reports
       - MCP_SERVER_HOST=mcp-server
@@ -96,7 +96,7 @@ services:
       mcp-server:
         condition: service_healthy
     networks:
-      - claude-flow-test
+      - cortex-agent-test
     command: ["bash", "/app/tests/docker-regression/scripts/run-integration-tests.sh"]
 
   # Performance benchmark runner
@@ -104,18 +104,18 @@ services:
     build:
       context: ../..
       dockerfile: tests/docker-regression/Dockerfile
-    container_name: claude-flow-benchmark-tests
+    container_name: cortex-agent-benchmark-tests
     volumes:
       - test-data:/app/data
       - test-reports:/app/reports
     environment:
       - NODE_ENV=test
-      - CLAUDE_FLOW_MODE=test
-      - CLAUDE_FLOW_MEMORY_PATH=/app/data
+      - CORTEX_AGENT_MODE=test
+      - CORTEX_AGENT_MEMORY_PATH=/app/data
       - CI=true
       - TEST_REPORT_PATH=/app/reports
     networks:
-      - claude-flow-test
+      - cortex-agent-test
     command: ["bash", "/app/tests/docker-regression/scripts/run-benchmark-tests.sh"]
 
   # Security test runner
@@ -123,20 +123,20 @@ services:
     build:
       context: ../..
       dockerfile: tests/docker-regression/Dockerfile
-    container_name: claude-flow-security-tests
+    container_name: cortex-agent-security-tests
     volumes:
       - test-reports:/app/reports
     environment:
       - NODE_ENV=test
-      - CLAUDE_FLOW_SECURITY_MODE=strict
+      - CORTEX_AGENT_SECURITY_MODE=strict
       - CI=true
       - TEST_REPORT_PATH=/app/reports
     networks:
-      - claude-flow-test
+      - cortex-agent-test
     command: ["bash", "/app/tests/docker-regression/scripts/run-security-tests.sh"]
 
 networks:
-  claude-flow-test:
+  cortex-agent-test:
     driver: bridge
 
 volumes:

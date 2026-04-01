@@ -9,7 +9,7 @@
  *
  * Falls back to built-in implementations when @ruvector/wasm is not available.
  *
- * @module @claude-flow/cli/ruvector/graph-analyzer
+ * @module @cortex-agent/cli/ruvector/graph-analyzer
  */
 
 import { readFile, readdir, stat } from 'fs/promises';

@@ -37,7 +37,7 @@ export interface PatternEntry {
   createdAt: string;
 
   // Requirements
-  minClaudeFlowVersion: string;
+  minCortexAgentVersion: string;
   dependencies?: string[];
 
   // Verification

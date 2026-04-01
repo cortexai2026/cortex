@@ -1,5 +1,5 @@
 /**
- * Comprehensive tests for @claude-flow/embeddings
+ * Comprehensive tests for @cortex-agent/embeddings
  */
 
 import { describe, it, expect, beforeEach } from 'vitest';

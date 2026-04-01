@@ -1,5 +1,5 @@
 /**
- * @claude-flow/codex - Migration Tests
+ * @cortex-agent/codex - Migration Tests
  *
  * Tests for Claude Code to Codex migration functions
  */
@@ -19,7 +19,7 @@ import type { MigrationResult } from '../src/types.js';
 // Sample CLAUDE.md Content for Testing
 // =============================================================================
 
-const SAMPLE_CLAUDE_MD = `# Claude Flow V3 Project
+const SAMPLE_CLAUDE_MD = `# Cortex Agent V3 Project
 
 ## Behavioral Rules (Always Enforced)
 
@@ -467,9 +467,9 @@ describe('convertSettingsToToml', () => {
   it('should convert MCP servers', () => {
     const settings = {
       mcpServers: {
-        'claude-flow': {
+        'cortex-agent': {
           command: 'npx',
-          args: ['-y', '@claude-flow/cli'],
+          args: ['-y', '@cortex-agent/cli'],
         },
         'custom-server': {
           command: 'node',
@@ -480,22 +480,22 @@ describe('convertSettingsToToml', () => {
 
     const result = convertSettingsToToml(settings);
 
-    expect(result).toContain('[mcp_servers.claude-flow]');
+    expect(result).toContain('[mcp_servers.cortex-agent]');
     expect(result).toContain('command = "npx"');
-    expect(result).toContain('args = ["-y", "@claude-flow/cli"]');
+    expect(result).toContain('args = ["-y", "@cortex-agent/cli"]');
     expect(result).toContain('[mcp_servers.custom-server]');
     expect(result).toContain('command = "node"');
   });
 
-  it('should add default claude-flow server when no mcpServers', () => {
+  it('should add default cortex-agent server when no mcpServers', () => {
     const settings = {
       model: 'gpt-4',
     };
 
     const result = convertSettingsToToml(settings);
 
-    // The implementation adds a default claude-flow server when none specified
-    expect(result).toContain('[mcp_servers.claude-flow]');
+    // The implementation adds a default cortex-agent server when none specified
+    expect(result).toContain('[mcp_servers.cortex-agent]');
     expect(result).toContain('command = "npx"');
   });
 

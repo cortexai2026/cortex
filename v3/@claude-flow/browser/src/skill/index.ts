@@ -10,7 +10,7 @@ export { preBrowseHook, postBrowseHook, browserHooks } from '../infrastructure/h
 // Skill metadata
 export const SKILL_METADATA = {
   name: 'browser',
-  description: 'Web browser automation with AI-optimized snapshots for claude-flow agents',
+  description: 'Web browser automation with AI-optimized snapshots for cortex-agent agents',
   version: '1.0.0',
   triggers: ['/browser', 'browse', 'web automation', 'scrape', 'navigate', 'screenshot'],
   tools: [

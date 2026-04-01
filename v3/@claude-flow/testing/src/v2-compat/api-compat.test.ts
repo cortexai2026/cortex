@@ -133,14 +133,14 @@ const V3_CLASSES: Record<string, MockClass> = {
  * V2 to V3 import alias mapping
  */
 const IMPORT_ALIASES: Record<string, string> = {
-  'claude-flow/hive-mind': '@claude-flow/swarm',
-  'claude-flow/swarm': '@claude-flow/swarm',
-  'claude-flow/memory': '@claude-flow/memory',
-  'claude-flow/agents': '@claude-flow/agent-lifecycle',
-  'claude-flow/tasks': '@claude-flow/task-execution',
-  'claude-flow/hooks': '@claude-flow/hooks',
-  'claude-flow/config': '@claude-flow/config',
-  'claude-flow': '@claude-flow/core',
+  'cortex-agent/hive-mind': '@cortex-agent/swarm',
+  'cortex-agent/swarm': '@cortex-agent/swarm',
+  'cortex-agent/memory': '@cortex-agent/memory',
+  'cortex-agent/agents': '@cortex-agent/agent-lifecycle',
+  'cortex-agent/tasks': '@cortex-agent/task-execution',
+  'cortex-agent/hooks': '@cortex-agent/hooks',
+  'cortex-agent/config': '@cortex-agent/config',
+  'cortex-agent': '@cortex-agent/core',
 };
 
 /**
@@ -207,16 +207,16 @@ describe('V2 API Compatibility', () => {
       expect(resolved).toBe(v3Path);
     });
 
-    it('should resolve claude-flow/hive-mind to @claude-flow/swarm', () => {
-      const resolved = mockRegistry.resolveImport('claude-flow/hive-mind');
+    it('should resolve cortex-agent/hive-mind to @cortex-agent/swarm', () => {
+      const resolved = mockRegistry.resolveImport('cortex-agent/hive-mind');
 
-      expect(resolved).toBe('@claude-flow/swarm');
+      expect(resolved).toBe('@cortex-agent/swarm');
     });
 
-    it('should resolve claude-flow/memory to @claude-flow/memory', () => {
-      const resolved = mockRegistry.resolveImport('claude-flow/memory');
+    it('should resolve cortex-agent/memory to @cortex-agent/memory', () => {
+      const resolved = mockRegistry.resolveImport('cortex-agent/memory');
 
-      expect(resolved).toBe('@claude-flow/memory');
+      expect(resolved).toBe('@cortex-agent/memory');
     });
 
     it('should return null for unknown import paths', () => {

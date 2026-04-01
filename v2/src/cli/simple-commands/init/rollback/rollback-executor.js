@@ -198,7 +198,7 @@ export class RollbackExecutor {
     };
 
     try {
-      const memoryItems = ['memory/claude-flow-data.json', 'memory/agents', 'memory/sessions'];
+      const memoryItems = ['memory/cortex-agent-data.json', 'memory/agents', 'memory/sessions'];
 
       for (const item of memoryItems) {
         const itemPath = `${this.workingDir}/${item}`;
@@ -281,13 +281,13 @@ export class RollbackExecutor {
     };
 
     try {
-      const executablePath = `${this.workingDir}/claude-flow`;
+      const executablePath = `${this.workingDir}/cortex-agent`;
 
       try {
         await fs.unlink(executablePath);
-        result.actions.push('Removed claude-flow executable');
+        result.actions.push('Removed cortex-agent executable');
       } catch {
-        result.actions.push('claude-flow executable was already clean');
+        result.actions.push('cortex-agent executable was already clean');
       }
     } catch (error) {
       result.success = false;
@@ -346,7 +346,7 @@ export class RollbackExecutor {
         'CLAUDE.md',
         'memory-bank.md',
         'coordination.md',
-        'claude-flow',
+        'cortex-agent',
         '.roomodes',
         '.roo',
         '.claude',
@@ -425,7 +425,7 @@ export class RollbackExecutor {
         'coordination.md',
         '.roomodes',
         '.roo',
-        'claude-flow',
+        'cortex-agent',
       ];
 
       let foundArtifacts = 0;

@@ -2,7 +2,7 @@
  * Official Claude Code Hooks Bridge
  *
  * Maps V3 internal hook events to official Claude Code hook events.
- * This bridge enables seamless integration between claude-flow's
+ * This bridge enables seamless integration between cortex-agent's
  * internal hook system and the official Claude Code plugin API.
  *
  * @module v3/hooks/bridge/official-hooks-bridge
@@ -299,7 +299,7 @@ export class OfficialHooksBridge {
    * Create a CLI command for a V3 hook handler
    */
   static createCLICommand(event: HookEvent, handler: string): string {
-    const baseCommand = 'npx claude-flow@alpha hooks';
+    const baseCommand = 'npx cortex-agent@alpha hooks';
 
     switch (event) {
       case HookEvent.PreEdit:

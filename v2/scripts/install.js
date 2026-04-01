@@ -71,7 +71,7 @@ async function main() {
     }
     
     console.log('Claude-Flow installation completed!');
-    console.log('You can now use: npx claude-flow or claude-flow (if installed globally)');
+    console.log('You can now use: npx cortex-agent or cortex-agent (if installed globally)');
     
   } catch (error) {
     console.error('Installation failed:', error.message);

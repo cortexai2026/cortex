@@ -11,7 +11,7 @@
 
 ## Executive Summary
 
-This document proposes integrating the **AgentDB library v1.3.9** (published 2025-10-22, latest stable release) as an enhanced backend for the claude-flow memory system while maintaining **100% backward compatibility** with existing APIs and data stores.
+This document proposes integrating the **AgentDB library v1.3.9** (published 2025-10-22, latest stable release) as an enhanced backend for the cortex-agent memory system while maintaining **100% backward compatibility** with existing APIs and data stores.
 
 ### AgentDB v1.3.9 Latest Features:
 - **npm Package**: `agentdb@1.3.9` ✅ CURRENT LATEST
@@ -277,7 +277,7 @@ export class AgentDBBackend {
   constructor(config) {
     this.adapter = null;
     this.config = {
-      dbPath: config.dbPath || '.agentdb/claude-flow.db',
+      dbPath: config.dbPath || '.agentdb/cortex-agent.db',
       quantizationType: config.quantizationType || 'scalar',
       cacheSize: config.cacheSize || 1000,
       enableLearning: config.enableLearning ?? false,
@@ -318,14 +318,14 @@ export class LegacyDataBridge {
 ### Configuration System
 
 ```typescript
-// claude-flow.config.js or package.json
+// cortex-agent.config.js or package.json
 {
-  "claude-flow": {
+  "cortex-agent": {
     "memory": {
       "backend": "agentdb",  // "legacy" | "agentdb" | "hybrid"
       "agentdb": {
         "enabled": true,
-        "dbPath": ".agentdb/claude-flow.db",
+        "dbPath": ".agentdb/cortex-agent.db",
         "quantization": "scalar",  // "binary" | "scalar" | "product" | "none"
         "cacheSize": 1000,
         "features": {
@@ -495,7 +495,7 @@ class AgentDBMemoryAdapter {
 
 ### Additional MCP Tools for Claude-Flow Integration (12 new tools)
 
-These tools will bridge AgentDB capabilities with claude-flow's memory system:
+These tools will bridge AgentDB capabilities with cortex-agent's memory system:
 
 #### 1. Vector/Semantic Search Tools
 ```typescript
@@ -729,81 +729,81 @@ await memory_search({
 #### 1. Memory Backend Management
 ```bash
 # Switch memory backend
-claude-flow memory backend set agentdb
-claude-flow memory backend set legacy
-claude-flow memory backend set hybrid
+cortex-agent memory backend set agentdb
+cortex-agent memory backend set legacy
+cortex-agent memory backend set hybrid
 
 # Get current backend info
-claude-flow memory backend info
+cortex-agent memory backend info
 
 # Test backend performance
-claude-flow memory backend test
+cortex-agent memory backend test
 ```
 
 #### 2. Migration Commands
 ```bash
 # Migrate to AgentDB
-claude-flow memory migrate to-agentdb [--namespace users] [--validate]
+cortex-agent memory migrate to-agentdb [--namespace users] [--validate]
 
 # Migrate from AgentDB
-claude-flow memory migrate to-legacy [--namespace users]
+cortex-agent memory migrate to-legacy [--namespace users]
 
 # Check migration status
-claude-flow memory migrate status
+cortex-agent memory migrate status
 
 # Validate migration integrity
-claude-flow memory migrate validate --source legacy --target agentdb
+cortex-agent memory migrate validate --source legacy --target agentdb
 ```
 
 #### 3. Vector Search Commands
 ```bash
 # Semantic search
-claude-flow memory search-semantic "find error handling patterns" \
+cortex-agent memory search-semantic "find error handling patterns" \
   --domain code-patterns \
   --top-k 10 \
   --threshold 0.75
 
 # Vector similarity search
-claude-flow memory vector-search \
+cortex-agent memory vector-search \
   --embedding-file query.json \
   --metric cosine \
   --top-k 20
 
 # Hybrid search (vector + filters)
-claude-flow memory hybrid-search "authentication code" \
+cortex-agent memory hybrid-search "authentication code" \
   --filter '{"language":"javascript","confidence":{"$gte":0.8}}'
 ```
 
 #### 4. Learning & Training Commands
 ```bash
 # List available learning plugins
-claude-flow memory learning list-plugins
+cortex-agent memory learning list-plugins
 
 # Train model
-claude-flow memory learning train \
+cortex-agent memory learning train \
   --algorithm decision-transformer \
   --epochs 50 \
   --domain code-generation
 
 # Get training status
-claude-flow memory learning status
+cortex-agent memory learning status
 
 # Apply learned patterns
-claude-flow memory learning apply --domain code-generation
+cortex-agent memory learning apply --domain code-generation
 ```
 
 #### 5. Reasoning Commands
 ```bash
 # Apply reasoning agent
-claude-flow memory reasoning apply \
+cortex-agent memory reasoning apply \
   --agent memory-optimizer \
   --domain workflows
 
 # Get reasoning insights
-claude-flow memory reasoning insights --domain agents
+cortex-agent memory reasoning insights --domain agents
 
 # Context synthesis
-claude-flow memory reasoning synthesize \
+cortex-agent memory reasoning synthesize \
   --query "optimal swarm coordination" \
   --domain swarm-patterns
 ```
@@ -811,31 +811,31 @@ claude-flow memory reasoning synthesize \
 #### 6. Optimization Commands
 ```bash
 # Run memory optimization
-claude-flow memory optimize \
+cortex-agent memory optimize \
   --strategy consolidate \
   --domain conversations
 
 # Apply quantization
-claude-flow memory quantize \
+cortex-agent memory quantize \
   --type binary \
   --namespace patterns
 
 # Rebuild indices
-claude-flow memory reindex --domain all
+cortex-agent memory reindex --domain all
 ```
 
 #### 7. Performance Commands
 ```bash
 # Run benchmarks
-claude-flow memory benchmark \
+cortex-agent memory benchmark \
   --suite comprehensive \
   --iterations 1000
 
 # Compare backends
-claude-flow memory compare-backends
+cortex-agent memory compare-backends
 
 # Get detailed stats
-claude-flow memory stats-advanced \
+cortex-agent memory stats-advanced \
   --include-vectors \
   --include-learning
 ```
@@ -843,18 +843,18 @@ claude-flow memory stats-advanced \
 #### 8. Synchronization Commands
 ```bash
 # Enable QUIC sync
-claude-flow memory sync enable \
+cortex-agent memory sync enable \
   --port 4433 \
   --peers "192.168.1.10:4433,192.168.1.11:4433"
 
 # Check sync status
-claude-flow memory sync status
+cortex-agent memory sync status
 
 # Force sync
-claude-flow memory sync force
+cortex-agent memory sync force
 
 # Disable sync
-claude-flow memory sync disable
+cortex-agent memory sync disable
 ```
 
 ### Enhanced Existing Commands
@@ -862,10 +862,10 @@ claude-flow memory sync disable
 #### hooks (Enhanced)
 ```bash
 # Before
-claude-flow hooks post-edit --file src/api.js
+cortex-agent hooks post-edit --file src/api.js
 
 # After (with AgentDB)
-claude-flow hooks post-edit \
+cortex-agent hooks post-edit \
   --file src/api.js \
   --auto-vectorize    # NEW: Auto-create vector embedding
   --learn-pattern     # NEW: Learn from edit pattern
@@ -952,13 +952,13 @@ claude-flow hooks post-edit \
 1. **Migration Utilities**
    ```bash
    # Interactive migration wizard
-   claude-flow memory migrate --wizard
+   cortex-agent memory migrate --wizard
 
    # Batch migration
-   claude-flow memory migrate batch --namespaces "users,sessions,workflows"
+   cortex-agent memory migrate batch --namespaces "users,sessions,workflows"
 
    # Validation
-   claude-flow memory migrate validate --report
+   cortex-agent memory migrate validate --report
    ```
 
 2. **Optimization Features**
@@ -1170,7 +1170,7 @@ describe('Backward Compatibility', () => {
 ```bash
 # AgentDB Configuration
 AGENTDB_ENABLED=true
-AGENTDB_PATH=.agentdb/claude-flow.db
+AGENTDB_PATH=.agentdb/cortex-agent.db
 AGENTDB_QUANTIZATION=scalar  # binary|scalar|product|none
 AGENTDB_CACHE_SIZE=1000
 AGENTDB_HNSW_M=16
@@ -1202,25 +1202,25 @@ AGENTDB_FALLBACK_LEGACY=true
 echo "🚀 Starting migration to AgentDB..."
 
 # 1. Backup existing data
-claude-flow memory backup --output ./backup-$(date +%Y%m%d).json
+cortex-agent memory backup --output ./backup-$(date +%Y%m%d).json
 
 # 2. Validate backup
-claude-flow memory backup validate ./backup-*.json
+cortex-agent memory backup validate ./backup-*.json
 
 # 3. Enable hybrid mode
 export AGENTDB_ENABLED=true
 export AGENTDB_FALLBACK_LEGACY=true
 
 # 4. Start migration
-claude-flow memory migrate to-agentdb \
+cortex-agent memory migrate to-agentdb \
   --validate \
   --progress
 
 # 5. Validate migration
-claude-flow memory migrate validate
+cortex-agent memory migrate validate
 
 # 6. Run benchmarks
-claude-flow memory benchmark --suite comprehensive
+cortex-agent memory benchmark --suite comprehensive
 
 echo "✅ Migration complete!"
 ```
